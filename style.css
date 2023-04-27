@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+}
+
+.intro-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 1;
+}
+
+.logo-big {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 274px;
+    height: auto;
+    margin: 0;
+    animation-name: move, shrink;
+    animation-duration: 0.6s, 0.6s;
+    animation-delay: 0.6s, 0.6s;
+    animation-fill-mode: forwards;
+}
+  
+@keyframes move {
+    100% {
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
+}
+  
+@keyframes shrink {
+    100% {
+        transform: scale(0.36);
+    }
+}  
+  
+  
