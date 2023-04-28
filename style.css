@@ -279,6 +279,9 @@ header {
   color: white;
   border: none;
 }
+.create-btn:hover {
+  transform: scale(1.02);
+}
 .clear-btn {
   font-size: 25px;
   border-radius: 10px;
@@ -287,6 +290,9 @@ header {
   background-color: #f6f7f8;
   color: var(--blue);
   margin-right: 24px;
+}
+.clear-btn:hover {
+  transform: scale(1.02);
 }
 /*------------add task end------------*/
 /*-------------fonts------------*/
