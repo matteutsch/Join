@@ -57,7 +57,7 @@ h1 {
   }
 }
 
-/*------------------------------*/
+/*----------introAnimation end----------*/
 
 /*-----------sideMenu && header-----------*/
 
@@ -145,7 +145,7 @@ header {
 .myProfile img {
   height: 90%;
 }
-/*------------------------------*/
+/*-------sideMenu && header end----------*/
 
 /* -----------Add Task----------*/
 
@@ -231,8 +231,9 @@ header {
 }
 .prio-section {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .prio-btn {
   display: flex;
@@ -287,7 +288,7 @@ header {
   color: var(--blue);
   margin-right: 24px;
 }
-
+/*------------add task end------------*/
 /*-------------fonts------------*/
 
 @font-face {
