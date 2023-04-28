@@ -11,6 +11,7 @@
 body {
   margin: 0;
   background-color: #f6f7f8;
+  font-family: "inter";
 }
 p {
   margin: 0;
@@ -131,8 +132,31 @@ header {
   width: 52px;
   border-radius: 100%;
 }
+.myProfile:hover {
+  cursor: pointer;
+}
 
 .myProfile img {
   height: 90%;
 }
 /*------------------------------*/
+
+/*-------------fonts------------*/
+
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("assets/fonts/inter-v12-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("assets/fonts/inter-v12-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("assets/fonts/inter-v12-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */ url("assets/fonts/inter-v12-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("assets/fonts/inter-v12-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("assets/fonts/inter-v12-latin-regular.svg#Inter") format("svg"); /* Legacy iOS */
+}
