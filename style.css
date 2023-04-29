@@ -12,9 +12,11 @@ body {
   margin: 0;
   background-color: #f6f7f8;
 }
+
 p {
   margin: 0;
 }
+
 /*--------introAnimation--------*/
 .intro-container {
   display: flex;
@@ -62,7 +64,7 @@ p {
   background-color: var(--blue);
   height: 100vh;
   width: 232px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .logoContainer {
@@ -71,6 +73,7 @@ p {
   align-items: center;
   padding-top: 60px;
 }
+
 .menuLogo {
   height: 125px;
 }
@@ -78,6 +81,7 @@ p {
 .textContainer {
   padding-top: 100px;
 }
+
 .menuText {
   color: var(--textGrey);
   display: flex;
@@ -85,10 +89,12 @@ p {
   height: 46px;
   padding-left: 55px;
 }
+
 .menuText img {
   height: 22px;
   margin-right: 25px;
 }
+
 .menuText:hover {
   cursor: pointer;
   background-color: var(--dark-blue);
@@ -106,6 +112,7 @@ header {
   position: relative;
   box-sizing: border-box;
   top: 0;
+  left: -232px;
   max-width: 100vw;
   height: 80px;
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
@@ -116,12 +123,14 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
 .header-content-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-width: 100px;
 }
+
 .myProfile {
   display: flex;
   justify-content: center;
@@ -135,4 +144,5 @@ header {
 .myProfile img {
   height: 90%;
 }
+
 /*------------------------------*/
