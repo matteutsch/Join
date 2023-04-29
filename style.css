@@ -7,7 +7,9 @@
   --low: #74d727;
   --grey: #cdcdcd;
 }
-
+.d-none {
+  display: none;
+}
 body {
   margin: 0;
   background-color: #f6f7f8;
@@ -19,6 +21,7 @@ p {
 }
 h1 {
   margin: 0;
+  font-size: 48px;
 }
 /*--------introAnimation--------*/
 .intro-container {
@@ -175,7 +178,7 @@ header {
   justify-content: center;
   align-items: flex-start;
   font-size: 25px;
-  margin-top: 48px;
+  margin-top: 56px;
 }
 /*leftSide*/
 .content-left {
@@ -242,13 +245,14 @@ header {
   align-items: center;
   padding: 13px;
   font-size: 18px;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-right: 10px;
   background-color: #ffffff;
 }
 .prio-btn:hover {
   transform: scale(1.05);
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .prio-btn img {
@@ -265,11 +269,9 @@ header {
 
 /*buttonsBelow*/
 .button-container {
-  margin-top: 48px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 24px;
   box-sizing: border-box;
 }
 .create-btn {
@@ -282,6 +284,7 @@ header {
 }
 .create-btn:hover {
   transform: scale(1.02);
+  background-color: var(--light-blue);
 }
 .clear-btn {
   font-size: 25px;
@@ -294,8 +297,49 @@ header {
 }
 .clear-btn:hover {
   transform: scale(1.02);
+  border: 2px solid var(--light-blue);
+  color: var(--light-blue);
 }
 /*------------add task end------------*/
+/*--------task_form--------*/
+
+#taskForm {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+.task-form {
+  width: 80vw;
+  height: 75vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  padding: 72px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+.task-form p {
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+.task-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-head img {
+  width: 22px;
+}
+
 /*---------------fonts---------------*/
 
 @font-face {
