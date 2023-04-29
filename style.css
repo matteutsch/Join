@@ -182,6 +182,7 @@ header {
   border-right: 1px solid #d1d1d1;
   width: 50%;
   padding-right: 60px;
+  padding-bottom: 56px;
 }
 .content-left input {
   box-sizing: border-box;
@@ -295,7 +296,7 @@ header {
   transform: scale(1.02);
 }
 /*------------add task end------------*/
-/*-------------fonts------------*/
+/*---------------fonts---------------*/
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
