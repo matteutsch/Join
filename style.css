@@ -163,8 +163,10 @@ header {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  height: 90vh;
   margin-left: 232px;
+  padding-bottom: 48px;
   padding-left: 120px;
   padding-right: 120px;
   padding-top: 80px;
@@ -316,7 +318,7 @@ header {
   background: rgba(0, 0, 0, 0.2);
 }
 .task-form {
-  width: 80vw;
+  min-width: 60vw;
   height: 75vh;
   box-sizing: border-box;
   display: flex;
