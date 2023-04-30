@@ -12,10 +12,39 @@
   </head>
 
   <body>
-    <div class="signIn-container"></div>
 
-    <div class="intro-container">
-      <img src="icons/logo-black.png" class="logo-big" />
+
+    <div class="login-container">
+      
+      <div class="login-form">
+          <form onsubmit="meinFunktion()" >
+            <div>
+              <h1>Log in</h1>
+              <div class="underline"></div>
+              <div class="input-container">
+                <input type="email" aria-required="true" name="email" placeholder="Email" id="email" required>
+                <input type="password" aria-required="true" name="password" placeholder="Password" id="password" required>
+              </div>
+              
+              <div class="form-actions">
+                <div class="remember-me">
+                  <input type="checkbox">
+                  <p>Remember me</p>
+                </div>
+
+
+                <a href="#">Forgot my password</a>
+              </div>
+              <div class="button-container">
+                <button class="login-button">Log in</button>
+                <button class="guest-login-button">Guest Log in</button>
+              </div>
+            </div>
+          </form>
+      </div>
     </div>
+
+    <img src="icons/logo-black.png" class="logo-big">
+
   </body>
 </html>
