@@ -7,7 +7,6 @@
   --low: #74d727;
   --grey: #cdcdcd;
 }
-
 body {
   margin: 0;
   background-color: #f6f7f8;
@@ -22,7 +21,9 @@ p {
 h1 {
   margin: 0;
 }
-
+.d-none {
+  display: none;
+}
 /*--------introAnimation--------*/
 .intro-container {
   display: flex;
@@ -46,8 +47,6 @@ h1 {
   animation-fill-mode: forwards;
 }
 
-
-
 @keyframes move {
   100% {
     top: 0;
@@ -62,7 +61,6 @@ h1 {
   }
 }
 
-
 /*--------Login--------*/
 
 .login-container {
@@ -70,7 +68,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #F6F7F8;
+  background-color: #f6f7f8;
 }
 
 .login-form {
@@ -87,7 +85,7 @@ h1 {
 
 .login-form h1 {
   text-align: center;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 61px;
@@ -102,7 +100,7 @@ h1 {
   width: 0px;
   height: 150px;
 
-  border: 2px solid #29ABE2;
+  border: 2px solid #29abe2;
   transform: rotate(90deg);
 
   /* Inside auto layout */
@@ -121,17 +119,17 @@ h1 {
 }
 
 .input-container::placeholder {
-  color: #D1D1D1;
+  color: #d1d1d1;
 }
 
 #email {
   width: 422px;
   height: 51px;
   box-sizing: border-box;
-  background: #FFFFFF;
-  border: 1px solid #D1D1D1;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
@@ -142,10 +140,10 @@ h1 {
   width: 422px;
   height: 51px;
   box-sizing: border-box;
-  background: #FFFFFF;
-  border: 1px solid #D1D1D1;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
@@ -183,7 +181,7 @@ h1 {
   width: 145px;
   height: 51px;
 
-  background: #2A3647;
+  background: #2a3647;
   border-radius: 8px;
 
   /* Inside auto layout */
@@ -196,7 +194,6 @@ h1 {
 .guest-login-button {
   box-sizing: border-box;
 
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -207,9 +204,8 @@ h1 {
   height: 51px;
 
   background: white;
-  border: 1px solid #2A3647;
+  border: 1px solid #2a3647;
   border-radius: 8px;
-
 
   flex: none;
   order: 1;
@@ -217,9 +213,6 @@ h1 {
 }
 
 /*------------------------------*/
-
-
-
 
 /*-----------sideMenu && header-----------*/
 
@@ -333,4 +326,3 @@ header {
     /* Safari, Android, iOS */
       url("assets/fonts/inter-v12-latin-regular.svg#Inter") format("svg"); /* Legacy iOS */
 }
-
