@@ -11,8 +11,10 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  height: 90vh;
   margin-left: 232px;
+  padding-bottom: 48px;
   padding-left: 120px;
   padding-right: 120px;
   padding-top: 80px;
@@ -26,13 +28,14 @@
   justify-content: center;
   align-items: flex-start;
   font-size: 25px;
-  margin-top: 48px;
+  margin-top: 56px;
 }
 /*leftSide*/
 .content-left {
   border-right: 1px solid #d1d1d1;
   width: 50%;
   padding-right: 60px;
+  padding-bottom: 56px;
 }
 .content-left input {
   box-sizing: border-box;
@@ -92,13 +95,14 @@
   align-items: center;
   padding: 13px;
   font-size: 18px;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-right: 10px;
   background-color: #ffffff;
 }
 .prio-btn:hover {
   transform: scale(1.05);
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .prio-btn img {
@@ -115,11 +119,9 @@
 
 /*buttonsBelow*/
 .button-container {
-  margin-top: 48px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 24px;
   box-sizing: border-box;
 }
 .create-btn {
@@ -132,6 +134,7 @@
 }
 .create-btn:hover {
   transform: scale(1.02);
+  background-color: var(--light-blue);
 }
 .clear-btn {
   font-size: 25px;
@@ -144,6 +147,8 @@
 }
 .clear-btn:hover {
   transform: scale(1.02);
+  border: 2px solid var(--light-blue);
+  color: var(--light-blue);
 }
 /*------------add task end------------*/
 
