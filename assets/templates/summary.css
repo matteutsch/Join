@@ -14,7 +14,7 @@ body {
 }
 
 .leftTemplate {
-    width: 150px;
+    width: 280px;
     height: 100vh;
     background-color: #2A3647;
 }
@@ -23,6 +23,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin-left: 232px;
 }
 
 .topTemplate {
@@ -41,11 +42,17 @@ body {
 }
 
 .headline {
-    width: 100%;
+    /*     width: 100%;
+ */
     display: flex;
     margin-top: 50px;
     margin-bottom: 50px;
     align-items: baseline;
+}
+
+.summary {
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .blueLine {
@@ -72,7 +79,7 @@ body {
 }
 
 .tasksCount {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     margin: 7px;
 }
