@@ -5,84 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="icons/logo-black.png" sizes="any" />
-    <title>oin</title>
+    <title>join</title>
 
-    <link rel="stylesheet" href="summary.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <script src="javascripts/includeHTML.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/templates/summary.css" />
+    <link rel="stylesheet" href="assets/templates/task.css" />
   </head>
 
   <body onload="includeHTML()">
-    <div class="overallContainer">
-        <div w3-include-html="assets/templates/side_menu.html"></div><!-- <div class="leftTemplate"></div> -->
-        <div class="rightContainer">
-            <div w3-include-html="assets/templates/header.html"></div><!-- <div class="topTemplate"></div> -->
-            <div class="summaryContainer">
-                <div class="headline">
-                    <div class="summary">Summary</div> 
-                    <div class="blueLine"></div>
-                    <div class="text">Everything in a nutshell</div>
-                </div>
-            </div>
-            <div class="tasksOverallContainer">
-                <div class="tasksContainer">
-                    <div id="tasksInBoard" class="sumTasksInBorad tasksCount">5</div>
-                    <div class="tasksText"> Tasks in Borad</div>
-                </div>
-                <div class="tasksContainer">
-                    <div id="tasksInProgress" class="sumTasksInProgress tasksCount">2</div>
-                    <div class="tasksText">Tasks in Progress</div>
-                </div>
-                <div class="tasksContainer">
-                    <div id="tasksAwaitingFeedback" class="sumTasksAwaitingFeedback tasksCount">2</div>
-                    <div class="tasksText">Awaiting Feedback</div>
-                </div>
-            </div>
-            <div class="dueDateContainer">
-                <div class="priority">
-                    <div class="urgentContainer">
-                        <div class="iconUrgent">
-                            <img src="./icons/urgent.png" class="icon">
-                        </div>
-                        <div class="sumUrgentContainer">
-                            <div id="sumUrgent" class="sumUrgent">1</div>
-                            <div class="textUrgent">Urgent</div>
-                        </div>
-                    </div>
-                    <div class="greyLine"></div>
-                    <div class="deadline">
-                        <div id="dateDeadline" class="dateDeadline">Oktober 16, 2022</div>
-                        <div class="textDeadline">Upcoming Deadline</div>
-                    </div>
-                </div>
-                <div class="greeting">
-                    <div class="greetingText">Good Morning,</div>
-                    <div class="greetingName">Sofia Müller</div>
-                </div>
-            </div>
-            <div class="toDoDoneContainer">
-                <div class="toDoContainer">
-                    <div class="iconToDo">
-                        <img src="./icons/pencil.small.png" class="icon">
-                    </div>
-                    <div class="sumToDoContainer">
-                        <div id="sumToDo" class="sumToDo">1</div>
-                        <div class="textToDo">To-do</div>
-                    </div>
-                </div>
-                <div class="doneContainer">
-                    <div class="iconDone">
-                        <img src="./icons/checkmark.png" class="icon">
-                    </div>
-                    <div class="sumDoneContainer">
-                        <div id="sumDone" class="sumDone">1</div>
-                        <div class="textdone">Done</div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+    <div w3-include-html="assets/templates/menu+header.html"></div>
+    <!--<div w3-include-html="assets/templates/summary.html"></div>-->
+    <div w3-include-html="assets/templates/add_task.html"></div>
   </body>
 </html>
