@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="icons/logo-black.png" sizes="any" />
+
     <title>Join</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+
     <script src="javascripts/includeHTML.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/templates/summary.css" />
+    <link rel="stylesheet" href="assets/templates/task.css" />
   </head>
 
   <body onload="includeHTML()">
-    <div w3-include-html="assets/templates/header.html"></div>
-    <div w3-include-html="assets/templates/side_menu.html"></div>
+    <div w3-include-html="assets/templates/menu+header.html"></div>
+    <!--<div w3-include-html="assets/templates/summary.html"></div>-->
+    <div w3-include-html="assets/templates/add_task.html"></div>
   </body>
 </html>
