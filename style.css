@@ -306,7 +306,7 @@ header {
 /*------------add task end------------*/
 /*--------task_form--------*/
 
-#taskForm {
+.taskFormOverlay {
   box-sizing: border-box;
   position: absolute;
   top: 0;
