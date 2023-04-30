@@ -1,79 +1,100 @@
-<body>
-  <div class="content-container">
-    <h1>Add Task</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/logo-black.png"
+      sizes="any"
+    />
 
-    <div class="task-section">
-      <div class="content-left">
-        <div>
-          <p>Title</p>
-          <input placeholder="Enter a title" />
-        </div>
-        <div>
-          <p>Description</p>
-          <textarea placeholder="Enter a Description"></textarea>
-        </div>
-        <div>
-          <p>Category</p>
-          <select class="pointer">
-            <option value="" disabled selected hidden>
-              Select task category
-            </option>
-            <option value="HTML">HTML</option>
-            <option value="CSS">CSS</option>
-            <option value="javascripts">javascripts</option>
-          </select>
-        </div>
-        <div>
-          <p>Assigned to</p>
+    <title>Join</title>
 
-          <select class="pointer">
-            <option value="" disabled selected hidden>
-              Select contacts to assign
-            </option>
-            <option value="Furkan">Furkan</option>
-            <option value="Jens">Jens</option>
-            <option value="Matthias">Matthias</option>
-          </select>
-        </div>
-      </div>
+    <script src="javascripts/includeHTML.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/task.css" />
+  </head>
 
-      <div class="content-right">
-        <div>
-          <p>Due date</p>
-          <input class="pointer" type="date" value="dd/mm/yyyy" />
+  <body onload="includeHTML()">
+    <div w3-include-html="assets/templates/menu+header.html"></div>
+    <div class="content-container">
+      <h1>Add Task</h1>
+
+      <div class="task-section">
+        <div class="content-left">
+          <div>
+            <p>Title</p>
+            <input placeholder="Enter a title" />
+          </div>
+          <div>
+            <p>Description</p>
+            <textarea placeholder="Enter a Description"></textarea>
+          </div>
+          <div>
+            <p>Category</p>
+            <select class="pointer">
+              <option value="" disabled selected hidden>
+                Select task category
+              </option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="javascripts">javascripts</option>
+            </select>
+          </div>
+          <div>
+            <p>Assigned to</p>
+
+            <select class="pointer">
+              <option value="" disabled selected hidden>
+                Select contacts to assign
+              </option>
+              <option value="Furkan">Furkan</option>
+              <option value="Jens">Jens</option>
+              <option value="Matthias">Matthias</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <p>Prio</p>
-          <div class="prio-section">
-            <div class="prio-btn pointer">
-              Urgent <img src="assets/icons/urgent.png" />
+
+        <div class="content-right">
+          <div>
+            <p>Due date</p>
+            <input class="pointer" type="date" value="dd/mm/yyyy" />
+          </div>
+          <div>
+            <p>Prio</p>
+            <div class="prio-section">
+              <div class="prio-btn pointer">
+                Urgent <img src="assets/icons/urgent.png" />
+              </div>
+              <div class="prio-btn pointer">
+                Medium <img src="assets/icons/medium.png" />
+              </div>
+              <div class="prio-btn pointer">
+                Low <img src="assets/icons/low.png" />
+              </div>
             </div>
-            <div class="prio-btn pointer">
-              Medium <img src="assets/icons/medium.png" />
-            </div>
-            <div class="prio-btn pointer">
-              Low <img src="assets/icons/low.png" />
+          </div>
+          <div>
+            <p>Subtasks</p>
+            <input type="text" placeholder="Add new subtask" />
+            <div class="new-subtask">
+              <img class="pointer" src="assets/icons/square.png" />
+              <p>Subtask 1</p>
             </div>
           </div>
         </div>
-        <div>
-          <p>Subtasks</p>
-          <input type="text" placeholder="Add new subtask" />
-          <div class="new-subtask">
-            <img class="pointer" src="assets/icons/square.png" />
-            <p>Subtask 1</p>
-          </div>
-        </div>
+      </div>
+
+      <div class="button-container">
+        <button class="clear-btn pointer">Clear &nbsp; x</button>
+        <button class="create-btn pointer">
+          Create Task <img src="assets/icons/check-white.png" />
+        </button>
       </div>
     </div>
-
-    <div class="button-container">
-      <button class="clear-btn pointer">
-        Clear <img src="assets/icons/clear.png" />
-      </button>
-      <button class="create-btn pointer">
-        Create Task <img src="assets/icons/check-white.png" />
-      </button>
-    </div>
-  </div>
-</body>
+  </body>
+</html>
