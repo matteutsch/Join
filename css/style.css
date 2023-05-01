@@ -86,15 +86,16 @@ body {
   font-style: normal;
   font-weight: 700;
   font-size: 61px;
-  line-height: 120%;
+  margin-top: 50px;
   color: #000000;
 }
 
 .underline {
   position: absolute;
-  top: 50px;
+  top: 64px;
   left: 50%;
   width: 0px;
+  font-size: 61px;
   height: 150px;
   border: 2px solid #29abe2;
   transform: rotate(90deg);
@@ -109,6 +110,7 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 29px;
+  margin-bottom: 30px;
 }
 
 .input-container::placeholder {
@@ -147,6 +149,8 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .remember-me {
@@ -154,7 +158,11 @@ body {
   gap: 20px;
 }
 
-.forgot-password{
+.remember-checkbox {
+  width: 16px;
+}
+
+.forgot-password {
   text-decoration: none;
 }
 
@@ -165,6 +173,7 @@ body {
   align-items: flex-start;
   padding: 0px;
   gap: 35px;
+  cursor: pointer;
 }
 
 .login-button {
@@ -172,6 +181,8 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-size: large;
+  font-weight: 700;
   padding: 4px 0px;
   gap: 10px;
   color: white;
@@ -182,11 +193,13 @@ body {
   flex: none;
   order: 0;
   flex-grow: 0;
+  cursor: pointer;
 }
 
 .guest-login-button {
   box-sizing: border-box;
-
+  font-size: large;
+  font-weight: 700;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -195,14 +208,42 @@ body {
   gap: 10px;
   width: 161px;
   height: 51px;
-
+  cursor: pointer;
   background: white;
   border: 1px solid #2a3647;
   border-radius: 8px;
-
   flex: none;
   order: 1;
   flex-grow: 0;
+}
+
+.sign-up-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  top: 67px;
+  right: 114px;
+}
+
+.sign-up-container p {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+}
+
+.sign-up-button {
+  width: 91px;
+  height: 51px;
+  background: #2A3647;
+  border-radius: 8px;
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /*------------------------------*/
@@ -290,6 +331,7 @@ header {
   width: 52px;
   border-radius: 100%;
 }
+
 .myProfile:hover {
   cursor: pointer;
 }
@@ -303,19 +345,21 @@ header {
 /*-------------fonts------------*/
 
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
+  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  src: url("../assets/fonts/inter-v12-latin-regular.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/inter-v12-latin-regular.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/inter-v12-latin-regular.woff2")
-      format("woff2"),
+  src: url("../assets/fonts/inter-v12-latin-regular.eot");
+  /* IE9 Compat Modes */
+  src: url("../assets/fonts/inter-v12-latin-regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */
+    url("../assets/fonts/inter-v12-latin-regular.woff2") format("woff2"),
     /* Super Modern Browsers */
-      url("../assets/fonts/inter-v12-latin-regular.woff") format("woff"),
-    /* Modern Browsers */ url("../assets/fonts/inter-v12-latin-regular.ttf")
-      format("truetype"),
+    url("../assets/fonts/inter-v12-latin-regular.woff") format("woff"),
+    /* Modern Browsers */
+    url("../assets/fonts/inter-v12-latin-regular.ttf") format("truetype"),
     /* Safari, Android, iOS */
-      url("../assets/fonts/inter-v12-latin-regular.svg#Inter") format("svg"); /* Legacy iOS */
+    url("../assets/fonts/inter-v12-latin-regular.svg#Inter") format("svg");
+  /* Legacy iOS */
 }
