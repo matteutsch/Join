@@ -1,0 +1,40 @@
+body {
+  scroll-behavior: smooth;
+}
+.contact-list {
+  position: absolute;
+  width: 453px;
+  left: 232px;
+  top: 80px;
+  bottom: 0;
+  overflow-y: scroll;
+  background-color: #ffffff;
+  z-index: 99;
+}
+
+.big {
+  height: 1000px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a8a8a8;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
