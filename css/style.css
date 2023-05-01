@@ -15,17 +15,13 @@ body {
   box-sizing: border-box;
 }
 
-p {
-  margin: 0;
-}
 
-h1 {
-  margin: 0;
-}
 .d-none {
   display: none;
 }
+
 /*--------introAnimation--------*/
+
 .intro-container {
   display: flex;
   justify-content: center;
@@ -100,12 +96,8 @@ h1 {
   left: 50%;
   width: 0px;
   height: 150px;
-
   border: 2px solid #29abe2;
   transform: rotate(90deg);
-
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -162,7 +154,11 @@ h1 {
   gap: 20px;
 }
 
-.button-container {
+.forgot-password{
+  text-decoration: none;
+}
+
+.button-container-login {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -181,12 +177,8 @@ h1 {
   color: white;
   width: 145px;
   height: 51px;
-
   background: #2a3647;
   border-radius: 8px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
