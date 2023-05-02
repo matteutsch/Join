@@ -54,6 +54,10 @@ body {
   padding-left: 55px;
   font-size: 20px;
 }
+.menuText a {
+  text-decoration: none;
+  color: var(--grey);
+}
 
 .menuText img {
   height: 22px;
