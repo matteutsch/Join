@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/logo-black.png"
+      sizes="any"
+    />
+
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login_signup.css" />
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-form">
+      <form onsubmit="">
+        <div>
+          <h1>Sign up</h1>
+          <div class="underline"></div>
+          <div class="signup-input-container">
+            <input
+              type="text"
+              aria-required="true"
+              name="name"
+              placeholder="Name"
+              id="nameInput"
+              class="nameInput"
+              required="required"
+            />
+            <input
+              type="email"
+              aria-required="true"
+              name="email"
+              placeholder="Email"
+              id="signup-email"
+              class="email"
+              required="required"
+            />
+            <input
+              type="password"
+              aria-required="true"
+              name="password"
+              placeholder="Password"
+              id="signup-password"
+              class="password"
+              required="required"
+            />
+          </div>
+          
+          <div class="button-container-login">
+            <button class="login-button form-signup-button">Sign up</button>
+          </div>
+          <button class="return-to-login-btn" onclick="window.location.href='index.html'"><img src="assets/icons/Arrow-Left.png"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+    <img src="assets/icons/logo-black.png" class="signup-logo" />
+</body>
+</html>

@@ -16,14 +16,13 @@
     <script src="javascripts/includeHTML.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/summary.css" />
-    <link rel="stylesheet" href="css/task.css" />
+    <link rel="stylesheet" href="css/login_signup.css" />
   </head>
 
-  <body>
+  <body onload="fadeInAnimation()">
     <div class="login-container">
       <div class="login-form">
-        <form onsubmit="meinFunktion()">
+        <form onsubmit="">
           <div>
             <h1>Log in</h1>
             <div class="underline"></div>
@@ -34,6 +33,7 @@
                 name="email"
                 placeholder="Email"
                 id="email"
+                class="email"
                 required="required"
               />
               <input
@@ -42,6 +42,7 @@
                 name="password"
                 placeholder="Password"
                 id="password"
+                class="password"
                 required="required"
               />
             </div>
@@ -63,7 +64,7 @@
     <img src="assets/icons/logo-black.png" class="logo-big" />
     <div class="sign-up-container">
       <p>Not a Join user?</p>
-      <button class="sign-up-button">Sign up</button>
+      <button class="sign-up-button" onclick="window.location.href='sign_up.html'">Sign up</button>
     </div>
   </body>
 </html>
