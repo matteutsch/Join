@@ -1,0 +1,55 @@
+.board-body {
+    margin-left: 232px;
+}
+
+.header-row {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 50px;
+
+}
+
+.header-row h1 {
+    font-size: 61px;
+}
+
+.header-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.header-right button {
+    position: relative;
+    border-radius: 10px;
+    width: 137px;
+    height: 55px;
+    background-color: #2A3647;
+    color: white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    padding-right: 25px;
+    cursor: pointer;
+}
+
+.plus-white{
+    position: absolute;
+    right: 8px;
+    top: 17px;
+}
+
+#boardSearch {
+    width: 251px;
+    height: 51px;
+    font-size: 21px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    line-height: 51px;
+    padding-left: 21px;
+  }
+  
