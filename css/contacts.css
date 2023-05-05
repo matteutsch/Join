@@ -9,7 +9,6 @@ body {
   margin-top: -80px;
   padding-top: 80px;
   display: flex;
-  align-items: center;
 }
 .contacts-content-right {
   display: flex;
