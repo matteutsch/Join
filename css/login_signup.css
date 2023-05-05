@@ -55,7 +55,7 @@
     animation-delay: 1s;
 }
 
-.signup-container{
+.signup-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,3 +322,74 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 800px) {
+
+    .login-form {
+        width: 372px;
+        height: 573px;
+    }
+
+    .email {
+        width: 327px;
+        height: 41px;
+        background: url('/assets/icons/Input_Email.png') no-repeat 285px 10px
+    }
+
+    .password {
+        width: 327px;
+        height: 41px;
+        background: url('/assets/icons/Input_Password.png') no-repeat 286px 10px;
+    }
+
+    .button-container-login{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sign-up-container{
+        top: unset;
+        bottom: 50px;
+        right: 50%;
+        transform: translate(50%);
+    }
+
+    .logo-big{
+        width: 100px;
+        margin: 20px;
+    }
+
+    @keyframes shrink {
+        100% {
+            transform: scale(0.64);
+        }
+    }
+
+    .button-container-login{
+        gap: 21px;
+    }
+
+    .login-button{
+        width: 180px;
+        font-size: 16px;
+    }
+
+    .guest-login-button{
+        width: 180px;
+        font-size: 16px;
+    }
+
+    .sign-up-container {
+        width: 287px;
+    }
+
+    .form-actions{
+        flex-direction: column-reverse;
+        align-items: start;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+
+}
+
