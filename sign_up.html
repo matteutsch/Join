@@ -17,13 +17,13 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/login_signup.css" />
 </head>
-<body>
+<body onload="changeArrowColor()">
   <div class="signup-container">
     <div class="signup-form">
       <form onsubmit="">
         <div>
           <h1>Sign up</h1>
-          <div class="underline"></div>
+          <div class="underline underline-signup"></div>
           <div class="signup-input-container">
             <input
               type="text"
@@ -57,7 +57,7 @@
           <div class="button-container-login">
             <button class="login-button form-signup-button">Sign up</button>
           </div>
-          <button class="return-to-login-btn" onclick="window.location.href='index.html'"><img src="assets/icons/Arrow-Left.png"></button>
+          <button class="return-to-login-btn" onclick="window.location.href='index.html'"><img id="blueArrowLeft" src="assets/icons/arrow-left.png"></button>
         </div>
       </form>
     </div>
