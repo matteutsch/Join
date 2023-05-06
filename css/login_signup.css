@@ -8,6 +8,7 @@
 
 .logo-big {
     position: absolute;
+    z-index: 2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -30,17 +31,27 @@
     margin: 0;
 }
 
+.animation-layer{
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    background-color: #2A3647;
+    height: 100vh;
+    width: 100%;
+
+}
+
+
 @keyframes move {
     100% {
-        top: 0;
-        left: 0;
-        transform: translate(0, 0);
+        top: -30px;
+        left: -20px;
     }
 }
 
 @keyframes shrink {
     100% {
-        transform: scale(0.36);
+        transform: scale(0.30);
     }
 }
 
@@ -313,6 +324,7 @@
     cursor: pointer;
 }
 
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -330,6 +342,23 @@
         height: 573px;
     }
 
+    .login-form h1{
+        font-size: 47px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .signup-form {
+        width: 372px;
+        height: 501px;
+    }
+
+    .signup-form h1 {
+        font-size: 47px;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
     .email {
         width: 327px;
         height: 41px;
@@ -342,21 +371,33 @@
         background: url('/assets/icons/Input_Password.png') no-repeat 286px 10px;
     }
 
-    .button-container-login{
+    .nameInput {
+        width: 327px;
+        height: 41px;
+        background: url('/assets/icons/Input_Name.png') no-repeat 286px 10px;
+    }
+
+    .button-container-login {
         flex-direction: column;
         align-items: center;
     }
 
-    .sign-up-container{
+    .sign-up-container {
         top: unset;
         bottom: 50px;
         right: 50%;
         transform: translate(50%);
     }
 
-    .logo-big{
+    .logo-big {
         width: 100px;
         margin: 20px;
+    }
+
+    .signup-logo {
+        width: 64px;
+        top: 81px;
+        left: 70px;
     }
 
     @keyframes shrink {
@@ -365,25 +406,34 @@
         }
     }
 
-    .button-container-login{
+    @keyframes move {
+        100% {
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .button-container-login {
         gap: 21px;
     }
 
-    .login-button{
+    .login-button {
         width: 180px;
         font-size: 16px;
     }
 
-    .guest-login-button{
+    .guest-login-button {
         width: 180px;
         font-size: 16px;
     }
 
     .sign-up-container {
         width: 287px;
+        margin-bottom: 35px;
+        bottom: 10px;
     }
 
-    .form-actions{
+    .form-actions {
         flex-direction: column-reverse;
         align-items: start;
         margin-top: 30px;
@@ -391,5 +441,24 @@
         gap: 15px;
     }
 
-}
+    .underline{
+        height: 88px;
+        top: 70px;
+    }
 
+    .underline-signup {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        width: 0px;
+        font-size: 61px;
+        height: 88px;
+        border: 2px solid #29abe2;
+        transform: rotate(90deg);
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+    }
+
+
+}

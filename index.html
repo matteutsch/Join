@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/login_signup.css" />
   </head>
 
-  <body onload="fadeInAnimation()">
+  <body onload="initLoginPage()">
     <div class="login-container">
       <div class="login-form">
         <form onsubmit="">
@@ -61,7 +61,8 @@
         </form>
       </div>
     </div>
-    <img src="assets/icons/logo-black.png" class="logo-big" />
+    <div class="animation-layer"></div>
+    <img src="assets/icons/logo-black.png" class="logo-big"/>
     <div class="sign-up-container">
       <p>Not a Join user?</p>
       <button class="sign-up-button" onclick="window.location.href='sign_up.html'">Sign up</button>
