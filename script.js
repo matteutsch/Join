@@ -1,8 +1,20 @@
+/**
+
+    Initializes the login page by executing fadeInAnimation and changeLogoColor functions.
+    @function
+    @name initLoginPage
+    */
 function initLoginPage() {
   fadeInAnimation();
   changeLogoColor();
 }
 
+/**
+
+    Executes the fade-in animation on the login and sign-up containers, and changes the logo image after a timeout.
+    @function
+    @name fadeInAnimation
+    */
 function fadeInAnimation() {
   const animationLayer = document.querySelector('.animation-layer');
   const logo = document.querySelector(".logo-big");
@@ -10,13 +22,19 @@ function fadeInAnimation() {
     document.querySelector(".login-container").style.opacity = "1";
     document.querySelector(".sign-up-container").style.opacity = "1";
   }, 1900);
-
   setTimeout(function() {
     animationLayer.style.display = 'none';
     logo.src = "assets/icons/logo-black.png";
   }, 1000);
 }
 
+
+/**
+
+    Changes the color of the logo and the background color of the animation layer based on the window width.
+    @function
+    @name changeLogoColor
+    */
 function changeLogoColor() {
   if (window.innerWidth < 800) {
     const logo = document.querySelector(".logo-big");
