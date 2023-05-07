@@ -15,11 +15,13 @@
 
     <script src="javascripts/includeHTML.js"></script>
     <script src="script.js"></script>
+    <script src="javascripts/storage.js"></script>
+    <script src="javascripts/register.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/login_signup.css" />
   </head>
 
-  <body onload="fadeInAnimation()">
+  <body onload="initLoginPage(), initRegister()">
     <div class="login-container">
       <div class="login-form">
         <form onsubmit="">
@@ -61,7 +63,8 @@
         </form>
       </div>
     </div>
-    <img src="assets/icons/logo-black.png" class="logo-big" />
+    <div class="animation-layer"></div>
+    <img src="assets/icons/logo-black.png" class="logo-big"/>
     <div class="sign-up-container">
       <p>Not a Join user?</p>
       <button class="sign-up-button" onclick="window.location.href='sign_up.html'">Sign up</button>

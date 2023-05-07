@@ -48,17 +48,4 @@ let tasks = [
   },
 ];
 
-// Generate Greeting according to daytime after 1.2 seconds
-setInterval(function () {
-  let date = new Date();
-  let hours = date.getHours();
-  let timeOfDay;
-  if (hours < 12) {
-    timeOfDay = "Good morning,";
-  } else if (hours >= 12 && hours < 17) {
-    timeOfDay = "Good afternoon,";
-  } else {
-    timeOfDay = "Good evening, ";
-  }
-  (document.getElementById("greeting").innerHTML = timeOfDay), ",";
-}, 1200);
+
