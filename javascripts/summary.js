@@ -2,7 +2,9 @@ function startSummary() {
     includeHTML()
     greet()
 }
-
+/**
+ * Changes greeting according to the time of day
+ */
 function greet() {
     let date = new Date();
     let hours = date.getHours();
