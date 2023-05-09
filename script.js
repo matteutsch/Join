@@ -45,9 +45,27 @@ function changeLogoColor() {
   }
 }
 
+
+/**
+ * 
+ * Changes the arrow left color based on the window width
+ * @function
+ * @name changeArrowColor
+ */
 function changeArrowColor() {
+  const arrow = document.getElementById("blueArrowLeft");
+  
   if (window.innerWidth < 800) {
-    const arrow = document.getElementById("blueArrowLeft");
     arrow.src = "assets/icons/arrow-left-black.png";
+  } else {
+    arrow.src = "assets/icons/arrow-left.png";
   }
 }
+
+
+if (window.location.href.includes("sign_up.html")) {
+  window.addEventListener('resize', changeArrowColor);
+};
+
+
+ 

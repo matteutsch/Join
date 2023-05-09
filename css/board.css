@@ -21,7 +21,71 @@
     gap: 35px;
 }
 
-.header-right button {
+.plus-white {
+    position: absolute;
+    right: 8px;
+    top: 17px;
+}
+
+.boardSearch {
+    background: white url('/assets/icons/lens.png') no-repeat 235px 15px;
+    width: 251px;
+    height: 51px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    line-height: 51px;
+    padding-left: 21px;
+}
+
+
+#searchInput {
+    border: none;
+    border-right: 2px solid #D1D1D1;
+    height: 42px;
+    width: 200px;
+    font-size: 16px;
+}
+
+#searchInput:focus {
+    outline: none;
+}
+
+.task-area {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+    margin: 0 10px;
+}
+
+
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 230px;
+    height: 30px;
+}
+
+.task-header img {
+    cursor: pointer;
+}
+
+.mobile-addTask-btn {
+    display: none;
+}
+
+.web-addTask-btn {
     position: relative;
     border-radius: 10px;
     width: 137px;
@@ -36,46 +100,33 @@
     cursor: pointer;
 }
 
-.plus-white {
-    position: absolute;
-    right: 8px;
-    top: 17px;
+.web-addTask-btn:hover {
+    background: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
 }
 
-#boardSearch {
-    width: 251px;
-    height: 51px;
-    font-size: 21px;
-    border-radius: 10px;
-    border: 1px solid #A8A8A8;
-    line-height: 51px;
-    padding-left: 21px;
-}
+@media (max-width: 1000px) {
+    .header-row {
+        flex-direction: column;
+        align-items: start;
+    }
 
-.task-area{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
+    .web-addTask-btn {
+        display: none;
+    }
 
-.task-container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    height: 400px;
-}
+    .mobile-addTask-btn {
+        position: absolute;
+        top: 190px;
+        right: 20px;
+        display: unset;
+        cursor: pointer;
+    }
 
-
-
-.task-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 230px;
-    height: 30px;
-}
-
-.task-header img{
-    cursor: pointer;
+    .mobile-addTask-btn:hover {
+        background: #29ABE2;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
+    }
 }

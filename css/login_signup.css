@@ -31,7 +31,7 @@
     margin: 0;
 }
 
-.animation-layer{
+.animation-layer {
     position: absolute;
     top: 0;
     z-index: 2;
@@ -257,6 +257,17 @@
     cursor: pointer;
 }
 
+.login-button:hover {
+    background: #29ABE2;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.login-button:active {
+    background: #091931;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .guest-login-button {
     box-sizing: border-box;
     font-size: 20px;
@@ -276,6 +287,18 @@
     flex: none;
     order: 1;
     flex-grow: 0;
+}
+
+.guest-login-button:hover {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+}
+
+.guest-login-button:active {
+    border: 1px solid #091931;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #000000;
 }
 
 .sign-up-container {
@@ -310,6 +333,17 @@
     cursor: pointer;
 }
 
+.sign-up-button:hover{
+    background: #29ABE2;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sign-up-button:active {
+    background: #091931;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .form-signup-button {
     margin-top: 20px;
     font-size: 21px;
@@ -342,7 +376,7 @@
         height: 573px;
     }
 
-    .login-form h1{
+    .login-form h1 {
         font-size: 47px;
         margin-top: 40px;
         margin-bottom: 40px;
@@ -441,7 +475,7 @@
         gap: 15px;
     }
 
-    .underline{
+    .underline {
         height: 88px;
         top: 70px;
     }
