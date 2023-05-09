@@ -47,5 +47,3 @@ let tasks = [
     assignedTo: [contacts[2], contacts[3], contacts[4]],
   },
 ];
-
-

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/icons/logo-black.png"
+      sizes="any"
+    />
+
+    <title>Join</title>
+
+    <script src="javascripts/includeHTML.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/contacts.css" />
+  </head>
+  <body>
+    <div class="addContactsOverlay">
+      <div class="addContact">
+        <div class="addContactLeft">
+          <img src="assets/icons/logo-white-blue.png" />
+          <h1>Add contact</h1>
+          <p>Tasks are better with a team</p>
+          <div class="blueLine"></div>
+        </div>
+        <div class="addContactRight">
+          <div class="x-mark"><img src="assets/icons/clear.png" /></div>
+          <div class="createContactContainer">
+            <div>
+              <img class="contactImage" src="assets/icons/add_contact.png" />
+            </div>
+            <div>
+              <input class="addContactInput contactName" placeholder="Name" />
+              <input class="addContactInput contactEmail" placeholder="Email" />
+              <input class="addContactInput contactPhone" placeholder="Phone" />
+              <div class="addContactBtn">
+                <button class="cancel-btn">Cancel &nbsp; x</button>
+                <button class="new-contact-btn">
+                  Create Contact &nbsp;
+                  <img src="assets/icons/check-white.png" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
