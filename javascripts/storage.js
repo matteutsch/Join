@@ -1,19 +1,3 @@
-const STORAGE_TOKEN = 'HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0'
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item'
-
-
-
-async function setItem(key, value){
-    const payload = { key, value, token: STORAGE_TOKEN};
-    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload)})
-    .then(res => res.json())
-}
-
-async function getItem(key){
-    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    return fetch(url).then(res => res.json()).then(res => res.data.value);
-}
-
 let contacts = [
     {
       name: "Anton Mayer",
@@ -63,4 +47,31 @@ let contacts = [
       assignedTo: [contacts[2], contacts[3], contacts[4]],
     },
   ];
+
+/* ***************************************************************** */
+
+  function getInitials(name) {
+    let splitted_name = name.split(" ");
+    let initials = splitted_name[0].charAt(0) + splitted_name[1].charAt(0);
+    return initials;
+  }
+
+/* ****************************************************************+ */
+
+const STORAGE_TOKEN = 'HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0'
+const STORAGE_URL = 'https://remote-storage.developerakademie.org/item'
+
+
+async function setItem(key, value){
+    const payload = { key, value, token: STORAGE_TOKEN};
+    return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload)})
+    .then(res => res.json())
+}
+
+async function getItem(key){
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+    return fetch(url).then(res => res.json()).then(res => res.data.value);
+}
+
+
   
