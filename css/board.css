@@ -21,25 +21,6 @@
     gap: 35px;
 }
 
-.header-right button {
-    position: relative;
-    border-radius: 10px;
-    width: 137px;
-    height: 55px;
-    background-color: #2A3647;
-    color: white;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 21px;
-    padding-right: 25px;
-    cursor: pointer;
-}
-
-
-
-
-
 .plus-white {
     position: absolute;
     right: 8px;
@@ -66,7 +47,7 @@
     font-size: 16px;
 }
 
-#searchInput:focus{
+#searchInput:focus {
     outline: none;
 }
 
@@ -100,8 +81,29 @@
     cursor: pointer;
 }
 
-.mobile-addTask-btn{
+.mobile-addTask-btn {
     display: none;
+}
+
+.web-addTask-btn {
+    position: relative;
+    border-radius: 10px;
+    width: 137px;
+    height: 55px;
+    background-color: #2A3647;
+    color: white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    padding-right: 25px;
+    cursor: pointer;
+}
+
+.web-addTask-btn:hover {
+    background: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
 }
 
 @media (max-width: 1000px) {
@@ -110,14 +112,21 @@
         align-items: start;
     }
 
-    .web-addTask-btn{
+    .web-addTask-btn {
         display: none;
     }
 
-    .mobile-addTask-btn{
+    .mobile-addTask-btn {
         position: absolute;
         top: 190px;
         right: 20px;
         display: unset;
+        cursor: pointer;
+    }
+
+    .mobile-addTask-btn:hover {
+        background: #29ABE2;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: none;
     }
 }
