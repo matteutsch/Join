@@ -7,6 +7,10 @@ h1 {
 h3 {
   margin: 0;
 }
+.d-none {
+  display: none !important;
+}
+
 .contacts-content {
   box-sizing: border-box;
   margin-left: 232px;
@@ -140,23 +144,36 @@ h3 {
 
 /* ---add contact--- */
 
-.addContactsOverlay {
-  box-sizing: border-box;
+#addContactsOverlay {
   position: absolute;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#editContactsOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .addContact {
   display: flex;
   align-items: center;
-  height: 50vh;
+  height: 47vh;
   box-sizing: border-box;
+  z-index: 999;
 }
 .addContactLeft {
   box-sizing: border-box;

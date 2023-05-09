@@ -15,14 +15,17 @@
 
     <script src="javascripts/includeHTML.js"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
+    <script src="javascripts/addContacts.js"></script>
+    <script src="javascripts/data.js"></script>
+
     <link rel="stylesheet" href="css/contacts.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body onload="includeHTML()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="contacts-content">
-      <div class="contact-list">
+      <div id="contactList" class="contact-list">
         <div class="big"></div>
         <div class="big"></div>
         <div class="big"></div>
@@ -59,7 +62,7 @@
                 <p>Contact Information</p>
                 <div class="edit-contact">
                   <img src="assets/icons/pencil.small.png" />
-                  &nbsp; Edit Contact
+                  <p onclick="openEditContact()">&nbsp; Edit Contact</p>
                 </div>
               </div>
               <h3>Email</h3>
@@ -71,9 +74,79 @@
         </div>
         <div class="contacts-bottom">
           <div class="new-contact">
-            <button class="new-contact-btn">
+            <button class="new-contact-btn" onclick="openNewContact()">
               New contact &nbsp; <img src="assets/icons/new.contact.png" />
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!---   new Contact window    --->
+
+    <div class="d-none" id="addContactsOverlay">
+      <div class="addContact">
+        <div class="addContactLeft">
+          <img src="assets/icons/logo-white-blue.png" />
+          <h1>Add contact</h1>
+          <p>Tasks are better with a team</p>
+          <div class="blueLine"></div>
+        </div>
+        <div class="addContactRight">
+          <div class="x-mark">
+            <img onclick="closeNewContact()" src="assets/icons/clear.png" />
+          </div>
+          <div class="createContactContainer">
+            <div>
+              <img class="contactImage" src="assets/icons/add_contact.png" />
+            </div>
+            <div>
+              <input class="addContactInput contactName" placeholder="Name" />
+              <input class="addContactInput contactEmail" placeholder="Email" />
+              <input class="addContactInput contactPhone" placeholder="Phone" />
+              <div class="addContactBtn">
+                <button class="cancel-btn">Cancel &nbsp; x</button>
+                <button class="new-contact-btn">
+                  Create Contact &nbsp;
+                  <img
+                    onclick="closeEditContact()"
+                    src="assets/icons/check-white.png"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--- edit contacts Window --->
+
+    <div class="d-none" id="editContactsOverlay">
+      <div class="addContact">
+        <div class="addContactLeft">
+          <img src="assets/icons/logo-white-blue.png" />
+          <h1>Edit contact</h1>
+          <p>Tasks are better with a team</p>
+          <div class="blueLine"></div>
+        </div>
+        <div class="addContactRight">
+          <div class="x-mark">
+            <img onclick="closeEditContact()" src="assets/icons/clear.png" />
+          </div>
+          <div class="createContactContainer">
+            <div>
+              <img class="contactImage" src="assets/icons/add_contact.png" />
+            </div>
+            <div>
+              <input class="addContactInput contactName" placeholder="Name" />
+              <input class="addContactInput contactEmail" placeholder="Email" />
+              <input class="addContactInput contactPhone" placeholder="Phone" />
+              <div class="addContactBtn">
+                <button class="cancel-btn">Delete</button>
+                <button class="new-contact-btn">Save</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
