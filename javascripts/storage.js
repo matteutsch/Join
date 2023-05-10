@@ -21,25 +21,21 @@ let contacts = [
     name: "Anton Mayer",
     initials: "AM",
     email: "antom@gmail.com",
-    password: "xyz",
   },
   {
     name: "Anja Schulz",
     initials: "AS",
     email: "schulz@hotmail",
-    password: "xyz",
   },
   {
     name: "Benedikt Ziegler",
     initials: "BZ",
     email: "benedikt@gmail",
-    password: "xyz",
   },
   {
     name: "David Eisenberg",
     initials: "DE",
     email: "davidberg@gmail",
-    password: "xyz",
   },
 ];
 
