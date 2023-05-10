@@ -15,6 +15,7 @@
 
     <script src="javascripts/includeHTML.js"></script>
     <script src="script.js"></script>
+    <script src="javascripts/addTask.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/task.css" />
   </head>
@@ -67,14 +68,26 @@
           <div>
             <p>Prio</p>
             <div class="prio-section">
-              <div class="prio-btn pointer">
-                Urgent <img src="assets/icons/urgent.png" />
+              <div
+                id="urgentTask"
+                onclick="setPrio('urgent')"
+                class="prio-btn pointer"
+              >
+                Urgent <img id="urgentIcon" src="assets/icons/urgent.png" />
               </div>
-              <div class="prio-btn pointer">
-                Medium <img src="assets/icons/medium.png" />
+              <div
+                id="mediumTask"
+                onclick="setPrio('medium')"
+                class="prio-btn pointer"
+              >
+                Medium <img id="mediumIcon" src="assets/icons/medium.png" />
               </div>
-              <div class="prio-btn pointer">
-                Low <img src="assets/icons/low.png" />
+              <div
+                id="lowTask"
+                onclick="setPrio('low')"
+                class="prio-btn pointer"
+              >
+                Low <img id="lowIcon" src="assets/icons/low.png" />
               </div>
             </div>
           </div>
