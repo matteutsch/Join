@@ -1,6 +1,8 @@
 const categoryColor = [
     {
-        "Sales": "#FC71FF",
-        "Backoffice": "#1FD7C1",
+        "sales": "#FC71FF",
+        "backoffice": "#1FD7C1",
+        "marketing": "#0038FF",
+        "design": "#FF7A00",
     }
 ]
