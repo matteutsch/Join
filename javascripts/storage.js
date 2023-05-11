@@ -1,3 +1,4 @@
+
 let contacts = [
   {
     name: "Anton Mayer",
@@ -126,6 +127,7 @@ function getInitials(name) {
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
+
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {
@@ -140,3 +142,5 @@ async function getItem(key) {
     .then((res) => res.json())
     .then((res) => res.data.value);
 }
+
+

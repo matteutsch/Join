@@ -121,6 +121,22 @@ header {
 
 /*-------sideMenu && header end----------*/
 
+@media (max-width: 850px) {
+  .menuText {
+    padding-left: 24px;
+  }
+  .sideMenuContainer {
+    width: 200px;
+  }
+  header {
+    padding-left: 240px;
+  }
+  header p {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
 /*-------------fonts------------*/
 
 @font-face {
