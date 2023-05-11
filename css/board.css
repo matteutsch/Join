@@ -61,9 +61,10 @@
 
 .task-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
     height: 400px;
     margin: 0 10px;
 }
