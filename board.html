@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="css/board.css">
     <title>Join</title>
 
-    <script src="javascripts/includeHTML.js"></script>
+    <script src="/javascripts/includeHTML.js"></script>
+    <script src="javascripts/categoryColor.js"></script>
+    <script src="/javascripts/storage.js"></script>
+    <script src="/javascripts/register.js"></script>
+    <script src="/javascripts/board.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/task.css" />
   </head>
 
-  <body onload="includeHTML()">
+  <body onload="includeHTML(), initBoard()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="board-body">
       <div class="header-row">
@@ -38,7 +42,9 @@
             <p>To Do</p>
             <img src="assets/icons/plus_button.png">
           </div>
-          <div id="todoContainer"></div>
+          <div id="todoContainer">
+            
+          </div>
         </div>
         <div class="task-container">
           <div class="task-header">
