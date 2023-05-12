@@ -95,6 +95,7 @@ function renderUrgencyLabel(i) {
 function renderAssignedTo(cardID){
   const container = document.getElementById(`assignedTo-container${cardID}`);
   const assignedToArray = tasks[cardID]["assignedTo"];
+  const contactColor = tasks[cardID]["assignedTo"]; /* <-- */
   for (let i = 0; i < assignedToArray.length; i++) {
     const assignedTo = assignedToArray[i];
     container.innerHTML += `<p>${assignedTo}</p>`;

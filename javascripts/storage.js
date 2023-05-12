@@ -3,61 +3,73 @@ let contacts = [
   {
     name: "Anton Mayer",
     initials: "AM",
+    color: "#0223CF",
     email: "antom@gmail.com",
   },
   {
     name: "Anja Schulz",
     initials: "AS",
+    color: "#CB02CF",
     email: "schulz@hotmail",
   },
   {
     name: "Benedikt Ziegler",
     initials: "BZ",
+    color: "#FFA800",
     email: "benedikt@gmail",
   },
   {
     name: "David Eisenberg",
     initials: "DE",
+    color: "#9327FF",
     email: "davidberg@gmail",
   },
   {
     name: "Elena Schmidt",
     initials: "ES",
+    color: "#02CF2F",
     email: "elena.schmidt@gmail.com",
   },
   {
     name: "Fabian Fischer",
     initials: "FF",
+    color: "#EE00D6",
     email: "fabian.fischer@hotmail.com",
   },
   {
     name: "Gabriele Wagner",
     initials: "GW",
+    color: "#0190E0",
     email: "gabriele.wagner@gmail.com",
   },
   {
     name: "Hans Müller",
     initials: "HM",
+    color: "#FF5C00",
     email: "hans.mueller@hotmail.com",
   },
   {
     name: "Ines Bauer",
     initials: "IB",
+    color: "#4E963D",
     email: "ines.bauer@gmail.com",
   },
   {
     name: "Johannes Mayer",
     initials: "JM",
+    color: "#32DAFF",
     email: "johannes.mayer@hotmail.com",
   },
   {
     name: "Katrin Schuster",
     initials: "KS",
+    color: "#9327FF",
     email: "katrin.schuster@gmail.com",
   },
   {
     name: "Lena Wagner",
     initials: "LW",
+    color: "#EE00D6",
     email: "lena.wagner@hotmail.com",
   },
 ];
@@ -69,7 +81,6 @@ let prio = ["urgent", "medium", "low"];
 
 const tasks = [
   {
-    id: 1,
     title: "Call potential clients",
     description: "Make the product presentation to prospective buyers",
     status: "todo",
@@ -80,7 +91,6 @@ const tasks = [
     assignedTo: [contacts[0]["name"], contacts[2]["name"], contacts[3]["name"]],
   },
   {
-    id: 2,
     title: "Update website design",
     description: "",
     status: "in-progress",
@@ -91,7 +101,6 @@ const tasks = [
     assignedTo: [contacts[1]["name"], contacts[4]["name"], contacts[5]["name"]],
   },
   {
-    id: 3,
     title: "Review project proposal",
     description: "Review the project proposal and provide feedback",
     status: "awaiting-feedback",
@@ -102,7 +111,6 @@ const tasks = [
     assignedTo: [contacts[6]["name"], contacts[7]["name"], contacts[8]["name"]],
   },
   {
-    id: 4,
     title: "Prepare quarterly report",
     description: "",
     status: "done",
