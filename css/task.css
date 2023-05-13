@@ -3,15 +3,18 @@
 .urgent {
   background-color: var(--urgent) !important;
   color: white;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 .medium {
   background-color: var(--medium) !important;
   color: white;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
 .low {
   background-color: var(--low) !important;
   color: white;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 ::placeholder {
