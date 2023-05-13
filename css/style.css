@@ -23,7 +23,7 @@ body {
 
 .sideMenuContainer {
   position: fixed;
-  top: 0;
+  bottom: 0;
   background-color: var(--blue);
   height: 100vh;
   width: 232px;
@@ -44,6 +44,9 @@ body {
 .textContainer {
   padding-top: 100px;
 }
+.textContainer a {
+  text-decoration: none;
+}
 
 .menuText {
   color: var(--grey);
@@ -55,9 +58,8 @@ body {
   padding-left: 55px;
   font-size: 20px;
 }
-.menuText a {
-  text-decoration: none;
-  color: var(--grey);
+.menuText p {
+  text-decoration: none !important;
 }
 
 .menuText img {
@@ -92,6 +94,10 @@ header {
   align-items: center;
   font-size: 25px;
   z-index: 99;
+}
+.header-logo {
+  height: 64%;
+  display: none;
 }
 
 .header-content-right {
@@ -134,6 +140,56 @@ header {
   header p {
     margin: 0;
     font-size: 18px;
+  }
+}
+
+@media (max-width: 670px) {
+  .hideMobile {
+    display: none !important;
+  }
+  header p {
+    display: none;
+  }
+  header {
+    padding-left: 36px;
+  }
+  .header-logo {
+    display: flex;
+  }
+  .logoContainer {
+    display: none;
+  }
+  .sideMenuContainer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 80px;
+  }
+  .menuGap {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .textContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px;
+  }
+  .menuText {
+    padding: 8px;
+    flex-direction: column;
+  }
+  .menuText img {
+    margin: 0px;
+  }
+}
+
+@media (max-width: 385px) {
+  .menuText {
+    font-size: 16px;
   }
 }
 

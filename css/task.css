@@ -4,6 +4,7 @@
   background-color: var(--urgent) !important;
   color: white;
 }
+
 .medium {
   background-color: var(--medium) !important;
   color: white;

@@ -313,6 +313,13 @@ h3 {
   }
 }
 
+@media (max-width: 670px) {
+  .contacts-content {
+    margin-left: 0;
+    padding-bottom: 80px;
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
