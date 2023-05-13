@@ -65,7 +65,11 @@ function openTaskCardHTML(i) {
       <div class="due-date"><b>Due date:</b> ${tasks[i]["dueDate"]}</div>
       <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(i)}" /></div>
       <p><b>Assigned To:</b></p>
-      <div id="assignedTo-container${i}" class="assignedTo-container"></div>
+      <div id="assignedTo-container"></div>
+      <div class="open-task-buttons">
+        <button class="delete-button"></button>
+        <button class="edit-button"></button>
+      </div>
     </div>
   `;
 }
@@ -92,14 +96,42 @@ function renderUrgencyLabel(i) {
   }
 }
 
-function renderAssignedTo(cardID){
-  const container = document.getElementById(`assignedTo-container${cardID}`);
+function renderAssignedTo(cardID) {
+  const container = document.getElementById(`assignedTo-container`);
   const assignedToArray = tasks[cardID]["assignedTo"];
-  const contactColor = tasks[cardID]["assignedTo"]; /* <-- */
+
   for (let i = 0; i < assignedToArray.length; i++) {
     const assignedTo = assignedToArray[i];
-    container.innerHTML += `<p>${assignedTo}</p>`;
+    const contactColor = getColorByName(assignedTo);
+    const initials = getInitials(assignedTo);
+    container.innerHTML += assignedToHTML(assignedTo, contactColor, initials);
   }
+}
+
+function assignedToHTML(assignedTo, contactColor, initials) {
+  return `
+  <div class="assignedTo-row">
+  <div class="initial-label" style="background-color:${contactColor}">${initials}</div><p>${assignedTo}</p>
+  </div>
+  `;
+}
+
+function getColorByName(name) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].name === name) {
+      return contacts[i].color;
+    }
+  }
+  return null;
+}
+
+function getInitials(name) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].name === name) {
+      return contacts[i].initials;
+    }
+  }
+  return null;
 }
 
 function displayLayer() {

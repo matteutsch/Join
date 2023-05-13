@@ -122,6 +122,7 @@
 }
 
 .task-card-big {
+    position: relative;
     width: 50%;
     max-width: 800px;
     height: 80%;
@@ -177,7 +178,7 @@
     font-size: 21px;
 }
 
-.task-card-priority{
+.task-card-priority {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -205,13 +206,94 @@
     /* pointer-events: none; */
 }
 
-.assignedTo-container{
-    display: flex;
-    justify-content: start;
-    flex-direction: column;
-    align-items: flex-start;
+#assignedTo-container {
+    gap: 25px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
+#assignedTo-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#assignedTo-container::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+}
+
+#assignedTo-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+#assignedTo-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+
+
+.assignedTo-row {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: black;
+    gap: 25px;
+}
+
+.assignedTo-row p {
+    font-weight: 400;
+    font-size: 21px;
+}
+
+.initial-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 8px;
+    width: 45px;
+    height: 45px;
+    border: 2px solid #FFFFFF;
+    border-radius: 58px;
+    box-sizing: border-box;
+}
+
+.open-task-buttons {
+    position: absolute;
+    right: 47px;
+    bottom: 61px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-button {
+    width: 50px;
+    height: 50px;
+    background-image: url('/assets/icons/delete-button.png');
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-button {
+    width: 50px;
+    height: 50px;
+    background-image: url('/assets/icons/pencil-button.png');
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+ .delete-button:hover {
+    background-image: url('/assets/icons/delete-button-blue.png');
+  }
+  
+  .edit-button:hover {
+    background-image: url('/assets/icons/pencil-button-blue.png');
+  } 
 
 
 @media (max-width: 1000px) {
