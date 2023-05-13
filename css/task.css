@@ -255,3 +255,10 @@
     margin-left: 200px;
   }
 }
+
+@media (max-width: 670px) {
+  .content-container {
+    margin-left: 0px;
+    padding-bottom: 80px;
+  }
+}
