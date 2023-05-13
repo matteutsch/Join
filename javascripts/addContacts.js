@@ -7,7 +7,7 @@ function renderContactList() {
     let email = contact.email;
     let color = contact.color;
 
-    document.getElementById("contactList").innerHTML += `
+    document.getElementById("contactList").innerHTML += /*html*/ `
   <div id='singleContact${i}' class="singleContact" onclick="selectContact(${i})">
     <div style="background-color:${color}" class="singleContactInitials"> ${initials}</div>
     <div class="singleContactName">
@@ -20,17 +20,15 @@ function renderContactList() {
 }
 
 function selectContact(i) {
+  let elem = document.querySelectorAll(".singleContact");
+  for (let i = 0; i < elem.length; i++) {
+    elem[i].classList.remove("selectedContact");
+  }
+
   let singleContactContainer = document.getElementById(
     `singleContact${i}`
   ).classList;
-  //let allContacts = document.getElementByName(singleContact + i);
-
-  if (!singleContactContainer.contains("selectedContact")) {
-    singleContactContainer.add("selectedContact");
-    //allContacts.classList.remove("selectedContact");
-  } else {
-    singleContactContainer.remove("selectedContact");
-  }
+  singleContactContainer.add("selectedContact");
 
   document.getElementById("contactsMid").innerHTML = `
   <div class="contact-name">
