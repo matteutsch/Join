@@ -24,13 +24,13 @@ function selectContact(i) {
   for (let i = 0; i < elem.length; i++) {
     elem[i].classList.remove("selectedContact");
   }
+  document.getElementById(`singleContact${i}`).classList.add("selectedContact");
 
-  let singleContactContainer = document.getElementById(
-    `singleContact${i}`
-  ).classList;
-  singleContactContainer.add("selectedContact");
+  document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(i);
+}
 
-  document.getElementById("contactsMid").innerHTML = `
+function renderSelectContactHTML(i) {
+  return `
   <div class="contact-name">
     <div>
       <div style="background-color:${contacts[i]["color"]}" class="contact-initials">

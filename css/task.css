@@ -30,6 +30,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-left: 232px;
+  margin-top: 80px;
   height: 88vh;
   padding-bottom: 48px;
   padding-left: 120px;
@@ -87,6 +88,8 @@
   padding-left: 21px;
   border: 1px solid var(--grey);
   font-size: 18px;
+
+  /*background-image: linear-gradient(to bottom, #ddd, #eee 33%);*/
 }
 
 /*rightSide*/
