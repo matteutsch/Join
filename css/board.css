@@ -108,6 +108,7 @@
 .task-card {
   width: 250px;
   gap: 20px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -288,30 +289,47 @@
 }
 
 .delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
   width: 50px;
   height: 50px;
-  background-image: url("/assets/icons/delete-button.png");
+  box-sizing: border-box;
   background-size: cover;
-  border: none;
+  border: 1px solid #2A3647;
+  border-radius: 10px 0px 0px 10px;
   cursor: pointer;
 }
+
+.delete-button:hover{
+  border: 2px solid #29abe2;
+}
+
+.delete-button:hover img {
+  content: url("/assets/icons/delete_blue.png");
+}
+
+
+
 
 .edit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a3647;
   width: 50px;
   height: 50px;
-  background-image: url("/assets/icons/pencil-button.png");
   background-size: cover;
   border: none;
+  border-radius: 0px 10px 10px 0px;
   cursor: pointer;
-}
-
-.delete-button:hover {
-  background-image: url("/assets/icons/delete-button-blue.png");
 }
 
 .edit-button:hover {
-  background-image: url("/assets/icons/pencil-button-blue.png");
+  background-color: #29abe2;
 }
+
 
 @media (max-width: 1000px) {
   .header-row {

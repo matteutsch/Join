@@ -91,9 +91,19 @@ const tasks = [
     assignedTo: [contacts[0], contacts[2], contacts[3]]
   },
   {
+    title: "Organize Financial Records",
+    description: "Review and organize financial records, including invoices, receipts, and expense reports, to ensure accurate bookkeeping and easy retrieval for auditing purposes",
+    status: "todo",
+    category: "backoffice",
+    priority: "urgent",
+    subtasks: [],
+    dueDate: "2022-08-16",
+    assignedTo: [contacts[6], contacts[4], contacts[8]]
+  },
+  {
     title: "Update website design",
     description: "",
-    status: "in-progress",
+    status: "inProgress",
     category: "design",
     priority: "medium",
     subtasks: [],
@@ -103,7 +113,7 @@ const tasks = [
   {
     title: "Review project proposal",
     description: "Review the project proposal and provide feedback",
-    status: "awaiting-feedback",
+    status: "awaitingFeedback",
     category: "marketing",
     priority: "low",
     subtasks: [],
