@@ -44,7 +44,7 @@ function getDataForSummary() {
 }
 
 /**
- * Find the task with the earliest dueDate froms tasks
+ * Function show earliest due date of tasks with category='urgent'
 */ 
 function taskWithEarliestDuedate(){
   earliestDate = [3000]
