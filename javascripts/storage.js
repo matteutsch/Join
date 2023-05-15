@@ -87,7 +87,7 @@ const tasks = [
     category: "sales",
     priority: "urgent",
     subtasks: [],
-    dueDate: "05-08-2022",
+    dueDate: "2022-08-15",
     assignedTo: [contacts[0], contacts[2], contacts[3]]
   },
   {
@@ -97,7 +97,7 @@ const tasks = [
     category: "design",
     priority: "medium",
     subtasks: [],
-    dueDate: "06-30-2022",
+    dueDate: "2022-06-30",
     assignedTo: [contacts[1], contacts[4], contacts[5]],
   },
   {
@@ -107,7 +107,7 @@ const tasks = [
     category: "marketing",
     priority: "low",
     subtasks: [],
-    dueDate: "07-15-2022",
+    dueDate: "2022-07-15",
     assignedTo: [contacts[6], contacts[7], contacts[8]],
   },
   {
@@ -117,7 +117,7 @@ const tasks = [
     category: "backoffice",
     priority: "urgent",
     subtasks: [],
-    dueDate: "04-30-2022",
+    dueDate: "2022-04-30",
     assignedTo: [contacts[7], contacts[8], contacts[9]],
   },
 ];
