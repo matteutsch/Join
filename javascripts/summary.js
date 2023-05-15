@@ -2,6 +2,7 @@ function startSummary() {
     includeHTML()
     greet()
     getDataForSummary()
+    taskWithEarliestDuedate()
 }
 /**
  * Changes greeting according to the time of day
@@ -40,20 +41,22 @@ function getDataForSummary() {
 
   let sumUrgent = tasks.filter((task) => task.priority === "urgent");
   document.getElementById('sumUrgent').innerHTML = sumUrgent.length;
-
-  let deadlines = tasks.filter((task) => task.dueDate === true);
-  console.log(deadlines);
-/*   document.getElementById('dateDeadline').innerHTML = sumUrgent.length;
- */
 }
 
 /**
  * Find the task with the earliest dueDate froms tasks
 */ 
-const earliestTask = tasks.reduce((earliest, current) => {
-  const earliestDate = new Date(earliest.dueDate);
-  const currentDate = new Date(current.dueDate);
-  return earliestDate < currentDate ? earliest : current;
-});
-
-console.log(earliestTask);
+function taskWithEarliestDuedate(){
+  earliestDate = [3000]
+  for (let i = 0; i < tasks.length; i++) {
+    if(tasks[i].priority == 'urgent') {
+      let currentDate = tasks[i].dueDate;
+      if(currentDate < earliestDate){
+        earliestDate = currentDate;
+      }
+    }
+  let d1 = new Date(earliestDate);
+  let d2 = d1.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric'});
+  document.getElementById('dateDeadline').innerHTML = d2;
+  }
+}
