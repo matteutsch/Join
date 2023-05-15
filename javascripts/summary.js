@@ -45,7 +45,15 @@ function getDataForSummary() {
   console.log(deadlines);
 /*   document.getElementById('dateDeadline').innerHTML = sumUrgent.length;
  */
-
-
-  
 }
+
+/**
+ * Find the task with the earliest dueDate froms tasks
+*/ 
+const earliestTask = tasks.reduce((earliest, current) => {
+  const earliestDate = new Date(earliest.dueDate);
+  const currentDate = new Date(current.dueDate);
+  return earliestDate < currentDate ? earliest : current;
+});
+
+console.log(earliestTask);

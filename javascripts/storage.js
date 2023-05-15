@@ -75,8 +75,8 @@ let contacts = [
 ];
 
 
-let state = ["To Do", "In Progress", "Awaiting Feedback", "Done"];
-let cat = ["Design", "Sales", "Backoffice", "Marketing", "Media"];
+let state = ["todo", "in-progress", "awaiting-feedback", "done"];
+let cat = ["design", "sales", "backoffice", "marketing", "media"];
 let prio = ["urgent", "medium", "low"];
 
 const tasks = [
