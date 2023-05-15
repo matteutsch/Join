@@ -3,14 +3,18 @@
 .urgent {
   background-color: var(--urgent) !important;
   color: white;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
+
 .medium {
   background-color: var(--medium) !important;
   color: white;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
 .low {
   background-color: var(--low) !important;
   color: white;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 ::placeholder {
@@ -26,6 +30,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-left: 232px;
+  margin-top: 80px;
   height: 88vh;
   padding-bottom: 48px;
   padding-left: 120px;
@@ -83,6 +88,8 @@
   padding-left: 21px;
   border: 1px solid var(--grey);
   font-size: 18px;
+
+  /*background-image: linear-gradient(to bottom, #ddd, #eee 33%);*/
 }
 
 /*rightSide*/
@@ -249,5 +256,12 @@
 @media (max-width: 850px) {
   .content-container {
     margin-left: 200px;
+  }
+}
+
+@media (max-width: 670px) {
+  .content-container {
+    margin-left: 0px;
+    padding-bottom: 80px;
   }
 }

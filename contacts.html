@@ -12,31 +12,18 @@
     />
 
     <title>Join</title>
-
     <script src="javascripts/includeHTML.js"></script>
-    <script src="script.js"></script>
+    <script src="javascripts/storage.js"></script>
     <script src="javascripts/addContacts.js"></script>
-    <script src="javascripts/data.js"></script>
 
     <link rel="stylesheet" href="css/contacts.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body onload="includeHTML()">
+  <body onload="includeHTML(), renderContactList()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="contacts-content">
-      <div id="contactList" class="contact-list">
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-        <div class="big"></div>
-      </div>
+      <div id="contactList" class="contact-list"></div>
       <div class="contacts-content-right">
         <div class="contacts-top-mid">
           <div class="contacts-top">
@@ -45,32 +32,7 @@
             </div>
             <div class="contacts-top-text">Better with a Team</div>
           </div>
-          <div class="contacts-mid">
-            <div class="contact-name">
-              <div>
-                <img style="width: 96px" src="assets/icons/question-mark.svg" />
-              </div>
-              <div>
-                <h1>Anton Mayer</h1>
-                <div class="contacts-add-task">
-                  <img src="assets/icons/plus.small.png" /> &nbsp; Add Task
-                </div>
-              </div>
-            </div>
-            <div class="contact-info">
-              <div class="contact-info-edit">
-                <p>Contact Information</p>
-                <div class="edit-contact">
-                  <img src="assets/icons/pencil.small.png" />
-                  <p onclick="openEditContact()">&nbsp; Edit Contact</p>
-                </div>
-              </div>
-              <h3>Email</h3>
-              <p style="color: var(--light-blue)">anton.mayer@gmail.com</p>
-              <h3>Phone</h3>
-              <p>+49&nbsp;1103202181</p>
-            </div>
-          </div>
+          <div id="contactsMid" class="contacts-mid"></div>
         </div>
         <div class="contacts-bottom">
           <div class="new-contact">

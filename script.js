@@ -16,18 +16,17 @@ function initLoginPage() {
     @name fadeInAnimation
     */
 function fadeInAnimation() {
-  const animationLayer = document.querySelector('.animation-layer');
+  const animationLayer = document.querySelector(".animation-layer");
   const logo = document.querySelector(".logo-big");
   setTimeout(() => {
     document.querySelector(".login-container").style.opacity = "1";
     document.querySelector(".sign-up-container").style.opacity = "1";
   }, 1900);
-  setTimeout(function() {
-    animationLayer.style.display = 'none';
+  setTimeout(function () {
+    animationLayer.style.display = "none";
     logo.src = "assets/icons/logo-black.png";
   }, 1000);
 }
-
 
 /**
 
@@ -39,22 +38,22 @@ function changeLogoColor() {
   if (window.innerWidth < 800) {
     const logo = document.querySelector(".logo-big");
     logo.src = "assets/icons/logo-white-blue.png";
-    document.querySelector('.animation-layer').style.backgroundColor = '#2A3647';
+    document.querySelector(".animation-layer").style.backgroundColor =
+      "#2A3647";
   } else {
-    document.querySelector('.animation-layer').style.backgroundColor = 'white';
+    document.querySelector(".animation-layer").style.backgroundColor = "white";
   }
 }
 
-
 /**
- * 
+ *
  * Changes the arrow left color based on the window width
  * @function
  * @name changeArrowColor
  */
 function changeArrowColor() {
   const arrow = document.getElementById("blueArrowLeft");
-  
+
   if (window.innerWidth < 800) {
     arrow.src = "assets/icons/arrow-left-black.png";
   } else {
@@ -62,10 +61,6 @@ function changeArrowColor() {
   }
 }
 
-
 if (window.location.href.includes("sign_up.html")) {
-  window.addEventListener('resize', changeArrowColor);
-};
-
-
- 
+  window.addEventListener("resize", changeArrowColor);
+}

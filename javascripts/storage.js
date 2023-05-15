@@ -88,7 +88,7 @@ const tasks = [
     priority: "urgent",
     subtasks: [],
     dueDate: "05-08-2022",
-    assignedTo: [contacts[0]["name"], contacts[2]["name"], contacts[3]["name"]],
+    assignedTo: [contacts[0], contacts[2], contacts[3]]
   },
   {
     title: "Update website design",
@@ -98,7 +98,7 @@ const tasks = [
     priority: "medium",
     subtasks: [],
     dueDate: "06-30-2022",
-    assignedTo: [contacts[1]["name"], contacts[4]["name"], contacts[5]["name"]],
+    assignedTo: [contacts[1], contacts[4], contacts[5]],
   },
   {
     title: "Review project proposal",
@@ -108,7 +108,7 @@ const tasks = [
     priority: "low",
     subtasks: [],
     dueDate: "07-15-2022",
-    assignedTo: [contacts[6]["name"], contacts[7]["name"], contacts[8]["name"]],
+    assignedTo: [contacts[6], contacts[7], contacts[8]],
   },
   {
     title: "Prepare quarterly report",
@@ -118,7 +118,7 @@ const tasks = [
     priority: "urgent",
     subtasks: [],
     dueDate: "04-30-2022",
-    assignedTo: [contacts[7]["name"], contacts[8]["name"], contacts[9]["name"]],
+    assignedTo: [contacts[7], contacts[8], contacts[9]],
   },
 ];
 
