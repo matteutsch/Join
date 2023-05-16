@@ -1,4 +1,3 @@
-
 let contacts = [
   {
     name: "Anton Mayer",
@@ -74,12 +73,11 @@ let contacts = [
   },
 ];
 
-
 let state = ["todo", "in-progress", "awaiting-feedback", "done"];
 let cat = ["design", "sales", "backoffice", "marketing", "media"];
 let prio = ["urgent", "medium", "low"];
 
-const tasks = [
+let tasks = [
   {
     title: "Call potential clients",
     description: "Make the product presentation to prospective buyers",
@@ -88,17 +86,18 @@ const tasks = [
     priority: "urgent",
     subtasks: [],
     dueDate: "2022-08-15",
-    assignedTo: [contacts[0], contacts[2], contacts[3]]
+    assignedTo: [contacts[0], contacts[2], contacts[3]],
   },
   {
     title: "Organize Financial Records",
-    description: "Review and organize financial records, including invoices, receipts, and expense reports, to ensure accurate bookkeeping and easy retrieval for auditing purposes",
+    description:
+      "Review and organize financial records, including invoices, receipts, and expense reports, to ensure accurate bookkeeping and easy retrieval for auditing purposes",
     status: "todo",
     category: "backoffice",
     priority: "urgent",
     subtasks: [],
     dueDate: "2022-08-16",
-    assignedTo: [contacts[6], contacts[4], contacts[8]]
+    assignedTo: [contacts[6], contacts[4], contacts[8]],
   },
   {
     title: "Update website design",
@@ -145,7 +144,6 @@ function getInitials(name) {
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {
@@ -160,5 +158,3 @@ async function getItem(key) {
     .then((res) => res.json())
     .then((res) => res.data.value);
 }
-
-

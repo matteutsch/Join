@@ -24,6 +24,7 @@
 .pointer {
   cursor: pointer;
 }
+
 .content-container {
   box-sizing: border-box;
   display: flex;
@@ -99,7 +100,7 @@
   box-sizing: border-box;
 }
 
-.content-right input {
+.input {
   box-sizing: border-box;
   width: 100%;
   border-radius: 10px;
@@ -110,12 +111,18 @@
   display: flex;
   justify-content: flex-start;
 }
+
+input[type="checkbox"] {
+  margin-right: 16px;
+}
+
 .prio-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
 }
+
 .prio-btn {
   display: flex;
   justify-content: center;
