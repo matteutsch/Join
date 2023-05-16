@@ -91,6 +91,16 @@ const tasks = [
     assignedTo: [contacts[0], contacts[2], contacts[3]]
   },
   {
+    title: "Call potential clients",
+    description: "Make the product presentation to prospective buyers",
+    status: "todo",
+    category: "sales",
+    priority: "urgent",
+    subtasks: [],
+    dueDate: "2022-08-15",
+    assignedTo: [contacts[0], contacts[2], contacts[3]]
+  },
+  {
     title: "Organize Financial Records",
     description: "Review and organize financial records, including invoices, receipts, and expense reports, to ensure accurate bookkeeping and easy retrieval for auditing purposes",
     status: "todo",
