@@ -1,7 +1,7 @@
 function initBoard() {
   renderTaskCards("todoContainer", "todo");
-  renderTaskCards("inProgressContainer", "in-progress");
-  renderTaskCards("feedbackContainer", "awaiting-feedback");
+  renderTaskCards("inProgressContainer", "inProgress");
+  renderTaskCards("feedbackContainer", "awaitingFeedback");
   renderTaskCards("doneContainer", "done");
 }
 
@@ -12,20 +12,22 @@ function renderCategoryLabelColor(i) {
 }
 
 function renderTaskCards(container, status) {
+  let cardIndex = 0;
   for (let i = 0; i < tasks.length; i++) {
-    let cardID = tasks[i]["status"] + i;
     const taskContainer = document.getElementById(container);
     const task = tasks[i];
     if (task["status"] === status) {
+      let cardID = tasks[i]["status"] + cardIndex;
       taskContainer.innerHTML += taskCardHTML(i, cardID);
-      renderAssignedTo(i, `assignedToContainerSmall${i}`)
+      renderAssignedTo(i, `assignedToContainerSmall${i}`);
+      cardIndex++;
     }
   }
 }
 
 function taskCardHTML(i, cardID) {
   return `
-  <div class="task-card" id="${cardID}" onclick="openTaskCard(${i})">
+  <div class="task-card" id="${cardID}" onclick="openTaskCard(${i}, '${cardID}')">
     <div class="category-label"
       style="background-color: ${renderCategoryLabelColor(i)};">
       ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
@@ -43,22 +45,20 @@ function taskCardHTML(i, cardID) {
   </div>`;
 }
 
-
-
 function renderTaskDescription(i) {
   let description = tasks[i]["description"];
   return description;
 }
 
-function openTaskCard(i) {
+function openTaskCard(i, cardID) {
   displayLayer();
-  document.getElementById("taskLayer").innerHTML = openTaskCardHTML(i);
-  renderAssignedTo(i,"assignedTo-container");
+  document.getElementById("taskLayer").innerHTML = openTaskCardHTML(i, cardID);
+  renderAssignedTo(i, "assignedTo-container");
 }
 
-function openTaskCardHTML(i) {
+function openTaskCardHTML(i, cardID) {
   return `
-    <div class="task-card-big" id="${tasks[i]["status"]}${i}">
+    <div class="task-card-big" id="${cardID}">
       <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(i)};">
         ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
       </div>
@@ -69,12 +69,26 @@ function openTaskCardHTML(i) {
       <p><b>Assigned To:</b></p>
       <div id="assignedTo-container"></div>
       <div class="open-task-buttons">
-        <button class="delete-button"></button>
-        <button class="edit-button"></button>
+      <div class="delete-button" onclick="deleteCard(${i}, '${cardID}')">
+      <img src="assets/icons/delete_black.png" />
+    </div>
+        <div class="edit-button"><img src="assets/icons/Pencil_icon.png" /></div>
       </div>
     </div>
   `;
 }
+
+function deleteCard(cardIndex, cardID) {
+  const card = document.getElementById(cardID);
+  const taskIndex = cardIndex;
+  if (card && taskIndex) {
+    card.remove();
+    tasks.splice(taskIndex, 1);
+  }
+  closeLayer();
+}
+
+
 
 function renderUrgencyImg(i) {
   const urgency = tasks[i]["priority"];
@@ -84,6 +98,7 @@ function renderUrgencyImg(i) {
     return "assets/icons/medium.png";
   } else {
     return "assets/icons/low.png";
+    TaskCard;
   }
 }
 
@@ -98,16 +113,16 @@ function renderUrgencyLabel(i) {
   }
 }
 
-function renderAssignedTo(cardID, containerClass) {
+function renderAssignedTo(taskID, containerClass) {
   const container = document.getElementById(containerClass);
-  const assignedToArray = tasks[cardID]["assignedTo"];
+  const assignedToArray = tasks[taskID]["assignedTo"];
 
   for (let i = 0; i < assignedToArray.length; i++) {
     const assignedTo = assignedToArray[i];
     const assignedToName = assignedTo["name"];
     const contactColor = assignedTo["color"];
     const initials = assignedTo["initials"];
-    if (container.id === 'assignedTo-container') {
+    if (container.id === "assignedTo-container") {
       container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
       container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
@@ -128,24 +143,6 @@ function assignedToCardHTML(contactColor, initials) {
   <div class="initial-label-card" style="background-color:${contactColor}">${initials}</div>
   `;
 }
-
-/* function getColorByName(name) {
-  for (let i = 0; i < contacts.length; i++) {
-    if (contacts[i].name === name) {
-      return contacts[i].color;
-    }
-  }
-  return null;
-}
-
-function getInitials(name) {
-  for (let i = 0; i < contacts.length; i++) {
-    if (contacts[i].name === name) {
-      return contacts[i].initials;
-    }
-  }
-  return null;
-} */
 
 function displayLayer() {
   let layer = document.getElementById("taskLayer");

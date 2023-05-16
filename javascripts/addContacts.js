@@ -59,6 +59,36 @@ function renderSelectContactHTML(i) {
   </div>`;
 }
 
+function addContact() {
+  let name = document.getElementById("newContactName");
+  let email = document.getElementById("newContactEmail");
+  let phone = document.getElementById("newContactPhone");
+  let randomNumber = Math.floor(Math.random() * nameColor.length);
+
+  let newContact = {
+    name: name.value,
+    email: email.value,
+    phone: phone.value,
+    color: nameColor[randomNumber],
+  };
+
+  contacts.push(newContact);
+  safeContacts();
+
+  name.value = "";
+  email.value = "";
+  phone.value = "";
+}
+
+function safeContacts() {
+  let contactAsText = JSON.stringify(contacts);
+  localStorage.setItem("contacts", contactAsText);
+}
+function loadContacts() {
+  let contactAsText = localStorage.getItem("contacts");
+  contacts = JSON.parse(contactAsText);
+}
+
 function openNewContact() {
   document.getElementById(`addContactsOverlay`).classList.remove("d-none");
 }

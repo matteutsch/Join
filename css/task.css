@@ -24,6 +24,7 @@
 .pointer {
   cursor: pointer;
 }
+
 .content-container {
   box-sizing: border-box;
   display: flex;
@@ -32,10 +33,7 @@
   margin-left: 232px;
   margin-top: 80px;
   height: 88vh;
-  padding-bottom: 48px;
-  padding-left: 120px;
-  padding-right: 120px;
-  padding-top: 32px;
+  padding: 32px 120px 48px 120px;
 }
 .content-container p {
   margin: 0;
@@ -99,7 +97,7 @@
   box-sizing: border-box;
 }
 
-.content-right input {
+.input {
   box-sizing: border-box;
   width: 100%;
   border-radius: 10px;
@@ -110,12 +108,18 @@
   display: flex;
   justify-content: flex-start;
 }
+
+input[type="checkbox"] {
+  margin-right: 16px;
+}
+
 .prio-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
 }
+
 .prio-btn {
   display: flex;
   justify-content: center;
@@ -256,6 +260,23 @@
 @media (max-width: 850px) {
   .content-container {
     margin-left: 200px;
+    padding: 32px 11px 48px 11px;
+  }
+  .content-left {
+    padding-right: 11px;
+    padding-bottom: 24px;
+  }
+  .content-right {
+    padding-left: 11px;
+  }
+  .prio-btn {
+    padding: 8px 4px 8px 4px;
+  }
+  .prio-section {
+    gap: 4px;
+  }
+  .prio-section img {
+    width: 12px;
   }
 }
 
@@ -263,5 +284,47 @@
   .content-container {
     margin-left: 0px;
     padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 500px) {
+  .task-section {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .content-container {
+    justify-content: flex-start;
+    padding: 32px 24px 104px 24px;
+    height: fit-content;
+  }
+  .content-left {
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 16px;
+    border-right: none;
+  }
+  .content-right {
+    width: 100%;
+    padding-left: 0;
+  }
+  .button-container {
+    margin-top: 24px;
+    justify-content: center;
+  }
+  .prio-btn {
+    padding: 8px 8px 8px 8px;
+    font-size: 18px;
+  }
+  .prio-section img {
+    width: 16px;
+  }
+
+  .create-btn,
+  .clear-btn {
+    font-size: 18px;
+  }
+  .create-btn img {
+    width: 16px;
   }
 }
