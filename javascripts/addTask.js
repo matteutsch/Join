@@ -21,11 +21,11 @@ function setPrio(prio) {
     urgentBtn.classList.remove("urgent");
     urgentIcon.src = "assets/icons/urgent.png";
     lowBtn.classList.remove("low");
-    lowIcon = "assets/icons/low.png";
+    lowIcon.src = "assets/icons/low.png";
     priority = "medium";
   } else if (prio == "low") {
     lowBtn.classList.add("low");
-    lowIcon = "assets/icons/low_white.png";
+    lowIcon.src = "assets/icons/low_white.png";
     urgentBtn.classList.remove("urgent");
     urgentIcon.src = "assets/icons/urgent.png";
     mediumBtn.classList.remove("medium");
