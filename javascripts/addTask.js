@@ -40,7 +40,7 @@ function addContactNamesToAssignedTo() {
     const contact = contacts[i];
     let name = contact.name;
     document.getElementById("selectContactDropdown").innerHTML += `
-    <div onclick="selectOptionContacts()" class="option">${name}</div>`;
+    <div onclick="selectOptionContacts()" class="option">${name} <input class="contactCheckbox" type="checkbox"></div>`;
   }
 }
 

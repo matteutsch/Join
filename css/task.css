@@ -46,9 +46,10 @@
 .task-section {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   font-size: 18px;
   margin-top: 24px;
+  height: 100%;
 }
 /*leftSide*/
 .content-left {
@@ -140,13 +141,16 @@ input[type="checkbox"] {
 
 /*buttonsBelow*/
 .button-container {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   box-sizing: border-box;
 }
 .create-btn {
-  font-size: 25px;
+  font-size: 21px;
   border-radius: 10px;
   padding: 12px;
   background-color: var(--blue);
@@ -159,7 +163,7 @@ input[type="checkbox"] {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .clear-btn {
-  font-size: 25px;
+  font-size: 21px;
   border-radius: 10px;
   border: 2px solid var(--blue);
   padding: 12px;
@@ -225,7 +229,7 @@ input[type="checkbox"] {
   background-color: white;
   box-sizing: border-box;
   font-size: 18px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid #cdcdcd;
   padding: 8px;
   width: 100%;
@@ -242,6 +246,7 @@ input[type="checkbox"] {
   font-size: 18px;
   background-color: white;
   border-radius: 8px;
+  white-space: nowrap;
 }
 .option {
   padding: 8px;
@@ -249,6 +254,7 @@ input[type="checkbox"] {
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 .option:hover {
   background-color: #cdcdcd;
@@ -262,6 +268,8 @@ input[type="checkbox"] {
 #categoryDropdown {
   margin-top: -100%;
   transition: all 225ms;
+  max-height: 128px;
+  overflow-y: scroll;
 }
 
 #categoryDropdown.expanded {
@@ -273,6 +281,8 @@ input[type="checkbox"] {
 #selectContactDropdown {
   margin-top: -200%;
   transition: all 225ms;
+  max-height: 128px;
+  overflow-y: scroll;
 }
 #selectContactDropdown.expanded {
   margin-top: 0;
@@ -283,6 +293,9 @@ input[type="checkbox"] {
 .expand-container {
   overflow: hidden;
   border-radius: 0 0 8px 8px;
+}
+.contactCheckbox {
+  margin: 0 !important;
 }
 
 @media (max-width: 1285px) {
@@ -334,12 +347,20 @@ input[type="checkbox"] {
   .prio-section img {
     width: 12px;
   }
+  .task-section {
+    margin-top: 0px;
+    margin-bottom: 32px;
+  }
 }
 
 @media (max-width: 670px) {
   .content-container {
     margin-left: 0px;
     padding-bottom: 80px;
+  }
+  .button-container {
+    bottom: 104px;
+    right: 16px;
   }
 }
 
@@ -365,8 +386,9 @@ input[type="checkbox"] {
     padding-left: 0;
   }
   .button-container {
-    margin-top: 24px;
-    justify-content: center;
+    position: relative;
+    bottom: 0;
+    right: 0;
   }
   .prio-btn {
     padding: 8px 8px 8px 8px;
