@@ -73,20 +73,10 @@ function addContact() {
   };
 
   contacts.push(newContact);
-  safeContacts();
 
   name.value = "";
   email.value = "";
   phone.value = "";
-}
-
-function safeContacts() {
-  let contactAsText = JSON.stringify(contacts);
-  localStorage.setItem("contacts", contactAsText);
-}
-function loadContacts() {
-  let contactAsText = localStorage.getItem("contacts");
-  contacts = JSON.parse(contactAsText);
 }
 
 function openNewContact() {

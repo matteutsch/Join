@@ -35,15 +35,12 @@ function setPrio(prio) {
 }
 
 function addContactNamesToAssignedTo() {
-  document.getElementById("addTaskAssignedTo").innerHTML = "";
+  document.getElementById("selectContactDropdown").innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     let name = contact.name;
-    document.getElementById("addTaskAssignedTo").innerHTML += `
-    <option value="" disabled selected hidden>
-        Select contacts to assign
-    </option>
-    <option>${name}</option>`;
+    document.getElementById("selectContactDropdown").innerHTML += `
+    <div onclick="selectOptionContacts()" class="option">${name}</div>`;
   }
 }
 
@@ -72,11 +69,10 @@ function createTask() {
       priority: priority,
       subtask: subtask.value,
       dueDate: dueDate.value,
-      assignedTo: assignedTo.value,
+      assignedTo: [],
     };
 
     tasks.push(newTask);
-    safeTask();
     resetValues(title, description, category, assignedTo, subtask, dueDate);
   }
 }
@@ -104,11 +100,40 @@ function resetValues(
   assignedTo.value = "";
 }
 
-function safeTask() {
-  let taskAsText = JSON.stringify(tasks);
-  localStorage.setItem("tasks", taskAsText);
+// custom select/dropdown
+
+function openDropdownCategory() {
+  let dropdown = document.getElementById("categoryDropdown");
+  let category = document.getElementById("addTaskCategory");
+  dropdown.classList.toggle("expanded");
+  category.classList.toggle("category-expanded");
 }
-function loadTasks() {
-  let taskAsText = localStorage.getItem("tasks");
-  tasks = JSON.parse(taskAsText);
+
+function selectOptionCategory() {
+  let dropdown = document.getElementById("categoryDropdown");
+  let category = document.getElementById("addTaskCategory");
+  let selectedOption = event.target.innerHTML;
+
+  category.innerHTML = selectedOption;
+
+  dropdown.classList.remove("expanded");
+  category.classList.remove("category-expanded");
+}
+
+function openDropdownContacts() {
+  let dropdown = document.getElementById("selectContactDropdown");
+  let selectContact = document.getElementById("selectContact");
+  dropdown.classList.toggle("expanded");
+  selectContact.classList.toggle("category-expanded");
+}
+
+function selectOptionContacts() {
+  let dropdown = document.getElementById("selectContactDropdown");
+  let selectContact = document.getElementById("selectContact");
+  let selectedOption = event.target.innerHTML;
+
+  selectContact.innerHTML = selectedOption;
+
+  dropdown.classList.remove("expanded");
+  selectContact.classList.remove("category-expanded");
 }

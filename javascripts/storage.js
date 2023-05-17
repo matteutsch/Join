@@ -73,10 +73,6 @@ let contacts = [
   },
 ];
 
-let state = ["todo", "in-progress", "awaiting-feedback", "done"];
-let cat = ["design", "sales", "backoffice", "marketing", "media"];
-let prio = ["urgent", "medium", "low"];
-
 let tasks = [
   {
     title: "Call potential clients",

@@ -10,7 +10,7 @@
       href="assets/icons/logo-black.png"
       sizes="any"
     />
-    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/board.css" />
     <title>Join</title>
 
     <script src="javascripts/includeHTML.js"></script>
@@ -19,6 +19,7 @@
     <script src="javascripts/register.js"></script>
     <script src="javascripts/boardHTML.js"></script>
     <script src="javascripts/board.js"></script>
+    <script src="javascripts/addTask.js"></script>
 
     <script src="script.js"></script>
     <link rel="stylesheet" href="css/style.css" />
@@ -32,43 +33,49 @@
         <h1>Board</h1>
         <div class="header-right">
           <div class="boardSearch">
-            <input id="searchInput" type="search" placeholder="Find Task">
+            <input id="searchInput" type="search" placeholder="Find Task" />
           </div>
-          <button class="web-addTask-btn">Add task <img class="plus-white" src="assets/icons/plus_white.png"></button>
-          <img class="mobile-addTask-btn" src="assets/icons/plus-add-task-mobile.png" >
+          <button class="web-addTask-btn">
+            Add task
+            <img class="plus-white" src="assets/icons/plus_white.png" />
+          </button>
+          <img
+            class="mobile-addTask-btn"
+            src="assets/icons/plus-add-task-mobile.png"
+          />
         </div>
       </div>
       <div class="task-area">
         <div class="task-container">
           <div class="task-header">
             <p>To Do</p>
-            <img src="assets/icons/plus_button.png">
+            <img src="assets/icons/plus_button.png" />
           </div>
           <div id="todoContainer"></div>
         </div>
         <div class="task-container">
           <div class="task-header">
             <p>In progress</p>
-            <img src="assets/icons/plus_button.png">
+            <img src="assets/icons/plus_button.png" />
           </div>
           <div id="inProgressContainer"></div>
         </div>
         <div class="task-container">
           <div class="task-header">
             <p>Awaiting Feedback</p>
-            <img src="assets/icons/plus_button.png">
+            <img src="assets/icons/plus_button.png" />
           </div>
           <div id="feedbackContainer"></div>
         </div>
         <div class="task-container">
           <div class="task-header">
             <p>Done</p>
-            <img src="assets/icons/plus_button.png">
+            <img src="assets/icons/plus_button.png" />
           </div>
           <div id="doneContainer"></div>
         </div>
       </div>
     </div>
-    <div id="taskLayer" style="display: none;"></div>
+    <div id="taskLayer" style="display: none"></div>
   </body>
 </html>
