@@ -2,8 +2,8 @@ function renderContactList() {
   document.getElementById("contactList").innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
-    let initials = contact.initials;
     let name = contact.name;
+    let initials = getInitials(name);
     let email = contact.email;
     let color = contact.color;
 
@@ -30,11 +30,12 @@ function selectContact(i) {
 }
 
 function renderSelectContactHTML(i) {
+  let initials = getInitials(contacts[i]["name"]);
   return `
   <div class="contact-name">
     <div>
       <div style="background-color:${contacts[i]["color"]}" class="contact-initials">
-        ${contacts[i]["initials"]}
+        ${initials}
       </div>
     </div>
     <div>

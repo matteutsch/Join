@@ -48,7 +48,6 @@
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  margin-top: 24px;
   height: 100%;
 }
 /*leftSide*/
@@ -58,7 +57,7 @@
   padding-right: 60px;
   padding-bottom: 32px;
 }
-.content-left input {
+#addTaskTitle {
   box-sizing: border-box;
   width: 100%;
   border-radius: 10px;
@@ -234,7 +233,7 @@ input[type="checkbox"] {
   padding: 8px;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   background-image: url("../assets/icons/dropdown_black.png");
   background-repeat: no-repeat;
@@ -244,7 +243,6 @@ input[type="checkbox"] {
 }
 .content {
   font-size: 18px;
-  background-color: white;
   border-radius: 8px;
   white-space: nowrap;
 }
@@ -257,7 +255,13 @@ input[type="checkbox"] {
   white-space: nowrap;
 }
 .option:hover {
-  background-color: #cdcdcd;
+  background-color: var(--grey);
+}
+
+.sb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .category-expanded {
@@ -268,34 +272,63 @@ input[type="checkbox"] {
 #categoryDropdown {
   margin-top: -100%;
   transition: all 225ms;
-  max-height: 128px;
+  max-height: 96px;
   overflow-y: scroll;
 }
 
 #categoryDropdown.expanded {
   margin-top: 0;
-  border: 1px solid #cdcdcd;
+  border: 1px solid var(--grey);
   border-radius: 0 0 8px 8px;
   border-top: none;
 }
+
+#selectContact,
+#addTaskCategory {
+  padding-right: 40px;
+}
+
 #selectContactDropdown {
   margin-top: -200%;
   transition: all 225ms;
-  max-height: 128px;
+  max-height: 96px;
   overflow-y: scroll;
 }
 #selectContactDropdown.expanded {
   margin-top: 0;
-  border: 1px solid #cdcdcd;
+  border: 1px solid var(--grey);
   border-radius: 0 0 8px 8px;
   border-top: none;
 }
 .expand-container {
   overflow: hidden;
   border-radius: 0 0 8px 8px;
+  background-color: white;
 }
 .contactCheckbox {
   margin: 0 !important;
+}
+.chosenContacts {
+  background-color: #f6f7f8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 16px;
+}
+.chosenContactInitials {
+  border-radius: 50%;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+  margin-right: 4px;
+}
+.chosenContactInitials:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 @media (max-width: 1285px) {

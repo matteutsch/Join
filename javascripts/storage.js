@@ -1,73 +1,61 @@
 let contacts = [
   {
     name: "Anton Mayer",
-    initials: "AM",
     color: "#0223CF",
     email: "antom@gmail.com",
   },
   {
     name: "Anja Schulz",
-    initials: "AS",
     color: "#CB02CF",
     email: "schulz@hotmail",
   },
   {
     name: "Benedikt Ziegler",
-    initials: "BZ",
     color: "#FFA800",
     email: "benedikt@gmail",
   },
   {
     name: "David Eisenberg",
-    initials: "DE",
     color: "#9327FF",
     email: "davidberg@gmail",
   },
   {
     name: "Elena Schmidt",
-    initials: "ES",
     color: "#02CF2F",
     email: "elena.schmidt@gmail.com",
   },
   {
     name: "Fabian Fischer",
-    initials: "FF",
     color: "#EE00D6",
     email: "fabian.fischer@hotmail.com",
   },
   {
     name: "Gabriele Wagner",
-    initials: "GW",
     color: "#0190E0",
     email: "gabriele.wagner@gmail.com",
   },
   {
     name: "Hans Müller",
-    initials: "HM",
     color: "#FF5C00",
     email: "hans.mueller@hotmail.com",
   },
   {
     name: "Ines Bauer",
-    initials: "IB",
     color: "#4E963D",
     email: "ines.bauer@gmail.com",
   },
   {
     name: "Johannes Mayer",
-    initials: "JM",
     color: "#32DAFF",
     email: "johannes.mayer@hotmail.com",
   },
   {
     name: "Katrin Schuster",
-    initials: "KS",
     color: "#9327FF",
     email: "katrin.schuster@gmail.com",
   },
   {
     name: "Lena Wagner",
-    initials: "LW",
     color: "#EE00D6",
     email: "lena.wagner@hotmail.com",
   },
@@ -126,6 +114,8 @@ let tasks = [
     assignedTo: [contacts[7], contacts[8], contacts[9]],
   },
 ];
+
+let category = ["Sales", "Backoffice", "Design", "Marketing", "Media"];
 
 /* ***************************************************************** */
 

@@ -37,10 +37,10 @@ function setPrio(prio) {
 function addContactNamesToAssignedTo() {
   document.getElementById("selectContactDropdown").innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
+    let contact = contacts[i];
     let name = contact.name;
     document.getElementById("selectContactDropdown").innerHTML += `
-    <div onclick="selectOptionContacts()" class="option">${name} <input class="contactCheckbox" type="checkbox"></div>`;
+    <div onclick="selectOptionContacts(${i})" class="option sb">${name} <input class="contactCheckbox" type="checkbox"></div>`;
   }
 }
 
@@ -48,15 +48,15 @@ function createTask() {
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
   let category = document.getElementById("addTaskCategory");
-  let assignedTo = document.getElementById("addTaskAssignedTo");
+  let assignedTo = document.getElementById("chosenContacts");
   let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
 
   if (
     title.value == "" ||
     description.value == "" ||
-    category.value == "" ||
-    assignedTo.value == "" ||
+    category.textContent == "" ||
+    assignedTo.children == "" ||
     priority == "" ||
     dueDate.value == ""
   ) {
@@ -101,7 +101,7 @@ function resetValues(
 }
 
 // custom select/dropdown
-
+//-----------dropdown-category --------------------//
 function openDropdownCategory() {
   let dropdown = document.getElementById("categoryDropdown");
   let category = document.getElementById("addTaskCategory");
@@ -119,6 +119,8 @@ function selectOptionCategory() {
   dropdown.classList.remove("expanded");
   category.classList.remove("category-expanded");
 }
+//-----------dropdown-category --------------------//
+//-----------dropdown-contacts --------------------//
 
 function openDropdownContacts() {
   let dropdown = document.getElementById("selectContactDropdown");
@@ -127,13 +129,34 @@ function openDropdownContacts() {
   selectContact.classList.toggle("category-expanded");
 }
 
-function selectOptionContacts() {
+function selectOptionContacts(i) {
   let dropdown = document.getElementById("selectContactDropdown");
   let selectContact = document.getElementById("selectContact");
-  let selectedOption = event.target.innerHTML;
+  let chosenContacts = document.getElementById("chosenContacts");
 
-  selectContact.innerHTML = selectedOption;
+  let maxContacts = 5;
+  let initials = getInitials(contacts[i]["name"]);
+  let color = contacts[i]["color"];
+  if (chosenContacts.children.length < maxContacts) {
+    chosenContacts.innerHTML += `<div onclick="removeContact()" style="background-color:${color}" class="chosenContactInitials">
+    ${initials}</div>`;
+  } else {
+    console.log("maximum number of contacts!");
+  }
 
   dropdown.classList.remove("expanded");
   selectContact.classList.remove("category-expanded");
 }
+//-----------dropdown-contacts --------------------//
+//-----------remove added contacts --------------------//
+function removeContact() {
+  chosenContacts.addEventListener("click", function (event) {
+    if (event.target.classList.contains("chosenContactInitials")) {
+      removeChosenContact(event);
+    }
+  });
+}
+function removeChosenContact(event) {
+  event.target.remove();
+}
+//-----------remove added contacts --------------------//
