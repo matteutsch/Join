@@ -3,63 +3,76 @@ let contacts = [
     name: "Anton Mayer",
     color: "#0223CF",
     email: "antom@gmail.com",
+    initials: "AM",
   },
   {
     name: "Anja Schulz",
     color: "#CB02CF",
     email: "schulz@hotmail",
+    initials: "AS",
   },
   {
     name: "Benedikt Ziegler",
     color: "#FFA800",
     email: "benedikt@gmail",
+    initials: "BZ",
   },
   {
     name: "David Eisenberg",
     color: "#9327FF",
     email: "davidberg@gmail",
+    initials: "DE",
   },
   {
     name: "Elena Schmidt",
     color: "#02CF2F",
     email: "elena.schmidt@gmail.com",
+    initials: "ES",
   },
   {
     name: "Fabian Fischer",
     color: "#EE00D6",
     email: "fabian.fischer@hotmail.com",
+    initials: "FF",
   },
   {
     name: "Gabriele Wagner",
     color: "#0190E0",
     email: "gabriele.wagner@gmail.com",
+    initials: "GW",
   },
   {
     name: "Hans Müller",
     color: "#FF5C00",
     email: "hans.mueller@hotmail.com",
+    initials: "HM",
   },
   {
     name: "Ines Bauer",
     color: "#4E963D",
     email: "ines.bauer@gmail.com",
+    initials: "IB",
   },
   {
     name: "Johannes Mayer",
     color: "#32DAFF",
     email: "johannes.mayer@hotmail.com",
+    initials: "JM",
   },
   {
     name: "Katrin Schuster",
     color: "#9327FF",
     email: "katrin.schuster@gmail.com",
+    initials: "KS",
   },
   {
     name: "Lena Wagner",
     color: "#EE00D6",
     email: "lena.wagner@hotmail.com",
+    initials: "LW",
   },
 ];
+
 
 let tasks = [
   {

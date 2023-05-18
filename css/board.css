@@ -28,7 +28,11 @@
 }
 
 .boardSearch {
-  background: white url("/assets/icons/lens.png") no-repeat 235px 15px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: white url("/assets/icons/lens.png") no-repeat 235px 15px; */
   width: 251px;
   height: 51px;
   font-size: 17px;
@@ -38,11 +42,19 @@
   padding-left: 21px;
 }
 
+.search-button{
+  background: url("/assets/icons/lens.png") no-repeat 9px 4px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+
 #searchInput {
   border: none;
   border-right: 2px solid #d1d1d1;
   height: 42px;
-  width: 200px;
+  width: 195px;
   font-size: 16px;
 }
 

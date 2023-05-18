@@ -41,18 +41,17 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers(['todoContainer', 'inProgressContainer', 'feedbackContainer', 'doneContainer']);
+  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
   initBoard();
   closeLayer();
 }
 
 function clearContainers(containerIds) {
-  containerIds.forEach(containerId => {
+  containerIds.forEach((containerId) => {
     const container = document.getElementById(containerId);
-    container.innerHTML = '';
+    container.innerHTML = "";
   });
 }
-
 
 function renderUrgencyImg(i) {
   const urgency = tasks[i]["priority"];
