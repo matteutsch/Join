@@ -15,14 +15,12 @@ body {
 }
 
 .rightContainer {
-    /*     width: 100%;
- */
     max-width: 1000px;
     display: flex;
     flex-direction: column;
     margin-left: 232px;
     margin-right: 80px;
-    margin-top: 50px;
+    margin-top: 130px;
 }
 
 .legalNoticeContainer {
@@ -38,4 +36,28 @@ body {
 
 .arrowIMG {
     padding-right: 20px;
+}
+
+@media(max-width: 850px) {
+    .rightContainer {
+        margin-left: 170px;
+        margin-right: 50px;
+    }
+}
+
+@media(max-width: 670px) {
+    .leftTemplate {
+        display: none;
+    }
+
+    .rightContainer {
+        margin-left: 0;
+        align-items: center;
+    }
+
+    .legalNoticeContainer {
+        display: flex;
+        flex-direction: column;
+        margin-left: 50px;
+    }
 }
