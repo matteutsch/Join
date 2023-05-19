@@ -73,8 +73,6 @@ function createTask() {
   // checking if most important inputs are being filled in and creating new Task
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
-  let category = document.getElementById("addTaskCategory");
-  let assignedTo = document.getElementById("chosenContacts");
   let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
 
