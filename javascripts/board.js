@@ -102,8 +102,30 @@ function displayLayer() {
   });
 }
 
-function closeLayer() {
+function closeLayer(container) {
   let layer = document.getElementById("taskLayer");
   layer.style.display = "none";
+  container.style.display = "none";
   layer.removeEventListener("click", displayLayer);
+ 
 }
+
+function slideInContainer() {
+  const container = document.getElementById('slideInContainer');
+    container.style.right = '60px';
+  displayLayer();
+}
+
+function slideOutContainer() {
+  const container = document.getElementById('slideInContainer');
+  if (container.style.right == '-100%') {
+    return null
+  } else {
+    container.style.right = '-100%';
+  }
+  closeLayer(container);
+}
+
+
+
+

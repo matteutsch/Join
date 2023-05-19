@@ -42,7 +42,7 @@
   padding-left: 21px;
 }
 
-.search-button{
+.search-button {
   background: url("/assets/icons/lens.png") no-repeat 9px 4px;
   width: 30px;
   height: 30px;
@@ -115,6 +115,20 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: none;
 }
+
+#slideInContainer {
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  background-color: white;
+  position: fixed;
+  top: 20px;
+  right: -100%;
+  width: 1116px;
+  height: 880px;
+  transition: right 0.3s ease-in-out;
+  z-index: 1111;
+}
+
 
 .task-card {
   width: 250px;
@@ -335,7 +349,7 @@
   cursor: pointer;
 }
 
-.delete-button:hover{
+.delete-button:hover {
   border: 2px solid #29abe2;
 }
 
@@ -402,13 +416,13 @@
     width: 100%;
   }
 
-  .task-card{
+  .task-card {
     width: 70%;
-    margin: 30px auto; 
+    margin: 30px auto;
   }
 }
 
- @media (max-width: 455px) {
+@media (max-width: 455px) {
   .task-card {
     width: 80%;
   }
@@ -417,4 +431,3 @@
     margin: 50px 10px;
   }
 }
- 
