@@ -115,7 +115,6 @@ let tasks = [
   },
 ];
 
-let category = ["Sales", "Backoffice", "Design", "Marketing", "Media"];
 
 /* ***************************************************************** */
 
