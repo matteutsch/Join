@@ -28,7 +28,7 @@ function renderContactList() {
     let contactsWithLetter = contactsByLetter[letter];
     document.getElementById(
       "contactList"
-    ).innerHTML += `<div id="letter${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
+    ).innerHTML += `<div id="${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
 
     for (let j = 0; j < contactsWithLetter.length; j++) {
       let contact = contactsWithLetter[j];
@@ -36,20 +36,22 @@ function renderContactList() {
       let initials = getInitials(name);
       let email = contact.email;
       let color = contact.color;
-      document.getElementById(`letter${letter}`).innerHTML += addContactsHTML(
+      document.getElementById(`${letter}`).innerHTML += addContactsHTML(
+        i,
         j,
         color,
         initials,
         name,
         email
       );
+      console.log(contactsByLetter);
     }
   }
 }
 
-function addContactsHTML(j, color, initials, name, email) {
+function addContactsHTML(i, j, color, initials, name, email) {
   return `
-    <div id='singleContact${j}' class="singleContact" onclick="selectContact(${j})">
+    <div id='singleContact${i}-${j}' class="singleContact" onclick="selectContact(${i},${j})">
       <div style="background-color:${color}" class="singleContactInitials"> ${initials}</div>
       <div class="singleContactName">
       <h3>${name}</h3>
@@ -59,28 +61,34 @@ function addContactsHTML(j, color, initials, name, email) {
     `;
 }
 
-function selectContact(i) {
+function selectContact(i, j) {
   //select a contact to display further information in container next to it
   let elem = document.querySelectorAll(".singleContact");
-  for (let i = 0; i < elem.length; i++) {
-    elem[i].classList.remove("selectedContact");
+  for (let k = 0; k < elem.length; k++) {
+    elem[k].classList.remove("selectedContact");
   }
-  document.getElementById(`singleContact${i}`).classList.add("selectedContact");
+  document
+    .getElementById(`singleContact${i}-${j}`)
+    .classList.add("selectedContact");
 
-  document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(i);
+  document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(
+    i,
+    j
+  );
 }
 
-function renderSelectContactHTML(i) {
+function renderSelectContactHTML(i, j) {
+  let contact = contactsByLetter[letters[i]][j];
   let initials = getInitials(contacts[i]["name"]);
   return `
   <div class="contact-name">
     <div>
-      <div style="background-color:${contacts[i]["color"]}" class="contact-initials">
+      <div style="background-color:${contact.color}" class="contact-initials">
         ${initials}
       </div>
     </div>
     <div>
-      <h1>${contacts[i]["name"]}</h1>
+      <h1>${contact.name}</h1>
       <div class="contacts-add-task">
         <img src="assets/icons/plus.small.png" /> &nbsp; Add Task
       </div>
@@ -95,7 +103,7 @@ function renderSelectContactHTML(i) {
       </div>
     </div>
     <h3>Email</h3>
-    <p>${contacts[i]["email"]}</p>
+    <p>${contact.email}</p>
     <h3>Phone</h3>
     <p>+49&nbsp;1103202181</p>
   </div>`;
