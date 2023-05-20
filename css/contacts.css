@@ -135,6 +135,11 @@ h3 {
   background-color: #ffffff;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 }
+.letterHeader {
+  border-bottom: 1px solid var(--grey);
+  padding: 16px 16px 16px 16px;
+  margin: 0px 16px 0px 16px;
+}
 .singleContact {
   padding: 8px;
   margin: 8px 16px 8px 16px;

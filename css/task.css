@@ -296,6 +296,7 @@ input[type="checkbox"] {
   border-radius: 100%;
   background-color: red;
   border: 2px solid white;
+  margin-right: 24px;
 }
 
 #selectContact,

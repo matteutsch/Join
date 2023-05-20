@@ -75,6 +75,7 @@ function createTask() {
   let description = document.getElementById("addTaskDescription");
   let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
+  let category = document.getElementById("addTaskCategory");
 
   if (
     title.value == "" ||

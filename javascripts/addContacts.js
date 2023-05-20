@@ -1,22 +1,50 @@
+let letters = [];
+let contactsByLetter = [];
+
 function renderContactList() {
   document.getElementById("contactList").innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     let name = contact.name;
-    let initials = getInitials(name);
-    let email = contact.email;
-    let color = contact.color;
-
-    document.getElementById("contactList").innerHTML += /*html*/ `
-  <div id='singleContact${i}' class="singleContact" onclick="selectContact(${i})">
-    <div style="background-color:${color}" class="singleContactInitials"> ${initials}</div>
-    <div class="singleContactName">
-    <h3>${name}</h3>
-    <p>${email}</p>
-    </div>
-  </div>
-  `;
+    let firstLetter = name.charAt(0);
+    if (!letters.includes(firstLetter)) {
+      letters.push(firstLetter);
+    }
+    if (!contactsByLetter[firstLetter]) {
+      contactsByLetter[firstLetter] = [];
+    }
+    contactsByLetter[firstLetter].push(contact);
   }
+
+  for (let i = 0; i < letters.length; i++) {
+    let letter = letters[i];
+    let contactsWithLetter = contactsByLetter[letter];
+    console.log(contactsByLetter[letter]);
+    document.getElementById(
+      "contactList"
+    ).innerHTML += `<div id="letter${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
+
+    for (let j = 0; j < contactsWithLetter.length; j++) {
+      let contact = contactsWithLetter[j];
+      let name = contact.name;
+      let initials = getInitials(name);
+      let email = contact.email;
+      let color = contact.color;
+      document.getElementById(`letter${letter}`).innerHTML +=
+        addContactListHTML(j, color, initials, name, email);
+    }
+  }
+}
+function addContactListHTML(j, color, initials, name, email) {
+  return `
+    <div id='singleContact${j}' class="singleContact" onclick="selectContact(${j})">
+      <div style="background-color:${color}" class="singleContactInitials"> ${initials}</div>
+      <div class="singleContactName">
+      <h3>${name}</h3>
+      <p>${email}</p>
+      </div>
+    </div>
+    `;
 }
 
 function selectContact(i) {
