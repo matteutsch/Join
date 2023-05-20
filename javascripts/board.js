@@ -98,23 +98,45 @@ function displayLayer() {
   layer.addEventListener("click", (event) => {
     if (event.target === layer) {
       closeLayer();
+      closeSlideInContainer();
+      closeTaskCardBig();
     }
   });
+}
+
+function closeSlideInContainer(){
+  const slideInContainer = document.getElementById('slideInContainer');
+  slideInContainer.style.right = '-1116px';
+  slideInContainer.style.left = '';
+  slideInContainer.style.transform = '';
+}
+
+function closeTaskCardBig(){
+  const taskCardBig = document.querySelector('.task-card-big');
+  if (taskCardBig) {
+    taskCardBig.style.display = "none";
+  }
 }
 
 function closeLayer(container) {
   let layer = document.getElementById("taskLayer");
   layer.style.display = "none";
-  container.style.display = "none";
+  /* if (container) { 
+    container.style.display = "none";
+   }  */
   layer.removeEventListener("click", displayLayer);
  
 }
 
 function slideInContainer() {
-  const container = document.getElementById('slideInContainer');
-    container.style.right = '60px';
+  const slideInContainer = document.getElementById('slideInContainer');
+  slideInContainer.style.display = "flex";
+  slideInContainer.style.left = '50%';
+  slideInContainer.style.right = '';
+  slideInContainer.style.transform = 'translateX(-50%)';
   displayLayer();
 }
+
 
 function slideOutContainer() {
   const container = document.getElementById('slideInContainer');

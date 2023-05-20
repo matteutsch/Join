@@ -122,12 +122,16 @@
   background-color: white;
   position: fixed;
   top: 20px;
-  right: -100%;
+  right: -1116px; /* Change the value to match the width of the container */
   width: 1116px;
   height: 880px;
   transition: right 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
+  transition: translateX 0.3s ease-in-out;
   z-index: 1111;
 }
+
+
 
 
 .task-card {
