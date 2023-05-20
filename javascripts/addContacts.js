@@ -1,7 +1,9 @@
 let letters = [];
 let contactsByLetter = [];
 
-function renderContactList() {
+function initContactList() {
+  //get all the firstletters of contacts and push them into seperate array;
+  //creating seperate array of contacts sorted by first letters
   document.getElementById("contactList").innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -15,11 +17,15 @@ function renderContactList() {
     }
     contactsByLetter[firstLetter].push(contact);
   }
+  renderContactList();
+}
 
+function renderContactList() {
+  //iterating through letters array to create letters as headline
+  //iterating through contactsByLetter[Letter] to render those below the matching firstLetter
   for (let i = 0; i < letters.length; i++) {
     let letter = letters[i];
     let contactsWithLetter = contactsByLetter[letter];
-    console.log(contactsByLetter[letter]);
     document.getElementById(
       "contactList"
     ).innerHTML += `<div id="letter${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
@@ -30,12 +36,18 @@ function renderContactList() {
       let initials = getInitials(name);
       let email = contact.email;
       let color = contact.color;
-      document.getElementById(`letter${letter}`).innerHTML +=
-        addContactListHTML(j, color, initials, name, email);
+      document.getElementById(`letter${letter}`).innerHTML += addContactsHTML(
+        j,
+        color,
+        initials,
+        name,
+        email
+      );
     }
   }
 }
-function addContactListHTML(j, color, initials, name, email) {
+
+function addContactsHTML(j, color, initials, name, email) {
   return `
     <div id='singleContact${j}' class="singleContact" onclick="selectContact(${j})">
       <div style="background-color:${color}" class="singleContactInitials"> ${initials}</div>
@@ -48,6 +60,7 @@ function addContactListHTML(j, color, initials, name, email) {
 }
 
 function selectContact(i) {
+  //select a contact to display further information in container next to it
   let elem = document.querySelectorAll(".singleContact");
   for (let i = 0; i < elem.length; i++) {
     elem[i].classList.remove("selectedContact");
@@ -89,6 +102,7 @@ function renderSelectContactHTML(i) {
 }
 
 function addContact() {
+  //adding new contact to contacts Array
   let name = document.getElementById("newContactName");
   let email = document.getElementById("newContactEmail");
   let phone = document.getElementById("newContactPhone");
