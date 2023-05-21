@@ -4,6 +4,8 @@ let contactsByLetter = [];
 function initContactList() {
   //get all the firstletters of contacts and push them into seperate array;
   //creating seperate array of contacts sorted by first letters
+  letters = [];
+  contactsByLetter = [];
   document.getElementById("contactList").innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -44,7 +46,6 @@ function renderContactList() {
         name,
         email
       );
-      console.log(contactsByLetter);
     }
   }
 }
@@ -71,6 +72,7 @@ function selectContact(i, j) {
     .getElementById(`singleContact${i}-${j}`)
     .classList.add("selectedContact");
 
+  changeMobileView();
   document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(
     i,
     j
@@ -79,8 +81,13 @@ function selectContact(i, j) {
 
 function renderSelectContactHTML(i, j) {
   let contact = contactsByLetter[letters[i]][j];
+  let name = contact.name;
+  let email = contact.email;
+  let phone = contact.phone;
   let initials = getInitials(contacts[i]["name"]);
+
   return `
+  <img id="arrowBack" onclick="exitContact()" class="arrowBack" src="../assets/icons/arrow-left-black.png">
   <div class="contact-name">
     <div>
       <div style="background-color:${contact.color}" class="contact-initials">
@@ -88,7 +95,7 @@ function renderSelectContactHTML(i, j) {
       </div>
     </div>
     <div>
-      <h1>${contact.name}</h1>
+      <h1>${name}</h1>
       <div class="contacts-add-task">
         <img src="assets/icons/plus.small.png" /> &nbsp; Add Task
       </div>
@@ -99,13 +106,13 @@ function renderSelectContactHTML(i, j) {
       <p>Contact Information</p>
       <div class="edit-contact">
         <img src="assets/icons/pencil.small.png" />
-        <p onclick="openEditContact()">&nbsp; Edit Contact</p>
+        <p onclick="openEditContact(${i}, ${j})">&nbsp; Edit Contact</p>
       </div>
     </div>
     <h3>Email</h3>
-    <p>${contact.email}</p>
+    <p>${email}</p>
     <h3>Phone</h3>
-    <p>+49&nbsp;1103202181</p>
+    <p>${phone}</p>
   </div>`;
 }
 
@@ -116,18 +123,23 @@ function addContact() {
   let phone = document.getElementById("newContactPhone");
   let randomNumber = Math.floor(Math.random() * nameColor.length);
 
-  let newContact = {
-    name: name.value,
-    email: email.value,
-    phone: phone.value,
-    color: nameColor[randomNumber],
-  };
-
-  contacts.push(newContact);
-
-  name.value = "";
-  email.value = "";
-  phone.value = "";
+  if (name.value == "" || email.value == "" || phone.value == "") {
+    alert("please fill missing informations");
+  } else {
+    let newContact = {
+      name: name.value.charAt(0).toUpperCase() + name.value.slice(1),
+      email: email.value,
+      phone: phone.value,
+      color: nameColor[randomNumber],
+    };
+    contacts.push(newContact);
+    name.value = "";
+    email.value = "";
+    phone.value = "";
+  }
+  initContactList();
+  closeNewContact();
+  //success();
 }
 
 function openNewContact() {
@@ -138,10 +150,116 @@ function closeNewContact() {
   document.getElementById(`addContactsOverlay`).classList.add("d-none");
 }
 
-function openEditContact() {
+function openEditContact(i, j) {
   document.getElementById(`editContactsOverlay`).classList.remove("d-none");
+
+  document.getElementById("editContactsOverlay").innerHTML = createEditHTML(
+    i,
+    j
+  );
+  let editName = document.getElementById("editName");
+  let editMail = document.getElementById("editMail");
+  let editPhone = document.getElementById("editPhone");
+  let contact = contactsByLetter[letters[i]][j];
+  editName.value = contact.name;
+  editMail.value = contact.email;
+  editPhone.value = contact.phone;
+}
+function createEditHTML(i, j) {
+  return `<div class="addContact">
+  <div class="addContactLeft">
+    <img src="assets/icons/logo-white-blue.png" />
+    <h1>Edit contact</h1>
+    <p>Tasks are better with a team</p>
+    <div class="blueLine"></div>
+  </div>
+  <div class="addContactRight">
+    <div onclick="closeEditContact()" class="x-mark">
+      x
+    </div>
+    <div class="createContactContainer">
+      <div>
+        <img class="contactImage" src="assets/icons/add_contact.png" />
+      </div>
+      <div>
+        <input
+          id="editName"
+          class="addContactInput contactName"
+          placeholder="Name"
+        />
+        <input
+          id="editMail"
+          class="addContactInput contactEmail"
+          placeholder="Email"
+        />
+        <input
+          id="editPhone"
+          class="addContactInput contactPhone"
+          placeholder="Phone"
+        />
+      </div>
+    </div>
+    <div class="addContactBtn">
+      <button onclick="deleteContact(${i}, ${j})" class="cancel-btn">Delete</button>
+      <button onclick="saveContact(${i}, ${j})" class="create-contact-btn">
+        Save
+      </button>
+    </div>
+  </div>
+</div>`;
 }
 
 function closeEditContact() {
   document.getElementById(`editContactsOverlay`).classList.add("d-none");
 }
+
+function saveContact(i, j) {
+  let editName = document.getElementById("editName").value;
+  let editMail = document.getElementById("editMail").value;
+  let editPhone = document.getElementById("editPhone").value;
+  let contact = contactsByLetter[letters[i]][j];
+  contact.name = editName;
+  contact.email = editMail;
+  contact.phone = editPhone;
+
+  document.getElementById("contactsMid").innerHTML = "";
+  initContactList();
+  closeEditContact();
+}
+
+function deleteContact(i, j) {
+  let editName = document.getElementById("editName");
+  let editMail = document.getElementById("editMail");
+  let editPhone = document.getElementById("editPhone");
+
+  let contact = contactsByLetter[letters[i]][j];
+  let contactIndex = contacts.indexOf(contact);
+
+  contactsByLetter[letters[i]].splice(j, 1);
+  contacts.splice(contactIndex, 1);
+
+  editName.value = "";
+  editMail.value = "";
+  editPhone.value = "";
+  document.getElementById("contactsMid").innerHTML = "";
+  initContactList();
+}
+
+function changeMobileView() {
+  document.getElementById("newContactBtn").classList.add("hideMobile");
+  document.getElementById("contactsRight").classList.add("contactInfoMobile");
+  document.getElementById("contactList").classList.add("hideMobile");
+}
+function exitContact() {
+  document
+    .getElementById("contactsRight")
+    .classList.remove("contactInfoMobile");
+  document.getElementById("contactList").classList.remove("hideMobile");
+  document.getElementById("newContactBtn").classList.remove("hideMobile");
+  document.getElementById("arrowBack").classList.add("hideMobile");
+}
+
+//function success() {
+//  document.getElementById("success").classList.remove("d-none");
+//  document.getElementById("success").classList.add("addAnimation");
+//}

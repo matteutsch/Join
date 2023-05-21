@@ -42,7 +42,7 @@ function addContactNamesToAssignedTo() {
     let contact = contacts[i];
     let name = contact.name;
     document.getElementById("selectContactDropdown").innerHTML += `
-    <div onclick="selectOptionContacts(${i}), pushAssignedContact(${i})" class="option sb">${name} <input class="contactCheckbox" type="checkbox"></div>`;
+    <div onclick="selectOptionContacts(${i}), pushAssignedContact(${i})" class="option sb">${name} </div>`;
   }
 }
 
@@ -75,7 +75,6 @@ function createTask() {
   let description = document.getElementById("addTaskDescription");
   let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
-  let category = document.getElementById("addTaskCategory");
 
   if (
     title.value == "" ||

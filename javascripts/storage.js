@@ -3,61 +3,73 @@ let contacts = [
     name: "Anton Mayer",
     color: "#0223CF",
     email: "antom@gmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Anja Schulz",
     color: "#CB02CF",
     email: "schulz@hotmail",
+    phone: "+49 2812830213",
   },
   {
     name: "Benedikt Ziegler",
     color: "#FFA800",
     email: "benedikt@gmail",
+    phone: "+49 2812830213",
   },
   {
     name: "David Eisenberg",
     color: "#9327FF",
     email: "davidberg@gmail",
+    phone: "+49 2812830213",
   },
   {
     name: "Elena Schmidt",
     color: "#02CF2F",
     email: "elena.schmidt@gmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Fabian Fischer",
     color: "#EE00D6",
     email: "fabian.fischer@hotmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Gabriele Wagner",
     color: "#0190E0",
     email: "gabriele.wagner@gmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Hans Müller",
     color: "#FF5C00",
     email: "hans.mueller@hotmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Ines Bauer",
     color: "#4E963D",
     email: "ines.bauer@gmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Johannes Mayer",
     color: "#32DAFF",
     email: "johannes.mayer@hotmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Katrin Schuster",
     color: "#9327FF",
     email: "katrin.schuster@gmail.com",
+    phone: "+49 2812830213",
   },
   {
     name: "Lena Wagner",
     color: "#EE00D6",
     email: "lena.wagner@hotmail.com",
+    phone: "+49 2812830213",
   },
 ];
 
@@ -141,8 +153,16 @@ let categories = [
 /* ***************************************************************** */
 
 function getInitials(name) {
+  let initials = "";
   let splitted_name = name.split(" ");
-  let initials = splitted_name[0].charAt(0) + splitted_name[1].charAt(0);
+
+  if (splitted_name.length > 0 && splitted_name[0].length > 0) {
+    initials += splitted_name[0].charAt(0);
+  }
+
+  if (splitted_name.length > 1 && splitted_name[1].length > 0) {
+    initials += splitted_name[1].charAt(0);
+  }
   return initials;
 }
 

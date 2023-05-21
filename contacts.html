@@ -26,7 +26,7 @@
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="contacts-content">
       <div id="contactList" class="contact-list"></div>
-      <div class="contacts-content-right">
+      <div id="contactsRight" class="contacts-content-right">
         <div class="contacts-top-mid">
           <div class="contacts-top">
             <div class="contacts-top-head">
@@ -36,14 +36,17 @@
           </div>
           <div id="contactsMid" class="contacts-mid"></div>
         </div>
-        <div class="contacts-bottom">
-          <div class="new-contact">
-            <button class="new-contact-btn" onclick="openNewContact()">
-              New contact &nbsp; <img src="assets/icons/new.contact.png" />
-            </button>
-          </div>
-        </div>
       </div>
+    </div>
+    <button
+      id="newContactBtn"
+      class="new-contact-btn"
+      onclick="openNewContact()"
+    >
+      New contact &nbsp; <img src="assets/icons/new.contact.png" />
+    </button>
+    <div id="success" class="successContainer, d-none">
+      <div class="success">Contact successfully created</div>
     </div>
 
     <!---   new Contact window    --->
@@ -57,9 +60,7 @@
           <div class="blueLine"></div>
         </div>
         <div class="addContactRight">
-          <div class="x-mark">
-            <img onclick="closeNewContact()" src="assets/icons/clear.png" />
-          </div>
+          <div onclick="closeNewContact()" class="x-mark">x</div>
           <div class="createContactContainer">
             <div>
               <img class="contactImage" src="assets/icons/add_contact.png" />
@@ -83,13 +84,12 @@
             </div>
           </div>
           <div class="addContactBtn">
-            <button class="cancel-btn">Cancel &nbsp; x</button>
-            <button onclick="addContact()" class="new-contact-btn">
+            <button onclick="closeNewContact()" class="cancel-btn">
+              Cancel &nbsp; x
+            </button>
+            <button onclick="addContact()" class="create-contact-btn">
               Create Contact &nbsp;
-              <img
-                onclick="closeEditContact()"
-                src="assets/icons/check-white.png"
-              />
+              <img src="assets/icons/check-white.png" />
             </button>
           </div>
         </div>
@@ -98,34 +98,6 @@
 
     <!--- edit contacts Window --->
 
-    <div class="d-none" id="editContactsOverlay">
-      <div class="addContact">
-        <div class="addContactLeft">
-          <img src="assets/icons/logo-white-blue.png" />
-          <h1>Edit contact</h1>
-          <p>Tasks are better with a team</p>
-          <div class="blueLine"></div>
-        </div>
-        <div class="addContactRight">
-          <div class="x-mark">
-            <img onclick="closeEditContact()" src="assets/icons/clear.png" />
-          </div>
-          <div class="createContactContainer">
-            <div>
-              <img class="contactImage" src="assets/icons/add_contact.png" />
-            </div>
-            <div>
-              <input class="addContactInput contactName" placeholder="Name" />
-              <input class="addContactInput contactEmail" placeholder="Email" />
-              <input class="addContactInput contactPhone" placeholder="Phone" />
-            </div>
-          </div>
-          <div class="addContactBtn">
-            <button class="cancel-btn">Delete</button>
-            <button class="new-contact-btn">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="d-none" id="editContactsOverlay"></div>
   </body>
 </html>
