@@ -261,6 +261,11 @@ body {
     scale: 1.03;
 }
 
+.toDoContainer:hover .iconToDo {
+    background-image: url(../assets/icons/pencil_blue.png);
+    background-size: 85%;
+}
+
 .sumToDoContainer {
     width: 90px;
     margin-right: 30px;
@@ -277,9 +282,14 @@ body {
 
 .iconToDo {
     width: 95px;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-end; */
+    height: 119px;
+    background-image: url('../assets/icons/pencil.png');
+    background-size: 63%;
+    background-repeat: no-repeat;
+    background-position: 100% 70%;
 }
 
 .pencilIcon {
@@ -310,6 +320,11 @@ body {
     scale: 1.02;
 }
 
+.doneContainer:hover .iconDone {
+    background-image: url(../assets/icons/checkmark_blue.png);
+    background-size: 85%;
+}
+
 .sumDoneContainer {
     width: 90px;
     margin-right: 30px;
@@ -325,10 +340,12 @@ body {
 }
 
 .iconDone {
-    width: 95px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    height: 120px;
+    width: 72px;
+    background-image: url('../assets/icons/checkmark_.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: 100% 70%;
 }
 
 .checkIcon {
@@ -557,6 +574,11 @@ body {
     .greetingName {
         font-size: 35px;
     }
+
+    .iconDone {
+        width: 90px;
+        background-size: 70%;
+    }
 }
 
 @media (max-width: 700px) {
@@ -696,10 +718,14 @@ body {
 
     .iconToDo {
         width: 75px;
+        background-position: 100% 52%;
+        background-size: 72%;
     }
 
     .iconDone {
         width: 75px;
+        height: 104px;
+        background-size: 72%;
     }
 
     .dueDateContainer {
@@ -763,5 +789,16 @@ body {
 
     .greetingName {
         font-size: 30px;
+    }
+
+    .iconToDo {
+        height: 97px;
+    }
+
+    .iconDone {
+        /*         width: 82px;
+ */
+        background-position: 100% 48%;
+        background-size: 85%;
     }
 }
