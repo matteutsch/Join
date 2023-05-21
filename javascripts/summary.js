@@ -1,3 +1,6 @@
+/**
+ * Calls all functions for summary card
+ */
 function startSummary() {
     includeHTML()
     greet()
@@ -44,7 +47,7 @@ function getDataForSummary() {
 }
 
 /**
- * Function show earliest due date of tasks with category='urgent'
+ * Shows earliest due date of tasks with category='urgent'
  */
 function taskWithEarliestDuedate() {
     earliestDate = [3000]
@@ -66,6 +69,7 @@ function jumpToBoard() {
     window.location.href = "board.html";
 }
 
+
 /* returns the whole contact */
 /* function returnAssignedContact(i) {
         for (let j = 0; j < assignedContacts.length; j++) {
@@ -74,3 +78,31 @@ function jumpToBoard() {
                 }   
         }
     } */
+
+
+/**
+ * Shows and removes both overlay container and greeting 
+ */
+// Waits until document in loaded
+document.addEventListener("DOMContentLoaded", function() {
+    var overlay = document.querySelector(".overlay");
+
+    // Adds class "show" to make the overlay container visible
+    overlay.classList.add("show");
+
+    // Removes the class "show" after 2 seconds to make the overlay container invisible
+    setTimeout(function() {
+        overlay.classList.remove("show");
+    }, 2000);
+
+
+    var greeting = document.querySelector(".greeting");
+
+    // Adds class "show" to make the overlay container visible
+    greeting.classList.add("show");
+
+    // Removes the class "show" after 2 seconds to make the overlay container invisible
+    setTimeout(function() {
+        greeting.classList.remove("show");
+    }, 1000);
+});
