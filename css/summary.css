@@ -186,8 +186,8 @@ body {
 }
 
 .urgentIcon {
-    width: 50px;
-    height: 50px;
+    width: 53px;
+    height: 53px;
 }
 
 .deadline {
@@ -660,9 +660,18 @@ body {
         margin-top: 20px;
     }
 
+    .urgentIcon {
+        width: 50px;
+        height: 50px;
+    }
+
     .deadline {
         width: 320px;
         height: 100px;
+    }
+
+    .dateDeadline {
+        margin-top: 13px;
     }
 
     .toDoContainer {
