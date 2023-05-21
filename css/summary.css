@@ -264,6 +264,7 @@ body {
 .toDoContainer:hover .iconToDo {
     background-image: url(../assets/icons/pencil_blue.png);
     background-size: 85%;
+    width: 80px;
 }
 
 .sumToDoContainer {
@@ -281,13 +282,13 @@ body {
 }
 
 .iconToDo {
-    width: 95px;
+    width: 72px;
     /* display: flex;
     align-items: center;
     justify-content: flex-end; */
     height: 119px;
     background-image: url('../assets/icons/pencil.png');
-    background-size: 63%;
+    background-size: 81%;
     background-repeat: no-repeat;
     background-position: 100% 70%;
 }
