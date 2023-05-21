@@ -64,3 +64,7 @@ function changeArrowColor() {
 if (window.location.href.includes("sign_up.html")) {
   window.addEventListener("resize", changeArrowColor);
 }
+
+function showLogout() {
+  document.getElementById("logout").classList.toggle("d-none");
+}

@@ -136,10 +136,10 @@ function addContact() {
     name.value = "";
     email.value = "";
     phone.value = "";
+    success();
   }
   initContactList();
   closeNewContact();
-  //success();
 }
 
 function openNewContact() {
@@ -259,7 +259,14 @@ function exitContact() {
   document.getElementById("arrowBack").classList.add("hideMobile");
 }
 
-//function success() {
-//  document.getElementById("success").classList.remove("d-none");
-//  document.getElementById("success").classList.add("addAnimation");
-//}
+function success() {
+  let success = document.getElementById("success");
+  success.style.visibility = "visible";
+  success.style.opacity = "1";
+  success.style.animation = "showAnimation 2s linear 2s";
+  setTimeout(function () {
+    success.style.visibility = "hidden";
+    success.style.opacity = "0";
+    success.style.animation = "";
+  }, 2000);
+}

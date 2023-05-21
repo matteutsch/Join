@@ -17,6 +17,7 @@
     <script src="javascripts/includeHTML.js"></script>
     <script src="javascripts/storage.js"></script>
     <script src="javascripts/addContacts.js"></script>
+    <script src="script.js"></script>
 
     <link rel="stylesheet" href="css/contacts.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -45,9 +46,8 @@
     >
       New contact &nbsp; <img src="assets/icons/new.contact.png" />
     </button>
-    <div id="success" class="successContainer, d-none">
-      <div class="success">Contact successfully created</div>
-    </div>
+
+    <div id="success" class="success">Contact successfully created</div>
 
     <!---   new Contact window    --->
 
@@ -72,12 +72,12 @@
                 placeholder="Name"
               />
               <input
-                id="newContactEmail"
+                id="newContactPhone"
                 class="addContactInput contactPhone"
                 placeholder="Phone"
               />
               <input
-                id="newContactPhone"
+                id="newContactEmail"
                 class="addContactInput contactEmail"
                 placeholder="Email"
               />
