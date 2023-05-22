@@ -41,12 +41,14 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
+
   clearContainers([
     "todoContainer",
     "inProgressContainer",
     "feedbackContainer",
     "doneContainer",
   ]);
+
   initBoard();
   closeLayer();
 }
@@ -111,8 +113,24 @@ function displayLayer() {
   layer.addEventListener("click", (event) => {
     if (event.target === layer) {
       closeLayer();
+      closeSlideInContainer();
+      closeTaskCardBig();
     }
   });
+}
+
+function closeSlideInContainer() {
+  const slideInContainer = document.getElementById("slideInContainer");
+  if (slideInContainer) {
+    slideInContainer.style.right = "-1116px";
+  }
+}
+
+function closeTaskCardBig() {
+  const taskCardBig = document.querySelector(".task-card-big");
+  if (taskCardBig) {
+    taskCardBig.style.display = "none";
+  }
 }
 
 function closeLayer() {
@@ -120,3 +138,24 @@ function closeLayer() {
   layer.style.display = "none";
   layer.removeEventListener("click", displayLayer);
 }
+
+function slideInContainer() {
+  const taskLayer = document.getElementById("taskLayer");
+  taskLayer.innerHTML = slideInHTML();
+  const slideInContainer = document.getElementById("slideInContainer");
+  slideInContainer.style.display = "flex";
+  displayLayer();
+  addContactNamesToAssignedTo();
+}
+
+function slideOutContainer() {
+  const container = document.getElementById("slideInContainer");
+  if (container.style.right == "-100%") {
+    return null;
+  } else {
+    container.style.right = "-100%";
+  }
+  closeLayer(container);
+}
+
+

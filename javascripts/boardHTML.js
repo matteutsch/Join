@@ -53,3 +53,109 @@ function assignedToCardHTML(contactColor, initials) {
   <div class="initial-label-card" style="background-color:${contactColor}">${initials}</div>
   `;
 }
+
+function slideInHTML() {
+  return /* html */ `
+      <div id="slideInContainer" class="task-form">
+        <div class="task-head">
+          <h1>Add Task</h1>
+          <img class="pointer" src="assets/icons/clear.png" />
+        </div>
+        <div class="task-section">
+          <div class="content-left">
+            <div>
+              <p>Title</p>
+              <input id="addTaskTitle" placeholder="Enter a title" />
+            </div>
+            <div>
+              <p>Description</p>
+              <textarea
+                id="addTaskDescription"
+                placeholder="Enter a Description"
+              ></textarea>
+            </div>
+            <div>
+              <p>Category</p>
+              <select required id="addTaskCategory" class="pointer">
+                <option value="" disabled selected hidden>
+                  Select task category
+                </option>
+
+                <option value="New Category">New Category</option>
+                <option value="Sales">Sales</option>
+                <option value="Backoffice">Backoffice</option>
+                <option value="Design">Design</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Media">Media</option>
+              </select>
+            </div>
+            <div>
+              <p>Assigned to</p>
+              <select required id="addTaskAssignedTo" class="pointer"></select>
+            </div>
+          </div>
+          <div class="content-right">
+            <div>
+              <p>Due date</p>
+              <input
+                required
+                id="date"
+                class="input pointer"
+                type="date"
+                value="dd/mm/yyyy"
+              />
+            </div>
+            <div>
+              <p>Prio</p>
+              <div class="prio-section">
+                <div
+                  id="urgentTask"
+                  onclick="setPrio('urgent')"
+                  class="prio-btn pointer"
+                >
+                  Urgent <img id="urgentIcon" src="assets/icons/urgent.png" />
+                </div>
+                <div
+                  id="mediumTask"
+                  onclick="setPrio('medium')"
+                  class="prio-btn pointer"
+                >
+                  Medium <img id="mediumIcon" src="assets/icons/medium.png" />
+                </div>
+                <div
+                  id="lowTask"
+                  onclick="setPrio('low')"
+                  class="prio-btn pointer"
+                >
+                  Low <img id="lowIcon" src="assets/icons/low.png" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p>Subtasks</p>
+              <input
+                id="addTaskSubtask"
+                class="input"
+                type="text"
+                placeholder="Add new subtask"
+              />
+              <div class="new-subtask">
+                <input type="checkbox" />
+                <p>Subtask 1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container-form">
+          <button class="clear-btn pointer">Clear &nbsp; x</button>
+          <button
+            id="createTaskBtn"
+            class="create-btn pointer"
+            onclick="createTask()"
+          >
+            Create Task <img src="assets/icons/check-white.png" />
+          </button>
+        </div>
+      </div>
+  `;
+}

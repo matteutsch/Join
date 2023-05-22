@@ -10,18 +10,18 @@
       href="assets/icons/logo-black.png"
       sizes="any"
     />
-    <link rel="stylesheet" href="css/board.css" />
+    
     <title>Join</title>
 
+    <script src="javascripts/addTask.js"></script>
     <script src="javascripts/includeHTML.js"></script>
     <script src="javascripts/categoryColor.js"></script>
     <script src="javascripts/storage.js"></script>
     <script src="javascripts/register.js"></script>
     <script src="javascripts/boardHTML.js"></script>
     <script src="javascripts/board.js"></script>
-    <script src="javascripts/addTask.js"></script>
-
     <script src="script.js"></script>
+    <link rel="stylesheet" href="css/board.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/task.css" />
   </head>
@@ -34,8 +34,9 @@
         <div class="header-right">
           <div class="boardSearch">
             <input id="searchInput" type="search" placeholder="Find Task" />
+            <div class="search-button"></div>
           </div>
-          <button class="web-addTask-btn">
+          <button class="web-addTask-btn" onclick="slideInContainer()">
             Add task
             <img class="plus-white" src="assets/icons/plus_white.png" />
           </button>
@@ -76,6 +77,16 @@
         </div>
       </div>
     </div>
-    <div id="taskLayer" style="display: none"></div>
+    <div id="taskLayer" style="display: none">
+      <div id="slideInContainer">
+        <!-- Content of the sliding container -->
+        Test
+      </div>
+    </div>
+
+    
+    
+    
+    
   </body>
 </html>
