@@ -90,7 +90,7 @@ function renderAssignedTo(taskID, containerClass) {
     const assignedTo = assignedToArray[i];
     const assignedToName = assignedTo["name"];
     const contactColor = assignedTo["color"];
-    const initials = assignedTo["initials"];
+    const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
       container.innerHTML += assignedToHTML(
         contactColor,
@@ -144,6 +144,7 @@ function slideInContainer() {
   taskLayer.innerHTML = slideInHTML();
   const slideInContainer = document.getElementById("slideInContainer");
   slideInContainer.style.display = "flex";
+  slideInContainer.style.right = "0px";
   displayLayer();
   addContactNamesToAssignedTo();
 }

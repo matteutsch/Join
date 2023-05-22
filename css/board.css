@@ -121,8 +121,7 @@
   border-radius: 30px;
   background-color: white;
   position: unset;
-  top: 20px;
-  right: -1116px;  /* Change the value to match the width of the container */
+  right: -1116px; 
   width: 1116px;
   height: 880px;
   transition: right 0.3s ease-in-out;

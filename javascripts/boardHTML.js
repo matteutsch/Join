@@ -72,28 +72,49 @@ function slideInHTML() {
               <textarea
                 id="addTaskDescription"
                 placeholder="Enter a Description"
+                style="resize: none"
               ></textarea>
             </div>
             <div>
               <p>Category</p>
-              <select required id="addTaskCategory" class="pointer">
-                <option value="" disabled selected hidden>
-                  Select task category
-                </option>
-
-                <option value="New Category">New Category</option>
-                <option value="Sales">Sales</option>
-                <option value="Backoffice">Backoffice</option>
-                <option value="Design">Design</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Media">Media</option>
-              </select>
+              <div class="content">
+                <div
+                  onclick="openDropdownCategory()"
+                  id="addTaskCategory"
+                  class="selectContainer"
+                >
+                  Select task Category
+                </div>
+                <div class="expand-container">
+                  <div id="categoryDropdown">
+                    <div onclick="selectOptionCategory()" class="option">
+                      New Category
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div>
               <p>Assigned to</p>
-              <select required id="addTaskAssignedTo" class="pointer"></select>
+              <div class="content">
+                <div
+                  onclick="openDropdownContacts()"
+                  id="selectContact"
+                  class="selectContainer"
+                >
+                  Select contacts to assign
+                </div>
+                <div class="expand-container">
+                  <div id="selectContactDropdown"></div>
+                </div>
+                <div
+                  id="chosenContacts"
+                  class="chosenContacts chosenContactsForm"
+                ></div>
+              </div>
             </div>
           </div>
+
           <div class="content-right">
             <div>
               <p>Due date</p>
@@ -146,8 +167,11 @@ function slideInHTML() {
             </div>
           </div>
         </div>
+
         <div class="button-container-form">
-          <button class="clear-btn pointer">Clear &nbsp; x</button>
+          <button onclick="resetValues()" class="clear-btn pointer">
+            Clear &nbsp; x
+          </button>
           <button
             id="createTaskBtn"
             class="create-btn pointer"
