@@ -180,6 +180,37 @@ input[type="checkbox"] {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.taskAdded {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: absolute;
+  width: fit-content;
+  bottom: 160px;
+  left: 33vw;
+  background-color: var(--blue);
+  color: white;
+  padding: 16px;
+  font-size: 21px;
+  border-radius: 10px;
+  display: none;
+  opacity: 0;
+  animation: fade 2s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /*------------add task end------------*/
 
 /*--------task_form--------*/
@@ -414,6 +445,10 @@ input[type="checkbox"] {
     bottom: 104px;
     right: 16px;
   }
+
+  .taskAdded {
+    left: 27vw;
+  }
 }
 
 @media (max-width: 500px) {
@@ -456,5 +491,13 @@ input[type="checkbox"] {
   }
   .create-btn img {
     width: 16px;
+  }
+  .taskAdded {
+    left: 15vw;
+  }
+}
+@media (max-width: 380px) {
+  .taskAdded {
+    left: 10vw;
   }
 }

@@ -200,36 +200,33 @@ h3 {
   background-color: var(--blue);
 }
 
-.success {
+.contactCreated {
   display: flex;
   justify-content: center;
   align-items: center;
   white-space: nowrap;
   position: absolute;
-  width: 33vw;
-  bottom: 104px;
+  width: fit-content;
+  bottom: 145px;
   left: 33vw;
   background-color: var(--blue);
   color: white;
   padding: 16px;
   font-size: 21px;
   border-radius: 10px;
-  visibility: hidden;
+  display: none;
   opacity: 0;
-  z-index: -10;
+  animation: fade 2s;
 }
 
-@keyframes showAnimation {
+@keyframes fade {
   0% {
-    visibility: hidden;
     opacity: 0;
   }
   50% {
-    visibility: visible;
     opacity: 1;
   }
   100% {
-    visibility: hidden;
     opacity: 0;
   }
 }
@@ -429,17 +426,9 @@ h3 {
   .contacts-content {
     margin-left: 200px;
   }
-  .success {
-    font-size: 18px;
-    bottom: 150px;
-  }
 }
 
 @media (max-width: 670px) {
-  .success {
-    width: 50vw;
-    left: 25vw;
-  }
   .contacts-content {
     margin-left: 0;
     padding-bottom: 80px !important;
@@ -523,11 +512,13 @@ h3 {
   .arrowBack {
     display: block;
   }
+  .contactCreated {
+    left: 25vw;
+  }
 }
 @media (max-width: 500px) {
-  .success {
-    width: 70vw;
-    left: 10vw;
+  .contactCreated {
+    left: 15vw;
   }
   .new-contact-btn {
     position: absolute;
@@ -556,5 +547,11 @@ h3 {
   }
   .showMobile {
     display: block;
+  }
+}
+
+@media (max-width: 380px) {
+  .contactCreated {
+    left: 5vw;
   }
 }

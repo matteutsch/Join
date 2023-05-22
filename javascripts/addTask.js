@@ -98,6 +98,7 @@ function createTask() {
 
     tasks.push(newTask);
     resetValues();
+    taskAdded();
   }
 }
 
@@ -117,7 +118,7 @@ function resetValues() {
   document.getElementById("lowIcon").src = "assets/icons/low.png";
   title.value = "";
   description.value = "";
-  category.innerHTML = "Select Task Category";
+  category.innerHTML = "Select task category";
   subtask.value = "";
   dueDate.value = "";
   assignedTo.innerHTML = "";
@@ -217,3 +218,14 @@ function deleteFromAssignedContacts(i) {
 }
 
 //-----------remove added contacts --------------------//
+
+//-------------task successfully added----------------//
+function taskAdded() {
+  let success = document.getElementById("taskAdded");
+  success.style.display = "block";
+
+  setTimeout(function () {
+    success.style.display = "none";
+  }, 2000);
+}
+//-------------task successfully added----------------//
