@@ -16,11 +16,12 @@
     <script src="javascripts/includeHTML.js"></script>
     <script src="javascripts/storage.js"></script>
     <script src="javascripts/addTask.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/task.css" />
   </head>
 
-  <body onload="includeHTML(), addContactNamesToAssignedTo()">
+  <body onload="includeHTML(), addContactNamesToAssignedTo(), addCategories()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="content-container">
       <h1>Add Task</h1>
@@ -47,27 +48,12 @@
                 id="addTaskCategory"
                 class="selectContainer"
               >
-                Select task Category
+                Select task category
               </div>
               <div class="expand-container">
                 <div id="categoryDropdown">
                   <div onclick="selectOptionCategory()" class="option">
                     New Category
-                  </div>
-                  <div onclick="selectOptionCategory()" class="option">
-                    Sales <img src="assets/icons/color4.png" />
-                  </div>
-                  <div onclick="selectOptionCategory()" class="option">
-                    Backoffice <img src="assets/icons/color5.png" />
-                  </div>
-                  <div onclick="selectOptionCategory()" class="option">
-                    Design <img src="assets/icons/color6.png" />
-                  </div>
-                  <div onclick="selectOptionCategory()" class="option">
-                    Marketing <img src="assets/icons/color2.png" />
-                  </div>
-                  <div onclick="selectOptionCategory()" class="option">
-                    Media<img src="assets/icons/color7.png" />
                   </div>
                 </div>
               </div>
@@ -143,7 +129,9 @@
         </div>
       </div>
       <div class="button-container">
-        <button class="clear-btn pointer">Clear &nbsp; x</button>
+        <button onclick="resetValues()" class="clear-btn pointer">
+          Clear &nbsp; x
+        </button>
         <button
           id="createTaskBtn"
           class="create-btn pointer"
@@ -151,6 +139,9 @@
         >
           Create Task <img src="assets/icons/check-white.png" />
         </button>
+      </div>
+      <div id="taskAdded" class="taskAdded">
+        Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
       </div>
     </div>
   </body>

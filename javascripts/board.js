@@ -41,7 +41,14 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
+
+  clearContainers([
+    "todoContainer",
+    "inProgressContainer",
+    "feedbackContainer",
+    "doneContainer",
+  ]);
+
   initBoard();
   closeLayer();
 }
@@ -85,9 +92,17 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = assignedTo["initials"];
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     } else {
-      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToCardHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     }
   }
 }

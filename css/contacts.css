@@ -112,12 +112,16 @@ h3 {
   align-items: center;
 }
 .new-contact-btn {
+  position: absolute;
+  bottom: 56px;
+  right: 32px;
   font-size: 25px;
   border-radius: 10px;
   padding: 12px;
   background-color: var(--blue);
   color: white;
   border: 2px solid transparent;
+  z-index: 99;
 }
 .new-contact-btn img {
   height: 24px;
@@ -134,6 +138,11 @@ h3 {
   overflow-y: scroll;
   background-color: #ffffff;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
+}
+.letterHeader {
+  border-bottom: 1px solid var(--grey);
+  padding: 16px 16px 16px 16px;
+  margin: 0px 16px 0px 16px;
 }
 .singleContact {
   padding: 8px;
@@ -189,6 +198,37 @@ h3 {
 }
 .selectedContact:hover {
   background-color: var(--blue);
+}
+
+.contactCreated {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: absolute;
+  width: fit-content;
+  bottom: 145px;
+  left: 33vw;
+  background-color: var(--blue);
+  color: white;
+  padding: 16px;
+  font-size: 21px;
+  border-radius: 10px;
+  display: none;
+  opacity: 0;
+  animation: fade 2s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* ---end contacts---*/
@@ -272,6 +312,9 @@ h3 {
 .x-mark {
   display: flex;
   justify-content: flex-end;
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--blue);
 }
 .x-mark:hover {
   cursor: pointer;
@@ -296,6 +339,23 @@ h3 {
   transform: scale(1.02);
   border: 2px solid var(--light-blue);
   color: var(--light-blue);
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.create-contact-btn {
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 12px;
+  background-color: var(--blue);
+  color: white;
+  border: 2px solid transparent;
+}
+.create-contact-btn img {
+  height: 16px;
+}
+.create-contact-btn:hover {
+  transform: scale(1.02);
+  background-color: var(--light-blue);
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -333,6 +393,17 @@ h3 {
   background-position-y: center;
   background-repeat: no-repeat;
 }
+.arrowBack {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 96px;
+  right: 24px;
+  display: none;
+}
+.arrowBack:hover {
+  cursor: pointer;
+}
 
 @media (max-width: 1015px) {
   .contacts-top-mid {
@@ -345,16 +416,10 @@ h3 {
   .contacts-top-head {
     padding-right: 18px;
   }
-  .cancel-btn {
+  .cancel-btn,
+  .create-contact-btn {
     font-size: 18px;
     padding: 8px;
-  }
-  .new-contact-btn {
-    font-size: 18px;
-    padding: 8px;
-  }
-  .new-contact-btn img {
-    height: 16px;
   }
 }
 @media (max-width: 850px) {
@@ -366,7 +431,7 @@ h3 {
 @media (max-width: 670px) {
   .contacts-content {
     margin-left: 0;
-    padding-bottom: 80px;
+    padding-bottom: 80px !important;
   }
   .contact-name h1 {
     font-size: 24px;
@@ -377,12 +442,88 @@ h3 {
   .contact-image {
     padding-right: 24px;
   }
+  .new-contact-btn {
+    bottom: 104px;
+    font-size: 18px;
+    padding: 8px;
+  }
+  .new-contact-btn img {
+    height: 16px;
+  }
+  .cancel-btn {
+    display: none;
+  }
+  .create-contact-btn {
+    font-size: 25px;
+    padding: 12px;
+  }
+  #addContactsOverlay,
+  #editContactsOverlay {
+    padding-bottom: 80px;
+    box-sizing: border-box;
+  }
+  .addContact {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+  }
+  .addContactLeft {
+    font-size: x-large;
+    padding-left: 15%;
+    width: 100%;
+    min-height: 50%;
+    border-radius: 30px 30px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .blueLine {
+    width: 104px;
+  }
+  .addContactLeft img {
+    display: none;
+  }
+  .addContactRight {
+    width: 100%;
+    min-height: 50%;
+    border-radius: 0 0 30px 30px;
+  }
+  .createContactContainer {
+    flex-direction: column;
+  }
+  .contactImage {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -90%);
+  }
+  .x-mark {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    color: white;
+  }
+  .contacts-content-right {
+    padding-top: 10%;
+    padding-left: 10%;
+  }
+  .arrowBack {
+    display: block;
+  }
+  .contactCreated {
+    left: 25vw;
+  }
 }
 @media (max-width: 500px) {
+  .contactCreated {
+    left: 15vw;
+  }
   .new-contact-btn {
-    display: block;
     position: absolute;
-    top: 100px;
+    top: 108px;
+    bottom: auto;
     right: 24px;
     z-index: 100;
   }
@@ -390,8 +531,27 @@ h3 {
     width: 100vw;
     padding: 24px;
   }
-
   .contacts-content-right {
+    margin-right: -100%;
+  }
+  .contacts-content {
+    overflow: hidden;
+  }
+  .contactInfoMobile {
+    width: 100vw;
+    height: 100vh;
+    margin-right: 0;
+  }
+  .hideMobile {
     display: none;
+  }
+  .showMobile {
+    display: block;
+  }
+}
+
+@media (max-width: 380px) {
+  .contactCreated {
+    left: 5vw;
   }
 }

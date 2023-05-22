@@ -78,8 +78,6 @@
   font-size: 18px;
 }
 
-/*background-image: linear-gradient(to bottom, #ddd, #eee 33%);*/
-
 /*rightSide*/
 .content-right {
   width: 50%;
@@ -148,6 +146,11 @@ input[type="checkbox"] {
   align-items: center;
   box-sizing: border-box;
 }
+.btn-container-form {
+  bottom: 80px !important;
+  right: 80px !important;
+}
+
 .create-btn {
   font-size: 21px;
   border-radius: 10px;
@@ -176,6 +179,38 @@ input[type="checkbox"] {
   color: var(--light-blue);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.taskAdded {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  position: absolute;
+  width: fit-content;
+  bottom: 160px;
+  left: 33vw;
+  background-color: var(--blue);
+  color: white;
+  padding: 16px;
+  font-size: 21px;
+  border-radius: 10px;
+  display: none;
+  opacity: 0;
+  animation: fade 2s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /*------------add task end------------*/
 
 /*--------task_form--------*/
@@ -183,6 +218,9 @@ input[type="checkbox"] {
 .taskFormOverlay {
   box-sizing: border-box;
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   bottom: 0;
   right: 0;
@@ -192,6 +230,7 @@ input[type="checkbox"] {
   align-items: center;
   background: rgba(0, 0, 0, 0.2);
 }
+
 .task-form {
   width: 90%;
   box-sizing: border-box;
@@ -289,6 +328,14 @@ input[type="checkbox"] {
   border-radius: 0 0 8px 8px;
   border-top: none;
 }
+.category-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  background-color: red;
+  border: 2px solid white;
+  margin-right: 24px;
+}
 
 #selectContact,
 #addTaskCategory {
@@ -321,6 +368,9 @@ input[type="checkbox"] {
   justify-content: flex-start;
   align-items: center;
   margin-top: 16px;
+}
+.chosenContactsForm {
+  background-color: white !important;
 }
 .chosenContactInitials {
   border-radius: 50%;
@@ -402,6 +452,10 @@ input[type="checkbox"] {
     bottom: 104px;
     right: 16px;
   }
+
+  .taskAdded {
+    left: 27vw;
+  }
 }
 
 @media (max-width: 500px) {
@@ -444,5 +498,13 @@ input[type="checkbox"] {
   }
   .create-btn img {
     width: 16px;
+  }
+  .taskAdded {
+    left: 15vw;
+  }
+}
+@media (max-width: 380px) {
+  .taskAdded {
+    left: 10vw;
   }
 }
