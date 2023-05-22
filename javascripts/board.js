@@ -104,50 +104,43 @@ function displayLayer() {
   });
 }
 
-function closeSlideInContainer(){
-  const slideInContainer = document.getElementById('slideInContainer');
-  slideInContainer.style.right = '-1116px';
-  slideInContainer.style.left = '';
-  slideInContainer.style.transform = '';
+function closeSlideInContainer() {
+  const slideInContainer = document.getElementById("slideInContainer");
+  if (slideInContainer) {
+    slideInContainer.style.right = "-1116px";
+  }
 }
 
-function closeTaskCardBig(){
-  const taskCardBig = document.querySelector('.task-card-big');
+function closeTaskCardBig() {
+  const taskCardBig = document.querySelector(".task-card-big");
   if (taskCardBig) {
     taskCardBig.style.display = "none";
   }
 }
 
-function closeLayer(container) {
+function closeLayer() {
   let layer = document.getElementById("taskLayer");
   layer.style.display = "none";
-  /* if (container) { 
-    container.style.display = "none";
-   }  */
   layer.removeEventListener("click", displayLayer);
- 
 }
 
 function slideInContainer() {
-  const slideInContainer = document.getElementById('slideInContainer');
+  const taskLayer = document.getElementById("taskLayer");
+  taskLayer.innerHTML = slideInHTML();
+  const slideInContainer = document.getElementById("slideInContainer");
   slideInContainer.style.display = "flex";
-  slideInContainer.style.left = '50%';
-  slideInContainer.style.right = '';
-  slideInContainer.style.transform = 'translateX(-50%)';
   displayLayer();
+  addContactNamesToAssignedTo();
 }
 
-
 function slideOutContainer() {
-  const container = document.getElementById('slideInContainer');
-  if (container.style.right == '-100%') {
-    return null
+  const container = document.getElementById("slideInContainer");
+  if (container.style.right == "-100%") {
+    return null;
   } else {
-    container.style.right = '-100%';
+    container.style.right = "-100%";
   }
   closeLayer(container);
 }
-
-
 
 
