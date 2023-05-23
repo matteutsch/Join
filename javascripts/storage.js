@@ -1,75 +1,75 @@
 let contacts = [{
-        name: "Anton Mayer",
-        color: "#0223CF",
-        email: "antom@gmail.com",
-        phone: "+49 2812830213",
+        "name": "Anton Mayer",
+        "color": "#0223CF",
+        "email": "antom@gmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Anja Schulz",
-        color: "#CB02CF",
-        email: "schulz@hotmail",
-        phone: "+49 2812830213",
+        "name": "Anja Schulz",
+        "color": "#CB02CF",
+        "email": "schulz@hotmail",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Benedikt Ziegler",
-        color: "#FFA800",
-        email: "benedikt@gmail",
-        phone: "+49 2812830213",
+        "name": "Benedikt Ziegler",
+        "color": "#FFA800",
+        "email": "benedikt@gmail",
+        "phone": "+49 2812830213",
     },
     {
-        name: "David Eisenberg",
-        color: "#9327FF",
-        email: "davidberg@gmail",
-        phone: "+49 2812830213",
+        "name": "David Eisenberg",
+        "color": "#9327FF",
+        "email": "davidberg@gmail",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Elena Schmidt",
-        color: "#02CF2F",
-        email: "elena.schmidt@gmail.com",
-        phone: "+49 2812830213",
+        "name": "Elena Schmidt",
+        "color": "#02CF2F",
+        "email": "elena.schmidt@gmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Fabian Fischer",
-        color: "#EE00D6",
-        email: "fabian.fischer@hotmail.com",
-        phone: "+49 2812830213",
+        "name": "Fabian Fischer",
+        "color": "#EE00D6",
+        "email": "fabian.fischer@hotmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Gabriele Wagner",
-        color: "#0190E0",
-        email: "gabriele.wagner@gmail.com",
-        phone: "+49 2812830213",
+        "name": "Gabriele Wagner",
+        "color": "#0190E0",
+        "email": "gabriele.wagner@gmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Hans Müller",
-        color: "#FF5C00",
-        email: "hans.mueller@hotmail.com",
-        phone: "+49 2812830213",
+        "name": "Hans Müller",
+        "color": "#FF5C00",
+        "email": "hans.mueller@hotmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Ines Bauer",
-        color: "#4E963D",
-        email: "ines.bauer@gmail.com",
-        phone: "+49 2812830213",
+        "name": "Ines Bauer",
+        "color": "#4E963D",
+        "email": "ines.bauer@gmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Johannes Mayer",
-        color: "#32DAFF",
-        email: "johannes.mayer@hotmail.com",
-        phone: "+49 2812830213",
+        "name": "Johannes Mayer",
+        "color": "#32DAFF",
+        "email": "johannes.mayer@hotmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Katrin Schuster",
-        color: "#9327FF",
-        email: "katrin.schuster@gmail.com",
-        phone: "+49 2812830213",
+        "name": "Katrin Schuster",
+        "color": "#9327FF",
+        "email": "katrin.schuster@gmail.com",
+        "phone": "+49 2812830213",
     },
     {
-        name: "Lena Wagner",
-        color: "#EE00D6",
-        email: "lena.wagner@hotmail.com",
-        phone: "+49 2812830213",
-    },
+        "name": "Lena Wagner",
+        "color": "#EE00D6",
+        "email": "lena.wagner@hotmail.com",
+        "phone": "+49 2812830213",
+    }
 ];
 
 let tasks = [{
@@ -169,7 +169,7 @@ function getInitials(name) {
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-async function setItem(key, value) {
+/* async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, {
             method: "POST",
@@ -178,21 +178,63 @@ async function setItem(key, value) {
         .then((res) => res.json()); // translates answer from remote storage to JSON
 }
 
+let res
+let response;
+let jresp;
+let vresp;
+let svresp;
 async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    return fetch(url)
-        .then((res) => res.json()) // translates answer from remote storage to JSON
-        .then((res) => res.data.value); // original value (according to key)
+    return await fetch(url)
+        /* jresp = await response.json();
+        vresp = await jresp.data.value; 
+.then((res) => res.json()) // translates answer from remote storage to JSON
+    .then((res) => res.data.value);
+
+/* svresp = await vresp[0].name; */
+
+/*console.log(response);
+console.log(jresp);
+console.log(vresp);
+console.log(svresp);
+document.getElementById("data").innerHTML = vresp[0].name;
+document.getElementById("singleData").innerHTML = svresp;
+/* .then((res) => res.json()) // translates answer from remote storage to JSON
+    .then((res) => res.data.value) */
+/*}
+
+
+async function storeData() {
+    setItem("contacts", contacts);
 }
 
-
-function speichern() {
-    setItem('contacts', contacts);
+async function getBackData() {
+    await getItem("contacts");
 }
 
-let ans
-async function zurückholen() {
-    ans = await getItem('contacts');
-    ans.replace('\"', '')
-    document.getElementById('zurück').innerHTML = ans.data.value[0]['name'];
+let a = getBackData(); */
+
+async function setItem(key, value) {
+    const payload = { key, value, token: STORAGE_TOKEN };
+    return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
+        .then(res => res.json());
+}
+
+async function getItem(key) {
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+    return fetch(url).then(res => res.json());
+}
+
+async function storeData() {
+    await setItem("contacts", contacts);
+}
+
+let res, res1, res2;
+async function getBackData() {
+    res = await getItem("contacts");
+    res = res.data.value;
+    /* res1 = JSON.parse(res); */
+    /* res2 = res[0]; */
+    console.log(res);
+    document.getElementById('data').innerHTML = res;
 }
