@@ -226,15 +226,15 @@ async function getItem(key) {
 }
 
 async function storeData() {
-    await setItem("contacts", contacts);
+    await setItem("contacts", contacts[0]);
 }
 
 let res, res1, res2;
 async function getBackData() {
     res = await getItem("contacts");
     res = res.data.value;
-    /* res1 = JSON.parse(res); */
-    /* res2 = res[0]; */
-    console.log(res);
-    document.getElementById('data').innerHTML = res;
-}
+    res1 = JSON.parse(res); // Parse the string as an object or array
+    console.log(res1); // Use the parsed object or array
+    document.getElementById('data').innerHTML = res1;
+  }
+  
