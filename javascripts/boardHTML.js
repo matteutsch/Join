@@ -180,6 +180,9 @@ function slideInHTML() {
             Create Task <img src="assets/icons/check-white.png" />
           </button>
         </div>
+        <div id="taskAdded" class="taskAdded">
+        Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
+      </div>
       </div>
   `;
 }
