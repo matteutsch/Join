@@ -67,33 +67,41 @@
             <div>
               <img class="contactImage" src="assets/icons/add_contact.png" />
             </div>
+            <form onsubmit="event.preventDefault(); addContact()">
             <div>
               <input
+              required
                 id="newContactName"
                 class="addContactInput contactName"
                 placeholder="Name"
+                type="name"
               />
               <input
+              required
                 id="newContactPhone"
                 class="addContactInput contactPhone"
                 placeholder="Phone"
+                type="tel"
               />
               <input
+              required
                 id="newContactEmail"
                 class="addContactInput contactEmail"
                 placeholder="Email"
+                type="email"
               />
             </div>
           </div>
           <div class="addContactBtn">
-            <button onclick="closeNewContact()" class="cancel-btn">
+            <button  type="button" onclick="closeNewContact()" class="cancel-btn">
               Cancel &nbsp; x
             </button>
-            <button onclick="addContact()" class="create-contact-btn">
+            <button type="submit" class="create-contact-btn">
               Create Contact &nbsp;
               <img src="assets/icons/check-white.png" />
             </button>
           </div>
+        </form>
         </div>
       </div>
     </div>

@@ -49,7 +49,6 @@
   cursor: pointer;
 }
 
-
 #searchInput {
   border: none;
   border-right: 2px solid #d1d1d1;
@@ -121,15 +120,12 @@
   border-radius: 30px;
   background-color: white;
   position: unset;
-  right: -1116px; 
-  width: 1116px;
-  height: 880px;
+  right: -1116px;
+  width: 75vw;
+  height: 90vh;
   transition: right 0.3s ease-in-out;
   z-index: 1111;
 }
-
-
-
 
 .task-card {
   width: 250px;
@@ -345,7 +341,7 @@
   height: 50px;
   box-sizing: border-box;
   background-size: cover;
-  border: 1px solid #2A3647;
+  border: 1px solid #2a3647;
   border-radius: 10px 0px 0px 10px;
   cursor: pointer;
 }
@@ -381,7 +377,6 @@
     align-items: center;
   }
 } */
-
 
 @media (max-width: 1000px) {
   .header-row {
@@ -421,12 +416,17 @@
     width: 70%;
     margin: 30px auto;
   }
+  #slideInContainer {
+    width: 95vw;
+    height: 95vh;
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 455px) {
   .task-card {
     width: 80%;
-  } 
+  }
 
   .header-row {
     margin: 50px 10px;

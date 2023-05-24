@@ -84,7 +84,7 @@ function renderSelectContactHTML(i, j) {
   let name = contact.name;
   let email = contact.email;
   let phone = contact.phone;
-  let initials = getInitials(contacts[i]["name"]);
+  let initials = getInitials(name);
 
   return `
   <img id="arrowBack" onclick="exitContact()" class="arrowBack" src="../assets/icons/arrow-left-black.png">
@@ -123,22 +123,19 @@ function addContact() {
   let phone = document.getElementById("newContactPhone");
   let randomNumber = Math.floor(Math.random() * nameColor.length);
 
-  if (name.value == "" || email.value == "" || phone.value == "") {
-    alert("please fill missing informations");
-  } else {
-    let newContact = {
-      name: name.value.charAt(0).toUpperCase() + name.value.slice(1),
-      email: email.value,
-      phone: phone.value,
-      color: nameColor[randomNumber],
-    };
-    contacts.push(newContact);
-    name.value = "";
-    email.value = "";
-    phone.value = "";
-    contactCreated();
-    closeNewContact();
-  }
+  let newContact = {
+    name: name.value.charAt(0).toUpperCase() + name.value.slice(1),
+    email: email.value,
+    phone: phone.value,
+    color: nameColor[randomNumber],
+  };
+  contacts.push(newContact);
+  name.value = "";
+  email.value = "";
+  phone.value = "";
+  contactCreated();
+  closeNewContact();
+
   initContactList();
 }
 
@@ -166,46 +163,55 @@ function openEditContact(i, j) {
   editPhone.value = contact.phone;
 }
 function createEditHTML(i, j) {
-  return `<div class="addContact">
+  return /*html*/ ` <div class="addContact">
   <div class="addContactLeft">
     <img src="assets/icons/logo-white-blue.png" />
     <h1>Edit contact</h1>
     <p>Tasks are better with a team</p>
     <div class="blueLine"></div>
   </div>
+  
   <div class="addContactRight">
     <div onclick="closeEditContact()" class="x-mark">
       x
     </div>
+    <form onsubmit="event.preventDefault(), saveContact(${i}, ${j}) ">
     <div class="createContactContainer">
       <div>
         <img class="contactImage" src="assets/icons/add_contact.png" />
       </div>
       <div>
         <input
+        required
           id="editName"
           class="addContactInput contactName"
           placeholder="Name"
+          type="name" 
         />
         <input
+        required
           id="editMail"
           class="addContactInput contactEmail"
           placeholder="Email"
+          type="email" 
         />
         <input
+        required
           id="editPhone"
           class="addContactInput contactPhone"
           placeholder="Phone"
+          type="tel" 
         />
       </div>
     </div>
     <div class="addContactBtn">
-      <button onclick="deleteContact(${i}, ${j})" class="cancel-btn">Delete</button>
-      <button onclick="saveContact(${i}, ${j})" class="create-contact-btn">
+      <button type="button" onclick="deleteContact(${i}, ${j})" class="cancel-btn">Delete</button>
+      <button type="submit" class="create-contact-btn">
         Save
       </button>
     </div>
   </div>
+</form>
 </div>`;
 }
 
@@ -214,6 +220,7 @@ function closeEditContact() {
 }
 
 function saveContact(i, j) {
+  console.log("bub", i, j);
   let editName = document.getElementById("editName").value;
   let editMail = document.getElementById("editMail").value;
   let editPhone = document.getElementById("editPhone").value;

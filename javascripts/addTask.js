@@ -76,15 +76,8 @@ function createTask() {
   let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
 
-  if (
-    title.value == "" ||
-    description.value == "" ||
-    selectedCategory == "" ||
-    assignedContacts == "" ||
-    priority == "" ||
-    dueDate.value == ""
-  ) {
-    alert("please fill missing informations");
+  if (selectedCategory == "" || assignedContacts == "" || priority == "") {
+    console.log("please fill missing informations");
   } else {
     let newTask = {
       title: title.value,
@@ -162,13 +155,12 @@ function selectOptionContacts(i) {
   let dropdown = document.getElementById("selectContactDropdown");
   let selectContact = document.getElementById("selectContact");
   let chosenContacts = document.getElementById("chosenContacts");
-  // setting max amount
-  let maxContacts = 5;
+
   let initials = getInitials(contacts[i]["name"]);
   let color = contacts[i]["color"];
   // checking if contact got selected already
   if (!isContactSelected(chosenContacts, contacts[i])) {
-    if (chosenContacts.children.length < maxContacts) {
+    if (chosenContacts.children.length < 5) {
       chosenContacts.innerHTML += `<div onclick="removeContact(${i})" style="background-color:${color}" class="chosenContactInitials">
     ${initials}</div>`;
     } else {
