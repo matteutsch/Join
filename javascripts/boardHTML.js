@@ -63,7 +63,7 @@ function slideInHTML() {
       <div id="slideInContainer" class="task-form">
         <div class="task-head">
           <h1>Add Task</h1>
-          <img class="pointer" src="assets/icons/clear.png" />
+          <img class="pointer" src="assets/icons/clear.png" onclick="closeSlideInBtn()" />
         </div>
         <form onsubmit="event.preventDefault(); createTask()">
         <div class="task-section form-section-mobile">
