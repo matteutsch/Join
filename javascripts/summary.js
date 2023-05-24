@@ -7,6 +7,7 @@ function startSummary() {
     getDataForSummary();
     taskWithEarliestDuedate();
 }
+
 /**
  * Changes greeting according to the time of day
  */
@@ -28,9 +29,12 @@ function greet() {
 
     if (property !== 'none') {
         document.getElementById("greetingText").innerHTML = timeOfDay;
+        document.getElementById('greetingName').innerHTML = aktiveContact.name;
     } else {
         document.getElementById("greetingText2").innerHTML = timeOfDay;
+        document.getElementById('greetingName2').innerHTML = aktiveContact.name;
     }
+
 }
 
 /**
@@ -91,7 +95,7 @@ function jumpToBoard() {
   } */
 
 /**
- * Shows and removes both overlay container and greeting
+ * Shows and removes both overlay container and greeting container
  */
 // Waits until document in loaded
 document.addEventListener("DOMContentLoaded", function() {

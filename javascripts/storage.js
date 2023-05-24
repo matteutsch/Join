@@ -72,6 +72,9 @@ let contacts = [{
     }
 ];
 
+let n = 1;
+let aktiveContact = contacts[n];
+
 let tasks = [{
         title: "Call potential clients",
         description: "Make the product presentation to prospective buyers",
