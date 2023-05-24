@@ -417,8 +417,8 @@
     margin: 30px auto;
   }
   #slideInContainer {
-    width: 95vw;
-    height: 95vh;
+    width: 100vw;
+    height: 100vh;
     overflow-y: auto;
   }
 }

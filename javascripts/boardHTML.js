@@ -65,15 +65,16 @@ function slideInHTML() {
           <h1>Add Task</h1>
           <img class="pointer" src="assets/icons/clear.png" />
         </div>
-        <div class="task-section">
+        <form onsubmit="event.preventDefault(); createTask()">
+        <div class="task-section form-section-mobile">
           <div class="content-left">
             <div>
               <p>Title</p>
-              <input id="addTaskTitle" placeholder="Enter a title" />
+              <input required id="addTaskTitle" placeholder="Enter a title" />
             </div>
             <div>
               <p>Description</p>
-              <textarea
+              <textarea required
                 id="addTaskDescription"
                 placeholder="Enter a Description"
                 style="resize: none"
@@ -173,17 +174,17 @@ function slideInHTML() {
         </div>
 
         <div class="button-container-form">
-          <button onclick="resetValues()" class="clear-btn pointer">
+          <button type="button" onclick="resetValues()" class="clear-btn pointer">
             Clear &nbsp; x
           </button>
-          <button
+          <button type="submit"
             id="createTaskBtn"
             class="create-btn pointer"
-            onclick="createTask()"
           >
             Create Task <img src="assets/icons/check-white.png" />
           </button>
         </div>
+</form>
         <div id="taskAdded" class="taskAdded">
         Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
       </div>
