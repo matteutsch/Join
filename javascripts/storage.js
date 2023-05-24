@@ -181,7 +181,7 @@ async function getItem(key) {
 }
 
 async function storeData() {
-    await setItem("contacts", contacts[0]);
+    await setItem("contacts", contacts);
 }
 
 let res, res1, res2, dataString, erg;
