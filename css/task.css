@@ -80,6 +80,7 @@
 
 /*rightSide*/
 .content-right {
+  position: relative;
   width: 50%;
   padding-left: 60px;
   box-sizing: border-box;

@@ -147,6 +147,7 @@ function slideInContainer() {
   slideInContainer.style.right = "0px";
   displayLayer();
   addContactNamesToAssignedTo();
+  addCategories();
 }
 
 function slideOutContainer() {
@@ -158,5 +159,3 @@ function slideOutContainer() {
   }
   closeLayer(container);
 }
-
-
