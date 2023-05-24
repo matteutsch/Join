@@ -98,6 +98,7 @@ body {
     background-color: var(--blue);
     color: white;
     scale: 1.06;
+    cursor: pointer;
 }
 
 .tasksCount {
@@ -140,6 +141,7 @@ body {
     background-color: var(--blue);
     color: white;
     scale: 1.02;
+    cursor: pointer;
 }
 
 .urgentContainer {
@@ -211,13 +213,13 @@ body {
     font-size: 18px;
 }
 
-.greeting2 {
+#greeting2 {
     flex-direction: column;
     justify-content: center;
     margin-left: 2%;
 }
 
-.greeting {
+#greeting {
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -259,12 +261,14 @@ body {
     background-color: var(--blue);
     color: white;
     scale: 1.03;
+    cursor: pointer;
 }
 
 .toDoContainer:hover .iconToDo {
     background-image: url(../assets/icons/pencil_blue.png);
     background-size: 85%;
     width: 80px;
+    cursor: pointer;
 }
 
 .sumToDoContainer {
@@ -288,9 +292,9 @@ body {
     justify-content: flex-end; */
     height: 119px;
     background-image: url('../assets/icons/pencil.png');
-    background-size: 81%;
+    background-size: 82%;
     background-repeat: no-repeat;
-    background-position: 100% 70%;
+    background-position: 100% 73%;
 }
 
 .pencilIcon {
@@ -319,11 +323,13 @@ body {
     background-color: var(--blue);
     color: white;
     scale: 1.02;
+    cursor: pointer;
 }
 
 .doneContainer:hover .iconDone {
     background-image: url(../assets/icons/checkmark_blue.png);
     background-size: 85%;
+    cursor: pointer;
 }
 
 .sumDoneContainer {
@@ -373,7 +379,7 @@ body {
 }
 
 @media (max-width: 1150px) {
-    .greeting2 {
+    #greeting2 {
         display: none;
     }
 
@@ -398,7 +404,7 @@ body {
         opacity: 1;
     }
 
-    .greeting {
+    #greeting {
         display: block;
         position: absolute;
         top: 50%;
@@ -416,7 +422,7 @@ body {
         transition: visibility 0s linear 2s, opacity 2s;
     }
 
-    .greeting.show {
+    #greeting.show {
         visibility: visible;
         opacity: 1;
     }

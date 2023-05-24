@@ -169,51 +169,6 @@ function getInitials(name) {
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-/* async function setItem(key, value) {
-    const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, {
-            method: "POST",
-            body: JSON.stringify(payload),
-        })
-        .then((res) => res.json()); // translates answer from remote storage to JSON
-}
-
-let res
-let response;
-let jresp;
-let vresp;
-let svresp;
-async function getItem(key) {
-    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    return await fetch(url)
-        /* jresp = await response.json();
-        vresp = await jresp.data.value; 
-.then((res) => res.json()) // translates answer from remote storage to JSON
-    .then((res) => res.data.value);
-
-/* svresp = await vresp[0].name; */
-
-/*console.log(response);
-console.log(jresp);
-console.log(vresp);
-console.log(svresp);
-document.getElementById("data").innerHTML = vresp[0].name;
-document.getElementById("singleData").innerHTML = svresp;
-/* .then((res) => res.json()) // translates answer from remote storage to JSON
-    .then((res) => res.data.value) */
-/*}
-
-
-async function storeData() {
-    setItem("contacts", contacts);
-}
-
-async function getBackData() {
-    await getItem("contacts");
-}
-
-let a = getBackData(); */
-
 async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
@@ -229,12 +184,16 @@ async function storeData() {
     await setItem("contacts", contacts);
 }
 
-let res, res1, res2;
+let res, res1, res2, dataString, erg;
 async function getBackData() {
     res = await getItem("contacts");
-    res = res.data.value;
-    /* res1 = JSON.parse(res); */
-    /* res2 = res[0]; */
-    console.log(res);
-    document.getElementById('data').innerHTML = res;
+    dataString = res.data.value;
+    data = dataString.replace(/'/g, '"');
+    erg = JSON.parse(data);
+    console.log(erg);
+    console.log(erg[0].name);
+    console.log(erg[1]['color']);
+    document.getElementById('dataString').innerHTML = dataString;
+    document.getElementById('data').innerHTML = data;
+    document.getElementById('singleData').innerHTML = erg[0].name;
 }
