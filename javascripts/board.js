@@ -42,12 +42,7 @@ function deleteCard(cardIndex, cardID) {
   card.remove();
   tasks.splice(taskIndex, 1);
 
-  clearContainers([
-    "todoContainer",
-    "inProgressContainer",
-    "feedbackContainer",
-    "doneContainer",
-  ]);
+  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
 
   initBoard();
   closeLayer();
@@ -92,17 +87,9 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
-      container.innerHTML += assignedToCardHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
     }
   }
 }
@@ -112,17 +99,23 @@ function displayLayer() {
   layer.style.display = "flex";
   layer.addEventListener("click", (event) => {
     if (event.target === layer) {
-      closeLayer();
       closeSlideInContainer();
+      closeLayer();
       closeTaskCardBig();
     }
   });
 }
 
+function closeSlideInBtn() {
+  closeSlideInContainer();
+  closeLayer();
+  closeTaskCardBig();
+}
+
 function closeSlideInContainer() {
   const slideInContainer = document.getElementById("slideInContainer");
   if (slideInContainer) {
-    slideInContainer.style.right = "-1116px";
+    slideInContainer.style.transform = "translateX(200%)";
   }
 }
 
@@ -135,17 +128,21 @@ function closeTaskCardBig() {
 
 function closeLayer() {
   let layer = document.getElementById("taskLayer");
-  layer.style.display = "none";
-  layer.removeEventListener("click", displayLayer);
+  setTimeout(() => {
+    layer.style.display = "none";
+  }, 200),
+    layer.removeEventListener("click", displayLayer);
 }
 
 function slideInContainer() {
+  displayLayer();
   const taskLayer = document.getElementById("taskLayer");
   taskLayer.innerHTML = slideInHTML();
-  const slideInContainer = document.getElementById("slideInContainer");
-  slideInContainer.style.display = "flex";
-  slideInContainer.style.right = "0px";
-  displayLayer();
+  setTimeout(() => {
+    const slideInContainer = document.getElementById("slideInContainer");
+    slideInContainer.style.display = "flex";
+    slideInContainer.style.transform = "translateX(0%)";
+  }, 100);
   addContactNamesToAssignedTo();
 }
 
@@ -158,5 +155,3 @@ function slideOutContainer() {
   }
   closeLayer(container);
 }
-
-

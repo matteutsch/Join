@@ -119,12 +119,16 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   background-color: white;
-  position: unset;
-  right: -1116px;
+  position: absolute;
   width: 75vw;
   height: 90vh;
-  transition: right 0.3s ease-in-out;
-  z-index: 1111;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(200%);
+  cursor: default;
+}
+
+.slide-in {
+  transform: translateX(0%);
 }
 
 .task-card {
@@ -157,6 +161,29 @@
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   border-radius: 30px;
   cursor: default;
+  animation:  fadeIn ease-in-out;
+  animation-duration: 0.25s; 
+  animation-fill-mode: backwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .category-label {
