@@ -57,14 +57,14 @@ function assignedToCardHTML(contactColor, initials) {
   `;
 }
 
-function slideInHTML() {
-  return /* html */ `
+function slideInHTML(status) {
+  return `
       <div id="slideInContainer" class="task-form">
         <div class="task-head">
           <h1>Add Task</h1>
           <img class="pointer" src="assets/icons/clear.png" onclick="closeSlideInBtn()" />
         </div>
-        <form onsubmit="event.preventDefault(); createTask()">
+        <form onsubmit="event.preventDefault(); createTask('${status}')">
         <div class="task-section form-section-mobile">
           <div class="content-left">
             <div>

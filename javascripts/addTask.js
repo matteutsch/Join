@@ -69,7 +69,7 @@ function pushAssignedContact(i) {
   }
 }
 
-function createTask() {
+function createTask(status) {
   // checking if most important inputs are being filled in and creating new Task
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
@@ -81,6 +81,7 @@ function createTask() {
     let newTask = {
       title: title.value,
       description: description.value,
+      status: status,
       category: selectedCategory,
       priority: priority,
       dueDate: dueDate.value,

@@ -38,7 +38,7 @@
               <button class="search-button" type="button" onclick="filterCards()"></button>
             </form>            
           </div>
-          <button class="web-addTask-btn" onclick="slideInContainer()">
+          <button class="web-addTask-btn" onclick="slideInContainer('todo')">
             Add task
             <img class="plus-white" src="assets/icons/plus_white.png" />
           </button>
@@ -53,28 +53,28 @@
         <div class="task-container">
           <div class="task-header">
             <p>To Do</p>
-            <img src="assets/icons/plus_button.png" />
+            <img src="assets/icons/plus_button.png" onclick="slideInContainer('todo')"/>
           </div>
           <div id="todoContainer"></div>
         </div>
         <div class="task-container">
           <div class="task-header">
             <p>In progress</p>
-            <img src="assets/icons/plus_button.png" />
+            <img src="assets/icons/plus_button.png" onclick="slideInContainer('inProgress')"/>
           </div>
           <div id="inProgressContainer"></div>
         </div>
         <div class="task-container">
           <div class="task-header">
             <p>Awaiting Feedback</p>
-            <img src="assets/icons/plus_button.png" />
+            <img src="assets/icons/plus_button.png" onclick="slideInContainer('awaitingFeedback')"/>
           </div>
           <div id="feedbackContainer"></div>
         </div>
         <div class="task-container">
           <div class="task-header">
             <p>Done</p>
-            <img src="assets/icons/plus_button.png" />
+            <img src="assets/icons/plus_button.png" onclick="slideInContainer('done')"/>
           </div>
           <div id="doneContainer"></div>
         </div>

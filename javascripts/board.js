@@ -160,11 +160,11 @@ function closeLayer() {
     layer.removeEventListener("click", displayLayer);
 }
 
-function slideInContainer() {
+function slideInContainer(status) {
   displayLayer();
   const taskLayer = document.getElementById("taskLayer");
   taskLayer.style.zIndex = "1000";
-  taskLayer.innerHTML = slideInHTML();
+  taskLayer.innerHTML = slideInHTML(status);
   setTimeout(() => {
     const slideInContainer = document.getElementById("slideInContainer");
     slideInContainer.style.display = "flex";
@@ -173,6 +173,12 @@ function slideInContainer() {
   addContactNamesToAssignedTo();
   addCategories();
 }
+
+document.addEventListener("input", function(event) {
+  if (event.target.id === "searchInput") {
+    filterCards();
+  }
+});
 
 function filterCards() {
   const query = document.getElementById("searchInput").value.toLowerCase();
