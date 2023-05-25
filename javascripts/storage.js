@@ -100,7 +100,8 @@ let tasks = [
   },
   {
     title: "Update website design",
-    description: "",
+    description:
+      "Revamp the existing website design to improve user experience and align with the latest design trends. Enhance visual aesthetics, optimize page load speed, and ensure responsiveness across different devices and screen sizes.",
     status: "inProgress",
     category: "design",
     priority: "medium",
@@ -110,7 +111,8 @@ let tasks = [
   },
   {
     title: "Review project proposal",
-    description: "Review the project proposal and provide feedback",
+    description:
+      "Thoroughly review the project proposal and provide feedback on its feasibility, strategic alignment, and potential impact. Assess the proposed budget, timeline, and resource allocation. Identify any areas of improvement or concerns and communicate them to the project team.",
     status: "awaitingFeedback",
     category: "marketing",
     priority: "low",
@@ -120,7 +122,8 @@ let tasks = [
   },
   {
     title: "Prepare quarterly report",
-    description: "",
+    description:
+      "Compile financial data and analysis to create a comprehensive quarterly report for the management team. Include key performance indicators, budget analysis, and recommendations for improvement.",
     status: "done",
     category: "backoffice",
     priority: "urgent",

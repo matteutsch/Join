@@ -37,6 +37,8 @@ function openTaskCardHTML(i, cardID) {
         <div class="edit-button"><img src="assets/icons/Pencil_icon.png" /></div>
       </div>
       <img src="assets/icons/arrow-left-black.png" class="task-card-arrow" onclick="closeSlideInBtn()">
+      <img src="assets/icons/clear.png" class="task-card-closeBtn" onclick="closeSlideInBtn()">
+
     </div>
   `;
 }

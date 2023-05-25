@@ -73,7 +73,6 @@ function createTask() {
   // checking if most important inputs are being filled in and creating new Task
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
-  let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
 
   if (selectedCategory == "" || assignedContacts == "" || priority == "") {
@@ -84,7 +83,6 @@ function createTask() {
       description: description.value,
       category: selectedCategory,
       priority: priority,
-      subtask: subtask.value,
       dueDate: dueDate.value,
       assignedTo: assignedContacts,
     };
@@ -101,7 +99,6 @@ function resetValues() {
   let description = document.getElementById("addTaskDescription");
   let category = document.getElementById("addTaskCategory");
   let assignedTo = document.getElementById("chosenContacts");
-  let subtask = document.getElementById("addTaskSubtask");
   let dueDate = document.getElementById("date");
   priority = "";
   document.getElementById("mediumTask").classList.remove("medium");
@@ -113,7 +110,6 @@ function resetValues() {
   title.value = "";
   description.value = "";
   category.innerHTML = "Select task category";
-  subtask.value = "";
   dueDate.value = "";
   assignedTo.innerHTML = "";
 

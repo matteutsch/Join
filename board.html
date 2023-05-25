@@ -33,8 +33,10 @@
         <h1>Board</h1>
         <div class="header-right">
           <div class="boardSearch">
-            <input id="searchInput" type="search" placeholder="Find Task" />
-            <div class="search-button"></div>
+            <form>
+              <input id="searchInput" type="search" placeholder="Find Task" required autocomplete="off"/>
+              <button class="search-button" type="button" onclick="filterCards()"></button>
+            </form>            
           </div>
           <button class="web-addTask-btn" onclick="slideInContainer()">
             Add task

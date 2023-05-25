@@ -42,11 +42,19 @@
   padding-left: 21px;
 }
 
+.boardSearch form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+}
+
 .search-button {
   background: url("/assets/icons/lens.png") no-repeat 9px 4px;
   width: 30px;
   height: 30px;
   cursor: pointer;
+  border: none;
 }
 
 #searchInput {
@@ -168,6 +176,14 @@
   animation-fill-mode: backwards;
 }
 
+.task-card-closeBtn {
+  width: 21px;
+  position: absolute;
+  top: 40px;
+  right: 55px;
+  cursor: pointer;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -247,6 +263,8 @@
 .task-description-big {
   font-weight: 400;
   font-size: 21px;
+  max-height: 120px;
+  overflow-y: scroll;
 }
 
 .task-card-priority {
@@ -443,7 +461,7 @@
     margin: 30px auto;
   }
 
-  .task-area{
+  .task-area {
     padding-bottom: 70px;
   }
 
@@ -498,14 +516,14 @@
     bottom: 125px;
   }
 
-  .task-card-arrow{
+  .task-card-arrow {
     position: absolute;
     top: 180px;
     right: 30px;
     z-index: 10;
   }
 
-  .assignedTo-row p{
+  .assignedTo-row p {
     font-size: 16px;
   }
 
@@ -519,7 +537,7 @@
     z-index: 1000;
   }
 
-  .button-container-form{
+  .button-container-form {
     margin-top: 20px;
   }
 }

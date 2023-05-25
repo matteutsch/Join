@@ -33,6 +33,11 @@ function renderTaskDescription(i) {
 function openTaskCard(i, cardID) {
   const taskLayer = document.getElementById("taskLayer");
   taskLayer.style.zIndex = "1";
+  if (window.innerWidth > 670) {
+    taskLayer.style.zIndex = "100";
+  } else {
+    taskLayer.style.zIndex = "1";
+  }
   taskLayer.innerHTML = openTaskCardHTML(i, cardID);
   displayLayer();
   renderAssignedTo(i, "assignedTo-container");
@@ -48,17 +53,21 @@ function renderClosingArrow() {
   }
 }
 
+function renderCloseBtn() {
+  const closeBtn = document.querySelector(".task-card-closeBtn");
+  if (window.innerWidth > 670) {
+    closeBtn.style.display = "unset";
+  } else {
+    closeBtn.style.display = "none";
+  }
+}
+
 function deleteCard(cardIndex, cardID) {
   const card = document.getElementById(cardID);
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers([
-    "todoContainer",
-    "inProgressContainer",
-    "feedbackContainer",
-    "doneContainer",
-  ]);
+  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
   initBoard();
   closeLayer();
 }
@@ -102,17 +111,9 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
-      container.innerHTML += assignedToCardHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
     }
   }
 }
@@ -172,3 +173,21 @@ function slideInContainer() {
   addContactNamesToAssignedTo();
   addCategories();
 }
+
+function filterCards() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".task-card");
+
+  cards.forEach((card) => {
+    const header = card.querySelector(".task-title").innerHTML.toLowerCase();
+    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
+    if (header.includes(query) || description.includes(query)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+
+
