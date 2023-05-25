@@ -496,7 +496,7 @@ input[type="checkbox"] {
   }
   .button-container {
     position: relative;
-    bottom: 0;
+    bottom: -48px;
     right: 0;
   }
   .prio-btn {

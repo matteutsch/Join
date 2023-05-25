@@ -76,7 +76,6 @@ function createTask(status) {
   let dueDate = document.getElementById("date");
 
   if (selectedCategory == "" || assignedContacts == "" || priority == "") {
-    console.log("please fill missing informations");
   } else {
     let newTask = {
       title: title.value,
