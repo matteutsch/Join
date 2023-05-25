@@ -39,12 +39,12 @@ function openTaskCard(i, cardID) {
   renderClosingArrow();
 }
 
-function renderClosingArrow(){
-  const arrow = document.querySelector('.task-card-arrow');
+function renderClosingArrow() {
+  const arrow = document.querySelector(".task-card-arrow");
   if (window.innerWidth > 670) {
-    arrow.style.display = 'none'
+    arrow.style.display = "none";
   } else {
-    arrow.style.display = 'unset'
+    arrow.style.display = "unset";
   }
 }
 
@@ -53,7 +53,12 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
+  clearContainers([
+    "todoContainer",
+    "inProgressContainer",
+    "feedbackContainer",
+    "doneContainer",
+  ]);
   initBoard();
   closeLayer();
 }
@@ -97,9 +102,17 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     } else {
-      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToCardHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     }
   }
 }
@@ -159,4 +172,3 @@ function slideInContainer() {
   addContactNamesToAssignedTo();
   addCategories();
 }
-

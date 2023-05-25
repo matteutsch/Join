@@ -90,6 +90,7 @@ function createTask() {
     };
 
     tasks.push(newTask);
+    setItem("tasks", tasks);
     resetValues();
     taskAdded();
   }

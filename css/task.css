@@ -77,6 +77,9 @@
   font-family: "inter";
   font-size: 18px;
 }
+form {
+  margin-top: 10%;
+}
 
 /*rightSide*/
 .content-right {
@@ -464,6 +467,9 @@ input[type="checkbox"] {
 
   .taskAdded {
     left: 27vw;
+  }
+  form {
+    margin-top: 2%;
   }
 }
 
