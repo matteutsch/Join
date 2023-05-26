@@ -1,75 +1,75 @@
 let contacts = [{
-        "name": "Anton Mayer",
-        "color": "#0223CF",
-        "email": "antom@gmail.com",
-        "phone": "+49 2812830213",
+        name: "Anton Mayer",
+        color: "#0223CF",
+        email: "antom@gmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Anja Schulz",
-        "color": "#CB02CF",
-        "email": "schulz@hotmail",
-        "phone": "+49 2812830213",
+        name: "Anja Schulz",
+        color: "#CB02CF",
+        email: "schulz@hotmail",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Benedikt Ziegler",
-        "color": "#FFA800",
-        "email": "benedikt@gmail",
-        "phone": "+49 2812830213",
+        name: "Benedikt Ziegler",
+        color: "#FFA800",
+        email: "benedikt@gmail",
+        phone: "+49 2812830213",
     },
     {
-        "name": "David Eisenberg",
-        "color": "#9327FF",
-        "email": "davidberg@gmail",
-        "phone": "+49 2812830213",
+        name: "David Eisenberg",
+        color: "#9327FF",
+        email: "davidberg@gmail",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Elena Schmidt",
-        "color": "#02CF2F",
-        "email": "elena.schmidt@gmail.com",
-        "phone": "+49 2812830213",
+        name: "Elena Schmidt",
+        color: "#02CF2F",
+        email: "elena.schmidt@gmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Fabian Fischer",
-        "color": "#EE00D6",
-        "email": "fabian.fischer@hotmail.com",
-        "phone": "+49 2812830213",
+        name: "Fabian Fischer",
+        color: "#EE00D6",
+        email: "fabian.fischer@hotmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Gabriele Wagner",
-        "color": "#0190E0",
-        "email": "gabriele.wagner@gmail.com",
-        "phone": "+49 2812830213",
+        name: "Gabriele Wagner",
+        color: "#0190E0",
+        email: "gabriele.wagner@gmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Hans Müller",
-        "color": "#FF5C00",
-        "email": "hans.mueller@hotmail.com",
-        "phone": "+49 2812830213",
+        name: "Hans Müller",
+        color: "#FF5C00",
+        email: "hans.mueller@hotmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Ines Bauer",
-        "color": "#4E963D",
-        "email": "ines.bauer@gmail.com",
-        "phone": "+49 2812830213",
+        name: "Ines Bauer",
+        color: "#4E963D",
+        email: "ines.bauer@gmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Johannes Mayer",
-        "color": "#32DAFF",
-        "email": "johannes.mayer@hotmail.com",
-        "phone": "+49 2812830213",
+        name: "Johannes Mayer",
+        color: "#32DAFF",
+        email: "johannes.mayer@hotmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Katrin Schuster",
-        "color": "#9327FF",
-        "email": "katrin.schuster@gmail.com",
-        "phone": "+49 2812830213",
+        name: "Katrin Schuster",
+        color: "#9327FF",
+        email: "katrin.schuster@gmail.com",
+        phone: "+49 2812830213",
     },
     {
-        "name": "Lena Wagner",
-        "color": "#EE00D6",
-        "email": "lena.wagner@hotmail.com",
-        "phone": "+49 2812830213",
-    }
+        name: "Lena Wagner",
+        color: "#EE00D6",
+        email: "lena.wagner@hotmail.com",
+        phone: "+49 2812830213",
+    },
 ];
 
 let n = 1;
@@ -97,7 +97,7 @@ let tasks = [{
     },
     {
         title: "Update website design",
-        description: "",
+        description: "Revamp the existing website design to improve user experience and align with the latest design trends. Enhance visual aesthetics, optimize page load speed, and ensure responsiveness across different devices and screen sizes.",
         status: "inProgress",
         category: "design",
         priority: "medium",
@@ -107,14 +107,24 @@ let tasks = [{
     },
     {
         title: "Review project proposal",
-        description: "Review the project proposal and provide feedback",
+        description: "Thoroughly review the project proposal and provide feedback on its feasibility, strategic alignment, and potential impact. Assess the proposed budget, timeline, and resource allocation. Identify any areas of improvement or concerns and communicate them to the project team.",
         status: "awaitingFeedback",
         category: "marketing",
         priority: "low",
         subtasks: [],
         dueDate: "2022-07-15",
         assignedTo: [contacts[6], contacts[7], contacts[8]],
-    }
+    },
+    {
+        title: "Prepare quarterly report",
+        description: "Compile financial data and analysis to create a comprehensive quarterly report for the management team. Include key performance indicators, budget analysis, and recommendations for improvement.",
+        status: "done",
+        category: "backoffice",
+        priority: "urgent",
+        subtasks: [],
+        dueDate: "2022-04-30",
+        assignedTo: [contacts[7], contacts[8], contacts[9]],
+    },
 ];
 
 let categories = [{
@@ -172,28 +182,27 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 async function setItem(key, value) { // ("contacts", contacts) or ("tasks", tasks)  or ("activeContact", activeContact)
     const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
-        .then(res => res.json()); // response in converted in JSON 
+    return fetch(STORAGE_URL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+    }).then((res) => res.json()); // response in converted in JSON 
 }
 
-async function getItem(key) { // ("contacts",contacts) or ("tasks", tasks)  or ("activeContact", aktiveContact)
+async function getItem(key) {
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    let res2 = await fetch(url).then(res => res.json()); // response in converted in JSON
-    let dataString = await res2.data.value;
-    let data = await dataString.replace(/'/g, '"');
-    testX = await JSON.parse(data);
-    storageArray = testX;
+    return fetch(url).then(res => res.json());
+}
 
-    console.log(storageArray);
+console.log(storageArray);
 
-    /* console.log(erg[0].name);
-    console.log(erg[1]['color']);
-    document.getElementById('dataString').innerHTML = dataString;
-    document.getElementById('data').innerHTML = data; */
+/* console.log(erg[0].name);
+console.log(erg[1]['color']);
+document.getElementById('dataString').innerHTML = dataString;
+document.getElementById('data').innerHTML = data; */
 
 
-    document.getElementById('singleData').innerHTML = storageArray;
-    /* document.getElementById('singleData').innerHTML = erg[0].name; */
+document.getElementById('singleData').innerHTML = storageArray;
+/* document.getElementById('singleData').innerHTML = erg[0].name; */
 }
 
 /* ******************************************************************** */

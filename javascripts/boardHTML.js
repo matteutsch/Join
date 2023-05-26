@@ -19,27 +19,26 @@ function taskCardHTML(i, cardID) {
 }
 
 function openTaskCardHTML(i, cardID) {
-  return `
+  return /* html */ `
     <div class="task-card-big" id="${cardID}">
-      <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(
-        i
-      )};">
+      <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(i)};">
         ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
       </div>
       <div class="task-title-big">${tasks[i]["title"]}</div>
       <div class="task-description-big">${renderTaskDescription(i)}</div>
       <div class="due-date"><b>Due date:</b> ${tasks[i]["dueDate"]}</div>
-      <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(
-        i
-      )}" /></div>
+      <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(i)}" /></div>
       <p><b>Assigned To:</b></p>
       <div id="assignedTo-container"></div>
       <div class="open-task-buttons">
-      <div class="delete-button" onclick="deleteCard(${i}, '${cardID}')">
-      <img src="assets/icons/delete_black.png" />
-    </div>
+        <div class="delete-button" onclick="deleteCard(${i}, '${cardID}')">
+          <img src="assets/icons/delete_black.png" />
+        </div>
         <div class="edit-button"><img src="assets/icons/Pencil_icon.png" /></div>
       </div>
+      <img src="assets/icons/arrow-left-black.png" class="task-card-arrow" onclick="closeSlideInBtn()">
+      <img src="assets/icons/clear.png" class="task-card-closeBtn" onclick="closeSlideInBtn()">
+
     </div>
   `;
 }
@@ -58,14 +57,14 @@ function assignedToCardHTML(contactColor, initials) {
   `;
 }
 
-function slideInHTML() {
-  return /* html */ `
+function slideInHTML(status) {
+  return `
       <div id="slideInContainer" class="task-form">
         <div class="task-head">
           <h1>Add Task</h1>
           <img class="pointer" src="assets/icons/clear.png" onclick="closeSlideInBtn()" />
         </div>
-        <form onsubmit="event.preventDefault(); createTask()">
+        <form onsubmit="event.preventDefault(); createTask('${status}')">
         <div class="task-section form-section-mobile">
           <div class="content-left">
             <div>
@@ -157,7 +156,7 @@ function slideInHTML() {
                 </div>
               </div>
             </div>
-            <div>
+            <!-- <div>
               <p>Subtasks</p>
               <input
                 id="addTaskSubtask"
@@ -169,7 +168,7 @@ function slideInHTML() {
                 <input type="checkbox" />
                 <p>Subtask 1</p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
 

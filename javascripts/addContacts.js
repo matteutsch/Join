@@ -20,6 +20,7 @@ function initContactList() {
     contactsByLetter[firstLetter].push(contact);
   }
   renderContactList();
+  getItem("contacts");
 }
 
 function renderContactList() {
@@ -130,12 +131,12 @@ function addContact() {
     color: nameColor[randomNumber],
   };
   contacts.push(newContact);
+  setItem("contacts", contacts);
   name.value = "";
   email.value = "";
   phone.value = "";
   contactCreated();
   closeNewContact();
-
   initContactList();
 }
 

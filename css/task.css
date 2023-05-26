@@ -77,6 +77,9 @@
   font-family: "inter";
   font-size: 18px;
 }
+form {
+  margin-top: 10%;
+}
 
 /*rightSide*/
 .content-right {
@@ -465,6 +468,9 @@ input[type="checkbox"] {
   .taskAdded {
     left: 27vw;
   }
+  form {
+    margin-top: 2%;
+  }
 }
 
 @media (max-width: 500px) {
@@ -490,7 +496,7 @@ input[type="checkbox"] {
   }
   .button-container {
     position: relative;
-    bottom: 0;
+    bottom: -48px;
     right: 0;
   }
   .prio-btn {

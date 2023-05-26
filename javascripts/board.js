@@ -31,9 +31,35 @@ function renderTaskDescription(i) {
 }
 
 function openTaskCard(i, cardID) {
+  const taskLayer = document.getElementById("taskLayer");
+  taskLayer.style.zIndex = "1";
+  if (window.innerWidth > 670) {
+    taskLayer.style.zIndex = "100";
+  } else {
+    taskLayer.style.zIndex = "1";
+  }
+  taskLayer.innerHTML = openTaskCardHTML(i, cardID);
   displayLayer();
-  document.getElementById("taskLayer").innerHTML = openTaskCardHTML(i, cardID);
   renderAssignedTo(i, "assignedTo-container");
+  renderClosingArrow();
+}
+
+function renderClosingArrow() {
+  const arrow = document.querySelector(".task-card-arrow");
+  if (window.innerWidth > 670) {
+    arrow.style.display = "none";
+  } else {
+    arrow.style.display = "unset";
+  }
+}
+
+function renderCloseBtn() {
+  const closeBtn = document.querySelector(".task-card-closeBtn");
+  if (window.innerWidth > 670) {
+    closeBtn.style.display = "unset";
+  } else {
+    closeBtn.style.display = "none";
+  }
 }
 
 function deleteCard(cardIndex, cardID) {
@@ -41,9 +67,7 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-
   clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
-
   initBoard();
   closeLayer();
 }
@@ -114,6 +138,8 @@ function closeSlideInBtn() {
 
 function closeSlideInContainer() {
   const slideInContainer = document.getElementById("slideInContainer");
+  const taskLayer = document.getElementById("taskLayer");
+  taskLayer.style.zIndex = "100";
   if (slideInContainer) {
     slideInContainer.style.transform = "translateX(200%)";
   }
@@ -134,10 +160,11 @@ function closeLayer() {
     layer.removeEventListener("click", displayLayer);
 }
 
-function slideInContainer() {
+function slideInContainer(status) {
   displayLayer();
   const taskLayer = document.getElementById("taskLayer");
-  taskLayer.innerHTML = slideInHTML();
+  taskLayer.style.zIndex = "1000";
+  taskLayer.innerHTML = slideInHTML(status);
   setTimeout(() => {
     const slideInContainer = document.getElementById("slideInContainer");
     slideInContainer.style.display = "flex";
@@ -147,12 +174,26 @@ function slideInContainer() {
   addCategories();
 }
 
-function slideOutContainer() {
-  const container = document.getElementById("slideInContainer");
-  if (container.style.right == "-100%") {
-    return null;
-  } else {
-    container.style.right = "-100%";
+document.addEventListener("input", function(event) {
+  if (event.target.id === "searchInput") {
+    filterCards();
   }
-  closeLayer(container);
+});
+
+function filterCards() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".task-card");
+
+  cards.forEach((card) => {
+    const header = card.querySelector(".task-title").innerHTML.toLowerCase();
+    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
+    if (header.includes(query) || description.includes(query)) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
 }
+
+
+

@@ -42,11 +42,19 @@
   padding-left: 21px;
 }
 
+.boardSearch form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+}
+
 .search-button {
   background: url("/assets/icons/lens.png") no-repeat 9px 4px;
   width: 30px;
   height: 30px;
-  cursor: pointer;
+  opacity: 0.5;
+  border: none;
 }
 
 #searchInput {
@@ -107,6 +115,7 @@
   font-size: 21px;
   padding-right: 25px;
   cursor: pointer;
+  border: none;
 }
 
 .web-addTask-btn:hover {
@@ -116,12 +125,14 @@
 }
 
 #slideInContainer {
+  justify-content: center;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   background-color: white;
   position: absolute;
   width: 75vw;
-  height: 90vh;
+  height: fit-content;
+  min-height: 80vh;
   transition: transform 0.3s ease-in-out;
   transform: translateX(200%);
   cursor: default;
@@ -161,9 +172,17 @@
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   border-radius: 30px;
   cursor: default;
-  animation:  fadeIn ease-in-out;
-  animation-duration: 0.25s; 
+  animation: fadeIn ease-in-out;
+  animation-duration: 0.25s;
   animation-fill-mode: backwards;
+}
+
+.task-card-closeBtn {
+  width: 21px;
+  position: absolute;
+  top: 40px;
+  right: 55px;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -245,6 +264,8 @@
 .task-description-big {
   font-weight: 400;
   font-size: 21px;
+  max-height: 120px;
+  overflow-y: scroll;
 }
 
 .task-card-priority {
@@ -398,13 +419,6 @@
   background-color: #29abe2;
 }
 
-/* @media (max-width: 1470px) {
-  .task-area{
-    flex-direction: column;
-    align-items: center;
-  }
-} */
-
 @media (max-width: 1000px) {
   .header-row {
     flex-direction: column;
@@ -428,6 +442,9 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
   }
+
+
+
 }
 
 @media (max-width: 670px) {
@@ -437,16 +454,92 @@
 
   .task-container {
     width: 100%;
+    gap: 0;
   }
 
   .task-card {
     width: 70%;
     margin: 30px auto;
   }
+
+  .task-area {
+    padding-bottom: 70px;
+  }
+
+  #taskLayer {
+    z-index: 1;
+  }
+
+  .task-card-big {
+    width: 100%;
+    height: 100vh;
+    margin-left: 0px;
+    border-radius: 0;
+    z-index: 1;
+    justify-content: center;
+    padding: 30px;
+    gap: 17px;
+  }
+
+  .task-title-big {
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  .category-label-big {
+    width: 127px;
+    height: 33px;
+    font-size: 21px;
+  }
+
+  .task-description-big {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .open-task-buttons {
+    position: unset;
+  }
+
+  .delete-button {
+    border-radius: 10px;
+    position: absolute;
+    right: 20px;
+    bottom: 190px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .edit-button {
+    border-radius: 10px;
+    position: absolute;
+    right: 20px;
+    bottom: 125px;
+  }
+
+  .task-card-arrow {
+    position: absolute;
+    top: 180px;
+    right: 30px;
+    z-index: 10;
+  }
+
+  .assignedTo-row p {
+    font-size: 16px;
+  }
+
   #slideInContainer {
+    border-radius: 0;
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
+    justify-content: space-evenly;
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .button-container-form {
+    margin-top: 20px;
   }
 }
 
