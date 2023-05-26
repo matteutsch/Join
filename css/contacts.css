@@ -398,6 +398,9 @@ h3 {
   top: 96px;
   right: 24px;
 }
+.hideArrow {
+  display: none;
+}
 .arrowBack:hover {
   cursor: pointer;
 }
@@ -436,6 +439,9 @@ h3 {
 }
 
 @media (max-width: 670px) {
+  .hideArrow {
+    display: block;
+  }
   .contactInputContainer {
     min-width: 100% !important;
   }
@@ -495,7 +501,7 @@ h3 {
   }
   .createContactContainer {
     flex-direction: column;
-    margin-top: 48px;
+    margin-top: 40px;
     margin-bottom: 0;
   }
   .contactImage {
@@ -520,13 +526,16 @@ h3 {
   .contactCreated {
     left: 25vw;
   }
+  .addContactBtn {
+    margin-top: -16px;
+  }
 }
 @media (max-width: 500px) {
   .editInitials {
     font-size: 32px;
   }
   .createContactContainer {
-    margin-top: 16px;
+    margin-top: 32px;
   }
   .contactImage {
     width: 110px;

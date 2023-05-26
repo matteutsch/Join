@@ -137,7 +137,7 @@ header {
   background-color: var(--blue);
   color: white;
   text-decoration: none;
-  z-index: 9999;
+  z-index: 999;
 }
 .logout a {
   text-decoration: none;

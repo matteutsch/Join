@@ -87,15 +87,15 @@ function renderSelectContactHTML(i, j) {
   let initials = getInitials(name);
 
   return `
-  <img id="arrowBack" onclick="exitContact()" class="arrowBack" src="../assets/icons/arrow-left-black.png">
+  <img id="arrowBack" onclick="exitContact()" class="arrowBack hideArrow" src="../assets/icons/arrow-left-black.png">
   <div class="contact-name">
-    <div>
-      <div style="background-color:${contact.color}" class="contact-initials">
+    <div id="emptyInitial">
+      <div  style="background-color:${contact.color}" class="contact-initials">
         ${initials}
       </div>
     </div>
     <div>
-      <h1>${name}</h1>
+      <h1 id="emptyName" >${name}</h1>
       <div class="contacts-add-task">
         <img src="assets/icons/plus.small.png" /> &nbsp; Add Task
       </div>
@@ -110,9 +110,9 @@ function renderSelectContactHTML(i, j) {
       </div>
     </div>
     <h3>Email</h3>
-    <p>${email}</p>
+    <p id="emptyEmail" >${email}</p>
     <h3>Phone</h3>
-    <p>${phone}</p>
+    <p id="emptyPhone" >${phone}</p>
   </div>`;
 }
 
@@ -233,6 +233,12 @@ function saveContact(i, j) {
   contact.email = editMail;
   contact.phone = editPhone;
 
+  if (window.innerWidth <= 670) {
+    document.getElementById("emptyInitial").innerHTML = "";
+    document.getElementById("emptyName").innerHTML = "";
+    document.getElementById("emptyEmail").innerHTML = "";
+    document.getElementById("emptyPhone").innerHTML = "";
+  }
   initContactList();
   closeEditContact();
 }
