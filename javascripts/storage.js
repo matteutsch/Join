@@ -182,27 +182,28 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 async function setItem(key, value) { // ("contacts", contacts) or ("tasks", tasks)  or ("activeContact", activeContact)
     const payload = { key, value, token: STORAGE_TOKEN };
-    return fetch(STORAGE_URL, {
-        method: "POST",
-        body: JSON.stringify(payload),
-    }).then((res) => res.json()); // response in converted in JSON 
+    return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
+        .then(res => res.json()); // response in converted in JSON 
 }
 
-async function getItem(key) {
+async function getItem(key) { // ("contacts",contacts) or ("tasks", tasks)  or ("activeContact", aktiveContact)
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    return fetch(url).then(res => res.json());
-}
+    let res2 = await fetch(url).then(res => res.json()); // response in converted in JSON
+    let dataString = await res2.data.value;
+    let data = await dataString.replace(/'/g, '"');
+    testX = await JSON.parse(data);
+    storageArray = testX;
 
-console.log(storageArray);
+    console.log(storageArray);
 
-/* console.log(erg[0].name);
-console.log(erg[1]['color']);
-document.getElementById('dataString').innerHTML = dataString;
-document.getElementById('data').innerHTML = data; */
+    /* console.log(erg[0].name);
+    console.log(erg[1]['color']);
+    document.getElementById('dataString').innerHTML = dataString;
+    document.getElementById('data').innerHTML = data; */
 
 
-document.getElementById('singleData').innerHTML = storageArray;
-/* document.getElementById('singleData').innerHTML = erg[0].name; */
+    document.getElementById('singleData').innerHTML = storageArray;
+    /* document.getElementById('singleData').innerHTML = erg[0].name; */
 }
 
 /* ******************************************************************** */
