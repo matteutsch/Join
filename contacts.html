@@ -47,7 +47,7 @@
       New contact &nbsp; <img src="assets/icons/new.contact.png" />
     </button>
 
-    <div id="contactCreated" class="contactCreated">
+    <div id="changedContact" class="contactCreated">
       Contact successfully created
     </div>
 
@@ -68,7 +68,7 @@
               <img class="contactImage" src="assets/icons/add_contact.png" />
             </div>
             <form onsubmit="event.preventDefault(); addContact()">
-            <div>
+            <div class="contactInputContainer">
               <input
               required
                 id="newContactName"
@@ -108,6 +108,8 @@
 
     <!--- edit contacts Window --->
 
-    <div class="d-none" id="editContactsOverlay"></div>
+    <div class="d-none" id="editContactsOverlay">
+      
+    </div>
   </body>
 </html>

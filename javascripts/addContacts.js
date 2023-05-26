@@ -20,7 +20,6 @@ function initContactList() {
     contactsByLetter[firstLetter].push(contact);
   }
   renderContactList();
-  getItem("contacts");
 }
 
 function renderContactList() {
@@ -135,7 +134,7 @@ function addContact() {
   name.value = "";
   email.value = "";
   phone.value = "";
-  contactCreated();
+  contactPopup("new");
   closeNewContact();
   initContactList();
 }
@@ -150,7 +149,6 @@ function closeNewContact() {
 
 function openEditContact(i, j) {
   document.getElementById(`editContactsOverlay`).classList.remove("d-none");
-
   document.getElementById("editContactsOverlay").innerHTML = createEditHTML(
     i,
     j
@@ -159,10 +157,16 @@ function openEditContact(i, j) {
   let editMail = document.getElementById("editMail");
   let editPhone = document.getElementById("editPhone");
   let contact = contactsByLetter[letters[i]][j];
+  let initials = getInitials(contact.name);
   editName.value = contact.name;
   editMail.value = contact.email;
   editPhone.value = contact.phone;
+  document.getElementById("editImage").innerHTML = `
+  <div style="background-color:${contact.color}" class="contactImage editInitials">
+  ${initials}
+</div>`;
 }
+
 function createEditHTML(i, j) {
   return /*html*/ ` <div class="addContact">
   <div class="addContactLeft">
@@ -176,12 +180,12 @@ function createEditHTML(i, j) {
     <div onclick="closeEditContact()" class="x-mark">
       x
     </div>
-    <form onsubmit="event.preventDefault(), saveContact(${i}, ${j}) ">
+    <form onsubmit="event.preventDefault(), saveContact(${i}, ${j}), contactPopup('edit') ">
     <div class="createContactContainer">
-      <div>
+      <div id="editImage">
         <img class="contactImage" src="assets/icons/add_contact.png" />
       </div>
-      <div>
+      <div class="contactInputContainer">
         <input
         required
           id="editName"
@@ -221,7 +225,6 @@ function closeEditContact() {
 }
 
 function saveContact(i, j) {
-  console.log("bub", i, j);
   let editName = document.getElementById("editName").value;
   let editMail = document.getElementById("editMail").value;
   let editPhone = document.getElementById("editPhone").value;
@@ -230,7 +233,6 @@ function saveContact(i, j) {
   contact.email = editMail;
   contact.phone = editPhone;
 
-  document.getElementById("contactsMid").innerHTML = "";
   initContactList();
   closeEditContact();
 }
@@ -267,13 +269,18 @@ function exitContact() {
   document.getElementById("arrowBack").classList.add("hideMobile");
 }
 
-//----------------contact successfully created ---------------//
-function contactCreated() {
-  let success = document.getElementById("contactCreated");
-  success.style.display = "block";
+//----------------contact successfully created/edited ---------------//
+function contactPopup(change) {
+  let success = document.getElementById("changedContact");
 
+  success.style.display = "block";
+  if (change == "new") {
+    success.innerHTML = "Contact successfully created";
+  } else {
+    success.innerHTML = "Contact successfully edited";
+  }
   setTimeout(function () {
     success.style.display = "none";
   }, 2000);
 }
-//----------------contact successfully created ---------------//
+//----------------contact successfully created/edited ---------------//

@@ -67,4 +67,10 @@ if (window.location.href.includes("sign_up.html")) {
 
 function showLogout() {
   document.getElementById("logout").classList.toggle("d-none");
+  document.getElementById("logoutLayer").classList.remove("d-none");
+}
+
+function hideLogout() {
+  document.getElementById("logout").classList.add("d-none");
+  document.getElementById("logoutLayer").classList.add("d-none");
 }

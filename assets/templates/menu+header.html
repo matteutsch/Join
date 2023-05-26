@@ -3,16 +3,26 @@
     <p>Kanban Poject Management Tool</p>
     <img class="header-logo" src="../assets/icons/logo-black.png" />
     <div class="header-content-right">
-      <a href="../../help.html">
+      <a class="hideMobile" href="../../help.html">
         <img src="../assets/icons/question-mark.svg" />
       </a>
       <div onclick="showLogout()" class="myProfile">
-        <img src="../assets/icons/question-mark.svg" />
+        <img src="../assets/icons/profile.png" />
       </div>
     </div>
-    <a id="logout" class="logout d-none" href="index.html">
-      <div>Logout</div>
-    </a>
+    <div onclick="hideLogout()" id="logoutLayer" class="d-none">
+      <div id="logout" class="logout d-none">
+        <a href="../../help.html">
+          <div class="popupMobile d-none showMobile">Help</div>
+        </a>
+        <a href="legal.html">
+          <div class="popupMobile d-none showMobile">Legal Notice</div>
+        </a>
+        <a href="index.html">
+          <div class="popupMobile">Logout</div>
+        </a>
+      </div>
+    </div>
   </header>
 
   <div class="sideMenuContainer">

@@ -126,11 +126,27 @@ header {
 
 .myProfile img {
   height: 90%;
+  border-radius: 100%;
 }
 .logout {
   position: absolute;
   top: 60px;
   right: 85px;
+  font-size: 21px;
+  border-radius: 20px 0 20px 20px;
+  background-color: var(--blue);
+  color: white;
+  text-decoration: none;
+  z-index: 9999;
+}
+.logout a {
+  text-decoration: none;
+}
+.logout:hover {
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.popupMobile {
   font-size: 21px;
   padding: 8px 16px 8px 16px;
   border-radius: 20px 0 20px 20px;
@@ -139,13 +155,17 @@ header {
   text-decoration: none;
   z-index: 9999;
 }
-.logout:hover {
-  cursor: pointer;
+.popupMobile:hover {
   transform: scale(1.02);
   background-color: var(--light-blue);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
+#logoutLayer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+}
 /*-------sideMenu && header end----------*/
 
 @media (max-width: 850px) {
@@ -168,11 +188,21 @@ header {
   .hideMobile {
     display: none !important;
   }
+  .showMobile {
+    display: block !important;
+  }
+  .logout {
+    padding: 8px;
+  }
+  .popupMobile {
+    border-radius: 10px 0 10px 10px;
+  }
   header p {
     display: none;
   }
   header {
     padding-left: 36px;
+    padding-right: 0;
   }
   .header-logo {
     display: flex;
