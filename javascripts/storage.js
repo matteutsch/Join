@@ -186,31 +186,27 @@ async function setItem(key, value) { // ("contacts", contacts) or ("tasks", task
         .then(res => res.json()); // response in converted in JSON 
 }
 
-async function getItem(key) { // ("contacts",contacts) or ("tasks", tasks)  or ("activeContact", aktiveContact)
+async function getItemTasks(key) { // ("contacts",contacts) or ("tasks", tasks)  or ("activeContact", aktiveContact)
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     let res2 = await fetch(url).then(res => res.json()); // response in converted in JSON
     let dataString = await res2.data.value;
     let data = await dataString.replace(/'/g, '"');
-    testX = await JSON.parse(data);
-    storageArray = testX;
-
-    console.log(storageArray);
-
-    /* console.log(erg[0].name);
-    console.log(erg[1]['color']);
-    document.getElementById('dataString').innerHTML = dataString;
-    document.getElementById('data').innerHTML = data; */
-
-
-    document.getElementById('singleData').innerHTML = storageArray;
-    /* document.getElementById('singleData').innerHTML = erg[0].name; */
+    /* return await JSON.parse(data); */
+    tasks = await JSON.parse(data);
 }
 
-/* ******************************************************************** */
+async function getItemContacts(key) { // ("contacts",contacts) or ("tasks", tasks)  or ("activeContact", aktiveContact)
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+    let res2 = await fetch(url).then(res => res.json()); // response in converted in JSON
+    let dataString = await res2.data.value;
+    let data = await dataString.replace(/'/g, '"');
+    contacts = await JSON.parse(data);
+}
 
-
-async function change() {
-    let n = document.getElementById('input').value;
-    testX.push(n);
-    /* setItem('test4', test4); */
+async function getItemActiveContact(key) { // ("contacts") or ("tasks")  or ("activeContact")
+    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+    let res2 = await fetch(url).then(res => res.json()); // response in converted in JSON
+    let dataString = await res2.data.value;
+    let data = await dataString.replace(/'/g, '"');
+    aktiveContact = await JSON.parse(data);
 }
