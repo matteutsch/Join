@@ -114,17 +114,7 @@ let tasks = [{
         subtasks: [],
         dueDate: "2022-07-15",
         assignedTo: [contacts[6], contacts[7], contacts[8]],
-    },
-    {
-        title: "Prepare quarterly report",
-        description: "",
-        status: "done",
-        category: "backoffice",
-        priority: "urgent",
-        subtasks: [],
-        dueDate: "2022-04-30",
-        assignedTo: [contacts[7], contacts[8], contacts[9]],
-    },
+    }
 ];
 
 let categories = [{
@@ -169,34 +159,48 @@ function getInitials(name) {
 
 /* Token Generator: https://remote-storage.developerakademie.org/token-generator */
 
+let test2;
+let test3 = [34, 35];
+let test4 = [];
+let erg;
+let testX = [];
+let storageArray;
+
+
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-async function setItem(key, value) {
+async function setItem(key, value) { // ("contacts", contacts) or ("tasks", tasks)  or ("activeContact", activeContact)
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
-        .then(res => res.json());
+        .then(res => res.json()); // response in converted in JSON 
 }
 
-async function getItem(key) {
+async function getItem(key) { // ("contacts",contacts) or ("tasks", tasks)  or ("activeContact", aktiveContact)
     const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    return fetch(url).then(res => res.json());
-}
+    let res2 = await fetch(url).then(res => res.json()); // response in converted in JSON
+    let dataString = await res2.data.value;
+    let data = await dataString.replace(/'/g, '"');
+    testX = await JSON.parse(data);
+    storageArray = testX;
 
-async function storeData() {
-    await setItem("contacts", contacts);
-}
+    console.log(storageArray);
 
-let res, res1, res2, dataString, erg;
-async function getBackData() {
-    res = await getItem("contacts");
-    dataString = res.data.value;
-    data = dataString.replace(/'/g, '"');
-    erg = JSON.parse(data);
-    console.log(erg);
-    console.log(erg[0].name);
+    /* console.log(erg[0].name);
     console.log(erg[1]['color']);
     document.getElementById('dataString').innerHTML = dataString;
-    document.getElementById('data').innerHTML = data;
-    document.getElementById('singleData').innerHTML = erg[0].name;
+    document.getElementById('data').innerHTML = data; */
+
+
+    document.getElementById('singleData').innerHTML = storageArray;
+    /* document.getElementById('singleData').innerHTML = erg[0].name; */
+}
+
+/* ******************************************************************** */
+
+
+async function change() {
+    let n = document.getElementById('input').value;
+    testX.push(n);
+    /* setItem('test4', test4); */
 }

@@ -11,8 +11,10 @@
 </head>
 
 <body>
-    <button onclick="storeData()">Daten speichern</button>
-    <button onclick="getBackData()">Daten zurückholen</button>
+    <button onclick="setItem('testX', testX)">Daten speichern</button>
+    <button onclick="getItem('testX')">Daten zurückholen</button>
+    <input id="input" type="text">
+    <button onclick="change()">Hinzufügen</button>
     <p id="dataString">Zurückgeholte Daten</p><br>
     <p id="data">Zurückgeholte Daten mit Double Quotes</p><br>
     <p id="singleData">Einzelne Datenposition</p>
