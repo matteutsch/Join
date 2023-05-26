@@ -44,31 +44,29 @@ function openTaskCard(i, cardID) {
   renderClosingArrow();
 }
 
-function editTaskCard(taskIndex){
-  const openCardContainer = document.querySelector('.task-card-big');
+function editTaskCard(taskIndex) {
+  let openCardContainer = document.querySelector(".task-card-big");
   openCardContainer.innerHTML = editTaskCardHTML();
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
 }
 
-function fillEditFields(taskIndex){
-  const titleInputField = document.getElementById('addTaskTitle');
-  const descriptionInputField = document.getElementById('addTaskTitle');
-  const dueDateField = document.getElementById('addTaskTitle');
-  const prio = document.getElementById('addTaskTitle');
-  const AssignedTo = document.getElementById('addTaskTitle');
+function fillEditFields(taskIndex) {
+  let titleInputField = document.getElementById("addTaskTitle");
+  let descriptionInputField = document.getElementById("addTaskTitle");
+  let dueDateField = document.getElementById("addTaskTitle");
+  let prio = document.getElementById("addTaskTitle");
+  let assignedTo = document.getElementById("addTaskTitle");
 
-  titleInputField.value = tasks[taskIndex]["title"]
-  descriptionInputField.value = tasks[taskIndex]["description"]
-  dueDateField.value = tasks[taskIndex]["dueDate"]
-  prio = tasks[taskIndex]["priority"]
+  titleInputField.value = tasks[taskIndex]["title"];
+  descriptionInputField.value = tasks[taskIndex]["description"];
+  dueDateField.value = tasks[taskIndex]["dueDate"];
+  prio = tasks[taskIndex]["priority"];
   setPrio(prio);
-  
-
 }
 
 function renderClosingArrow() {
-  const arrow = document.querySelector(".task-card-arrow");
+  let arrow = document.querySelector(".task-card-arrow");
   if (window.innerWidth > 670) {
     arrow.style.display = "none";
   } else {
@@ -90,7 +88,12 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
+  clearContainers([
+    "todoContainer",
+    "inProgressContainer",
+    "feedbackContainer",
+    "doneContainer",
+  ]);
   initBoard();
   closeLayer();
 }
@@ -134,9 +137,17 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     } else {
-      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToCardHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     }
   }
 }
@@ -197,7 +208,7 @@ function slideInContainer(status) {
   addCategories();
 }
 
-document.addEventListener("input", function(event) {
+document.addEventListener("input", function (event) {
   if (event.target.id === "searchInput") {
     filterCards();
   }
@@ -209,7 +220,9 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
+    const description = card
+      .querySelector(".task-description")
+      .innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
@@ -217,6 +230,3 @@ function filterCards() {
     }
   });
 }
-
-
-

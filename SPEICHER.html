@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="javascripts/storage.js"></script>
     <link rel="stylesheet" href="css/summary.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <button onclick="setItem('tasks', tasks)">Daten speichern</button>
-    <button onclick="getItem('tasks')">Daten zurückholen</button>
-    <input id="input" type="text">
-    <button onclick="change()">Hinzufügen</button>
-    <p id="dataString">Zurückgeholte Daten</p><br>
-    <p id="data">Zurückgeholte Daten mit Double Quotes</p><br>
+    <button onclick="getItemTasks('tasks')">Daten zurückholen</button>
+    <input id="input" type="text" />
+    <button>Hinzufügen</button>
+    <p id="dataString">Zurückgeholte Daten</p>
+    <br />
+    <p id="data">Zurückgeholte Daten mit Double Quotes</p>
+    <br />
     <p id="singleData">Einzelne Datenposition</p>
-
-</body>
-
+  </body>
 </html>
