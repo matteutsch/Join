@@ -34,12 +34,85 @@ function openTaskCardHTML(i, cardID) {
         <div class="delete-button" onclick="deleteCard(${i}, '${cardID}')">
           <img src="assets/icons/delete_black.png" />
         </div>
-        <div class="edit-button"><img src="assets/icons/Pencil_icon.png" /></div>
+        <div class="edit-button" onclick="editTaskCard(${i})"><img src="assets/icons/Pencil_icon.png" /></div>
       </div>
       <img src="assets/icons/arrow-left-black.png" class="task-card-arrow" onclick="closeSlideInBtn()">
       <img src="assets/icons/clear.png" class="task-card-closeBtn" onclick="closeSlideInBtn()">
 
     </div>
+  `;
+}
+
+function editTaskCardHTML(){
+  return /* html */`
+      <div class="task-section-edit">
+            <div>
+              <p>Title</p>
+              <input required id="addTaskTitle" placeholder="Enter a title" />
+            </div>
+            <div>
+              <p>Description</p>
+              <textarea
+                required
+                id="addTaskDescription"
+                placeholder="Enter a Description"
+                style="resize: none"
+              ></textarea>
+            </div>
+            <div>
+              <p>Due date</p>
+              <input
+                required
+                id="date"
+                class="input pointer"
+                type="date"
+                value="dd/mm/yyyy"
+              />
+            </div>
+            <div>
+              <p>Prio</p>
+              <div class="prio-section">
+                <div
+                  id="urgentTask"
+                  onclick="setPrio('urgent')"
+                  class="prio-btn pointer"
+                >
+                  Urgent <img id="urgentIcon" src="assets/icons/urgent.png" />
+                </div>
+                <div
+                  id="mediumTask"
+                  onclick="setPrio('medium')"
+                  class="prio-btn pointer"
+                >
+                  Medium <img id="mediumIcon" src="assets/icons/medium.png" />
+                </div>
+                <div
+                  id="lowTask"
+                  onclick="setPrio('low')"
+                  class="prio-btn pointer"
+                >
+                  Low <img id="lowIcon" src="assets/icons/low.png" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p>Assigned to</p>
+              <div class="content">
+                <div
+                  onclick="openDropdownContacts()"
+                  id="selectContact"
+                  class="selectContainer"
+                >
+                  Select contacts to assign
+                </div>
+                <div class="expand-container">
+                  <div id="selectContactDropdown"></div>
+                </div>
+                <div id="chosenContacts" class="chosenContactsEdit"></div>
+              </div>
+            </div>
+            <div class="edit-okBtn">Ok <img src="assets/icons/checkmark-white-small.png"></div>
+        
   `;
 }
 

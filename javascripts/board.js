@@ -44,6 +44,29 @@ function openTaskCard(i, cardID) {
   renderClosingArrow();
 }
 
+function editTaskCard(taskIndex){
+  const openCardContainer = document.querySelector('.task-card-big');
+  openCardContainer.innerHTML = editTaskCardHTML();
+  fillEditFields(taskIndex);
+  addContactNamesToAssignedTo();
+}
+
+function fillEditFields(taskIndex){
+  const titleInputField = document.getElementById('addTaskTitle');
+  const descriptionInputField = document.getElementById('addTaskTitle');
+  const dueDateField = document.getElementById('addTaskTitle');
+  const prio = document.getElementById('addTaskTitle');
+  const AssignedTo = document.getElementById('addTaskTitle');
+
+  titleInputField.value = tasks[taskIndex]["title"]
+  descriptionInputField.value = tasks[taskIndex]["description"]
+  dueDateField.value = tasks[taskIndex]["dueDate"]
+  prio = tasks[taskIndex]["priority"]
+  setPrio(prio);
+  
+
+}
+
 function renderClosingArrow() {
   const arrow = document.querySelector(".task-card-arrow");
   if (window.innerWidth > 670) {
