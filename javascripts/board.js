@@ -49,21 +49,55 @@ function editTaskCard(taskIndex) {
   openCardContainer.innerHTML = editTaskCardHTML();
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
+  
 }
 
 function fillEditFields(taskIndex) {
   let titleInputField = document.getElementById("addTaskTitle");
-  let descriptionInputField = document.getElementById("addTaskTitle");
-  let dueDateField = document.getElementById("addTaskTitle");
+  let descriptionInputField = document.getElementById("addTaskDescription");
+  let dueDateField = document.getElementById("date");
   let prio = document.getElementById("addTaskTitle");
-  let assignedTo = document.getElementById("addTaskTitle");
+  let assignedToArray = tasks[taskIndex]["assignedTo"];
 
   titleInputField.value = tasks[taskIndex]["title"];
   descriptionInputField.value = tasks[taskIndex]["description"];
   dueDateField.value = tasks[taskIndex]["dueDate"];
   prio = tasks[taskIndex]["priority"];
   setPrio(prio);
+  pushToAssignedContact(assignedToArray);
+  renderAssignedToEdit();
 }
+
+function pushToAssignedContact(assignedToArray) {
+  for (let i = 0; i < assignedToArray.length; i++) {
+    const contact = assignedToArray[i];
+    assignedContacts.push(contact);
+  }
+}
+
+function renderAssignedToEdit() {
+  let chosenContacts = document.getElementById("chosenContacts");
+  for (let i = 0; i < assignedContacts.length; i++) {
+    const contact = assignedContacts[i];
+    let color = contact["color"];
+    let assignedToName = contact["name"];
+    let initials = getInitials(assignedToName);
+    let contactIndex = contacts.findIndex((c) => {
+      return (
+        c.name === contact.name &&
+        c.color === contact.color &&
+        c.email === contact.email &&
+        c.phone === contact.phone
+      );
+    });
+    if (chosenContacts.children.length < 5) {
+      chosenContacts.innerHTML += `<div onclick="removeContact(${contactIndex})" style="background-color:${color}" class="chosenContactInitials">
+      ${initials}</div>`;
+    }
+  }
+}
+
+
 
 function renderClosingArrow() {
   let arrow = document.querySelector(".task-card-arrow");
@@ -88,12 +122,7 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers([
-    "todoContainer",
-    "inProgressContainer",
-    "feedbackContainer",
-    "doneContainer",
-  ]);
+  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
   initBoard();
   closeLayer();
 }
@@ -137,17 +166,9 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
-      container.innerHTML += assignedToCardHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
     }
   }
 }
@@ -160,6 +181,7 @@ function displayLayer() {
       closeSlideInContainer();
       closeLayer();
       closeTaskCardBig();
+      assignedContacts = [];
     }
   });
 }
@@ -220,9 +242,7 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card
-      .querySelector(".task-description")
-      .innerHTML.toLowerCase();
+    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
