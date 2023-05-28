@@ -1,10 +1,12 @@
 function taskCardHTML(i, cardID) {
   return `
   <div draggable="true" ondragstart="startDragging(${i})"  class="task-card" id="${cardID}" onclick="openTaskCard(${i}, '${cardID}')">
-    <div class="category-label"
-      style="background-color: ${renderCategoryLabelColor(i)};">
-      ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
+    <div class="categoryHeader">
+      <div class="category-label"
+        style="background-color: ${renderCategoryLabelColor(i)};">
+        ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
       </div>
+    </div>
     <div class="task-title">${tasks[i]["title"]}</div>
     <div class="task-description">
       ${renderTaskDescription(i)}
