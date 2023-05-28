@@ -117,7 +117,7 @@ function editTaskCardHTML() {
                 <div id="chosenContacts" class="chosenContactsEdit"></div>
               </div>
             </div>
-            <div class="edit-okBtn">Ok <img src="assets/icons/checkmark-white-small.png"></div>
+            <div class="edit-okBtn" onclick="saveChanges()">Ok <img src="assets/icons/checkmark-white-small.png"></div>
         
   `;
 }
