@@ -1,8 +1,8 @@
 function initBoard() {
-  renderTaskCards("todoContainer", "todo");
-  renderTaskCards("inProgressContainer", "inProgress");
-  renderTaskCards("feedbackContainer", "awaitingFeedback");
-  renderTaskCards("doneContainer", "done");
+  renderTaskCards("todo", "todo");
+  renderTaskCards("inProgress", "inProgress");
+  renderTaskCards("awaitingFeedback", "awaitingFeedback");
+  renderTaskCards("done", "done");
 }
 
 function renderCategoryLabelColor(i) {
@@ -13,11 +13,13 @@ function renderCategoryLabelColor(i) {
 
 function renderTaskCards(container, status) {
   let cardIndex = 0;
+  document.getElementById(container).innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
     const taskContainer = document.getElementById(container);
     const task = tasks[i];
     if (task["status"] === status) {
       let cardID = tasks[i]["status"] + cardIndex;
+
       taskContainer.innerHTML += taskCardHTML(i, cardID);
       renderAssignedTo(i, `assignedToContainerSmall${i}`);
       cardIndex++;
@@ -49,7 +51,6 @@ function editTaskCard(taskIndex) {
   openCardContainer.innerHTML = editTaskCardHTML();
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
-  
 }
 
 function fillEditFields(taskIndex) {
@@ -97,8 +98,6 @@ function renderAssignedToEdit() {
   }
 }
 
-
-
 function renderClosingArrow() {
   let arrow = document.querySelector(".task-card-arrow");
   if (window.innerWidth > 670) {
@@ -122,7 +121,12 @@ function deleteCard(cardIndex, cardID) {
   const taskIndex = cardIndex;
   card.remove();
   tasks.splice(taskIndex, 1);
-  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
+  clearContainers([
+    "todoContainer",
+    "inProgressContainer",
+    "feedbackContainer",
+    "doneContainer",
+  ]);
   initBoard();
   closeLayer();
 }
@@ -166,9 +170,17 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     } else {
-      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToCardHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     }
   }
 }
@@ -242,11 +254,39 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
+    const description = card
+      .querySelector(".task-description")
+      .innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
       card.style.display = "none";
     }
   });
+}
+
+// -----------------------drag-&-drop ----------------------------//
+
+let currentDraggedElement;
+
+function startDragging(i) {
+  currentDraggedElement = i;
+}
+
+function moveTo(status) {
+  tasks[currentDraggedElement]["status"] = status;
+  initBoard();
+  removeHighlight(status);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function highlight(id) {
+  document.getElementById(id).classList.add("dragAreaHighlight");
+}
+
+function removeHighlight(id) {
+  document.getElementById(id).classList.remove("dragAreaHighlight");
 }
