@@ -1,3 +1,7 @@
+let openTaskIndex;
+let openTaskID;
+let assignedToArray;
+
 function initBoard() {
   renderTaskCards("todo", "todo");
   renderTaskCards("inProgress", "inProgress");
@@ -41,6 +45,7 @@ function openTaskCard(i, cardID) {
     taskLayer.style.zIndex = "1";
   }
   taskLayer.innerHTML = openTaskCardHTML(i, cardID);
+  openTaskID = cardID;
   displayLayer();
   renderAssignedTo(i, "assignedTo-container");
   renderClosingArrow();
@@ -51,22 +56,38 @@ function editTaskCard(taskIndex) {
   openCardContainer.innerHTML = editTaskCardHTML();
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
+  openTaskIndex = taskIndex;
 }
 
 function fillEditFields(taskIndex) {
   let titleInputField = document.getElementById("addTaskTitle");
   let descriptionInputField = document.getElementById("addTaskDescription");
   let dueDateField = document.getElementById("date");
-  let prio = document.getElementById("addTaskTitle");
-  let assignedToArray = tasks[taskIndex]["assignedTo"];
+  let prio = tasks[taskIndex]["priority"];
+  assignedToArray = tasks[taskIndex]["assignedTo"];
 
   titleInputField.value = tasks[taskIndex]["title"];
   descriptionInputField.value = tasks[taskIndex]["description"];
   dueDateField.value = tasks[taskIndex]["dueDate"];
-  prio = tasks[taskIndex]["priority"];
+
   setPrio(prio);
   pushToAssignedContact(assignedToArray);
   renderAssignedToEdit();
+}
+
+function saveChanges() {
+  let titleInputFieldValue = document.getElementById("addTaskTitle").value;
+  let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
+  let dueDateFieldValue = document.getElementById("date").value;
+
+  tasks[openTaskIndex].title = titleInputFieldValue;
+  tasks[openTaskIndex].description = descriptionInputFieldValue;
+  tasks[openTaskIndex].dueDate = dueDateFieldValue;
+  tasks[openTaskIndex].priority = priority;
+  tasks[openTaskIndex].assignedTo = assignedContacts;
+  openTaskCard(openTaskIndex, openTaskID);
+  assignedContacts = [];
+  initBoard();
 }
 
 function pushToAssignedContact(assignedToArray) {
@@ -118,15 +139,9 @@ function renderCloseBtn() {
 
 function deleteCard(cardIndex, cardID) {
   const card = document.getElementById(cardID);
-  const taskIndex = cardIndex;
   card.remove();
-  tasks.splice(taskIndex, 1);
-  clearContainers([
-    "todo",
-    "inProgress",
-    "awaitingFeedback",
-    "done",
-  ]);
+  tasks.splice(cardIndex, 1);
+  clearContainers(["todo", "inProgress", "awaitingFeedback", "done"]);
   initBoard();
   closeLayer();
 }
@@ -170,17 +185,9 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
-      container.innerHTML += assignedToCardHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
     }
   }
 }
@@ -254,9 +261,7 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card
-      .querySelector(".task-description")
-      .innerHTML.toLowerCase();
+    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
