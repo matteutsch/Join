@@ -122,10 +122,10 @@ function deleteCard(cardIndex, cardID) {
   card.remove();
   tasks.splice(taskIndex, 1);
   clearContainers([
-    "todoContainer",
-    "inProgressContainer",
-    "feedbackContainer",
-    "doneContainer",
+    "todo",
+    "inProgress",
+    "awaitingFeedback",
+    "done",
   ]);
   initBoard();
   closeLayer();

@@ -147,7 +147,6 @@
 
 .task-card {
   width: 250px;
-  min-height: 250px;
   gap: 20px;
   display: flex;
   flex-direction: column;
