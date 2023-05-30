@@ -4,6 +4,7 @@ let contactsByLetter = [];
 function initContactList() {
   //get all the firstletters of contacts and push them into seperate array;
   //creating seperate array of contacts sorted by first letters
+
   letters = [];
   contactsByLetter = [];
   document.getElementById("contactList").innerHTML = "";

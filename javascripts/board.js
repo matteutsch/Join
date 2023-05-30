@@ -1,8 +1,12 @@
+let openTaskIndex;
+let openTaskID;
+let assignedToArray;
+
 function initBoard() {
-  renderTaskCards("todoContainer", "todo");
-  renderTaskCards("inProgressContainer", "inProgress");
-  renderTaskCards("feedbackContainer", "awaitingFeedback");
-  renderTaskCards("doneContainer", "done");
+  renderTaskCards("todo", "todo");
+  renderTaskCards("inProgress", "inProgress");
+  renderTaskCards("awaitingFeedback", "awaitingFeedback");
+  renderTaskCards("done", "done");
 }
 
 function renderCategoryLabelColor(i) {
@@ -13,11 +17,13 @@ function renderCategoryLabelColor(i) {
 
 function renderTaskCards(container, status) {
   let cardIndex = 0;
+  document.getElementById(container).innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
     const taskContainer = document.getElementById(container);
     const task = tasks[i];
     if (task["status"] === status) {
       let cardID = tasks[i]["status"] + cardIndex;
+
       taskContainer.innerHTML += taskCardHTML(i, cardID);
       renderAssignedTo(i, `assignedToContainerSmall${i}`);
       cardIndex++;
@@ -39,36 +45,82 @@ function openTaskCard(i, cardID) {
     taskLayer.style.zIndex = "1";
   }
   taskLayer.innerHTML = openTaskCardHTML(i, cardID);
+  openTaskID = cardID;
   displayLayer();
   renderAssignedTo(i, "assignedTo-container");
   renderClosingArrow();
 }
 
-function editTaskCard(taskIndex){
-  const openCardContainer = document.querySelector('.task-card-big');
+function editTaskCard(taskIndex) {
+  let openCardContainer = document.querySelector(".task-card-big");
   openCardContainer.innerHTML = editTaskCardHTML();
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
+  openTaskIndex = taskIndex;
 }
 
-function fillEditFields(taskIndex){
-  const titleInputField = document.getElementById('addTaskTitle');
-  const descriptionInputField = document.getElementById('addTaskTitle');
-  const dueDateField = document.getElementById('addTaskTitle');
-  const prio = document.getElementById('addTaskTitle');
-  const AssignedTo = document.getElementById('addTaskTitle');
+function fillEditFields(taskIndex) {
+  let titleInputField = document.getElementById("addTaskTitle");
+  let descriptionInputField = document.getElementById("addTaskDescription");
+  let dueDateField = document.getElementById("date");
+  let prio = tasks[taskIndex]["priority"];
+  assignedToArray = tasks[taskIndex]["assignedTo"];
 
-  titleInputField.value = tasks[taskIndex]["title"]
-  descriptionInputField.value = tasks[taskIndex]["description"]
-  dueDateField.value = tasks[taskIndex]["dueDate"]
-  prio = tasks[taskIndex]["priority"]
+  titleInputField.value = tasks[taskIndex]["title"];
+  descriptionInputField.value = tasks[taskIndex]["description"];
+  dueDateField.value = tasks[taskIndex]["dueDate"];
+
   setPrio(prio);
-  
+  pushToAssignedContact(assignedToArray);
+  renderAssignedToEdit();
+}
 
+function saveChanges() {
+  let titleInputFieldValue = document.getElementById("addTaskTitle").value;
+  let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
+  let dueDateFieldValue = document.getElementById("date").value;
+
+  tasks[openTaskIndex].title = titleInputFieldValue;
+  tasks[openTaskIndex].description = descriptionInputFieldValue;
+  tasks[openTaskIndex].dueDate = dueDateFieldValue;
+  tasks[openTaskIndex].priority = priority;
+  tasks[openTaskIndex].assignedTo = assignedContacts;
+  openTaskCard(openTaskIndex, openTaskID);
+  assignedContacts = [];
+  initBoard();
+}
+
+function pushToAssignedContact(assignedToArray) {
+  for (let i = 0; i < assignedToArray.length; i++) {
+    const contact = assignedToArray[i];
+    assignedContacts.push(contact);
+  }
+}
+
+function renderAssignedToEdit() {
+  let chosenContacts = document.getElementById("chosenContacts");
+  for (let i = 0; i < assignedContacts.length; i++) {
+    const contact = assignedContacts[i];
+    let color = contact["color"];
+    let assignedToName = contact["name"];
+    let initials = getInitials(assignedToName);
+    let contactIndex = contacts.findIndex((c) => {
+      return (
+        c.name === contact.name &&
+        c.color === contact.color &&
+        c.email === contact.email &&
+        c.phone === contact.phone
+      );
+    });
+    if (chosenContacts.children.length < 5) {
+      chosenContacts.innerHTML += `<div onclick="removeContact(${contactIndex})" style="background-color:${color}" class="chosenContactInitials">
+      ${initials}</div>`;
+    }
+  }
 }
 
 function renderClosingArrow() {
-  const arrow = document.querySelector(".task-card-arrow");
+  let arrow = document.querySelector(".task-card-arrow");
   if (window.innerWidth > 670) {
     arrow.style.display = "none";
   } else {
@@ -87,10 +139,9 @@ function renderCloseBtn() {
 
 function deleteCard(cardIndex, cardID) {
   const card = document.getElementById(cardID);
-  const taskIndex = cardIndex;
   card.remove();
-  tasks.splice(taskIndex, 1);
-  clearContainers(["todoContainer", "inProgressContainer", "feedbackContainer", "doneContainer"]);
+  tasks.splice(cardIndex, 1);
+  clearContainers(["todo", "inProgress", "awaitingFeedback", "done"]);
   initBoard();
   closeLayer();
 }
@@ -149,6 +200,7 @@ function displayLayer() {
       closeSlideInContainer();
       closeLayer();
       closeTaskCardBig();
+      assignedContacts = [];
     }
   });
 }
@@ -197,7 +249,7 @@ function slideInContainer(status) {
   addCategories();
 }
 
-document.addEventListener("input", function(event) {
+document.addEventListener("input", function (event) {
   if (event.target.id === "searchInput") {
     filterCards();
   }
@@ -218,5 +270,28 @@ function filterCards() {
   });
 }
 
+// -----------------------drag-&-drop ----------------------------//
 
+let currentDraggedElement;
 
+function startDragging(i) {
+  currentDraggedElement = i;
+}
+
+function moveTo(status) {
+  tasks[currentDraggedElement]["status"] = status;
+  initBoard();
+  removeHighlight(status);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function highlight(id) {
+  document.getElementById(id).classList.add("dragAreaHighlight");
+}
+
+function removeHighlight(id) {
+  document.getElementById(id).classList.remove("dragAreaHighlight");
+}
