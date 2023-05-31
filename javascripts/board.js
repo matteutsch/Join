@@ -289,9 +289,32 @@ function allowDrop(ev) {
 }
 
 function highlight(id) {
-  document.getElementById(id).classList.add("dragAreaHighlight");
+  let container = document.getElementById(id);
+  container.style.transition = "background-color 0.5s";
+  container.style.backgroundColor = "#d1d1d1";
 }
 
 function removeHighlight(id) {
-  document.getElementById(id).classList.remove("dragAreaHighlight");
+  let container = document.getElementById(id);
+  container.style.transition = "background-color 0.5s";
+  container.style.backgroundColor = "#f6f7f8";
+}
+
+
+function highlightAll() {
+  let statusContainers = document.querySelectorAll(".statusContainer");
+  statusContainers.forEach((container) => {
+    container.style.border = "1px dashed black";
+    container.style.transition = "border 0.5s";
+  });
+}
+
+function removeHighlightAll() {
+  let statusContainers = document.querySelectorAll(".statusContainer");
+  if (statusContainers) {
+    statusContainers.forEach((container) => {
+      container.style.border = "none";
+      container.style.transition = "none";
+    });
+  }
 }

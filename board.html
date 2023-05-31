@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/task.css" />
   </head>
 
-  <body onload="includeHTML(), initBoard()">
+  <body onload="includeHTML(), initBoard()" ondragend="removeHighlightAll()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="board-body">
       <div class="header-row">
@@ -69,9 +69,10 @@
             />
           </div>
           <div
-            ondrop="moveTo('todo')"
+            ondrop="moveTo('todo'); removeHighlightAll()"
             ondragleave="removeHighlight('todo')"
             ondragover="allowDrop(event); highlight('todo')"
+            ondrag="highlightAll()"
             id="todo"
             class="statusContainer"
           ></div>
@@ -85,9 +86,11 @@
             />
           </div>
           <div
-            ondrop="moveTo('inProgress')"
+            ondrop="moveTo('inProgress'); removeHighlightAll()"
             ondragleave="removeHighlight('inProgress')"
             ondragover="allowDrop(event); highlight('inProgress')"
+            ondrag="highlightAll()"
+            
             id="inProgress"
             class="statusContainer"
           ></div>
@@ -101,9 +104,10 @@
             />
           </div>
           <div
-            ondrop="moveTo('awaitingFeedback')"
+            ondrop="moveTo('awaitingFeedback'); removeHighlightAll()"
             ondragleave="removeHighlight('awaitingFeedback')"
             ondragover="allowDrop(event); highlight('awaitingFeedback')"
+            ondrag="highlightAll()"
             id="awaitingFeedback"
             class="statusContainer"
           ></div>
@@ -118,8 +122,9 @@
           </div>
           <div
             ondrop="moveTo('done')"
-            ondragleave="removeHighlight('done')"
+            ondragleave="removeHighlight('done'); removeHighlightAll()"
             ondragover="allowDrop(event); highlight('done')"
+            ondrag="highlightAll()"
             id="done"
             class="statusContainer"
           ></div>

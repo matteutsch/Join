@@ -482,19 +482,22 @@
 
 .statusContainer {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
   border: 1px solid transparent;
   border-radius: 30px;
-  min-height: 250px;
+  min-height: 550px;
   min-width: 100%;
   gap: 20px;
 }
 
 .dragAreaHighlight {
   border: 1px dashed black;
+  transition: border 0px dashed black;
 }
+
+
 
 @media (max-width: 1000px) {
   .header-row {
