@@ -121,8 +121,8 @@
             />
           </div>
           <div
-            ondrop="moveTo('done')"
-            ondragleave="removeHighlight('done'); removeHighlightAll()"
+            ondrop="moveTo('done'); removeHighlightAll()"
+            ondragleave="removeHighlight('done');"
             ondragover="allowDrop(event); highlight('done')"
             ondrag="highlightAll()"
             id="done"
