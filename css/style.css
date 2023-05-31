@@ -96,7 +96,7 @@ header {
   justify-content: space-between;
   align-items: center;
   font-size: 25px;
-  z-index: 99;
+  z-index: 999999;
 }
 .header-logo {
   height: 64%;
