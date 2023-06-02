@@ -1,15 +1,19 @@
 let letters = [];
 let contactsByLetter = [];
+let remoteContactsAsJSON;
 
-function initContactList() {
+async function initContactList() {
   //get all the firstletters of contacts and push them into seperate array;
   //creating seperate array of contacts sorted by first letters
+
+  let res = await getItem("contactsRemote");
+  remoteContactsAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
 
   letters = [];
   contactsByLetter = [];
   document.getElementById("contactList").innerHTML = "";
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
+  for (let i = 0; i < remoteContactsAsJSON.length; i++) {
+    const contact = remoteContactsAsJSON[i];
     let name = contact.name;
     let firstLetter = name.charAt(0);
     if (!letters.includes(firstLetter)) {
@@ -20,12 +24,14 @@ function initContactList() {
     }
     contactsByLetter[firstLetter].push(contact);
   }
+
   renderContactList();
 }
 
 function renderContactList() {
   //iterating through letters array to create letters as headline
   //iterating through contactsByLetter[Letter] to render those below the matching firstLetter
+
   for (let i = 0; i < letters.length; i++) {
     let letter = letters[i];
     let contactsWithLetter = contactsByLetter[letter];
@@ -131,7 +137,8 @@ function addContact() {
     color: nameColor[randomNumber],
   };
   contacts.push(newContact);
-  setItem("contacts", contacts);
+  setItem("contactsRemote", contacts);
+
   name.value = "";
   email.value = "";
   phone.value = "";
@@ -250,15 +257,18 @@ function deleteContact(i, j) {
   let editPhone = document.getElementById("editPhone");
 
   let contact = contactsByLetter[letters[i]][j];
-  let contactIndex = contacts.indexOf(contact);
+  let contactIndex = remoteContactsAsJSON.indexOf(contact);
 
   contactsByLetter[letters[i]].splice(j, 1);
-  contacts.splice(contactIndex, 1);
+
+  remoteContactsAsJSON.splice(contactIndex, 1);
+  setItem("contactsRemote", remoteContactsAsJSON);
 
   editName.value = "";
   editMail.value = "";
   editPhone.value = "";
   document.getElementById("contactsMid").innerHTML = "";
+
   initContactList();
 }
 
