@@ -1,4 +1,4 @@
-let users = [];
+let users = []; 
 
 async function initRegister(){
     loadUsers();

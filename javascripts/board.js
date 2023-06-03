@@ -1,6 +1,7 @@
 let openTaskIndex;
 let openTaskID;
 let assignedToArray;
+let tasksAsJSON;
 
 function initBoard() {
   renderTaskCards("todo", "todo");
@@ -10,8 +11,8 @@ function initBoard() {
 }
 
 function renderCategoryLabelColor(i) {
-  let category = tasks[i]["category"];
-  let labelColor = categoryColor[0][category];
+  let categoryName = tasks[i]["category"].toLowerCase();
+  let labelColor = categoryColor[0][categoryName];
   return labelColor;
 }
 
@@ -40,7 +41,7 @@ function openTaskCard(i, cardID) {
   const taskLayer = document.getElementById("taskLayer");
   taskLayer.style.zIndex = "1";
   if (window.innerWidth > 670) {
-    taskLayer.style.zIndex = "100";
+    taskLayer.style.zIndex = "103";
   } else {
     taskLayer.style.zIndex = "1";
   }
@@ -142,9 +143,16 @@ function deleteCard(cardIndex, cardID) {
   card.remove();
   tasks.splice(cardIndex, 1);
   clearContainers(["todo", "inProgress", "awaitingFeedback", "done"]);
+  /* updateRemoteStorage("tasksRemote", tasks, tasksAsJSON); */
   initBoard();
   closeLayer();
 }
+
+/* async function updateRemoteStorage(key, value, array){
+  setItem(key, value)
+  let res = await getItem(key)
+  array = res.JSON.parse(res.data.value.replace(/'/g, '"'))
+} */
 
 function clearContainers(containerIds) {
   containerIds.forEach((containerId) => {
@@ -214,7 +222,7 @@ function closeSlideInBtn() {
 function closeSlideInContainer() {
   const slideInContainer = document.getElementById("slideInContainer");
   const taskLayer = document.getElementById("taskLayer");
-  taskLayer.style.zIndex = "100";
+  taskLayer.style.zIndex = "103";
   if (slideInContainer) {
     slideInContainer.style.transform = "translateX(200%)";
   }

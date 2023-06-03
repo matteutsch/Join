@@ -50,8 +50,7 @@ function addCategories() {
   //adding and rendering categories to dropdown menu
   for (let i = 0; i < categories.length; i++) {
     let category = categories[i];
-    category["name"] =
-      category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
+    category["name"] = category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
     document.getElementById("categoryDropdown").innerHTML += `
     <div onclick="selectOptionCategory(${i})" class="option">
         ${category["name"]}
@@ -91,6 +90,9 @@ function createTask(status) {
     setItem("tasks", tasks);
     resetValues();
     taskAdded();
+  }
+  if (window.location.pathname.includes("board.html")) {
+    initBoard();
   }
 }
 
@@ -132,7 +134,7 @@ function selectOptionCategory(i) {
   let selectedOption = event.target.innerHTML;
 
   category.innerHTML = selectedOption;
-  selectedCategory = categories[i];
+  selectedCategory = categories[i]["name"];
 
   dropdown.classList.remove("expanded");
   category.classList.remove("category-expanded");
@@ -173,9 +175,7 @@ function selectOptionContacts(i) {
 //
 function isContactSelected(chosenContacts, contact) {
   // checking if contact is in chosenContacts
-  let contactElements = chosenContacts.getElementsByClassName(
-    "chosenContactInitials"
-  );
+  let contactElements = chosenContacts.getElementsByClassName("chosenContactInitials");
 
   for (let i = 0; i < contactElements.length; i++) {
     let initials = contactElements[i].textContent.trim();

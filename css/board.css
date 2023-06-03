@@ -223,6 +223,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .category-label-big {
   display: flex;
   justify-content: center;
@@ -291,7 +292,7 @@
 #taskLayer {
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 103;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -467,8 +468,8 @@
   cursor: pointer;
 }
 
-.edit-okBtn:hover{
-  background:#29abe2;
+.edit-okBtn:hover {
+  background: #29abe2;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -496,8 +497,6 @@
   border: 1px dashed black;
   transition: border 0px dashed black;
 }
-
-
 
 @media (max-width: 1000px) {
   .header-row {
@@ -621,6 +620,7 @@
 }
 
 @media (max-width: 455px) {
+
   .task-card,
   .task-header {
     width: 80%;
