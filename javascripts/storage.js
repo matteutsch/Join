@@ -191,7 +191,11 @@ async function getItem(key) {
 /* 
 a = await getItem('tasks')
 b = await JSON.parse((a.data.value).replace(/'/g, '"'))
+
 c = b[2]
 b.push(c)
+or
+b.splice(2,1)
+
 setItem("tasks", b)
 */
