@@ -818,34 +818,43 @@ body {
 
 @media (max-width: 400px) {
   .summaryContainer {
-    width: 180px;
+    width: 125px;
+    margin-bottom: 20px;
   }
 
   .tasksOverallContainer,
   .toDoDoneCont {
-    gap: 10px;
+    gap: 2px;
+    margin-bottom: 0;
   }
 
   .tasksContainer {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
+    padding-top: 12px;
   }
 
-  .toDoContainer,
-  .doneContainer {
-    height: 100px;
-  }
-
-  .deadline {
-    width: 245px;
+  .dueDateContainer {
+    margin-bottom: 0;
   }
 
   .toDoContainer {
-    width: 175px;
+    height: 100px;
+    width: 158px;
   }
 
   .doneContainer {
-    width: 165px;
+    height: 100px;
+    width: 138px;
+  }
+
+  .urgentContainer {
+    width: 122px;
+    height: 110px;
+  }
+
+  .deadline {
+    width: 210px;
   }
 
   .greetingText {
@@ -861,8 +870,7 @@ body {
   }
 
   .iconDone {
-    /*         width: 82px;
- */
+    height: 100px;
     background-position: 100% 48%;
     background-size: 85%;
   }
