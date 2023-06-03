@@ -9,6 +9,11 @@ function initLoginPage() {
   changeLogoColor();
 }
 
+async function initGuestJOIN(){
+  setItem("tasksRemote", tasks);
+  tasksAsJSON = await getRemoteData("tasksRemote"); 
+}
+
 /**
 
     Executes the fade-in animation on the login and sign-up containers, and changes the logo image after a timeout.

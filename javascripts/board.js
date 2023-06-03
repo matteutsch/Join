@@ -1,9 +1,10 @@
 let openTaskIndex;
 let openTaskID;
 let assignedToArray;
-let tasksAsJSON;
+let remoteTasksAsJSON;
 
-function initBoard() {
+async function initBoard() {
+  remoteTasksAsJSON = await getRemoteData("tasksRemote"); 
   renderTaskCards("todo", "todo");
   renderTaskCards("inProgress", "inProgress");
   renderTaskCards("awaitingFeedback", "awaitingFeedback");
@@ -11,7 +12,7 @@ function initBoard() {
 }
 
 function renderCategoryLabelColor(i) {
-  let categoryName = tasks[i]["category"].toLowerCase();
+  let categoryName = remoteTasksAsJSON[i]["category"].toLowerCase();
   let labelColor = categoryColor[0][categoryName];
   return labelColor;
 }
@@ -19,11 +20,11 @@ function renderCategoryLabelColor(i) {
 function renderTaskCards(container, status) {
   let cardIndex = 0;
   document.getElementById(container).innerHTML = "";
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < remoteTasksAsJSON.length; i++) {
     const taskContainer = document.getElementById(container);
-    const task = tasks[i];
+    const task = remoteTasksAsJSON[i];
     if (task["status"] === status) {
-      let cardID = tasks[i]["status"] + cardIndex;
+      let cardID = remoteTasksAsJSON[i]["status"] + cardIndex;
 
       taskContainer.innerHTML += taskCardHTML(i, cardID);
       renderAssignedTo(i, `assignedToContainerSmall${i}`);
@@ -33,7 +34,7 @@ function renderTaskCards(container, status) {
 }
 
 function renderTaskDescription(i) {
-  let description = tasks[i]["description"];
+  let description = remoteTasksAsJSON[i]["description"];
   return description;
 }
 
@@ -58,37 +59,39 @@ function editTaskCard(taskIndex) {
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
   openTaskIndex = taskIndex;
+
 }
 
 function fillEditFields(taskIndex) {
   let titleInputField = document.getElementById("addTaskTitle");
   let descriptionInputField = document.getElementById("addTaskDescription");
   let dueDateField = document.getElementById("date");
-  let prio = tasks[taskIndex]["priority"];
-  assignedToArray = tasks[taskIndex]["assignedTo"];
+  let prio = remoteTasksAsJSON[taskIndex]["priority"];
+  assignedToArray = remoteTasksAsJSON[taskIndex]["assignedTo"];
 
-  titleInputField.value = tasks[taskIndex]["title"];
-  descriptionInputField.value = tasks[taskIndex]["description"];
-  dueDateField.value = tasks[taskIndex]["dueDate"];
+  titleInputField.value = remoteTasksAsJSON[taskIndex]["title"];
+  descriptionInputField.value = remoteTasksAsJSON[taskIndex]["description"];
+  dueDateField.value = remoteTasksAsJSON[taskIndex]["dueDate"];
 
   setPrio(prio);
   pushToAssignedContact(assignedToArray);
   renderAssignedToEdit();
 }
 
-function saveChanges() {
+async function saveChanges() {
   let titleInputFieldValue = document.getElementById("addTaskTitle").value;
   let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
   let dueDateFieldValue = document.getElementById("date").value;
 
-  tasks[openTaskIndex].title = titleInputFieldValue;
-  tasks[openTaskIndex].description = descriptionInputFieldValue;
-  tasks[openTaskIndex].dueDate = dueDateFieldValue;
-  tasks[openTaskIndex].priority = priority;
-  tasks[openTaskIndex].assignedTo = assignedContacts;
+  remoteTasksAsJSON[openTaskIndex].title = titleInputFieldValue;
+  remoteTasksAsJSON[openTaskIndex].description = descriptionInputFieldValue;
+  remoteTasksAsJSON[openTaskIndex].dueDate = dueDateFieldValue;
+  remoteTasksAsJSON[openTaskIndex].priority = priority;
+  remoteTasksAsJSON[openTaskIndex].assignedTo = assignedContacts;
+  await setItem("tasksRemote", remoteTasksAsJSON);
+  await initBoard();
   openTaskCard(openTaskIndex, openTaskID);
   assignedContacts = [];
-  initBoard();
 }
 
 function pushToAssignedContact(assignedToArray) {
@@ -138,21 +141,22 @@ function renderCloseBtn() {
   }
 }
 
-function deleteCard(cardIndex, cardID) {
+async function deleteCard(cardIndex, cardID) {
   const card = document.getElementById(cardID);
   card.remove();
-  tasks.splice(cardIndex, 1);
+  remoteTasksAsJSON.splice(cardIndex, 1);
   clearContainers(["todo", "inProgress", "awaitingFeedback", "done"]);
-  /* updateRemoteStorage("tasksRemote", tasks, tasksAsJSON); */
+  setItem("tasksRemote", remoteTasksAsJSON);
+  remoteTasksAsJSON = await getRemoteData("tasksRemote");
   initBoard();
   closeLayer();
 }
 
-/* async function updateRemoteStorage(key, value, array){
-  setItem(key, value)
-  let res = await getItem(key)
-  array = res.JSON.parse(res.data.value.replace(/'/g, '"'))
-} */
+async function getRemoteData(key) {
+  let res = await getItem(key);
+  return JSON.parse(res.data.value.replace(/'/g, '"'));
+}
+
 
 function clearContainers(containerIds) {
   containerIds.forEach((containerId) => {
@@ -162,7 +166,7 @@ function clearContainers(containerIds) {
 }
 
 function renderUrgencyImg(i) {
-  const urgency = tasks[i]["priority"];
+  const urgency = remoteTasksAsJSON[i]["priority"];
   if (urgency == "urgent") {
     return "assets/icons/urgent.png";
   } else if (urgency == "medium") {
@@ -173,7 +177,7 @@ function renderUrgencyImg(i) {
 }
 
 function renderUrgencyLabel(i) {
-  const urgency = tasks[i]["priority"];
+  const urgency = remoteTasksAsJSON[i]["priority"];
   if (urgency == "urgent") {
     return "assets/icons/urgent-label.png";
   } else if (urgency == "medium") {
@@ -185,7 +189,7 @@ function renderUrgencyLabel(i) {
 
 function renderAssignedTo(taskID, containerClass) {
   const container = document.getElementById(containerClass);
-  const assignedToArray = tasks[taskID]["assignedTo"];
+  const assignedToArray = remoteTasksAsJSON[taskID]["assignedTo"];
 
   for (let i = 0; i < assignedToArray.length; i++) {
     const assignedTo = assignedToArray[i];
@@ -287,7 +291,7 @@ function startDragging(i) {
 }
 
 function moveTo(status) {
-  tasks[currentDraggedElement]["status"] = status;
+  remoteTasksAsJSON[currentDraggedElement]["status"] = status;
   initBoard();
   removeHighlight(status);
 }
@@ -307,7 +311,6 @@ function removeHighlight(id) {
   container.style.transition = "background-color 0.5s";
   container.style.backgroundColor = "#f6f7f8";
 }
-
 
 function highlightAll() {
   let statusContainers = document.querySelectorAll(".statusContainer");

@@ -4,10 +4,10 @@ function taskCardHTML(i, cardID) {
     <div class="categoryHeader">
       <div class="category-label"
         style="background-color: ${renderCategoryLabelColor(i)};">
-        ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
+        ${remoteTasksAsJSON[i]["category"][0].toUpperCase() + remoteTasksAsJSON[i]["category"].slice(1)}
       </div>
     </div>
-    <div class="task-title">${tasks[i]["title"]}</div>
+    <div class="task-title">${remoteTasksAsJSON[i]["title"]}</div>
     <div class="task-description">
       ${renderTaskDescription(i)}
     </div>
@@ -26,11 +26,11 @@ function openTaskCardHTML(i, cardID) {
       <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(
         i
       )};">
-        ${tasks[i]["category"][0].toUpperCase() + tasks[i]["category"].slice(1)}
+        ${remoteTasksAsJSON[i]["category"][0].toUpperCase() + remoteTasksAsJSON[i]["category"].slice(1)}
       </div>
-      <div class="task-title-big">${tasks[i]["title"]}</div>
+      <div class="task-title-big">${remoteTasksAsJSON[i]["title"]}</div>
       <div class="task-description-big">${renderTaskDescription(i)}</div>
-      <div class="due-date"><b>Due date:</b> ${tasks[i]["dueDate"]}</div>
+      <div class="due-date"><b>Due date:</b> ${remoteTasksAsJSON[i]["dueDate"]}</div>
       <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(
         i
       )}" /></div>

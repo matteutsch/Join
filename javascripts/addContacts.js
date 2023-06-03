@@ -123,7 +123,7 @@ function renderSelectContactHTML(i, j) {
   </div>`;
 }
 
-function addContact() {
+async function addContact() {
   //adding new contact to contacts Array
   let name = document.getElementById("newContactName");
   let email = document.getElementById("newContactEmail");
@@ -137,7 +137,7 @@ function addContact() {
     color: nameColor[randomNumber],
   };
   contacts.push(newContact);
-  setItem("contactsRemote", contacts);
+  await setItem("contactsRemote", contacts);
 
   name.value = "";
   email.value = "";
@@ -251,7 +251,7 @@ function saveContact(i, j) {
   closeEditContact();
 }
 
-function deleteContact(i, j) {
+async function deleteContact(i, j) {
   let editName = document.getElementById("editName");
   let editMail = document.getElementById("editMail");
   let editPhone = document.getElementById("editPhone");
@@ -262,7 +262,7 @@ function deleteContact(i, j) {
   contactsByLetter[letters[i]].splice(j, 1);
 
   remoteContactsAsJSON.splice(contactIndex, 1);
-  setItem("contactsRemote", remoteContactsAsJSON);
+  await setItem("contactsRemote", remoteContactsAsJSON);
 
   editName.value = "";
   editMail.value = "";

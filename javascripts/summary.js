@@ -1,11 +1,12 @@
 /**
  * Calls all functions for summary card
  */
-function startSummary() {
+async function startSummary() {
   includeHTML();
   greet();
   getDataForSummary();
   taskWithEarliestDuedate();
+  tasksAsJSON = await getRemoteData("tasksRemote"); 
 }
 
 /**
