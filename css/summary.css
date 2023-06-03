@@ -287,9 +287,6 @@ body {
 
 .iconToDo {
   width: 72px;
-  /* display: flex;
-    align-items: center;
-    justify-content: flex-end; */
   height: 119px;
   background-image: url("../assets/icons/pencil.png");
   background-size: 82%;
@@ -438,6 +435,12 @@ body {
 }
 
 @media (max-width: 975px) {
+
+  .tasksOverallContainer,
+  .dueDateContainer {
+    margin-bottom: 10px;
+  }
+
   .tasksContainer {
     width: 150px;
     height: 150px;
@@ -445,12 +448,13 @@ body {
 
   .greyVerticalLine {
     margin: 0 5%;
-    margin-top: 47px;
+    margin-top: 33px;
   }
 
   .deadline {
     width: 308px;
     margin-right: 0;
+    height: 150px;
   }
 
   .toDoContainer {
@@ -490,10 +494,6 @@ body {
 
   .headline {
     width: 300px;
-  }
-
-  .textHeadline {
-    width: 350px;
   }
 }
 
@@ -626,6 +626,11 @@ body {
     margin-left: 0;
   }
 
+  .tasksOverallContainer,
+  .dueDateContainer {
+    margin-bottom: 0;
+  }
+
   .leftTemplate {
     display: none;
   }
@@ -637,7 +642,7 @@ body {
 
   .summaryContainer {
     width: 245px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     padding-right: 192px;
   }
 
@@ -652,7 +657,7 @@ body {
     margin-left: 0;
     margin-right: 0;
     position: absolute;
-    top: 132px;
+    top: 126px;
     width: 85px;
   }
 
@@ -740,7 +745,6 @@ body {
 
   .dueDateContainer {
     height: 140px;
-    margin-bottom: 15px;
   }
 
   .doneContainer {
@@ -755,10 +759,6 @@ body {
     width: 50px;
     height: 50px;
   }
-
-  .tasksOverallContainer {
-    margin-bottom: 15px;
-  }
 }
 
 @media (max-width: 470px) {
@@ -767,7 +767,12 @@ body {
   }
 
   .tasksOverallContainer,
-  .toDoDoneCont {
+  .dueDateContainer {
+    margin-bottom: 0;
+  }
+
+  .tasksOverallContainer,
+  .toDoDoneContainer {
     gap: 10px;
   }
 
@@ -806,8 +811,6 @@ body {
   }
 
   .iconDone {
-    /*         width: 82px;
- */
     background-position: 100% 48%;
     background-size: 85%;
   }
@@ -822,8 +825,16 @@ body {
     margin-bottom: 20px;
   }
 
+  .headline {
+    margin: 15px;
+  }
+
+  .blueVerticalLine {
+    top: 98px;
+  }
+
   .tasksOverallContainer,
-  .toDoDoneCont {
+  .toDoDoneContainer {
     gap: 2px;
     margin-bottom: 0;
   }
@@ -834,7 +845,8 @@ body {
     padding-top: 12px;
   }
 
-  .dueDateContainer {
+  .dueDateContainer,
+  .toDoDonecontainer {
     margin-bottom: 0;
   }
 
@@ -872,6 +884,6 @@ body {
   .iconDone {
     height: 100px;
     background-position: 100% 48%;
-    background-size: 85%;
+    background-size: 98%;
   }
 }
