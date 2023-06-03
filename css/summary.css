@@ -36,6 +36,7 @@ body {
   position: relative;
 }
 
+
 /* ******************************************* */
 
 .summaryContainer {
@@ -68,6 +69,7 @@ body {
   font-size: 20px;
   white-space: nowrap;
 }
+
 
 /* ****************************************** */
 
@@ -110,6 +112,7 @@ body {
   font-weight: lighter;
   color: #2a3647;
 }
+
 
 /* ******************************************* */
 
@@ -232,6 +235,7 @@ body {
   font-weight: bold;
   color: #29abe2;
 }
+
 
 /* *********************************** */
 
@@ -361,6 +365,7 @@ body {
   color: #2a3647;
 }
 
+
 /* ***************************************************************** */
 
 @media (max-width: 1220px) {
@@ -423,6 +428,7 @@ body {
   }
 }
 
+
 /* ******************************************************** */
 
 @media (max-width: 1025px) {
@@ -464,6 +470,7 @@ body {
 }
 
 @media (max-width: 900px) {
+
   .summaryContainer,
   .tasksOverallContainer,
   .dueDateContainer,
@@ -491,6 +498,7 @@ body {
 }
 
 @media (max-width: 850px) {
+
   .summaryContainer,
   .tasksOverallContainer,
   .dueDateContainer,
@@ -500,6 +508,7 @@ body {
 }
 
 @media (max-width: 830px) {
+
   .summaryContainer,
   .tasksOverallContainer,
   .dueDateContainer,
@@ -557,6 +566,7 @@ body {
 }
 
 @media (max-width: 745px) {
+
   .summaryContainer,
   .tasksOverallContainer,
   .dueDateContainer,
@@ -579,6 +589,7 @@ body {
 }
 
 @media (max-width: 700px) {
+
   .tasksOverallContainer,
   .toDoDoneContainer {
     gap: 10px;
@@ -594,6 +605,7 @@ body {
 }
 
 @media (max-width: 700px) {
+
   .summaryContainer,
   .tasksOverallContainer,
   .dueDateContainer,
@@ -606,6 +618,7 @@ body {
   .overallContainer {
     padding-bottom: 80px;
   }
+
   .summaryContainer,
   .tasksOverallContainer,
   .dueDateContainer,
@@ -749,6 +762,61 @@ body {
 }
 
 @media (max-width: 470px) {
+  .summaryContainer {
+    width: 180px;
+  }
+
+  .tasksOverallContainer,
+  .toDoDoneCont {
+    gap: 10px;
+  }
+
+  .tasksContainer {
+    width: 120px;
+    height: 120px;
+  }
+
+  .toDoContainer,
+  .doneContainer {
+    height: 100px;
+  }
+
+  .deadline {
+    width: 245px;
+  }
+
+  .toDoContainer {
+    width: 175px;
+  }
+
+  .doneContainer {
+    width: 165px;
+  }
+
+  .greetingText {
+    font-size: 25px;
+  }
+
+  .greetingName {
+    font-size: 30px;
+  }
+
+  .iconToDo {
+    height: 97px;
+  }
+
+  .iconDone {
+    /*         width: 82px;
+ */
+    background-position: 100% 48%;
+    background-size: 85%;
+  }
+}
+
+
+/* ******************************************************************* */
+
+@media (max-width: 400px) {
   .summaryContainer {
     width: 180px;
   }
