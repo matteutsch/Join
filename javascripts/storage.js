@@ -72,11 +72,6 @@ let contacts = [{
     },
 ];
 
-let n = 1;
-let aktiveContact = contacts[n];
-
-let users = [] // noch in Bearbeitung
-
 let tasks = [{
         title: "Call potential clients",
         description: "Make the product presentation to prospective buyers",
@@ -171,7 +166,7 @@ function getInitials(name) {
 
 /* Token Generator: https://remote-storage.developerakademie.org/token-generator */
 
-let a, b, c;
+/* let a, b, c; */
 
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";

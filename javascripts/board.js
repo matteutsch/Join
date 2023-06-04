@@ -89,9 +89,9 @@ async function saveChanges() {
   remoteTasksAsJSON[openTaskIndex].priority = priority;
   remoteTasksAsJSON[openTaskIndex].assignedTo = assignedContacts;
   await setItem("tasksRemote", remoteTasksAsJSON);
-  await initBoard();
   openTaskCard(openTaskIndex, openTaskID);
   assignedContacts = [];
+  await initBoard();
 }
 
 function pushToAssignedContact(assignedToArray) {

@@ -189,13 +189,16 @@ function isContactSelected(chosenContacts, contact) {
 
 //-----------dropdown-contacts ------------------------//
 //-----------remove added contacts --------------------//
+/* let assignedContacts = []; */
+
 function removeContact(i) {
+  deleteFromAssignedContacts(i);
+
   chosenContacts.addEventListener("click", function (event) {
     if (event.target.classList.contains("chosenContactInitials")) {
       event.target.remove();
     }
   });
-  deleteFromAssignedContacts(i);
 }
 
 function deleteFromAssignedContacts(i) {
