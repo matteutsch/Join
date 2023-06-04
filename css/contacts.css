@@ -262,7 +262,7 @@ h3 {
 .addContact {
   display: flex;
   align-items: center;
-  height: 50vh;
+  height: 40vh;
   z-index: 999;
 }
 .addContactLeft {
@@ -302,7 +302,6 @@ h3 {
   justify-content: center;
   align-items: center;
   min-height: 81%;
-  margin-bottom: 56px;
 }
 
 .contactImage {
