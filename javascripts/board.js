@@ -4,7 +4,7 @@ let assignedToArray;
 let remoteTasksAsJSON;
 
 async function initBoard() {
-  remoteTasksAsJSON = await getRemoteData("tasksRemote"); 
+  remoteTasksAsJSON = await getRemoteData("tasksRemote");
   renderTaskCards("todo", "todo");
   renderTaskCards("inProgress", "inProgress");
   renderTaskCards("awaitingFeedback", "awaitingFeedback");
@@ -59,7 +59,6 @@ function editTaskCard(taskIndex) {
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
   openTaskIndex = taskIndex;
-
 }
 
 function fillEditFields(taskIndex) {
@@ -80,7 +79,8 @@ function fillEditFields(taskIndex) {
 
 async function saveChanges() {
   let titleInputFieldValue = document.getElementById("addTaskTitle").value;
-  let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
+  let descriptionInputFieldValue =
+    document.getElementById("addTaskDescription").value;
   let dueDateFieldValue = document.getElementById("date").value;
 
   remoteTasksAsJSON[openTaskIndex].title = titleInputFieldValue;
@@ -157,7 +157,6 @@ async function getRemoteData(key) {
   return JSON.parse(res.data.value.replace(/'/g, '"'));
 }
 
-
 function clearContainers(containerIds) {
   containerIds.forEach((containerId) => {
     const container = document.getElementById(containerId);
@@ -197,9 +196,17 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     } else {
-      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToCardHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     }
   }
 }
@@ -273,7 +280,9 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
+    const description = card
+      .querySelector(".task-description")
+      .innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {

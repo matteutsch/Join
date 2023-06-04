@@ -50,7 +50,8 @@ function addCategories() {
   //adding and rendering categories to dropdown menu
   for (let i = 0; i < categories.length; i++) {
     let category = categories[i];
-    category["name"] = category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
+    category["name"] =
+      category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
     document.getElementById("categoryDropdown").innerHTML += `
     <div onclick="selectOptionCategory(${i})" class="option">
         ${category["name"]}
@@ -68,13 +69,15 @@ function pushAssignedContact(i) {
   }
 }
 
-function createTask(status) {
+async function createTask(status) {
   // checking if most important inputs are being filled in and creating new Task
+
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
   let dueDate = document.getElementById("date");
 
-  if (selectedCategory == "" || assignedContacts == "" || priority == "") {
+  if (selectedCategory == "" || assignedContacts == "" || !priority) {
+    taskPopup(alert);
   } else {
     let newTask = {
       title: title.value,
@@ -87,9 +90,11 @@ function createTask(status) {
     };
 
     tasks.push(newTask);
-    setItem("tasks", tasks);
+    remoteTasksAsJSON = tasks;
+    await setItem("tasksRemote", remoteTasksAsJSON);
+
     resetValues();
-    taskAdded();
+    taskPopup();
   }
   if (window.location.pathname.includes("board.html")) {
     initBoard();
@@ -175,7 +180,9 @@ function selectOptionContacts(i) {
 //
 function isContactSelected(chosenContacts, contact) {
   // checking if contact is in chosenContacts
-  let contactElements = chosenContacts.getElementsByClassName("chosenContactInitials");
+  let contactElements = chosenContacts.getElementsByClassName(
+    "chosenContactInitials"
+  );
 
   for (let i = 0; i < contactElements.length; i++) {
     let initials = contactElements[i].textContent.trim();
@@ -209,10 +216,18 @@ function deleteFromAssignedContacts(i) {
 //-----------remove added contacts --------------------//
 
 //-------------task successfully added----------------//
-function taskAdded() {
+function taskPopup(change) {
   let success = document.getElementById("taskAdded");
+  if (change == alert) {
+    document.getElementById(
+      "taskAdded"
+    ).innerHTML = `Please fill missing informations`;
+  } else {
+    document.getElementById(
+      "taskAdded"
+    ).innerHTML = `Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />`;
+  }
   success.style.display = "block";
-
   setTimeout(function () {
     success.style.display = "none";
   }, 2000);
