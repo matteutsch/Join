@@ -5,13 +5,28 @@
     @name initLoginPage
     */
 function initLoginPage() {
-  fadeInAnimation();
-  changeLogoColor();
+    fadeInAnimation();
+    changeLogoColor();
 }
 
-async function initGuestJOIN(){
-  setItem("tasksRemote", tasks);
-  tasksAsJSON = await getRemoteData("tasksRemote"); 
+async function checkPassword() {
+    let enteredLoginEmail = document.getElementById('enteredLoginEmail');
+    let enteredLoginPassword = document.getElementById('enteredLoginPassword');
+
+    let res = await getItem("usersRemote");
+    remoteUserssAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
+    /* console.log(remoteUserssAsJSON); */
+
+    for (let i = 0; i < remoteUserssAsJSON.length; i++) {
+        const obj = remoteUserssAsJSON[i];
+        if (obj.email === enteredLoginEmail.value && obj.password === enteredLoginPassword.value) {
+            window.location.href = "summary.html";
+            break;
+        } else {
+            window.location.href = "index.html";
+            console.log('email and password do not match');
+        }
+    }
 }
 
 /**
@@ -21,16 +36,16 @@ async function initGuestJOIN(){
     @name fadeInAnimation
     */
 function fadeInAnimation() {
-  const animationLayer = document.querySelector(".animation-layer");
-  const logo = document.querySelector(".logo-big");
-  setTimeout(() => {
-    document.querySelector(".login-container").style.opacity = "1";
-    document.querySelector(".sign-up-container").style.opacity = "1";
-  }, 1900);
-  setTimeout(function () {
-    animationLayer.style.display = "none";
-    logo.src = "assets/icons/logo-black.png";
-  }, 1000);
+    const animationLayer = document.querySelector(".animation-layer");
+    const logo = document.querySelector(".logo-big");
+    setTimeout(() => {
+        document.querySelector(".login-container").style.opacity = "1";
+        document.querySelector(".sign-up-container").style.opacity = "1";
+    }, 1900);
+    setTimeout(function() {
+        animationLayer.style.display = "none";
+        logo.src = "assets/icons/logo-black.png";
+    }, 1500);
 }
 
 /**
@@ -40,14 +55,14 @@ function fadeInAnimation() {
     @name changeLogoColor
     */
 function changeLogoColor() {
-  if (window.innerWidth < 800) {
-    const logo = document.querySelector(".logo-big");
-    logo.src = "assets/icons/logo-white-blue.png";
-    document.querySelector(".animation-layer").style.backgroundColor =
-      "#2A3647";
-  } else {
-    document.querySelector(".animation-layer").style.backgroundColor = "white";
-  }
+    if (window.innerWidth < 800) {
+        const logo = document.querySelector(".logo-big");
+        logo.src = "assets/icons/logo-white-blue.png";
+        document.querySelector(".animation-layer").style.backgroundColor =
+            "#2A3647";
+    } else {
+        document.querySelector(".animation-layer").style.backgroundColor = "white";
+    }
 }
 
 /**
@@ -57,25 +72,25 @@ function changeLogoColor() {
  * @name changeArrowColor
  */
 function changeArrowColor() {
-  const arrow = document.getElementById("blueArrowLeft");
+    const arrow = document.getElementById("blueArrowLeft");
 
-  if (window.innerWidth < 800) {
-    arrow.src = "assets/icons/arrow-left-black.png";
-  } else {
-    arrow.src = "assets/icons/arrow-left.png";
-  }
+    if (window.innerWidth < 800) {
+        arrow.src = "assets/icons/arrow-left-black.png";
+    } else {
+        arrow.src = "assets/icons/arrow-left.png";
+    }
 }
 
 if (window.location.href.includes("sign_up.html")) {
-  window.addEventListener("resize", changeArrowColor);
+    window.addEventListener("resize", changeArrowColor);
 }
 
 function showLogout() {
-  document.getElementById("logout").classList.toggle("d-none");
-  document.getElementById("logoutLayer").classList.remove("d-none");
+    document.getElementById("logout").classList.toggle("d-none");
+    document.getElementById("logoutLayer").classList.remove("d-none");
 }
 
 function hideLogout() {
-  document.getElementById("logout").classList.add("d-none");
-  document.getElementById("logoutLayer").classList.add("d-none");
+    document.getElementById("logout").classList.add("d-none");
+    document.getElementById("logoutLayer").classList.add("d-none");
 }

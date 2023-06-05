@@ -184,11 +184,11 @@ function createEditHTML(i, j) {
     <div class="blueLine"></div>
   </div>
   
-  <div class="addContactRight">
+  <div class="addContactRight editContactRight">
     <div onclick="closeEditContact()" class="x-mark">
       x
     </div>
-    <form onsubmit="event.preventDefault(), saveContact(${i}, ${j}), contactPopup('edit') ">
+    <form class="editForm" onsubmit="event.preventDefault(), saveContact(${i}, ${j}), contactPopup('edit') ">
     <div class="createContactContainer">
       <div id="editImage">
         <img class="contactImage" src="assets/icons/add_contact.png" />

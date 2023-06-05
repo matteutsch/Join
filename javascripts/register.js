@@ -1,33 +1,29 @@
-let users = []; 
+let remoteUserssAsJSON;
+let newUser;
 
-async function initRegister(){
-    loadUsers();
-}
+async function register() {
+    /* registerBtn.disabled = true; */
 
-async function loadUsers(){
-    try {
-        users = JSON.parse(await getItem('users'))
-    } catch (error) {
-        console.info('Could not load users')
-    }
+    let res = await getItem("usersRemote");
+    remoteUserssAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
 
-}
+    let signupName = document.getElementById("signupName");
+    let signupEmail = document.getElementById("signupEmail");
+    let signupPassword = document.getElementById("signupPassword");
+    newUser = {
+        'name': signupName.value,
+        'email': signupEmail.value,
+        'password': signupPassword.value
+    };
 
-async function register(){
-    registerBtn.disabled = true;
-    users.push({
-        nameInput: nameInput.value,
-        email: signupEmail.value,
-        password: signupPassword.value,
-    })
+    remoteUserssAsJSON.push(newUser);
+    await setItem('usersRemote', remoteUserssAsJSON)
 
-    await setItem('users', JSON.stringify(users))
-    resetForm();
-}
-
-function resetForm(){
-    nameInput.value = '';
+    signupName.value = '';
     signupEmail.value = '';
     signupPassword.value = '';
-    registerBtn.disabled = false;
+
+    window.location.href = "index.html";
+
+    /* registerBtn.disabled = false; */
 }

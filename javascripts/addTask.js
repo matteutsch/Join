@@ -200,7 +200,6 @@ function isContactSelected(chosenContacts, contact) {
 
 function removeContact(i) {
   deleteFromAssignedContacts(i);
-
   chosenContacts.addEventListener("click", function (event) {
     if (event.target.classList.contains("chosenContactInitials")) {
       event.target.remove();
@@ -209,8 +208,8 @@ function removeContact(i) {
 }
 
 function deleteFromAssignedContacts(i) {
-  let contact = contacts[i];
-  let index = assignedContacts.indexOf(contact);
+  let contactName = contacts[i]["name"];
+  let index = assignedContacts.findIndex(obj => obj.name === contactName);
   if (index > -1) {
     assignedContacts.splice(index, 1);
   }

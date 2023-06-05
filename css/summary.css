@@ -541,15 +541,18 @@ body {
   .tasksContainer {
     width: 140px;
     height: 140px;
+    padding-top: 7px;
   }
 
   .urgentContainer {
     margin: 0;
+    height: 135px;
   }
 
   .deadline {
     margin: 0;
     width: 276px;
+    height: 135px;
   }
 
   .sumToDoContainer {
