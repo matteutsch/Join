@@ -9,9 +9,29 @@ function initLoginPage() {
   changeLogoColor();
 }
 
-async function initGuestJOIN(){
+async function initGuestJOIN() {
   await setItem("tasksRemote", tasks);
-  tasksAsJSON = await getRemoteData("tasksRemote"); 
+  tasksAsJSON = await getRemoteData("tasksRemote");
+}
+
+async function checkPassword() {
+  let enteredLoginEmail = document.getElementById("enteredLoginEmail");
+  let enteredLoginPassword = document.getElementById("enteredLoginPassword");
+
+  let res = await getItem("usersRemote");
+  remoteUserssAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
+  /* console.log(remoteUserssAsJSON); */
+
+  for (let i = 0; i < remoteUserssAsJSON.length; i++) {
+    const obj = remoteUserssAsJSON[i];
+    if (obj.email === enteredLoginEmail.value && obj.password === enteredLoginPassword.value) {
+      window.location.href = "summary.html";
+      break;
+    } else {
+      window.location.href = "index.html";
+      console.log("email and password do not match");
+    }
+  }
 }
 
 /**
@@ -30,7 +50,7 @@ function fadeInAnimation() {
   setTimeout(function () {
     animationLayer.style.display = "none";
     logo.src = "assets/icons/logo-black.png";
-  }, 1000);
+  }, 1500);
 }
 
 /**
@@ -43,8 +63,7 @@ function changeLogoColor() {
   if (window.innerWidth < 800) {
     const logo = document.querySelector(".logo-big");
     logo.src = "assets/icons/logo-white-blue.png";
-    document.querySelector(".animation-layer").style.backgroundColor =
-      "#2A3647";
+    document.querySelector(".animation-layer").style.backgroundColor = "#2A3647";
   } else {
     document.querySelector(".animation-layer").style.backgroundColor = "white";
   }

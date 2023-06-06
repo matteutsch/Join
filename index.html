@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="assets/icons/logo-black.png"
-      sizes="any"
-    />
+    <link rel="icon" type="image/png" href="assets/icons/logo-black.png" sizes="any" />
 
     <title>Join</title>
 
@@ -19,55 +15,40 @@
     <script src="javascripts/register.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/login_signup.css" />
-  </head>
+</head>
 
-  <body onload="initLoginPage()">
+<body onload="initLoginPage()">
     <div class="login-container">
-      <div class="login-form">
-        <form onsubmit="">
-          <div>
-            <h1>Log in</h1>
-            <div class="underline"></div>
-            <div class="input-container">
-              <input
-                type="email"
-                aria-required="true"
-                name="email"
-                placeholder="Email"
-                id="email"
-                class="email"
-                required="required"
-              />
-              <input
-                type="password"
-                aria-required="true"
-                name="password"
-                placeholder="Password"
-                id="password"
-                class="password"
-                required="required"
-              />
-            </div>
-            <div class="form-actions">
-              <div class="remember-me">
-                <input class="remember-checkbox" type="checkbox"/>
-                <p>Remember me</p>
-              </div>
-              <a class="forgot-password" href="forgotPassword.html">Forgot my password</a>
-            </div>
-            <div class="button-container-login">
-              <button class="login-button">Log in</button>
-              <button class="guest-login-button" onclick="window.location.href='summary.html'; initGuestJOIN();">Guest Log in</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        <div class="login-form">
+            <form onsubmit="checkPassword(); return false;">
+                <div>
+                    <h1>Log in</h1>
+                    <div class="underline"></div>
+                    <div class="input-container">
+                        <input id="enteredLoginEmail" type="email" aria-required="true" name="email" placeholder="Email" class="email" required="required" />
+                        <input id="enteredLoginPassword" type="password" aria-required="true" name="password" placeholder="Password" class="password" required="required" />
+                    </div>
+                    <div class="form-actions">
+                        <div class="remember-me">
+                            <input class="remember-checkbox" type="checkbox" />
+                            <p>Remember me</p>
+                        </div>
+                        <a class="forgot-password" href="forgotPassword.html">Forgot my password</a>
+                    </div>
+                    <div class="button-container-login">
+                        <button class="login-button">Log in</button>
+                        <button class="guest-login-button" onclick="window.location.href='summary.html'; initGuestJOIN();">Guest Log in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="animation-layer"></div>
-    <img src="assets/icons/logo-black.png" class="logo-big"/>
+    <img src="assets/icons/logo-black.png" class="logo-big" />
     <div class="sign-up-container">
-      <p>Not a Join user?</p>
-      <button class="sign-up-button" onclick="window.location.href='sign_up.html'">Sign up</button>
+        <p>Not a Join user?</p>
+        <button class="sign-up-button" onclick="window.location.href='sign_up.html'">Sign up</button>
     </div>
-  </body>
+</body>
+
 </html>
