@@ -11,8 +11,25 @@ function initLoginPage() {
 
 async function checkPassword() {
     let enteredLoginEmail = document.getElementById('enteredLoginEmail');
+    enteredLoginEmail = enteredLoginEmail.value;
+    console.log('Entered Login-Mail: ', enteredLoginEmail);
     let enteredLoginPassword = document.getElementById('enteredLoginPassword');
+    enteredLoginPassword = enteredLoginPassword.value;
+    console.log('Entered Login-Password: ', enteredLoginPassword);
 
+    // Store current Login-User in local storage 
+    let res2 = await getItem("contactsRemote");
+    remoteContactsAsJSON = await JSON.parse(res2.data.value.replace(/'/g, '"'));
+    console.log('Remote Contacts: ', remoteContactsAsJSON);
+
+    let currentUser = remoteContactsAsJSON.filter((user) => user.email === enteredLoginEmail);
+    console.log('Current User: ', currentUser);
+
+    let currentUserName = currentUser.name;
+    console.log('Current User-Name: ', currentUserName)
+    setItem('currentUserName', JSON.stringify(currentUserName));
+
+    // Check for matching passwords
     let res = await getItem("usersRemote");
     remoteUserssAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
     /* console.log(remoteUserssAsJSON); */
@@ -20,17 +37,16 @@ async function checkPassword() {
     for (let i = 0; i < remoteUserssAsJSON.length; i++) {
         const obj = remoteUserssAsJSON[i];
         if (obj.email === enteredLoginEmail.value && obj.password === enteredLoginPassword.value) {
-            window.location.href = "summary.html";
+            /* window.location.href = "summary.html"; */
             break;
         } else {
-            window.location.href = "index.html";
+            /* window.location.href = "index.html"; */
             console.log('email and password do not match');
         }
     }
 }
 
 /**
-
     Executes the fade-in animation on the login and sign-up containers, and changes the logo image after a timeout.
     @function
     @name fadeInAnimation
