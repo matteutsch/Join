@@ -3,62 +3,62 @@ let contactsByLetter = [];
 let remoteContactsAsJSON;
 
 async function initContactList() {
-    //get all the firstletters of contacts and push them into seperate array;
-    //creating seperate array of contacts sorted by first letters
+  //get all the firstletters of contacts and push them into seperate array;
+  //creating seperate array of contacts sorted by first letters
 
-    let res = await getItem("contactsRemote");
-    remoteContactsAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
+  let res = await getItem("contactsRemote");
+  remoteContactsAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
 
-    letters = [];
-    contactsByLetter = [];
-    document.getElementById("contactList").innerHTML = "";
-    for (let i = 0; i < remoteContactsAsJSON.length; i++) {
-        const contact = remoteContactsAsJSON[i];
-        let name = contact.name;
-        let firstLetter = name.charAt(0);
-        if (!letters.includes(firstLetter)) {
-            letters.push(firstLetter);
-        }
-        if (!contactsByLetter[firstLetter]) {
-            contactsByLetter[firstLetter] = [];
-        }
-        contactsByLetter[firstLetter].push(contact);
+  letters = [];
+  contactsByLetter = [];
+  document.getElementById("contactList").innerHTML = "";
+  for (let i = 0; i < remoteContactsAsJSON.length; i++) {
+    const contact = remoteContactsAsJSON[i];
+    let name = contact.name;
+    let firstLetter = name.charAt(0);
+    if (!letters.includes(firstLetter)) {
+      letters.push(firstLetter);
     }
+    if (!contactsByLetter[firstLetter]) {
+      contactsByLetter[firstLetter] = [];
+    }
+    contactsByLetter[firstLetter].push(contact);
+  }
 
-    renderContactList();
+  renderContactList();
 }
 
 function renderContactList() {
-    //iterating through letters array to create letters as headline
-    //iterating through contactsByLetter[Letter] to render those below the matching firstLetter
+  //iterating through letters array to create letters as headline
+  //iterating through contactsByLetter[Letter] to render those below the matching firstLetter
 
-    for (let i = 0; i < letters.length; i++) {
-        let letter = letters[i];
-        let contactsWithLetter = contactsByLetter[letter];
-        document.getElementById(
-            "contactList"
-        ).innerHTML += `<div id="${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
+  for (let i = 0; i < letters.length; i++) {
+    let letter = letters[i];
+    let contactsWithLetter = contactsByLetter[letter];
+    document.getElementById(
+      "contactList"
+    ).innerHTML += `<div id="${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
 
-        for (let j = 0; j < contactsWithLetter.length; j++) {
-            let contact = contactsWithLetter[j];
-            let name = contact.name;
-            let initials = getInitials(name);
-            let email = contact.email;
-            let color = contact.color;
-            document.getElementById(`${letter}`).innerHTML += addContactsHTML(
-                i,
-                j,
-                color,
-                initials,
-                name,
-                email
-            );
-        }
+    for (let j = 0; j < contactsWithLetter.length; j++) {
+      let contact = contactsWithLetter[j];
+      let name = contact.name;
+      let initials = getInitials(name);
+      let email = contact.email;
+      let color = contact.color;
+      document.getElementById(`${letter}`).innerHTML += addContactsHTML(
+        i,
+        j,
+        color,
+        initials,
+        name,
+        email
+      );
     }
+  }
 }
 
 function addContactsHTML(i, j, color, initials, name, email) {
-    return `
+  return `
     <div id='singleContact${i}-${j}' class="singleContact" onclick="selectContact(${i},${j})">
       <div style="background-color:${color}" class="singleContactInitials"> ${initials}</div>
       <div class="singleContactName">
@@ -70,30 +70,30 @@ function addContactsHTML(i, j, color, initials, name, email) {
 }
 
 function selectContact(i, j) {
-    //select a contact to display further information in container next to it
-    let elem = document.querySelectorAll(".singleContact");
-    for (let k = 0; k < elem.length; k++) {
-        elem[k].classList.remove("selectedContact");
-    }
-    document
-        .getElementById(`singleContact${i}-${j}`)
-        .classList.add("selectedContact");
+  //select a contact to display further information in container next to it
+  let elem = document.querySelectorAll(".singleContact");
+  for (let k = 0; k < elem.length; k++) {
+    elem[k].classList.remove("selectedContact");
+  }
+  document
+    .getElementById(`singleContact${i}-${j}`)
+    .classList.add("selectedContact");
 
-    changeMobileView();
-    document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(
-        i,
-        j
-    );
+  changeMobileView();
+  document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(
+    i,
+    j
+  );
 }
 
 function renderSelectContactHTML(i, j) {
-    let contact = contactsByLetter[letters[i]][j];
-    let name = contact.name;
-    let email = contact.email;
-    let phone = contact.phone;
-    let initials = getInitials(name);
+  let contact = contactsByLetter[letters[i]][j];
+  let name = contact.name;
+  let email = contact.email;
+  let phone = contact.phone;
+  let initials = getInitials(name);
 
-    return `
+  return `
   <img id="arrowBack" onclick="exitContact()" class="arrowBack hideArrow" src="../assets/icons/arrow-left-black.png">
   <div class="contact-name">
     <div id="emptyInitial">
@@ -124,59 +124,59 @@ function renderSelectContactHTML(i, j) {
 }
 
 async function addContact() {
-    //adding new contact to contacts Array
-    let name = document.getElementById("newContactName");
-    let email = document.getElementById("newContactEmail");
-    let phone = document.getElementById("newContactPhone");
-    let randomNumber = Math.floor(Math.random() * nameColor.length);
+  //adding new contact to contacts Array
+  let name = document.getElementById("newContactName");
+  let email = document.getElementById("newContactEmail");
+  let phone = document.getElementById("newContactPhone");
+  let randomNumber = Math.floor(Math.random() * nameColor.length);
 
-    let newContact = {
-        name: name.value.charAt(0).toUpperCase() + name.value.slice(1),
-        email: email.value,
-        phone: phone.value,
-        color: nameColor[randomNumber],
-    };
-    contacts.push(newContact);
-    await setItem("contactsRemote", contacts);
+  let newContact = {
+    name: name.value.charAt(0).toUpperCase() + name.value.slice(1),
+    email: email.value,
+    phone: phone.value,
+    color: nameColor[randomNumber],
+  };
+  remoteContactsAsJSON.push(newContact);
+  await setItem("contactsRemote", remoteContactsAsJSON);
 
-    name.value = "";
-    email.value = "";
-    phone.value = "";
-    contactPopup("new");
-    closeNewContact();
-    initContactList();
+  name.value = "";
+  email.value = "";
+  phone.value = "";
+  contactPopup("new");
+  closeNewContact();
+  initContactList();
 }
 
 function openNewContact() {
-    document.getElementById(`addContactsOverlay`).classList.remove("d-none");
+  document.getElementById(`addContactsOverlay`).classList.remove("d-none");
 }
 
 function closeNewContact() {
-    document.getElementById(`addContactsOverlay`).classList.add("d-none");
+  document.getElementById(`addContactsOverlay`).classList.add("d-none");
 }
 
 function openEditContact(i, j) {
-    document.getElementById(`editContactsOverlay`).classList.remove("d-none");
-    document.getElementById("editContactsOverlay").innerHTML = createEditHTML(
-        i,
-        j
-    );
-    let editName = document.getElementById("editName");
-    let editMail = document.getElementById("editMail");
-    let editPhone = document.getElementById("editPhone");
-    let contact = contactsByLetter[letters[i]][j];
-    let initials = getInitials(contact.name);
-    editName.value = contact.name;
-    editMail.value = contact.email;
-    editPhone.value = contact.phone;
-    document.getElementById("editImage").innerHTML = `
+  document.getElementById(`editContactsOverlay`).classList.remove("d-none");
+  document.getElementById("editContactsOverlay").innerHTML = createEditHTML(
+    i,
+    j
+  );
+  let editName = document.getElementById("editName");
+  let editMail = document.getElementById("editMail");
+  let editPhone = document.getElementById("editPhone");
+  let contact = contactsByLetter[letters[i]][j];
+  let initials = getInitials(contact.name);
+  editName.value = contact.name;
+  editMail.value = contact.email;
+  editPhone.value = contact.phone;
+  document.getElementById("editImage").innerHTML = `
   <div style="background-color:${contact.color}" class="contactImage editInitials">
   ${initials}
 </div>`;
 }
 
 function createEditHTML(i, j) {
-    return /*html*/ ` <div class="addContact">
+  return /*html*/ ` <div class="addContact">
   <div class="addContactLeft">
     <img src="assets/icons/logo-white-blue.png" />
     <h1>Edit contact</h1>
@@ -229,76 +229,77 @@ function createEditHTML(i, j) {
 }
 
 function closeEditContact() {
-    document.getElementById(`editContactsOverlay`).classList.add("d-none");
+  document.getElementById(`editContactsOverlay`).classList.add("d-none");
 }
 
 function saveContact(i, j) {
-    let editName = document.getElementById("editName").value;
-    let editMail = document.getElementById("editMail").value;
-    let editPhone = document.getElementById("editPhone").value;
-    let contact = contactsByLetter[letters[i]][j];
-    contact.name = editName;
-    contact.email = editMail;
-    contact.phone = editPhone;
+  let editName = document.getElementById("editName").value;
+  let editMail = document.getElementById("editMail").value;
+  let editPhone = document.getElementById("editPhone").value;
+  let contact = contactsByLetter[letters[i]][j];
+  contact.name = editName;
+  contact.email = editMail;
+  contact.phone = editPhone;
 
-    if (window.innerWidth <= 670) {
-        document.getElementById("emptyInitial").innerHTML = "";
-        document.getElementById("emptyName").innerHTML = "";
-        document.getElementById("emptyEmail").innerHTML = "";
-        document.getElementById("emptyPhone").innerHTML = "";
-    }
-    initContactList();
-    closeEditContact();
+  if (window.innerWidth <= 670) {
+    document.getElementById("emptyInitial").innerHTML = "";
+    document.getElementById("emptyName").innerHTML = "";
+    document.getElementById("emptyEmail").innerHTML = "";
+    document.getElementById("emptyPhone").innerHTML = "";
+  }
+  initContactList();
+  closeEditContact();
 }
 
 async function deleteContact(i, j) {
-    let editName = document.getElementById("editName");
-    let editMail = document.getElementById("editMail");
-    let editPhone = document.getElementById("editPhone");
+  let editName = document.getElementById("editName");
+  let editMail = document.getElementById("editMail");
+  let editPhone = document.getElementById("editPhone");
 
-    let contact = contactsByLetter[letters[i]][j];
-    let contactIndex = remoteContactsAsJSON.indexOf(contact);
+  let contact = contactsByLetter[letters[i]][j];
+  let contactIndex = remoteContactsAsJSON.indexOf(contact);
 
-    contactsByLetter[letters[i]].splice(j, 1);
+  contactsByLetter[letters[i]].splice(j, 1);
 
-    remoteContactsAsJSON.splice(contactIndex, 1);
-    await setItem("contactsRemote", remoteContactsAsJSON);
+  remoteContactsAsJSON.splice(contactIndex, 1);
+  await setItem("contactsRemote", remoteContactsAsJSON);
 
-    editName.value = "";
-    editMail.value = "";
-    editPhone.value = "";
-    document.getElementById("contactsMid").innerHTML = "";
+  editName.value = "";
+  editMail.value = "";
+  editPhone.value = "";
+  document.getElementById("contactsMid").innerHTML = "";
 
-    initContactList();
+  initContactList();
+  closeEditContact();
 }
 
 function changeMobileView() {
-    document.getElementById("newContactBtn").classList.add("hideMobile");
-    document.getElementById("contactsRight").classList.add("contactInfoMobile");
-    document.getElementById("contactList").classList.add("hideMobile");
+  document.getElementById("newContactBtn").classList.add("hideMobile");
+  document.getElementById("contactsRight").classList.add("contactInfoMobile");
+  document.getElementById("contactList").classList.add("hideMobile");
 }
 
 function exitContact() {
-    document
-        .getElementById("contactsRight")
-        .classList.remove("contactInfoMobile");
-    document.getElementById("contactList").classList.remove("hideMobile");
-    document.getElementById("newContactBtn").classList.remove("hideMobile");
-    document.getElementById("arrowBack").classList.add("hideMobile");
+  document
+    .getElementById("contactsRight")
+    .classList.remove("contactInfoMobile");
+  document.getElementById("contactList").classList.remove("hideMobile");
+  document.getElementById("newContactBtn").classList.remove("hideMobile");
+  document.getElementById("arrowBack").classList.add("hideMobile");
 }
 
 //----------------contact successfully created/edited ---------------//
 function contactPopup(change) {
-    let success = document.getElementById("changedContact");
+  let success = document.getElementById("changedContact");
 
-    success.style.display = "block";
-    if (change == "new") {
-        success.innerHTML = "Contact successfully created";
-    } else {
-        success.innerHTML = "Contact successfully edited";
-    }
-    setTimeout(function() {
-        success.style.display = "none";
-    }, 2000);
+  success.style.display = "block";
+  if (change == "new") {
+    success.innerHTML = "Contact successfully created";
+  } else {
+    success.innerHTML = "Contact successfully edited";
+  }
+  setTimeout(function () {
+    success.style.display = "none";
+  }, 2000);
 }
 //----------------contact successfully created/edited ---------------//
