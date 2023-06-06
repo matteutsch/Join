@@ -299,8 +299,10 @@ function startDragging(i) {
   currentDraggedElement = i;
 }
 
-function moveTo(status) {
+async function moveTo(status) {
   remoteTasksAsJSON[currentDraggedElement]["status"] = status;
+  await setItem("tasksRemote", remoteTasksAsJSON)
+  remoteTasksAsJSON = await getRemoteData("tasksRemote");
   initBoard();
   removeHighlight(status);
 }
