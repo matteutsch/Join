@@ -10,7 +10,7 @@ function initLoginPage() {
 }
 
 async function initGuestJOIN(){
-  setItem("tasksRemote", tasks);
+  await setItem("tasksRemote", tasks);
   tasksAsJSON = await getRemoteData("tasksRemote"); 
 }
 
