@@ -1,5 +1,6 @@
+/* let currentUserName = 'Dear dear Guest';
+ */
 /**
-
     Initializes the login page by executing fadeInAnimation and changeLogoColor functions.
     @function
     @name initLoginPage
@@ -10,65 +11,14 @@ function initLoginPage() {
 }
 
 async function initGuestJOIN() {
+    await setItem('currentUserName', { 'name': 'Hallo hallo Guest' });
+
     await setItem("tasksRemote", tasks);
-    tasksAsJSON = await getRemoteData("tasksRemote");
-}
+    /* tasksAsJSON = await getRemoteData("tasksRemote"); */
 
-async function checkPassword() {
-    let enteredLoginEmail = document.getElementById('enteredLoginEmail');
-    enteredLoginEmail = enteredLoginEmail.value;
-    console.log('Entered Login-Mail: ', enteredLoginEmail);
-    let enteredLoginPassword = document.getElementById('enteredLoginPassword');
-    enteredLoginPassword = enteredLoginPassword.value;
-    console.log('Entered Login-Password: ', enteredLoginPassword);
+    window.location.href = "summary.html";
 
-    // Store current Login-User in local storage 
-    let res2 = await getItem("contactsRemote");
-    remoteContactsAsJSON = await JSON.parse(res2.data.value.replace(/'/g, '"'));
-    console.log('Remote Contacts: ', remoteContactsAsJSON);
-
-    let currentUser = remoteContactsAsJSON.filter((user) => user.email === enteredLoginEmail);
-    console.log('Current User: ', currentUser);
-
-    let currentUserName = currentUser.name;
-    console.log('Current User-Name: ', currentUserName)
-    setItem('currentUserName', JSON.stringify(currentUserName));
-
-    // Check for matching passwords
-    let res = await getItem("usersRemote");
-    remoteUserssAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
-    /* console.log(remoteUserssAsJSON); */
-
-    for (let i = 0; i < remoteUserssAsJSON.length; i++) {
-        const obj = remoteUserssAsJSON[i];
-        if (obj.email === enteredLoginEmail.value && obj.password === enteredLoginPassword.value) {
-            /* window.location.href = "summary.html"; */
-            break;
-        } else {
-            /* window.location.href = "index.html"; */
-            console.log('email and password do not match');
-        }
-
-        let enteredLoginEmail = document.getElementById("enteredLoginEmail");
-        let enteredLoginPassword = document.getElementById("enteredLoginPassword");
-
-        let res = await getItem("usersRemote");
-        remoteUserssAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
-        /* console.log(remoteUserssAsJSON); */
-
-        for (let i = 0; i < remoteUserssAsJSON.length; i++) {
-            const obj = remoteUserssAsJSON[i];
-            if (obj.email === enteredLoginEmail.value && obj.password === enteredLoginPassword.value) {
-                window.location.href = "summary.html";
-                break;
-            } else {
-                window.location.href = "index.html";
-                console.log("email and password do not match");
-            }
-        }
-    }
-}
-
+};
 
 
 /**
@@ -134,3 +84,48 @@ function hideLogout() {
     document.getElementById("logout").classList.add("d-none");
     document.getElementById("logoutLayer").classList.add("d-none");
 }
+
+async function checkPassword() {
+    /* let enteredLoginEmail = document.getElementById('enteredLoginEmail');
+    let enteredLoginEmailValue = enteredLoginEmail.value; */
+
+    let enteredLoginPassword = document.getElementById('enteredLoginPassword');
+    let enteredLoginPasswordValue = enteredLoginPassword.value;
+
+    let enteredLoginEmail = document.getElementById('enteredLoginEmail');
+    let enteredLoginEmailValue = enteredLoginEmail.value;
+
+    let res = await getItem("usersRemote");
+    remoteUsersAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
+    console.log('remoteUsersAsJSON: ', remoteUsersAsJSON)
+
+    // Store current Login-User 
+    console.log('start');
+    /* console.log('enteredLoginEmailValue: ', enteredLoginEmailValue); */
+
+    let currentUser = remoteUsersAsJSON.filter(user => user.email == enteredLoginEmailValue);
+    console.log('Current User: ', currentUser);
+    console.log('Name curr U: ', currentUser[0].name)
+    if (currentUser.length == 0) {
+        console.log('keine Übereinstimmung gefunden');
+        /* window.location.href = "index.html"; */
+    } else {
+        console.log('geklappt');
+        await setItem("currentUserName", { 'name': currentUser[0].name });
+        window.location.href = "summary.html";
+    }
+
+    // Checks for matching passwords
+    for (let i = 0; i < remoteUsersAsJSON.length; i++) {
+        const obj = remoteUsersAsJSON[i];
+        if (obj.email === enteredLoginEmailValue && obj.password === enteredLoginPasswordValue) {
+            /* window.location.href = "summary.html"; */
+            break;
+        } else {
+            /* window.location.href = "index.html"; */
+            console.log('email and password do not match');
+        }
+    }
+}
+
+/* obj.email === enteredLoginEmailValue && obj.password === enteredLoginPasswordValue */

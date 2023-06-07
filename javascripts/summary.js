@@ -12,7 +12,7 @@ async function startSummary() {
 /**
  * Changes greeting according to the time of day
  */
-function greet() {
+async function greet() {
     let date = new Date();
     let hours = date.getHours();
     let timeOfDay;
@@ -27,24 +27,26 @@ function greet() {
     let element = document.getElementById("greeting");
     let property = window.getComputedStyle(element).getPropertyValue("display");
 
+    currentUserNameAsString = await getItem('currentUserName');
+    currentUserNameObject = await JSON.parse((currentUserNameAsString.data.value).replace(/'/g, '"'));
+    currentUserName = currentUserNameObject.name;
+
     if (property !== "none") {
         document.getElementById("greetingText").innerHTML = timeOfDay;
-        document.getElementById("greetingName").innerHTML = 'Noch anpassen' /* aktiveContact.name; */
+        document.getElementById("greetingName").innerHTML = currentUserName;
     } else {
         document.getElementById("greetingText2").innerHTML = timeOfDay;
-        document.getElementById("greetingName2").innerHTML = 'Noch anpassen' /* aktiveContact.name; */
+        document.getElementById("greetingName2").innerHTML = currentUserName;
     }
 }
 
 /**
  * Sumes up tasks per category and urgency per priority
  */
-
 async function getDataForSummary() {
 
     let res = await getItem("tasksRemote");
     remoteTasksAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
-    console.log(remoteTasksAsJSON);
 
     document.getElementById("tasksInBoard").innerHTML = remoteTasksAsJSON.length;
 
@@ -73,7 +75,6 @@ async function getDataForSummary() {
 async function taskWithEarliestDuedate() {
     let res = await getItem("tasksRemote");
     remoteTasksAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
-    console.log(remoteTasksAsJSON);
 
     let earliestDate = ['2021-06-04'];
     for (let i = 0; i < remoteTasksAsJSON.length; i++) {
@@ -97,18 +98,6 @@ function jumpToBoard() {
     window.location.href = "board.html";
 }
 
-/* returns the whole contact */
-/* function returnAssignedContact(i) {
-      for (let j = 0; j < assignedContacts.length; j++) {
-            if (contacts[i][name] === assignedContacts[j][name]) {
-              return assignedContacts[j]
-              }   
-      }
-  } */
-
-/**
- * Shows and removes both overlay container and greeting container
- */
 // Waits until document in loaded
 document.addEventListener("DOMContentLoaded", function() {
     var overlay = document.querySelector(".overlay");

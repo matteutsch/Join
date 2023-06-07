@@ -166,12 +166,10 @@ function getInitials(name) {
 
 /* Token Generator: https://remote-storage.developerakademie.org/token-generator */
 
-/* let a, b, c; */
-
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-async function setItem(key, value) { // ("contacts", contacts) or ("tasks", tasks)  or ("activeContact", activeContact)
+async function setItem(key, value) { // ("contacts", contacts) or ("tasks", tasks)  or ("currentUserName", nameAsObject)
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
         .then(res => res.json()); // response converted to JSON 
