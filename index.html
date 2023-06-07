@@ -9,10 +9,7 @@
 
     <title>Join</title>
 
-    <script src="javascripts/includeHTML.js"></script>
-    <script src="javascripts/index.js"></script>
-    <script src="javascripts/storage.js"></script>
-    <script src="javascripts/register.js"></script>
+
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/login_signup.css" />
 </head>
@@ -20,7 +17,8 @@
 <body onload="initLoginPage()">
     <div class="login-container">
         <div class="login-form">
-            <form onsubmit="checkPassword(); return false;">
+            <form onsubmit="return false;">
+                <!-- onsubmit="checkPassword(); return false;"> -->
                 <div>
                     <h1>Log in</h1>
                     <div class="underline"></div>
@@ -36,8 +34,8 @@
                         <a class="forgot-password" href="forgotPassword.html">Forgot my password</a>
                     </div>
                     <div class="button-container-login">
-                        <button class="login-button">Log in</button>
-                        <button class="guest-login-button" onclick="window.location.href='summary.html'; initGuestJOIN();">Guest Log in</button>
+                        <button class="login-button" onclick="checkPassword()">Log in</button>
+                        <button class="guest-login-button" onclick="initGuestJOIN()">Guest Log in</button>
                     </div>
                 </div>
             </form>
@@ -49,6 +47,12 @@
         <p>Not a Join user?</p>
         <button class="sign-up-button" onclick="window.location.href='sign_up.html'">Sign up</button>
     </div>
+
+    <script src="javascripts/storage.js"></script>
+    <script src="javascripts/includeHTML.js"></script>
+    <script src="javascripts/register.js"></script>
+    <script src="javascripts/index.js"></script>
+
 </body>
 
 </html>

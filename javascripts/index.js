@@ -11,7 +11,7 @@ function initLoginPage() {
 }
 
 async function initGuestJOIN() {
-    await setItem('currentUserName', { 'name': 'Hallo hallo Guest' });
+    await setItem('currentUserName', { 'name': 'Dear Guest' });
 
     await setItem("tasksRemote", tasks);
     /* tasksAsJSON = await getRemoteData("tasksRemote"); */
@@ -97,35 +97,33 @@ async function checkPassword() {
 
     let res = await getItem("usersRemote");
     remoteUsersAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
-    console.log('remoteUsersAsJSON: ', remoteUsersAsJSON)
-
-    // Store current Login-User 
-    console.log('start');
+    /*     console.log('remoteUsersAsJSON: ', remoteUsersAsJSON)
+     */
+    // Stores current Login-User-Name after checking wether the entered Login-Mail is in Remote-user-array 
+    /*  console.log('start'); */
     /* console.log('enteredLoginEmailValue: ', enteredLoginEmailValue); */
 
     let currentUser = remoteUsersAsJSON.filter(user => user.email == enteredLoginEmailValue);
-    console.log('Current User: ', currentUser);
-    console.log('Name curr U: ', currentUser[0].name)
+    /* console.log('Current User: ', currentUser);
+    console.log('Name curr U: ', currentUser[0].name) */
     if (currentUser.length == 0) {
-        console.log('keine Übereinstimmung gefunden');
-        /* window.location.href = "index.html"; */
+        /* console.log('keine Übereinstimmung gefunden'); */
+        window.location.href = "index.html";
     } else {
-        console.log('geklappt');
+        /* console.log('geklappt'); */
         await setItem("currentUserName", { 'name': currentUser[0].name });
-        window.location.href = "summary.html";
+        /* window.location.href = "summary.html"; */
     }
 
-    // Checks for matching passwords
+    // Checks wether entered Login-Mail and Password are in Remote-user-array
     for (let i = 0; i < remoteUsersAsJSON.length; i++) {
         const obj = remoteUsersAsJSON[i];
         if (obj.email === enteredLoginEmailValue && obj.password === enteredLoginPasswordValue) {
-            /* window.location.href = "summary.html"; */
+            window.location.href = "summary.html";
             break;
         } else {
-            /* window.location.href = "index.html"; */
+            window.location.href = "index.html";
             console.log('email and password do not match');
         }
     }
 }
-
-/* obj.email === enteredLoginEmailValue && obj.password === enteredLoginPasswordValue */
