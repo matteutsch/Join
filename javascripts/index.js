@@ -94,13 +94,17 @@ async function checkPassword() {
   let res = await getItem("usersRemote");
   remoteUsersAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
 
+  // Stores current Login-User-Name after checking wether the entered Login-Mail is in Remote-user-array
+
   let currentUser = remoteUsersAsJSON.filter(
     (user) => user.email == enteredLoginEmailValue
   );
+
   if (currentUser.length == 0) {
   } else {
     await setItem("currentUserName", { name: currentUser[0].name });
   }
+
   // Checks wether entered Login-Mail and Password are in Remote-user-array
   for (let i = 0; i < remoteUsersAsJSON.length; i++) {
     const obj = remoteUsersAsJSON[i];
@@ -110,10 +114,6 @@ async function checkPassword() {
     ) {
       window.location.href = "summary.html";
       break;
-    } else {
-      enteredLoginPasswordValue = "";
-      enteredLoginEmailValue = "";
-      console.log("email and password do not match");
     }
   }
 }
