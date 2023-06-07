@@ -14,7 +14,6 @@ async function initGuestJOIN() {
   await setItem("currentUserName", { name: "Dear Guest" });
 
   await setItem("tasksRemote", tasks);
-  /* tasksAsJSON = await getRemoteData("tasksRemote"); */
 
   window.location.href = "summary.html";
 }
