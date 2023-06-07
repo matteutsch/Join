@@ -169,7 +169,7 @@ function getInitials(name) {
 const STORAGE_TOKEN = "HT0S0N13Y0K6B2YIWFIVXQ2L8P2T85JJ2LNGCLH0";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-async function setItem(key, value) { // ("contacts", contacts) or ("tasks", tasks)  or ("currentUserName", nameAsObject)
+async function setItem(key, value) { // ("contactsRemote", contacts) or ("tasksRemote", tasks)  or ("currentUserName", nameAsObject)
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: "POST", body: JSON.stringify(payload) })
         .then(res => res.json()); // response converted to JSON 
@@ -191,4 +191,11 @@ or
 b.splice(2,1)
 
 setItem("tasks", b)
+
+
+Set back all Remote-Storages to default arrays in storage.js:
+await setItem('contactsRemote', contacts);
+await setItem('tasksRemote', tasks);
+await setItem('usersRemote', contacts);
+await setItem('currentUserName', { 'name': 'Dear Guest' };
 */
