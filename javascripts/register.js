@@ -23,7 +23,7 @@ async function register() {
     signupEmail.value = '';
     signupPassword.value = '';
 
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 
     /* registerBtn.disabled = false; */
 }

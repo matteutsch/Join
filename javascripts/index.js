@@ -24,15 +24,10 @@ async function initGuestJOIN() {
     @name fadeInAnimation
     */
 function fadeInAnimation() {
-    const animationLayer = document.querySelector(".animation-layer");
     const logo = document.querySelector(".logo-big");
-    setTimeout(() => {
-        document.querySelector(".login-container").style.opacity = "1";
-        document.querySelector(".sign-up-container").style.opacity = "1";
-    }, 1900);
     setTimeout(function() {
-        animationLayer.style.display = "none";
         logo.src = "assets/icons/logo-black.png";
+        window.location.href = "login.html"
     }, 1500);
 }
 
