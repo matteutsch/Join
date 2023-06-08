@@ -43,6 +43,10 @@ body {
         margin-left: 170px;
         margin-right: 50px;
     }
+
+    .content {
+        margin-bottom: 120px;
+    }
 }
 
 @media(max-width: 670px) {
