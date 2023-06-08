@@ -213,7 +213,7 @@ function createEditHTML(i, j) {
           id="editPhone"
           class="addContactInput contactPhone"
           placeholder="Phone"
-          type="tel" 
+          type="number" 
         />
       </div>
     </div>
@@ -232,7 +232,7 @@ function closeEditContact() {
   document.getElementById(`editContactsOverlay`).classList.add("d-none");
 }
 
-function saveContact(i, j) {
+async function saveContact(i, j) {
   let editName = document.getElementById("editName").value;
   let editMail = document.getElementById("editMail").value;
   let editPhone = document.getElementById("editPhone").value;
@@ -241,12 +241,16 @@ function saveContact(i, j) {
   contact.email = editMail;
   contact.phone = editPhone;
 
-  if (window.innerWidth <= 670) {
-    document.getElementById("emptyInitial").innerHTML = "";
-    document.getElementById("emptyName").innerHTML = "";
-    document.getElementById("emptyEmail").innerHTML = "";
-    document.getElementById("emptyPhone").innerHTML = "";
-  }
+  remoteContactsAsJSON.name = contact.name;
+  remoteContactsAsJSON.email = contact.email;
+  remoteContactsAsJSON.phone = contact.phone;
+  await setItem("contactsRemote", remoteContactsAsJSON);
+
+  document.getElementById("emptyInitial").innerHTML = "";
+  document.getElementById("emptyName").innerHTML = "";
+  document.getElementById("emptyEmail").innerHTML = "";
+  document.getElementById("emptyPhone").innerHTML = "";
+
   initContactList();
   closeEditContact();
 }
