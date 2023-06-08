@@ -11,6 +11,12 @@ h3 {
   display: none !important;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .contacts-content {
   box-sizing: border-box;
   margin-left: 232px;
