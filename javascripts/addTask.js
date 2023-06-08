@@ -209,7 +209,7 @@ function removeContact(i) {
 
 function deleteFromAssignedContacts(i) {
   let contactName = contacts[i]["name"];
-  let index = assignedContacts.findIndex(obj => obj.name === contactName);
+  let index = assignedContacts.findIndex((obj) => obj.name === contactName);
   if (index > -1) {
     assignedContacts.splice(index, 1);
   }
@@ -235,3 +235,22 @@ function taskPopup(change) {
   }, 2000);
 }
 //-------------task successfully added----------------//
+
+//-------------setting min date to today----------------//
+function setMinDate() {
+  let date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let minMonth = `0${month}`;
+  let day = date.getDate();
+  let minDay = `0${day}`;
+  let today = document.getElementById("date");
+  if (month < 10) {
+    month = minMonth;
+  }
+  if (day < 10) {
+    day = minDay;
+  }
+  today.min = `${year}-${month}-${day}`;
+}
+//-------------setting min date to today----------------//
