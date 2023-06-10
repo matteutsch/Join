@@ -1,15 +1,24 @@
 function taskCardHTML(i, cardID) {
-  return `
+  return /* html */ `
   <div draggable="true" ondragstart="startDragging(${i})"  class="task-card" id="${cardID}" onclick="openTaskCard(${i}, '${cardID}')">
     <div class="categoryHeader">
       <div class="category-label"
         style="background-color: ${renderCategoryLabelColor(i)};">
-        ${remoteTasksAsJSON[i]["category"][0].toUpperCase() + remoteTasksAsJSON[i]["category"].slice(1)}
+        ${
+          remoteTasksAsJSON[i]["category"][0].toUpperCase() +
+          remoteTasksAsJSON[i]["category"].slice(1)
+        }
       </div>
     </div>
     <div class="task-title">${remoteTasksAsJSON[i]["title"]}</div>
     <div class="task-description">
       ${renderTaskDescription(i)}
+    </div>
+    <div class="subtask-container">
+      <div class="subtask-bar">
+        <div class="progress" style="width:20%"></div>
+      </div>
+      <p class="progress-text">2/2 Done</p>
     </div>
     <div class="task-bottom">
       <div class="assignedToContainerSmall" id="assignedToContainerSmall${i}"></div>
@@ -23,17 +32,16 @@ function taskCardHTML(i, cardID) {
 function openTaskCardHTML(i, cardID) {
   return /* html */ `
     <div class="task-card-big" id="${cardID}">
-      <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(
-        i
-      )};">
-        ${remoteTasksAsJSON[i]["category"][0].toUpperCase() + remoteTasksAsJSON[i]["category"].slice(1)}
+      <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(i)};">
+        ${
+          remoteTasksAsJSON[i]["category"][0].toUpperCase() +
+          remoteTasksAsJSON[i]["category"].slice(1)
+        }
       </div>
       <div class="task-title-big">${remoteTasksAsJSON[i]["title"]}</div>
       <div class="task-description-big">${renderTaskDescription(i)}</div>
       <div class="due-date"><b>Due date:</b> ${remoteTasksAsJSON[i]["dueDate"]}</div>
-      <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(
-        i
-      )}" /></div>
+      <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(i)}" /></div>
       <p><b>Assigned To:</b></p>
       <div id="assignedTo-container"></div>
       <div class="open-task-buttons">
@@ -137,7 +145,7 @@ function assignedToCardHTML(contactColor, initials) {
 }
 
 function slideInHTML(status) {
-  return `
+  return /* html */ `
       <div id="slideInContainer" class="task-form">
         <div class="task-head">
           <h1>Add Task</h1>
@@ -207,6 +215,7 @@ function slideInHTML(status) {
                 class="input pointer"
                 type="date"
                 value="dd/mm/yyyy"
+                onclick='setMinDate()'
               />
             </div>
             <div>
@@ -235,23 +244,29 @@ function slideInHTML(status) {
                 </div>
               </div>
             </div>
-            <!-- <div>
+            <div>
               <p>Subtasks</p>
-              <input
-                id="addTaskSubtask"
-                class="input"
-                type="text"
-                placeholder="Add new subtask"
-              />
-              <div class="new-subtask">
-                <input type="checkbox" />
-                <p>Subtask 1</p>
+              <div class="subtask-input-container">
+                <input
+                  id="addTaskSubtask"
+                  class="input"
+                  type="text"
+                  placeholder="Add new subtask"
+                />
+                <div id="subtask-buttons">
+                  <img style="cursor: pointer" src="assets/icons/clear-subtask.png" onclick="emptySubtaskValue()">
+                  <div class="seperator"></div>
+                  <img style="cursor: pointer" src="assets/icons/checkmark-black.png" onclick="createNewSubtask()">
+                </div>
               </div>
-            </div> -->
+              <div id="subtaskContainer">
+                
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="button-container-form">
+        <div class="button-container-form-board">
           <button type="button" onclick="resetValues()" class="clear-btn pointer">
             Clear &nbsp; x
           </button>
@@ -267,5 +282,14 @@ function slideInHTML(status) {
         Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
       </div>
       </div>
+  `;
+}
+
+function subtaskHTML(inputFieldValue) {
+  return /* html */ `
+  <div id="subtask">
+    <input type="checkbox" />
+    <p>${inputFieldValue}</p>
+  </div>
   `;
 }

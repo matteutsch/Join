@@ -266,6 +266,7 @@ function slideInContainer(status) {
   }, 100);
   addContactNamesToAssignedTo();
   addCategories();
+  addSubtaskEventListener();
 }
 
 document.addEventListener("input", function (event) {

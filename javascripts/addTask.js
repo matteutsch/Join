@@ -50,8 +50,7 @@ function addCategories() {
   //adding and rendering categories to dropdown menu
   for (let i = 0; i < categories.length; i++) {
     let category = categories[i];
-    category["name"] =
-      category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
+    category["name"] = category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
     document.getElementById("categoryDropdown").innerHTML += `
     <div onclick="selectOptionCategory(${i})" class="option">
         ${category["name"]}
@@ -180,9 +179,7 @@ function selectOptionContacts(i) {
 //
 function isContactSelected(chosenContacts, contact) {
   // checking if contact is in chosenContacts
-  let contactElements = chosenContacts.getElementsByClassName(
-    "chosenContactInitials"
-  );
+  let contactElements = chosenContacts.getElementsByClassName("chosenContactInitials");
 
   for (let i = 0; i < contactElements.length; i++) {
     let initials = contactElements[i].textContent.trim();
@@ -221,9 +218,7 @@ function deleteFromAssignedContacts(i) {
 function taskPopup(change) {
   let success = document.getElementById("taskAdded");
   if (change == alert) {
-    document.getElementById(
-      "taskAdded"
-    ).innerHTML = `Please fill missing informations`;
+    document.getElementById("taskAdded").innerHTML = `Please fill missing informations`;
   } else {
     document.getElementById(
       "taskAdded"
@@ -254,3 +249,35 @@ function setMinDate() {
   today.min = `${year}-${month}-${day}`;
 }
 //-------------setting min date to today----------------//
+
+//-------------subtask----------------//
+
+function addSubtaskEventListener() {
+  const inputField = document.getElementById("addTaskSubtask");
+  const container = document.getElementById("subtask-buttons");
+
+  inputField.addEventListener("focus", () => {
+    container.style.display = "flex";
+  });
+
+  inputField.addEventListener("blur", () => {
+    setTimeout(() => {
+      container.style.display = "none";
+    }, 100)
+  });
+}
+
+function createNewSubtask(){
+  let inputField = document.getElementById('addTaskSubtask');
+  let subtaskContainer = document.getElementById('subtaskContainer')
+
+  if (inputField.value) {
+    subtaskContainer.innerHTML += subtaskHTML(inputField.value);
+    inputField.value = '';
+  }
+}
+
+function emptySubtaskValue(){
+  let inputField = document.getElementById('addTaskSubtask');
+  inputField.value = '';
+}

@@ -11,6 +11,7 @@
   color: white;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2) !important;
 }
+
 .low {
   background-color: var(--low) !important;
   color: white;
@@ -21,6 +22,7 @@
   font-size: 20px;
   color: #cdcdcd;
 }
+
 .pointer {
   cursor: pointer;
 }
@@ -34,15 +36,18 @@
   height: 88vh;
   padding: 32px 120px 48px 120px;
 }
+
 .content-container p {
   margin: 0;
   padding-bottom: 8px;
   padding-top: 8px;
 }
+
 .content-container h1 {
   margin: 0;
   font-size: 30px;
 }
+
 .task-section {
   display: flex;
   justify-content: center;
@@ -50,6 +55,7 @@
   font-size: 18px;
   height: 100%;
 }
+
 /*leftSide*/
 .content-left {
   border-right: 1px solid #d1d1d1;
@@ -57,6 +63,7 @@
   padding-right: 60px;
   padding-bottom: 32px;
 }
+
 #addTaskTitle {
   box-sizing: border-box;
   width: 100%;
@@ -66,6 +73,7 @@
   border: 1px solid var(--grey);
   font-size: 18px;
 }
+
 .content-left textarea {
   box-sizing: border-box;
   width: 100%;
@@ -77,6 +85,7 @@
   font-family: "inter";
   font-size: 18px;
 }
+
 form {
   margin-top: 10%;
 }
@@ -88,6 +97,35 @@ form {
   padding-left: 60px;
   box-sizing: border-box;
 }
+
+.subtask-input-container {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+#subtask-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 12px;
+  top: 3px;
+  gap: 4px;
+  display: none;
+}
+
+#subtask-buttons:focus{
+  outline: none;
+}
+
+.seperator {
+  width: 0px;
+  height: 31px;
+  border: 1px solid #D1D1D1;
+}
+
 
 .input {
   box-sizing: border-box;
@@ -104,6 +142,16 @@ form {
 input[type="checkbox"] {
   margin-right: 16px;
 }
+
+#addTaskSubtask{
+  margin-bottom: 6px;
+}
+
+#subtaskContainer{
+  max-height: 180px;
+  overflow-y: scroll;
+}
+
 
 .prio-section {
   display: flex;
@@ -122,6 +170,7 @@ input[type="checkbox"] {
   border-radius: 10px;
   background-color: #ffffff;
 }
+
 .prio-btn:hover {
   transform: scale(1.05);
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.2);
@@ -131,13 +180,21 @@ input[type="checkbox"] {
   margin-left: 10px;
   width: 16px;
 }
+
 .new-subtask {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
+
 .new-subtask img {
   margin-right: 20px;
+}
+
+#subtask{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /*buttonsBelow*/
@@ -150,6 +207,7 @@ input[type="checkbox"] {
   align-items: center;
   box-sizing: border-box;
 }
+
 .btn-container-form {
   bottom: 80px !important;
   right: 80px !important;
@@ -163,11 +221,13 @@ input[type="checkbox"] {
   color: white;
   border: 2px solid transparent;
 }
+
 .create-btn:hover {
   transform: scale(1.02);
   background-color: var(--light-blue);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .clear-btn {
   font-size: 21px;
   border-radius: 10px;
@@ -177,6 +237,7 @@ input[type="checkbox"] {
   color: var(--blue);
   margin-right: 24px;
 }
+
 .clear-btn:hover {
   transform: scale(1.02);
   border: 2px solid var(--light-blue);
@@ -207,9 +268,11 @@ input[type="checkbox"] {
   0% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -245,11 +308,13 @@ input[type="checkbox"] {
   padding: 24px 56px 56px 56px;
   border-radius: 30px;
 }
+
 .task-form p {
   padding-bottom: 12px;
   padding-top: 12px;
   margin: 0;
 }
+
 .task-form h1 {
   margin: 0;
 }
@@ -259,6 +324,7 @@ input[type="checkbox"] {
   justify-content: space-between;
   align-items: center;
 }
+
 .task-head img {
   width: 18px;
   height: 18px;
@@ -267,6 +333,15 @@ input[type="checkbox"] {
 .button-container-form {
   position: relative;
   bottom: 24px;
+  right: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.button-container-form-board {
+  position: relative;
   right: 0px;
   display: flex;
   justify-content: flex-end;
@@ -293,11 +368,13 @@ input[type="checkbox"] {
   background-position-x: 95%;
   gap: 8px;
 }
+
 .content {
   font-size: 18px;
   border-radius: 8px;
   white-space: nowrap;
 }
+
 .option {
   padding: 8px;
   display: flex;
@@ -306,6 +383,7 @@ input[type="checkbox"] {
   gap: 8px;
   white-space: nowrap;
 }
+
 .option:hover {
   background-color: var(--grey);
 }
@@ -334,6 +412,7 @@ input[type="checkbox"] {
   border-radius: 0 0 8px 8px;
   border-top: none;
 }
+
 .category-circle {
   width: 16px;
   height: 16px;
@@ -354,20 +433,24 @@ input[type="checkbox"] {
   max-height: 96px;
   overflow-y: scroll;
 }
+
 #selectContactDropdown.expanded {
   margin-top: 0;
   border: 1px solid var(--grey);
   border-radius: 0 0 8px 8px;
   border-top: none;
 }
+
 .expand-container {
   overflow: hidden;
   border-radius: 0 0 8px 8px;
   background-color: white;
 }
+
 .contactCheckbox {
   margin: 0 !important;
 }
+
 .chosenContacts {
   background-color: #f6f7f8;
   display: flex;
@@ -375,9 +458,11 @@ input[type="checkbox"] {
   align-items: center;
   margin-top: 16px;
 }
+
 .chosenContactsForm {
   background-color: white !important;
 }
+
 .chosenContactInitials {
   border-radius: 50%;
   min-width: 32px;
@@ -389,6 +474,7 @@ input[type="checkbox"] {
   font-size: 12px;
   margin-right: 4px;
 }
+
 .chosenContactInitials:hover {
   cursor: pointer;
   transform: scale(1.05);
@@ -398,6 +484,7 @@ input[type="checkbox"] {
   .prio-btn {
     padding: 8px;
   }
+
   .content-container {
     padding-left: 56px;
     padding-right: 56px;
@@ -409,47 +496,60 @@ input[type="checkbox"] {
     padding-left: 24px;
     padding-right: 24px;
   }
+
   .content-left {
     padding-right: 24px;
   }
+
   .content-right {
     padding-left: 24px;
   }
+
   .prio-btn {
     font-size: 14px;
   }
+
   .prio-btn img {
     width: 14px;
   }
 }
+
 @media (max-width: 850px) {
   .button-container-form {
     bottom: 56px;
   }
+
   .content-container {
     margin-left: 200px;
     padding: 32px 11px 48px 11px;
   }
+
   .content-left {
     padding-right: 11px;
     padding-bottom: 24px;
   }
+
   .content-right {
     padding-left: 11px;
   }
+
   .prio-btn {
     padding: 8px 4px 8px 4px;
   }
+
   .prio-section {
     gap: 4px;
   }
+
   .prio-section img {
     width: 12px;
   }
+
   .task-section {
     margin-top: 0px;
     margin-bottom: 32px;
   }
+
   .selectContainer {
     overflow: hidden;
   }
@@ -460,6 +560,7 @@ input[type="checkbox"] {
     margin-left: 0px;
     padding-bottom: 80px;
   }
+
   .button-container {
     bottom: 104px;
     right: 16px;
@@ -468,6 +569,7 @@ input[type="checkbox"] {
   .taskAdded {
     left: 27vw;
   }
+
   form {
     margin-top: 2%;
   }
@@ -479,30 +581,36 @@ input[type="checkbox"] {
     justify-content: flex-start;
     align-items: center;
   }
+
   .content-container {
     justify-content: flex-start;
     padding: 32px 24px 104px 24px;
     height: fit-content;
   }
+
   .content-left {
     width: 100%;
     padding-right: 0;
     padding-bottom: 16px;
     border-right: none;
   }
+
   .content-right {
     width: 100%;
     padding-left: 0;
   }
+
   .button-container {
     position: relative;
     bottom: -48px;
     right: 0;
   }
+
   .prio-btn {
     padding: 8px 8px 8px 8px;
     font-size: 18px;
   }
+
   .prio-section img {
     width: 16px;
   }
@@ -511,16 +619,20 @@ input[type="checkbox"] {
   .clear-btn {
     font-size: 18px;
   }
+
   .create-btn img {
     width: 16px;
   }
+
   .taskAdded {
     left: 15vw;
   }
+
   .form-section-mobile {
     margin-bottom: 16px !important;
   }
 }
+
 @media (max-width: 380px) {
   .taskAdded {
     left: 10vw;
