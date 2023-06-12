@@ -279,6 +279,7 @@ function createNewSubtask(){
   }
 }
 
+
 function pushSubtasks() {
   let subtasks = document.querySelectorAll('.subtask p');
   let subtaskArray = [];
