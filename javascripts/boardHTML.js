@@ -1,3 +1,5 @@
+let subtaskCount = 0; 
+
 function taskCardHTML(i, cardID) {
   return /* html */ `
   <div draggable="true" ondragstart="startDragging(${i})"  class="task-card" id="${cardID}" onclick="openTaskCard(${i}, '${cardID}')">
@@ -151,145 +153,146 @@ function slideInHTML(status) {
           <h1>Add Task</h1>
           <img class="pointer" src="assets/icons/clear.png" onclick="closeSlideInBtn()" />
         </div>
-        <form onsubmit="event.preventDefault(); createTask('${status}')">
-        <div class="task-section form-section-mobile">
-          <div class="content-left">
-            <div>
-              <p>Title</p>
-              <input required id="addTaskTitle" placeholder="Enter a title" />
-            </div>
-            <div>
-              <p>Description</p>
-              <textarea required
-                id="addTaskDescription"
-                placeholder="Enter a Description"
-                style="resize: none"
-              ></textarea>
-            </div>
-            <div>
-              <p>Category</p>
-              <div class="content">
-                <div
-                  onclick="openDropdownCategory()"
-                  id="addTaskCategory"
-                  class="selectContainer"
-                >
-                  Select task Category
-                </div>
-                <div class="expand-container">
-                  <div id="categoryDropdown">
-                    <div onclick="selectOptionCategory()" class="option">
-                      New Category
+        <form onsubmit="event.preventDefault(); createTask('${status}'); pushSubtasks()">
+          <div class="task-section form-section-mobile">
+            <div class="content-left">
+              <div>
+                <p>Title</p>
+                <input required id="addTaskTitle" placeholder="Enter a title" />
+              </div>
+              <div>
+                <p>Description</p>
+                <textarea required
+                  id="addTaskDescription"
+                  placeholder="Enter a Description"
+                  style="resize: none"
+                ></textarea>
+              </div>
+              <div>
+                <p>Category</p>
+                <div class="content">
+                  <div
+                    onclick="openDropdownCategory()"
+                    id="addTaskCategory"
+                    class="selectContainer"
+                  >
+                    Select task Category
+                  </div>
+                  <div class="expand-container">
+                    <div id="categoryDropdown">
+                      <div onclick="selectOptionCategory()" class="option">
+                        New Category
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <p>Assigned to</p>
-              <div class="content">
-                <div
-                  onclick="openDropdownContacts()"
-                  id="selectContact"
-                  class="selectContainer"
-                >
-                  Select contacts to assign
+              <div>
+                <p>Assigned to</p>
+                <div class="content">
+                  <div
+                    onclick="openDropdownContacts()"
+                    id="selectContact"
+                    class="selectContainer"
+                  >
+                    Select contacts to assign
+                  </div>
+                  <div class="expand-container">
+                    <div id="selectContactDropdown"></div>
+                  </div>
+                  <div
+                    id="chosenContacts"
+                    class="chosenContacts chosenContactsForm"
+                  ></div>
                 </div>
-                <div class="expand-container">
-                  <div id="selectContactDropdown"></div>
-                </div>
-                <div
-                  id="chosenContacts"
-                  class="chosenContacts chosenContactsForm"
-                ></div>
               </div>
             </div>
-          </div>
 
-          <div class="content-right mobile-form-right">
-            <div>
-              <p>Due date</p>
-              <input
-                required
-                id="date"
-                class="input pointer"
-                type="date"
-                value="dd/mm/yyyy"
-                onclick='setMinDate()'
-              />
-            </div>
-            <div>
-              <p>Prio</p>
-              <div class="prio-section">
-                <div
-                  id="urgentTask"
-                  onclick="setPrio('urgent')"
-                  class="prio-btn pointer"
-                >
-                  Urgent <img id="urgentIcon" src="assets/icons/urgent.png" />
-                </div>
-                <div
-                  id="mediumTask"
-                  onclick="setPrio('medium')"
-                  class="prio-btn pointer"
-                >
-                  Medium <img id="mediumIcon" src="assets/icons/medium.png" />
-                </div>
-                <div
-                  id="lowTask"
-                  onclick="setPrio('low')"
-                  class="prio-btn pointer"
-                >
-                  Low <img id="lowIcon" src="assets/icons/low.png" />
-                </div>
-              </div>
-            </div>
-            <div>
-              <p>Subtasks</p>
-              <div class="subtask-input-container">
+            <div class="content-right mobile-form-right">
+              <div>
+                <p>Due date</p>
                 <input
-                  id="addTaskSubtask"
-                  class="input"
-                  type="text"
-                  placeholder="Add new subtask"
+                  required
+                  id="date"
+                  class="input pointer"
+                  type="date"
+                  value="dd/mm/yyyy"
+                  onclick='setMinDate()'
                 />
-                <div id="subtask-buttons">
-                  <img style="cursor: pointer" src="assets/icons/clear-subtask.png" onclick="emptySubtaskValue()">
-                  <div class="seperator"></div>
-                  <img style="cursor: pointer" src="assets/icons/checkmark-black.png" onclick="createNewSubtask()">
+              </div>
+              <div>
+                <p>Prio</p>
+                <div class="prio-section">
+                  <div
+                    id="urgentTask"
+                    onclick="setPrio('urgent')"
+                    class="prio-btn pointer"
+                  >
+                    Urgent <img id="urgentIcon" src="assets/icons/urgent.png" />
+                  </div>
+                  <div
+                    id="mediumTask"
+                    onclick="setPrio('medium')"
+                    class="prio-btn pointer"
+                  >
+                    Medium <img id="mediumIcon" src="assets/icons/medium.png" />
+                  </div>
+                  <div
+                    id="lowTask"
+                    onclick="setPrio('low')"
+                    class="prio-btn pointer"
+                  >
+                    Low <img id="lowIcon" src="assets/icons/low.png" />
+                  </div>
                 </div>
               </div>
-              <div id="subtaskContainer">
-                
+              <div>
+                <p>Subtasks</p>
+                <div class="subtask-input-container">
+                  <input
+                    id="addTaskSubtask"
+                    class="input"
+                    type="text"
+                    placeholder="Add new subtask"
+                  />
+                  <div id="subtask-buttons">
+                    <img style="cursor: pointer" src="assets/icons/clear-subtask.png" onclick="emptySubtaskValue()">
+                    <div class="seperator"></div>
+                    <img style="cursor: pointer" src="assets/icons/checkmark-black.png" onclick="createNewSubtask()">
+                  </div>
+                </div>
+                <div id="subtaskContainer">
+                  
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="button-container-form-board">
-          <button type="button" onclick="resetValues()" class="clear-btn pointer">
-            Clear &nbsp; x
-          </button>
-          <button type="submit"
-            id="createTaskBtn"
-            class="create-btn pointer"
-          >
-            Create Task <img src="assets/icons/check-white.png" />
-          </button>
-        </div>
-</form>
+          <div class="button-container-form-board">
+            <button type="button" onclick="resetValues()" class="clear-btn pointer">
+              Clear &nbsp; x
+            </button>
+            <button type="submit"
+              id="createTaskBtn"
+              class="create-btn pointer"
+            >
+              Create Task <img src="assets/icons/check-white.png" />
+            </button>
+          </div>
+        </form>
         <div id="taskAdded" class="taskAdded">
         Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
       </div>
       </div>
-  `;
+  `;    
 }
 
 function subtaskHTML(inputFieldValue) {
+  subtaskCount++; 
   return /* html */ `
-  <div id="subtask">
-    <input type="checkbox" />
-    <p>${inputFieldValue}</p>
-  </div>
+    <div id="subtask-${subtaskCount}" class="subtask">
+      <input type="checkbox" />
+      <p>${inputFieldValue}</p>
+    </div>
   `;
 }

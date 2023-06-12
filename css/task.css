@@ -191,7 +191,7 @@ input[type="checkbox"] {
   margin-right: 20px;
 }
 
-#subtask{
+.subtask{
   display: flex;
   justify-content: flex-start;
   align-items: center;

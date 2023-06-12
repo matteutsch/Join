@@ -84,12 +84,12 @@ async function createTask(status) {
       status: status,
       category: selectedCategory,
       priority: priority,
+      subtasks: pushSubtasks(),
       dueDate: dueDate.value,
       assignedTo: assignedContacts,
     };
 
-    tasks.push(newTask);
-    remoteTasksAsJSON = tasks;
+    remoteTasksAsJSON.push(newTask);
     await setItem("tasksRemote", remoteTasksAsJSON);
 
     resetValues();
@@ -270,11 +270,22 @@ function addSubtaskEventListener() {
 function createNewSubtask(){
   let inputField = document.getElementById('addTaskSubtask');
   let subtaskContainer = document.getElementById('subtaskContainer')
-
+  
   if (inputField.value) {
-    subtaskContainer.innerHTML += subtaskHTML(inputField.value);
+    let i = 0;
+    subtaskContainer.innerHTML += subtaskHTML(inputField.value, i);
+    i++
     inputField.value = '';
   }
+}
+
+function pushSubtasks() {
+  let subtasks = document.querySelectorAll('.subtask p');
+  let subtaskArray = [];
+  subtasks.forEach(subtask => {
+    subtaskArray.push(subtask.textContent);
+  });
+  return subtaskArray;
 }
 
 function emptySubtaskValue(){
