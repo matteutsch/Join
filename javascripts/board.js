@@ -292,6 +292,19 @@ function filterCards() {
   });
 }
 
+function countDoneSubtasks(i){
+  let doneSubtasks = remoteTasksAsJSON[i]["subtasks"].filter(subtask => subtask.status === "done");
+  let doneSubtasksCount = doneSubtasks.length;
+  return doneSubtasksCount
+}
+
+function renderProgress(i) {
+  let doneCount = countDoneSubtasks(i);
+  let subtaskLength = remoteTasksAsJSON[i]["subtasks"].length;
+  let percentage = (doneCount / subtaskLength) * 100;
+  return percentage;
+}
+
 // -----------------------drag-&-drop ----------------------------//
 
 let currentDraggedElement;

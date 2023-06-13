@@ -80,7 +80,10 @@ let tasks = [
     status: "todo",
     category: "sales",
     priority: "urgent",
-    subtasks: ["Follow up with leads", "Schedule product demos"],
+    subtasks: [
+      { name: "Follow up with leads", status: "inProgress" },
+      { name: "Schedule product demos", status: "done" }
+    ],
     dueDate: "2022-08-15",
     assignedTo: [contacts[0], contacts[2], contacts[3]],
   },
@@ -91,7 +94,10 @@ let tasks = [
     status: "todo",
     category: "backoffice",
     priority: "urgent",
-    subtasks: ["Sort and file invoices", "Create expense reports"],
+    subtasks: [
+      { name: "Sort and file invoices", status: "inProgress" },
+      { name: "Create expense reports", status: "inProgress" }
+    ],
     dueDate: "2022-08-16",
     assignedTo: [contacts[6], contacts[4], contacts[8]],
   },
@@ -102,7 +108,10 @@ let tasks = [
     status: "inProgress",
     category: "design",
     priority: "medium",
-    subtasks: ["Conduct user testing", "Optimize site navigation"],
+    subtasks: [
+      { name: "Conduct user testing", status: "done" },
+      { name: "Optimize site navigation", status: "inProgress" }
+    ],
     dueDate: "2022-06-30",
     assignedTo: [contacts[1], contacts[4], contacts[5]],
   },
@@ -113,7 +122,10 @@ let tasks = [
     status: "awaitingFeedback",
     category: "marketing",
     priority: "low",
-    subtasks: ["Analyze cost-benefit ratio", "Evaluate risks and contingencies"],
+    subtasks: [
+      { name: "Analyze cost-benefit ratio", status: "done" },
+      { name: "Evaluate risks and contingencies", status: "inProgress" }
+    ],
     dueDate: "2022-07-15",
     assignedTo: [contacts[6], contacts[7], contacts[8]],
   },
@@ -124,11 +136,15 @@ let tasks = [
     status: "done",
     category: "backoffice",
     priority: "urgent",
-    subtasks: ["Analyze revenue trends", "Summarize expenditure breakdown"],
+    subtasks: [
+      { name: "Analyze revenue trends", status: "done" },
+      { name: "Summarize expenditure breakdown", status: "done" }
+    ],
     dueDate: "2022-04-30",
     assignedTo: [contacts[7], contacts[8], contacts[9]],
   },
 ];
+
 
 let categories = [
   {

@@ -1,6 +1,7 @@
 let priority;
 let assignedContacts = [];
 let selectedCategory;
+let subtaskID = 0;
 
 function setPrio(prio) {
   let urgentBtn = document.getElementById("urgentTask");
@@ -92,11 +93,13 @@ async function createTask(status) {
     remoteTasksAsJSON.push(newTask);
     await setItem("tasksRemote", remoteTasksAsJSON);
 
+    subtaskID = 0;
     resetValues();
     taskPopup();
   }
   if (window.location.pathname.includes("board.html")) {
     initBoard();
+    closeSlideInBtn();
   }
 }
 
@@ -272,9 +275,8 @@ function createNewSubtask(){
   let subtaskContainer = document.getElementById('subtaskContainer')
   
   if (inputField.value) {
-    let i = 0;
-    subtaskContainer.innerHTML += subtaskHTML(inputField.value, i);
-    i++
+    subtaskContainer.innerHTML += subtaskHTML(inputField.value, subtaskID);
+    subtaskID++
     inputField.value = '';
   }
 }
@@ -284,10 +286,25 @@ function pushSubtasks() {
   let subtasks = document.querySelectorAll('.subtask p');
   let subtaskArray = [];
   subtasks.forEach(subtask => {
-    subtaskArray.push(subtask.textContent);
+    subtaskArray.push({
+      name: subtask.textContent, 
+      status: isChecked(subtask),
+    });
   });
   return subtaskArray;
 }
+
+function isChecked(subtask) {
+  const checkbox = subtask.querySelector("input[type='checkbox']"); // Corrected selector
+
+  if (checkbox.checked) {
+    return "done";
+  } else {
+    return "inProgress";
+  }
+}
+
+
 
 function emptySubtaskValue(){
   let inputField = document.getElementById('addTaskSubtask');

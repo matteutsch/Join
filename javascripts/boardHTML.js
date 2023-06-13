@@ -18,9 +18,9 @@ function taskCardHTML(i, cardID) {
     </div>
     <div class="subtask-container">
       <div class="subtask-bar">
-        <div class="progress" style="width:20%"></div>
+        <div class="progress" style="width:${renderProgress(i)}%"></div>
       </div>
-      <p class="progress-text">2/2 Done</p>
+      <p class="progress-text">${countDoneSubtasks(i)}/${remoteTasksAsJSON[i]["subtasks"].length} Done</p>
     </div>
     <div class="task-bottom">
       <div class="assignedToContainerSmall" id="assignedToContainerSmall${i}"></div>
@@ -287,12 +287,13 @@ function slideInHTML(status) {
   `;    
 }
 
-function subtaskHTML(inputFieldValue) {
+function subtaskHTML(inputFieldValue, i) {
   subtaskCount++; 
   return /* html */ `
     <div id="subtask-${subtaskCount}" class="subtask">
-      <input type="checkbox" />
+      <input type="checkbox" id="checkbox-${i}" class="checkbox"/>
       <p>${inputFieldValue}</p>
     </div>
   `;
 }
+
