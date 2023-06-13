@@ -1,12 +1,24 @@
+// Überprüfen, ob die Flag-Variable bereits im sessionStorage vorhanden ist
+let isActive = sessionStorage.getItem('isActive');
+// Wenn sie nicht vorhanden ist, standardmäßig auf true setzen
+isActive = isActive === null ? true : JSON.parse(isActive);
+
 /**
  * Calls all functions for summary card
  */
 async function startSummary() {
     includeHTML();
-    greet();
     getDataForSummary();
     taskWithEarliestDuedate();
     tasksAsJSON = await getRemoteData("tasksRemote");
+    if (!isActive) {
+        return; // Die Funktion wird beendet, ohne den Code auszuführen
+    }
+    greet(); // Funktionierender Code hier
+
+    // Flag-Variable aktualisieren, um zu markieren, dass die Funktion bereits aufgerufen wurde
+    isActive = false;
+    sessionStorage.setItem('isActive', JSON.stringify(isActive));
 }
 
 /**
