@@ -59,7 +59,7 @@ function openTaskCardHTML(i, cardID) {
   `;
 }
 
-function editTaskCardHTML() {
+function editTaskCardHTML(taskIndex) {
   return /* html */ `
       <div class="task-section-edit">
             <div>
@@ -77,12 +77,13 @@ function editTaskCardHTML() {
             </div>
             <div>
               <p>Due date</p>
-              <input
+              <input onclick='setMinDate()';
                 required
                 id="date"
                 class="input pointer"
                 type="date"
                 value="dd/mm/yyyy"
+                min=""
               />
             </div>
             <div>
@@ -127,7 +128,15 @@ function editTaskCardHTML() {
                 <div id="chosenContacts" class="chosenContactsEdit"></div>
               </div>
             </div>
-            <div class="edit-okBtn" onclick="saveChanges()">Ok <img src="assets/icons/checkmark-white-small.png"></div>
+            <h3>Subtasks</h3>
+            <div class="subtask-container">
+              <div class="subtask-bar">
+                <div class="progress" style="width:${renderProgress(taskIndex)}%"></div>
+              </div>
+              <p class="progress-text">${countDoneSubtasks(taskIndex)}/${remoteTasksAsJSON[taskIndex]["subtasks"].length} Done</p>
+            </div>
+            <div id="editSubtaskContainer"></div>
+            <div class="edit-okBtn" onclick="saveChanges()">Ok<img src="assets/icons/checkmark-white-small.png"></div>
         
   `;
 }
@@ -207,18 +216,17 @@ function slideInHTML(status) {
                 </div>
               </div>
             </div>
-
             <div class="content-right mobile-form-right">
               <div>
                 <p>Due date</p>
-                <input
-                  required
-                  id="date"
-                  class="input pointer"
-                  type="date"
-                  value="dd/mm/yyyy"
-                  onclick='setMinDate()'
-                />
+                <input onclick='setMinDate()';
+                required
+                id="date"
+                class="input pointer"
+                type="date"
+                value="dd/mm/yyyy"
+                min=""
+              />
               </div>
               <div>
                 <p>Prio</p>
@@ -287,11 +295,11 @@ function slideInHTML(status) {
   `;    
 }
 
-function subtaskHTML(inputFieldValue, i) {
+function subtaskHTML(inputFieldValue, i, subtaskStatus) {
   subtaskCount++; 
   return /* html */ `
     <div id="subtask-${subtaskCount}" class="subtask">
-      <input type="checkbox" id="checkbox-${i}" class="checkbox"/>
+      <input type="checkbox" class="checkbox" ${isSubtaskChecked(subtaskStatus) ? 'checked' : ''} />
       <p>${inputFieldValue}</p>
     </div>
   `;

@@ -55,9 +55,10 @@ function openTaskCard(i, cardID) {
 
 function editTaskCard(taskIndex) {
   let openCardContainer = document.querySelector(".task-card-big");
-  openCardContainer.innerHTML = editTaskCardHTML();
+  openCardContainer.innerHTML = editTaskCardHTML(taskIndex);
   fillEditFields(taskIndex);
   addContactNamesToAssignedTo();
+  renderSubtask(taskIndex);
   openTaskIndex = taskIndex;
 }
 
@@ -79,8 +80,7 @@ function fillEditFields(taskIndex) {
 
 async function saveChanges() {
   let titleInputFieldValue = document.getElementById("addTaskTitle").value;
-  let descriptionInputFieldValue =
-    document.getElementById("addTaskDescription").value;
+  let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
   let dueDateFieldValue = document.getElementById("date").value;
 
   remoteTasksAsJSON[openTaskIndex].title = titleInputFieldValue;
@@ -88,6 +88,7 @@ async function saveChanges() {
   remoteTasksAsJSON[openTaskIndex].dueDate = dueDateFieldValue;
   remoteTasksAsJSON[openTaskIndex].priority = priority;
   remoteTasksAsJSON[openTaskIndex].assignedTo = assignedContacts;
+  /* remoteTasksAsJSON[openTaskIndex].subtasks = ; */
   await setItem("tasksRemote", remoteTasksAsJSON);
   openTaskCard(openTaskIndex, openTaskID);
   assignedContacts = [];
@@ -196,17 +197,9 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
-      container.innerHTML += assignedToCardHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
     }
   }
 }
@@ -251,7 +244,8 @@ function closeLayer() {
   setTimeout(() => {
     layer.style.display = "none";
   }, 200),
-    layer.removeEventListener("click", displayLayer);
+  layer.removeEventListener("click", displayLayer);
+  subtaskCount = 0;
 }
 
 function slideInContainer(status) {
@@ -281,9 +275,7 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card
-      .querySelector(".task-description")
-      .innerHTML.toLowerCase();
+    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
@@ -292,10 +284,12 @@ function filterCards() {
   });
 }
 
-function countDoneSubtasks(i){
-  let doneSubtasks = remoteTasksAsJSON[i]["subtasks"].filter(subtask => subtask.status === "done");
+function countDoneSubtasks(i) {
+  let doneSubtasks = remoteTasksAsJSON[i]["subtasks"].filter(
+    (subtask) => subtask.status === "done"
+  );
   let doneSubtasksCount = doneSubtasks.length;
-  return doneSubtasksCount
+  return doneSubtasksCount;
 }
 
 function renderProgress(i) {
@@ -315,7 +309,7 @@ function startDragging(i) {
 
 async function moveTo(status) {
   remoteTasksAsJSON[currentDraggedElement]["status"] = status;
-  await setItem("tasksRemote", remoteTasksAsJSON)
+  await setItem("tasksRemote", remoteTasksAsJSON);
   remoteTasksAsJSON = await getRemoteData("tasksRemote");
   initBoard();
   removeHighlight(status);

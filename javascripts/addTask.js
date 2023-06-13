@@ -92,7 +92,6 @@ async function createTask(status) {
 
     remoteTasksAsJSON.push(newTask);
     await setItem("tasksRemote", remoteTasksAsJSON);
-
     subtaskID = 0;
     resetValues();
     taskPopup();
@@ -281,27 +280,45 @@ function createNewSubtask(){
   }
 }
 
+function renderSubtask(taskID){
+  let inputField = document.getElementById('addTaskSubtask');
+  let subtaskContainer = document.getElementById('editSubtaskContainer')
+
+  for (let i = 0; i < remoteTasksAsJSON[taskID]["subtasks"].length; i++) {
+    const subtaskName = remoteTasksAsJSON[taskID]["subtasks"][i]["name"];
+    const subtaskStatus = remoteTasksAsJSON[taskID]["subtasks"][i]["status"];
+    subtaskContainer.innerHTML += subtaskHTML(subtaskName, taskID, subtaskStatus);
+  }
+
+}
+
 
 function pushSubtasks() {
-  let subtasks = document.querySelectorAll('.subtask p');
+  let subtasks = document.querySelectorAll('.subtask');
   let subtaskArray = [];
   subtasks.forEach(subtask => {
+    let checkbox = subtask.querySelector("input[type='checkbox']");
     subtaskArray.push({
       name: subtask.textContent, 
-      status: isChecked(subtask),
+      status: isChecked(checkbox),
     });
   });
   return subtaskArray;
 }
 
-function isChecked(subtask) {
-  const checkbox = subtask.querySelector("input[type='checkbox']"); // Corrected selector
-
+function isChecked(checkbox) {
   if (checkbox.checked) {
     return "done";
   } else {
     return "inProgress";
   }
+}
+
+function isSubtaskChecked(subtaskStatus) {
+  if (subtaskStatus === "done") {
+    return true;
+  }
+  return false;
 }
 
 
