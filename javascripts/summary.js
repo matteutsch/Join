@@ -52,33 +52,28 @@ async function greet() {
     }
 }
 
+
 /**
  * Sumes up tasks per category and urgency per priority
  */
 async function getDataForSummary() {
-
-    let res = await getItem("tasksRemote");
-    remoteTasksAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
+    const res = await getItem("tasksRemote");
+    const remoteTasksAsJSON = JSON.parse(res.data.value.replace(/'/g, '"'));
 
     document.getElementById("tasksInBoard").innerHTML = remoteTasksAsJSON.length;
+    document.getElementById("tasksInProgress").innerHTML = getCountByStatus(remoteTasksAsJSON, "inProgress");
+    document.getElementById("tasksAwaitingFeedback").innerHTML = getCountByStatus(remoteTasksAsJSON, "awaitingFeedback");
+    document.getElementById("sumToDo").innerHTML = getCountByStatus(remoteTasksAsJSON, "todo");
+    document.getElementById("sumDone").innerHTML = getCountByStatus(remoteTasksAsJSON, "done");
+    document.getElementById("sumUrgent").innerHTML = getCountByPriority(remoteTasksAsJSON, "urgent");
+}
 
-    let tasksInProgress = remoteTasksAsJSON.filter((task) => task.status === "inProgress");
-    document.getElementById("tasksInProgress").innerHTML = tasksInProgress.length;
+function getCountByStatus(tasks, status) {
+    return tasks.filter(task => task.status === status).length;
+}
 
-    let tasksAwaitingFeedback = remoteTasksAsJSON.filter(
-        (task) => task.status === "awaitingFeedback"
-    );
-    document.getElementById("tasksAwaitingFeedback").innerHTML =
-        tasksAwaitingFeedback.length;
-
-    let sumToDo = remoteTasksAsJSON.filter((task) => task.status === "todo");
-    document.getElementById("sumToDo").innerHTML = sumToDo.length;
-
-    let sumDone = remoteTasksAsJSON.filter((task) => task.status === "done");
-    document.getElementById("sumDone").innerHTML = sumDone.length;
-
-    let sumUrgent = remoteTasksAsJSON.filter((task) => task.priority === "urgent");
-    document.getElementById("sumUrgent").innerHTML = sumUrgent.length;
+function getCountByPriority(tasks, priority) {
+    return tasks.filter(task => task.priority === priority).length;
 }
 
 /**
