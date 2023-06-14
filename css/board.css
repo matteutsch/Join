@@ -494,8 +494,8 @@
 
 .edit-okBtn {
   position: absolute;
-  bottom: 90px;
-  right: 10px;
+  bottom: 40px;
+  right: 50px;
   width: 85px;
   height: 40px;
   background: #2a3647;
@@ -654,6 +654,11 @@
 
   #editSubtaskContainer {
     min-height: 100px;
+  }
+
+  .edit-okBtn {
+    bottom: 90px;
+    right: 10px;
   }
 
   .task-card-arrow {
