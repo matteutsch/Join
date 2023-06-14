@@ -3,6 +3,13 @@ let assignedContacts = [];
 let selectedCategory;
 let subtaskID = 0;
 
+async function initAddTask(){
+  remoteTasksAsJSON = await getRemoteData("tasksRemote");
+  addContactNamesToAssignedTo();
+  addCategories();
+  addSubtaskEventListener();
+}
+
 function setPrio(prio) {
   let urgentBtn = document.getElementById("urgentTask");
   let urgentIcon = document.getElementById("urgentIcon");
@@ -70,7 +77,6 @@ function pushAssignedContact(i) {
 }
 
 async function createTask(status) {
-  // checking if most important inputs are being filled in and creating new Task
 
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
@@ -99,6 +105,10 @@ async function createTask(status) {
   if (window.location.pathname.includes("board.html")) {
     initBoard();
     closeSlideInBtn();
+  } else {
+    setTimeout(() => {
+      window.location.href = 'board.html';
+    }, 1000)
   }
 }
 
@@ -269,6 +279,7 @@ function addSubtaskEventListener() {
   });
 }
 
+
 function createNewSubtask(){
   let inputField = document.getElementById('addTaskSubtask');
   let subtaskContainer = document.getElementById('subtaskContainer')
@@ -281,7 +292,6 @@ function createNewSubtask(){
 }
 
 function renderSubtask(taskID){
-  let inputField = document.getElementById('addTaskSubtask');
   let subtaskContainer = document.getElementById('editSubtaskContainer')
 
   for (let i = 0; i < remoteTasksAsJSON[taskID]["subtasks"].length; i++) {

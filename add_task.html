@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="css/task.css" />
   </head>
 
-  <body onload="includeHTML(), addContactNamesToAssignedTo(), addCategories()">
+  <body onload="includeHTML(), initAddTask()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="content-container">
       <h1>Add Task</h1>
 
-      <form onsubmit="event.preventDefault(); createTask('todo')">
+      <form onsubmit="event.preventDefault(); createTask('todo'); pushSubtasks()">
         <div class="task-section">
           <div class="content-left">
             <div>
@@ -118,15 +118,21 @@
             </div>
             <div>
               <p>Subtasks</p>
-              <input
-                id="addTaskSubtask"
-                class="input"
-                type="text"
-                placeholder="Add new subtask"
-              />
-              <div class="new-subtask">
-                <input type="checkbox" />
-                <p>Subtask 1</p>
+              <div class="subtask-input-container">
+                <input
+                  id="addTaskSubtask"
+                  class="input"
+                  type="text"
+                  placeholder="Add new subtask"
+                />
+                <div id="subtask-buttons">
+                  <img style="cursor: pointer" src="assets/icons/clear-subtask.png" onclick="emptySubtaskValue()">
+                  <div class="seperator"></div>
+                  <img style="cursor: pointer" src="assets/icons/checkmark-black.png" onclick="createNewSubtask()">
+                </div>
+              </div>
+              <div id="subtaskContainer">
+      
               </div>
             </div>
         </div>

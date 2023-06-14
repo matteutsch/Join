@@ -147,11 +147,10 @@ input[type="checkbox"] {
   margin-bottom: 6px;
 }
 
-#subtaskContainer{
-  max-height: 180px;
-  overflow-y: scroll;
+#subtaskContainer {
+  max-height: 120px;
+  overflow-y: auto;
 }
-
 
 .prio-section {
   display: flex;
