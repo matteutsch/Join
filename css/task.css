@@ -574,6 +574,11 @@ input[type="checkbox"] {
   form {
     margin-top: 2%;
   }
+
+  .button-container-form-board {
+    justify-content: center;
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -581,6 +586,7 @@ input[type="checkbox"] {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: 90%;
   }
 
   .content-container {

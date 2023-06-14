@@ -79,21 +79,32 @@ function fillEditFields(taskIndex) {
 }
 
 async function saveChanges() {
-  let titleInputFieldValue = document.getElementById("addTaskTitle").value;
-  let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
-  let dueDateFieldValue = document.getElementById("date").value;
-  let subtasks = loadSubtasks();
-  remoteTasksAsJSON[openTaskIndex].title = titleInputFieldValue;
-  remoteTasksAsJSON[openTaskIndex].description = descriptionInputFieldValue;
-  remoteTasksAsJSON[openTaskIndex].dueDate = dueDateFieldValue;
-  remoteTasksAsJSON[openTaskIndex].priority = priority;
-  remoteTasksAsJSON[openTaskIndex].assignedTo = assignedContacts;
-  /* remoteTasksAsJSON[openTaskIndex].subtasks = ; */
+  const titleInputFieldValue = document.getElementById("addTaskTitle").value;
+  const descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
+  const dueDateFieldValue = document.getElementById("date").value;
+
+  const updatedTask = {
+    ...remoteTasksAsJSON[openTaskIndex],
+    title: titleInputFieldValue,
+    description: descriptionInputFieldValue,
+    dueDate: dueDateFieldValue,
+    priority: priority,
+    assignedTo: assignedContacts
+  };
+
+  remoteTasksAsJSON[openTaskIndex] = updatedTask;
+
+  loadSubtasks();
   await setItem("tasksRemote", remoteTasksAsJSON);
+
   openTaskCard(openTaskIndex, openTaskID);
+
   assignedContacts = [];
+
   await initBoard();
 }
+
+
 
 function loadSubtasks() {
   let subtaskContainer = document.getElementById("editSubtaskContainer");
