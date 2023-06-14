@@ -82,7 +82,7 @@ async function saveChanges() {
   let titleInputFieldValue = document.getElementById("addTaskTitle").value;
   let descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
   let dueDateFieldValue = document.getElementById("date").value;
-
+  let subtasks = loadSubtasks();
   remoteTasksAsJSON[openTaskIndex].title = titleInputFieldValue;
   remoteTasksAsJSON[openTaskIndex].description = descriptionInputFieldValue;
   remoteTasksAsJSON[openTaskIndex].dueDate = dueDateFieldValue;
@@ -93,6 +93,21 @@ async function saveChanges() {
   openTaskCard(openTaskIndex, openTaskID);
   assignedContacts = [];
   await initBoard();
+}
+
+function loadSubtasks() {
+  let subtaskContainer = document.getElementById("editSubtaskContainer");
+
+  for (let i = 0; i < subtaskContainer.childElementCount; i++) {
+    let subtask = subtaskContainer.children[i];
+    let checkbox = subtask.querySelector(".checkbox");
+    let storageSubtask = remoteTasksAsJSON[openTaskIndex]["subtasks"][i];
+    if (checkbox.checked) {
+      storageSubtask.status = 'done'
+    } else {
+      storageSubtask.status = 'inProgress'
+    }
+  }
 }
 
 function pushToAssignedContact(assignedToArray) {
@@ -244,7 +259,7 @@ function closeLayer() {
   setTimeout(() => {
     layer.style.display = "none";
   }, 200),
-  layer.removeEventListener("click", displayLayer);
+    layer.removeEventListener("click", displayLayer);
   subtaskCount = 0;
 }
 
