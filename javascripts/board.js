@@ -52,6 +52,7 @@ function openTaskCard(i, cardID) {
   displayLayer();
   renderAssignedTo(i, "assignedTo-container");
   renderClosingArrow();
+  document.body.style.overflow = 'hidden';
 }
 
 function editTaskCard(taskIndex) {
@@ -246,6 +247,7 @@ function closeSlideInBtn() {
   closeSlideInContainer();
   closeLayer();
   closeTaskCardBig();
+  document.body.style.overflow = 'auto';
 }
 
 function closeSlideInContainer() {
@@ -286,6 +288,7 @@ function slideInContainer(status) {
   addContactNamesToAssignedTo();
   addCategories();
   addSubtaskEventListener();
+  document.body.style.overflow = 'hidden';
 }
 
 document.addEventListener("input", function (event) {

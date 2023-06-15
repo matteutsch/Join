@@ -1,3 +1,5 @@
+
+
 .board-body {
   margin-left: 232px;
 }
@@ -365,6 +367,7 @@
   gap: 25px;
   max-height: 300px;
   overflow-y: auto;
+  padding-right: 8px;
 }
 
 #assignedTo-container::-webkit-scrollbar {
@@ -692,13 +695,13 @@
 
   .task-card-big-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: start;
     flex-direction: column;
-    gap: 7px;
-    max-height: 70vh;
+    height: 73vh;
     overflow-y: scroll;
     padding: 0px 10px;
+    gap: unset;
   }
 
   .task-card-big-content span {
@@ -716,8 +719,6 @@
   .task-description-big {
     font-weight: 400;
     font-size: 16px;
-    margin-bottom: 20px;
-    margin-top: 20px;
   }
 
   .open-task-buttons {
@@ -790,6 +791,10 @@
     right: 20px;
     bottom: 20px;
     padding-bottom: 20px;
+  }
+
+  #assignedTo-container {
+    max-height: 156px;
   }
 
 
