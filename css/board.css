@@ -3,14 +3,15 @@
 }
 
 .header-row {
-  margin-top: 50px;
+  margin: 100px 70px 50px 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 50px 50px;
+
 }
 
 .header-row h1 {
+  font-weight: 700;
   font-size: 61px;
 }
 
@@ -100,6 +101,11 @@
   cursor: pointer;
 }
 
+.task-header p {
+  font-size: 21px;
+  font-weight: 700;
+}
+
 .mobile-addTask-btn {
   display: none;
 }
@@ -134,7 +140,8 @@
   position: absolute;
   width: 75vw;
   height: fit-content;
-  min-height: 80vh;
+  min-height: fit-content !important;
+  padding: 50px;
   transition: transform 0.3s ease-in-out;
   transform: translateX(200%);
   cursor: default;
@@ -163,12 +170,7 @@
   position: relative;
   width: 50%;
   max-width: 800px;
-  height: 85%;
   margin-left: 232px;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   z-index: 101;
   padding: 50px;
   background: #ffffff;
@@ -178,13 +180,21 @@
   animation: fadeIn ease-in-out;
   animation-duration: 0.25s;
   animation-fill-mode: backwards;
+  min-height: fit-content;
 }
+
+
 
 .task-card-big-content {
   display: flex;
   justify-content: center;
   align-items: start;
   flex-direction: column;
+  gap: 30px;
+}
+
+.task-card-big-content span {
+  margin-bottom: -10px;
 }
 
 .task-card-closeBtn {
@@ -565,6 +575,10 @@
   }
 }
 
+.slideInContainer-content form{
+  margin-top: 40px;
+}
+
 @media (max-width: 670px) {
   .board-body {
     margin-left: 0;
@@ -593,6 +607,10 @@
     margin-left: 0px;
     justify-content: center;
     padding: 5px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .task-title-big {
@@ -606,6 +624,8 @@
     align-items: start;
     flex-direction: column;
     gap: 7px;
+    max-height: 70vh;
+    overflow-y: scroll;
   }
 
   .category-label-big {

@@ -47,10 +47,8 @@ function openTaskCardHTML(i, cardID) {
         <div class="task-title-big">${remoteTasksAsJSON[i]["title"]}</div>
         <div class="task-description-big">${renderTaskDescription(i)}</div>
         <div class="due-date"><b>Due date:</b> ${remoteTasksAsJSON[i]["dueDate"]}</div>
-        <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(
-          i
-        )}" /></div>
-        <p><b>Assigned To:</b></p>
+        <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(i)}" /></div>
+        <span><b>Assigned To:</b></span>
         <div id="assignedTo-container"></div>
         <div class="open-task-buttons">
           <div class="delete-button" onclick="deleteCard(${i}, '${cardID}')">
