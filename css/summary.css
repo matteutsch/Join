@@ -49,11 +49,12 @@ body {
   display: flex;
   margin-top: 35px;
   margin-bottom: 40px;
-  align-items: baseline;
+  align-items: center;
+  /* baseline; */
 }
 
 .summary {
-  font-size: 55px;
+  font-size: 61px !important;
   font-weight: bold;
   padding-bottom: 10px;
 }
@@ -158,7 +159,7 @@ body {
   align-items: center;
   justify-content: flex-end;
   margin-right: 5px;
-  margin-left: 35px;
+  margin-left: 27px;
 }
 
 .greyVerticalLine {
@@ -292,6 +293,7 @@ body {
   background-size: 82%;
   background-repeat: no-repeat;
   background-position: 100% 73%;
+  margin-left: 42px;
 }
 
 .pencilIcon {
@@ -350,6 +352,7 @@ body {
   background-size: 80%;
   background-repeat: no-repeat;
   background-position: 100% 70%;
+  margin-left: 53px;
 }
 
 .checkIcon {
@@ -423,6 +426,10 @@ body {
     visibility: visible;
     opacity: 1;
   }
+
+  .iconUrgent {
+    margin-left: 19px;
+  }
 }
 
 
@@ -447,8 +454,12 @@ body {
   }
 
   .greyVerticalLine {
-    margin: 0 5%;
+    margin: 0 8%;
     margin-top: 33px;
+  }
+
+  .summary {
+    font-size: 51px !important;
   }
 
   .deadline {
@@ -470,6 +481,10 @@ body {
 
   .urgentContainer {
     height: 150px;
+  }
+
+  .iconUrgent {
+    margin-left: 16px;
   }
 }
 
@@ -494,6 +509,10 @@ body {
 
   .headline {
     width: 300px;
+  }
+
+  .iconDone {
+    background-size: 83%;
   }
 }
 
@@ -520,12 +539,18 @@ body {
     gap: 20px;
   }
 
+  .greyVerticalLine {
+    margin: 0 5%;
+    margin-top: 33px;
+  }
+
   .toDoDoneContainer {
     gap: 20px;
   }
 
   .iconUrgent {
     margin: 0;
+    margin-left: 18px
   }
 
   .deadline {
@@ -535,9 +560,21 @@ body {
   .doneContainer {
     width: 224px;
   }
+
+  .iconDone {
+    background-size: 91%;
+  }
 }
 
 @media (max-width: 790px) {
+  .summary {
+    font-size: 41px;
+  }
+
+  .textHeadline {
+    font-size: 18px;
+  }
+
   .tasksContainer {
     width: 140px;
     height: 140px;
@@ -559,12 +596,21 @@ body {
     margin: 0;
   }
 
+  .greyVerticalLine {
+    margin: 0 10%;
+    margin-top: 27px;
+  }
+
   .toDoContainer {
     width: 230px;
   }
 
   .doneContainer {
     width: 208px;
+  }
+
+  .iconDone {
+    width: 87px;
   }
 }
 
@@ -586,8 +632,8 @@ body {
   }
 
   .iconDone {
-    width: 90px;
-    background-size: 70%;
+    width: 98px;
+    background-size: 91%;
   }
 }
 
@@ -605,6 +651,11 @@ body {
   .toDoContainer {
     width: 220px;
   }
+
+  /*   .iconDone {
+    margin-left: 20px;
+    width: 103;
+  } */
 }
 
 @media (max-width: 700px) {
@@ -638,6 +689,10 @@ body {
     display: none;
   }
 
+  .tasksContainer {
+    padding-top: 22px;
+  }
+
   .rightContainer {
     margin-left: 0;
     align-items: center;
@@ -660,7 +715,7 @@ body {
     margin-left: 0;
     margin-right: 0;
     position: absolute;
-    top: 126px;
+    top: 148px;
     width: 85px;
   }
 
@@ -683,7 +738,7 @@ body {
   }
 
   .urgentContainer {
-    width: 130px;
+    width: 152px;
     height: 115px;
   }
 
@@ -706,7 +761,7 @@ body {
   }
 
   .deadline {
-    width: 320px;
+    width: 290px;
     height: 100px;
   }
 
@@ -738,12 +793,13 @@ body {
     width: 75px;
     background-position: 100% 52%;
     background-size: 72%;
+    margin-left: 22px;
   }
 
   .iconDone {
-    width: 75px;
+    width: 84px;
     height: 104px;
-    background-size: 72%;
+    background-size: 91%;
   }
 
   .dueDateContainer {
@@ -789,8 +845,17 @@ body {
     height: 100px;
   }
 
+  .greyVerticalLine {
+    margin: 0 5%;
+    margin-top: 23px;
+  }
+
+  .urgentContainer {
+    width: 146px;
+  }
+
   .deadline {
-    width: 245px;
+    width: 228px;
   }
 
   .toDoContainer {
@@ -816,6 +881,7 @@ body {
   .iconDone {
     background-position: 100% 48%;
     background-size: 85%;
+    margin-left: 20px;
   }
 }
 
@@ -833,7 +899,7 @@ body {
   }
 
   .blueVerticalLine {
-    top: 98px;
+    top: 120px;
   }
 
   .tasksOverallContainer,
@@ -843,7 +909,7 @@ body {
   }
 
   .tasksContainer {
-    width: 110px;
+    width: 108px;
     height: 110px;
     padding-top: 12px;
   }
@@ -864,8 +930,22 @@ body {
   }
 
   .urgentContainer {
-    width: 122px;
+    width: 116px;
     height: 110px;
+  }
+
+  .urgentIcon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .dateDeadline {
+    font-size: 21px;
+    width: 203px;
+  }
+
+  .textDeadline {
+    font-size: 17px;
   }
 
   .deadline {

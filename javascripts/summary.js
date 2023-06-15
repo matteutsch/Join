@@ -25,31 +25,28 @@ async function startSummary() {
  * Changes greeting according to the time of day
  */
 async function greet() {
-    let date = new Date();
-    let hours = date.getHours();
+    const date = new Date();
+    const hours = date.getHours();
     let timeOfDay;
+
     if (hours < 12) {
         timeOfDay = "Good morning,";
-    } else if (hours >= 12 && hours < 17) {
+    } else if (hours < 17) {
         timeOfDay = "Good afternoon,";
     } else {
         timeOfDay = "Good evening,";
     }
 
-    let element = document.getElementById("greeting");
-    let property = window.getComputedStyle(element).getPropertyValue("display");
+    const element = document.getElementById("greeting");
+    const property = window.getComputedStyle(element).getPropertyValue("display");
 
-    currentUserNameAsString = await getItem('currentUserName');
-    currentUserNameObject = await JSON.parse((currentUserNameAsString.data.value).replace(/'/g, '"'));
-    currentUserName = currentUserNameObject.name;
+    const currentUserName = (await JSON.parse((await getItem('currentUserName')).data.value.replace(/'/g, '"'))).name;
 
-    if (property !== "none") {
-        document.getElementById("greetingText").innerHTML = timeOfDay;
-        document.getElementById("greetingName").innerHTML = currentUserName;
-    } else {
-        document.getElementById("greetingText2").innerHTML = timeOfDay;
-        document.getElementById("greetingName2").innerHTML = currentUserName;
-    }
+    const greetingTextId = property !== "none" ? "greetingText" : "greetingText2";
+    const greetingNameId = property !== "none" ? "greetingName" : "greetingName2";
+
+    document.getElementById(greetingTextId).innerHTML = timeOfDay;
+    document.getElementById(greetingNameId).innerHTML = currentUserName;
 }
 
 
@@ -107,7 +104,7 @@ function jumpToBoard() {
 
 // Waits until document in loaded
 document.addEventListener("DOMContentLoaded", function() {
-    var overlay = document.querySelector(".overlay");
+    let overlay = document.querySelector(".overlay");
 
     // Adds class "show" to make the overlay container visible
     overlay.classList.add("show");
@@ -117,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
         overlay.classList.remove("show");
     }, 2000);
 
-    var greeting = document.querySelector(".greeting");
+    let greeting = document.querySelector(".greeting");
 
     // Adds class "show" to make the overlay container visible
     greeting.classList.add("show");
