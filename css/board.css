@@ -627,14 +627,18 @@
     align-items: start;
   }
 
+  .header-row h1{
+    font-size: 47px;
+  }
+
   .web-addTask-btn {
     display: none;
   }
 
   .mobile-addTask-btn {
     position: absolute;
-    top: 184px;
-    right: 33px;
+    top: 125px;
+    right: 53px;
     display: unset;
     cursor: pointer;
   }
