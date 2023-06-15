@@ -9,6 +9,7 @@ async function initBoard() {
   renderTaskCards("inProgress", "inProgress");
   renderTaskCards("awaitingFeedback", "awaitingFeedback");
   renderTaskCards("done", "done");
+  toggleButtonVisibility();
 }
 
 function renderCategoryLabelColor(i) {
@@ -89,7 +90,7 @@ async function saveChanges() {
     description: descriptionInputFieldValue,
     dueDate: dueDateFieldValue,
     priority: priority,
-    assignedTo: assignedContacts
+    assignedTo: assignedContacts,
   };
 
   remoteTasksAsJSON[openTaskIndex] = updatedTask;
@@ -104,8 +105,6 @@ async function saveChanges() {
   await initBoard();
 }
 
-
-
 function loadSubtasks() {
   let subtaskContainer = document.getElementById("editSubtaskContainer");
 
@@ -114,9 +113,9 @@ function loadSubtasks() {
     let checkbox = subtask.querySelector(".checkbox");
     let storageSubtask = remoteTasksAsJSON[openTaskIndex]["subtasks"][i];
     if (checkbox.checked) {
-      storageSubtask.status = 'done'
+      storageSubtask.status = "done";
     } else {
-      storageSubtask.status = 'inProgress'
+      storageSubtask.status = "inProgress";
     }
   }
 }
@@ -374,3 +373,49 @@ function removeHighlightAll() {
     });
   }
 }
+
+function toggleDropdown(event, i) {
+  event.stopPropagation();
+  let dropdownContent = document.getElementById(`dropdown-content${i}`);
+  dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+
+  function hideDropdown(event) {
+    if (!event.target.closest(".container")) {
+      dropdownContent.style.display = "none";
+      document.removeEventListener("click", hideDropdown);
+    }
+  }
+
+  if (dropdownContent.style.display === "block") {
+    document.addEventListener("click", hideDropdown);
+  }
+}
+
+async function selectOption(event, option, i, status) {
+  event.stopPropagation();
+  let dropdownBtn = document.getElementById(`dropdown-btn${option}`);
+  let taskContainer = remoteTasksAsJSON[i];
+  dropdownBtn.classList.remove("highlighted");
+
+  if (option >= 1 && option <= 4) {
+    dropdownBtn.classList.add("highlighted");
+    taskContainer["status"] = status;
+    await setItem("tasksRemote", remoteTasksAsJSON);
+    await initBoard();
+  }
+}
+
+function toggleButtonVisibility() {
+  const button = document.getElementById("dropdown-btn${i}");
+  let buttons = document.querySelectorAll(".dropdown-btn");
+  buttons.forEach((button) => {
+    if (window.innerWidth < 671) {
+      button.style.display = "block";
+    } else {
+      button.style.display = "none";
+    }
+  })
+  
+}
+
+window.addEventListener("resize", toggleButtonVisibility);

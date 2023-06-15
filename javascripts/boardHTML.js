@@ -11,6 +11,16 @@ function taskCardHTML(i, cardID) {
           remoteTasksAsJSON[i]["category"].slice(1)
         }
       </div>
+      <div class="container">
+        <button id="dropdown-btn${i}" class="dropdown-btn" onclick="toggleDropdown(event, ${i})">Move Task</button>
+        <div id="dropdown-content${i}" class="dropdown-content">
+          <div class="select-option" onclick="selectOption(event, 1, ${i}, 'todo')">To Do</div>
+          <div class="select-option" onclick="selectOption(event, 2, ${i}, 'inProgress')">In Progress</div>
+          <div class="select-option" onclick="selectOption(event, 3, ${i}, 'awaitingFeedback')">Awaiting Feedback</div>
+          <div class="select-option" onclick="selectOption(event, 4, ${i}, 'done')">Done</div>
+        </div>
+      </div>
+
     </div>
     <div class="task-title">${remoteTasksAsJSON[i]["title"]}</div>
     <div class="task-description">
@@ -47,7 +57,9 @@ function openTaskCardHTML(i, cardID) {
         <div class="task-title-big">${remoteTasksAsJSON[i]["title"]}</div>
         <div class="task-description-big">${renderTaskDescription(i)}</div>
         <div class="due-date"><b>Due date:</b> ${remoteTasksAsJSON[i]["dueDate"]}</div>
-        <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(i)}" /></div>
+        <div class="task-card-priority"><b>Priority:</b> <img src="${renderUrgencyLabel(
+          i
+        )}" /></div>
         <span><b>Assigned To:</b></span>
         <div id="assignedTo-container"></div>
         <div class="open-task-buttons">
