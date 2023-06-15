@@ -377,19 +377,30 @@ function removeHighlightAll() {
 function toggleDropdown(event, i) {
   event.stopPropagation();
   let dropdownContent = document.getElementById(`dropdown-content${i}`);
-  dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-
+  dropdownContent.style.transition = "opacity 0.3s ease"; 
+  if (dropdownContent.style.display === "" || dropdownContent.style.display === "none") {
+    dropdownContent.style.opacity = "0"; 
+    dropdownContent.style.display = "block";
+    setTimeout(() => {
+      dropdownContent.style.opacity = "1"; 
+    }, 10);
+  } else {
+    dropdownContent.style.opacity = "0"; 
+    dropdownContent.style.display = "none";
+  }
   function hideDropdown(event) {
     if (!event.target.closest(".container")) {
+      dropdownContent.style.opacity = "0"; 
       dropdownContent.style.display = "none";
       document.removeEventListener("click", hideDropdown);
     }
   }
-
   if (dropdownContent.style.display === "block") {
     document.addEventListener("click", hideDropdown);
   }
 }
+
+
 
 async function selectOption(event, option, i, status) {
   event.stopPropagation();

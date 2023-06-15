@@ -587,7 +587,6 @@
   border: none;
   outline: none;
   border-radius: 5px 0 5px 5px;
-  z-index: 1001;
 }
 
 #dropdown-content div {
