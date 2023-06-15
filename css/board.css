@@ -564,8 +564,8 @@
 
   .mobile-addTask-btn {
     position: absolute;
-    top: 160px;
-    right: 20px;
+    top: 184px;
+    right: 33px;
     display: unset;
     cursor: pointer;
   }
@@ -626,6 +626,11 @@
     gap: 7px;
     max-height: 70vh;
     overflow-y: scroll;
+    padding: 0px 10px;
+  }
+
+  .task-card-big-content span{
+    margin-bottom: 0;
   }
 
   .category-label-big {
@@ -639,6 +644,8 @@
   .task-description-big {
     font-weight: 400;
     font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .open-task-buttons {
@@ -727,6 +734,6 @@
   }
 
   .header-row {
-    margin: 50px 10px;
+    margin: 80px 30px 50px 30px;
   }
 }
