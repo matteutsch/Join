@@ -176,7 +176,7 @@ function slideInHTML(status) {
   return /* html */ `
       <div id="slideInContainer" class="task-form">
         <div class="slideInContainer-content">
-          <div class="task-head">
+          <div class="addTask-header">
             <h1>Add Task</h1>
             <img class="pointer" src="assets/icons/clear.png" onclick="closeSlideInBtn()" />
           </div>
@@ -203,14 +203,10 @@ function slideInHTML(status) {
                       id="addTaskCategory"
                       class="selectContainer"
                     >
-                      Select task Category
+                      Select task category
                     </div>
                     <div class="expand-container">
-                      <div id="categoryDropdown">
-                        <div onclick="selectOptionCategory()" class="option">
-                          New Category
-                        </div>
-                      </div>
+                      <div id="categoryDropdown"></div>
                     </div>
                   </div>
                 </div>
