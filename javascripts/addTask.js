@@ -105,11 +105,11 @@ function resetValues() {
   let assignedTo = document.getElementById("chosenContacts");
   let dueDate = document.getElementById("date");
   priority = "";
-  document.getElementById("mediumTask").classList.remove("medium");
+  document.getElementById("medium").classList.remove("medium");
   document.getElementById("mediumIcon").src = "assets/icons/medium.png";
-  document.getElementById("urgentTask").classList.remove("urgent");
+  document.getElementById("urgent").classList.remove("urgent");
   document.getElementById("urgentIcon").src = "assets/icons/urgent.png";
-  document.getElementById("lowTask").classList.remove("low");
+  document.getElementById("low").classList.remove("low");
   document.getElementById("lowIcon").src = "assets/icons/low.png";
   title.value = "";
   description.value = "";
