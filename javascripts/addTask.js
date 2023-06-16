@@ -11,38 +11,24 @@ async function initAddTask() {
 }
 
 function setPrio(prio) {
-  let urgentBtn = document.getElementById("urgentTask");
   let urgentIcon = document.getElementById("urgentIcon");
-  let mediumBtn = document.getElementById("mediumTask");
   let mediumIcon = document.getElementById("mediumIcon");
-  let lowBtn = document.getElementById("lowTask");
   let lowIcon = document.getElementById("lowIcon");
-  if (prio == "urgent") {
-    urgentBtn.classList.add("urgent");
-    urgentIcon.src = "assets/icons/urgent_white.png";
-    mediumBtn.classList.remove("medium");
-    mediumIcon.src = "assets/icons/medium.png";
-    lowBtn.classList.remove("low");
-    lowIcon.src = "assets/icons/low.png";
-    priority = "urgent";
-  } else if (prio == "medium") {
-    mediumBtn.classList.add("medium");
-    mediumIcon.src = "assets/icons/medium_white.png";
-    urgentBtn.classList.remove("urgent");
-    urgentIcon.src = "assets/icons/urgent.png";
-    lowBtn.classList.remove("low");
-    lowIcon.src = "assets/icons/low.png";
-    priority = "medium";
-  } else if (prio == "low") {
-    lowBtn.classList.add("low");
-    lowIcon.src = "assets/icons/low_white.png";
-    urgentBtn.classList.remove("urgent");
-    urgentIcon.src = "assets/icons/urgent.png";
-    mediumBtn.classList.remove("medium");
-    mediumIcon.src = "assets/icons/medium.png";
-    priority = "low";
+  let prioIcon = document.getElementById(`${prio}Icon`);
+  let selectedPrio = document.getElementById(`${prio}`);
+  let elem = document.querySelectorAll(".prio-btn");
+  for (let k = 0; k < elem.length; k++) {
+    elem[k].classList.remove("urgent", "medium", "low");
+
+    lowIcon.src = `assets/icons/low.png`;
+    mediumIcon.src = `assets/icons/medium.png`;
+    urgentIcon.src = `assets/icons/urgent.png`;
   }
+  selectedPrio.classList.add(`${prio}`);
+  prioIcon.src = `assets/icons/${prio}_white.png`;
+  priority = prio;
 }
+
 function addContactNamesToAssignedTo() {
   //adding and rendering contacts to dropdown menu
   document.getElementById("selectContactDropdown").innerHTML = "";
