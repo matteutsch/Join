@@ -34,7 +34,7 @@
   margin-left: 232px;
   margin-top: 80px;
   height: 88vh;
-  padding: 32px 120px 48px 120px;
+  padding: 32px 120px 56px 120px;
 }
 
 .content-container p {
@@ -45,7 +45,8 @@
 
 .content-container h1 {
   margin: 0;
-  font-size: 30px;
+  font-size: 56px;
+  padding-top: 24px;
 }
 
 .task-section {
@@ -87,7 +88,7 @@
 }
 
 form {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 /*rightSide*/
@@ -116,16 +117,15 @@ form {
   display: none;
 }
 
-#subtask-buttons:focus{
+#subtask-buttons:focus {
   outline: none;
 }
 
 .seperator {
   width: 0px;
   height: 31px;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
 }
-
 
 .input {
   box-sizing: border-box;
@@ -143,7 +143,7 @@ input[type="checkbox"] {
   margin-right: 16px;
 }
 
-#addTaskSubtask{
+#addTaskSubtask {
   margin-bottom: 6px;
 }
 
@@ -190,7 +190,7 @@ input[type="checkbox"] {
   margin-right: 20px;
 }
 
-.subtask{
+.subtask {
   display: flex;
   justify-content: flex-start;
   align-items: center;
