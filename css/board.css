@@ -757,9 +757,9 @@
 
   .task-section-edit {
     height: calc(100vh - 170px);
-    width: 100%;
+    width: 90%;
     overflow-y: scroll;
-    padding-right: 5px;
+    padding: 0 20px;
   }
 
   .task-section-edit p {
