@@ -637,7 +637,7 @@ body {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 745px) {
 
   .tasksOverallContainer,
   .toDoDoneContainer {
@@ -658,7 +658,7 @@ body {
   } */
 }
 
-@media (max-width: 700px) {
+@media (max-width: 745px) {
 
   .summaryContainer,
   .tasksOverallContainer,
@@ -880,8 +880,12 @@ body {
 
   .iconDone {
     background-position: 100% 48%;
-    background-size: 85%;
+    background-size: 70%;
     margin-left: 20px;
+  }
+
+  .sumDoneContainer {
+    margin-right: 3px;
   }
 }
 
@@ -895,11 +899,11 @@ body {
   }
 
   .headline {
-    margin: 15px;
+    margin-top: 30px;
   }
 
   .blueVerticalLine {
-    top: 120px;
+    top: 148px;
   }
 
   .tasksOverallContainer,
@@ -927,6 +931,10 @@ body {
   .doneContainer {
     height: 100px;
     width: 138px;
+  }
+
+  .priority {
+    margin-right: 0;
   }
 
   .urgentContainer {
@@ -962,11 +970,16 @@ body {
 
   .iconToDo {
     height: 97px;
+    background-size: 84%;
   }
 
   .iconDone {
     height: 100px;
     background-position: 100% 48%;
-    background-size: 98%;
+    background-size: 78%;
+  }
+
+  .sumToDoContainer {
+    margin-right: 19px;
   }
 }
