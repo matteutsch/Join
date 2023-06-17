@@ -104,6 +104,7 @@ function resetValues() {
   let category = document.getElementById("addTaskCategory");
   let assignedTo = document.getElementById("chosenContacts");
   let dueDate = document.getElementById("date");
+  let subtaskContainer = document.getElementById('subtaskContainer');
   priority = "";
   document.getElementById("medium").classList.remove("medium");
   document.getElementById("mediumIcon").src = "assets/icons/medium.png";
@@ -116,7 +117,7 @@ function resetValues() {
   category.innerHTML = "Select task category";
   dueDate.value = "";
   assignedTo.innerHTML = "";
-
+  subtaskContainer.innerHTML = "";
   assignedContacts = [];
   selectedCategory = [];
 }
