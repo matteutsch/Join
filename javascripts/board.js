@@ -239,6 +239,7 @@ function displayLayer() {
       closeLayer();
       closeTaskCardBig();
       assignedContacts = [];
+      document.body.style.overflow = 'auto';
     }
   });
 }
