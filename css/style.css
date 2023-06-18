@@ -72,6 +72,10 @@ body {
   background-color: var(--dark-blue);
 }
 
+.selectedMenu {
+  background-color: var(--dark-blue) !important;
+}
+
 .menuGap {
   height: 70%;
   display: flex;

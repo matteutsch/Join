@@ -10,7 +10,6 @@
       href="assets/icons/logo-black.png"
       sizes="any"
     />
-
     <title>Join</title>
 
     <script src="javascripts/includeHTML.js"></script>
@@ -23,7 +22,7 @@
     <link rel="stylesheet" href="css/task.css" />
   </head>
 
-  <body onload="includeHTML(), initAddTask()">
+  <body onload="includeHTML('addTaskMenu'), initAddTask()">
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="content-container">
       <h1>Add Task</h1>
@@ -94,21 +93,21 @@
               <p>Prio</p>
               <div class="prio-section">
                 <div
-                  id="urgentTask"
+                  id="urgent"
                   onclick="setPrio('urgent')"
                   class="prio-btn pointer"
                 >
                   Urgent <img id="urgentIcon" src="assets/icons/urgent.png" />
                 </div>
                 <div
-                  id="mediumTask"
+                  id="medium"
                   onclick="setPrio('medium')"
                   class="prio-btn pointer"
                 >
                   Medium <img id="mediumIcon" src="assets/icons/medium.png" />
                 </div>
                 <div
-                  id="lowTask"
+                  id="low"
                   onclick="setPrio('low')"
                   class="prio-btn pointer"
                 >

@@ -92,7 +92,6 @@ function renderSelectContactHTML(i, j) {
   let email = contact.email;
   let phone = contact.phone;
   let initials = getInitials(name);
-
   return `
   <img id="arrowBack" onclick="exitContact()" class="arrowBack hideArrow" src="../assets/icons/arrow-left-black.png">
   <div class="contact-name">
@@ -246,10 +245,7 @@ async function saveContact(i, j) {
   remoteContactsAsJSON.phone = contact.phone;
   await setItem("contactsRemote", remoteContactsAsJSON);
 
-  document.getElementById("emptyInitial").innerHTML = "";
-  document.getElementById("emptyName").innerHTML = "";
-  document.getElementById("emptyEmail").innerHTML = "";
-  document.getElementById("emptyPhone").innerHTML = "";
+  document.getElementById("contactsMid").innerHTML = "";
 
   initContactList();
   closeEditContact();

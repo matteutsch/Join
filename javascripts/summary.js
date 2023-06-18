@@ -1,5 +1,5 @@
 // Überprüfen, ob die Flag-Variable bereits im sessionStorage vorhanden ist
-let isActive = sessionStorage.getItem('isActive');
+let isActive = sessionStorage.getItem("isActive");
 // Wenn sie nicht vorhanden ist, standardmäßig auf true setzen
 isActive = isActive === null ? true : JSON.parse(isActive);
 
@@ -7,7 +7,7 @@ isActive = isActive === null ? true : JSON.parse(isActive);
  * Calls all functions for summary card
  */
 async function startSummary() {
-    includeHTML();
+    includeHTML("summaryMenu");
     getDataForSummary();
     taskWithEarliestDuedate();
     tasksAsJSON = await getRemoteData("tasksRemote");
@@ -18,7 +18,7 @@ async function startSummary() {
 
     // Flag-Variable aktualisieren, um zu markieren, dass die Funktion bereits aufgerufen wurde
     isActive = false;
-    sessionStorage.setItem('isActive', JSON.stringify(isActive));
+    sessionStorage.setItem("isActive", JSON.stringify(isActive));
 }
 
 /**
@@ -40,7 +40,11 @@ async function greet() {
     const element = document.getElementById("greeting");
     const property = window.getComputedStyle(element).getPropertyValue("display");
 
-    const currentUserName = (await JSON.parse((await getItem('currentUserName')).data.value.replace(/'/g, '"'))).name;
+    const currentUserName = (
+        await JSON.parse(
+            (await getItem("currentUserName")).data.value.replace(/'/g, '"')
+        )
+    ).name;
 
     const greetingTextId = property !== "none" ? "greetingText" : "greetingText2";
     const greetingNameId = property !== "none" ? "greetingName" : "greetingName2";
@@ -48,7 +52,6 @@ async function greet() {
     document.getElementById(greetingTextId).innerHTML = timeOfDay;
     document.getElementById(greetingNameId).innerHTML = currentUserName;
 }
-
 
 /**
  * Sumes up tasks per category and urgency per priority
@@ -58,19 +61,34 @@ async function getDataForSummary() {
     const remoteTasksAsJSON = JSON.parse(res.data.value.replace(/'/g, '"'));
 
     document.getElementById("tasksInBoard").innerHTML = remoteTasksAsJSON.length;
-    document.getElementById("tasksInProgress").innerHTML = getCountByStatus(remoteTasksAsJSON, "inProgress");
-    document.getElementById("tasksAwaitingFeedback").innerHTML = getCountByStatus(remoteTasksAsJSON, "awaitingFeedback");
-    document.getElementById("sumToDo").innerHTML = getCountByStatus(remoteTasksAsJSON, "todo");
-    document.getElementById("sumDone").innerHTML = getCountByStatus(remoteTasksAsJSON, "done");
-    document.getElementById("sumUrgent").innerHTML = getCountByPriority(remoteTasksAsJSON, "urgent");
+    document.getElementById("tasksInProgress").innerHTML = getCountByStatus(
+        remoteTasksAsJSON,
+        "inProgress"
+    );
+    document.getElementById("tasksAwaitingFeedback").innerHTML = getCountByStatus(
+        remoteTasksAsJSON,
+        "awaitingFeedback"
+    );
+    document.getElementById("sumToDo").innerHTML = getCountByStatus(
+        remoteTasksAsJSON,
+        "todo"
+    );
+    document.getElementById("sumDone").innerHTML = getCountByStatus(
+        remoteTasksAsJSON,
+        "done"
+    );
+    document.getElementById("sumUrgent").innerHTML = getCountByPriority(
+        remoteTasksAsJSON,
+        "urgent"
+    );
 }
 
 function getCountByStatus(tasks, status) {
-    return tasks.filter(task => task.status === status).length;
+    return tasks.filter((task) => task.status === status).length;
 }
 
 function getCountByPriority(tasks, priority) {
-    return tasks.filter(task => task.priority === priority).length;
+    return tasks.filter((task) => task.priority === priority).length;
 }
 
 /**
@@ -80,7 +98,7 @@ async function taskWithEarliestDuedate() {
     let res = await getItem("tasksRemote");
     remoteTasksAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
 
-    let earliestDate = ['2021-06-04'];
+    let earliestDate = ["2021-06-04"];
     for (let i = 0; i < remoteTasksAsJSON.length; i++) {
         if (remoteTasksAsJSON[i].priority == "urgent") {
             let currentDate = remoteTasksAsJSON[i].dueDate;
@@ -107,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!isActive) {
         return; // Der Code wird nicht ausgeführt
     }
-
     let overlay = document.querySelector(".overlay");
 
     // Adds class "show" to make the overlay container visible

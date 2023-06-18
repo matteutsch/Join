@@ -3,7 +3,7 @@ let assignedContacts = [];
 let selectedCategory;
 let subtaskID = 0;
 
-async function initAddTask(){
+async function initAddTask() {
   remoteTasksAsJSON = await getRemoteData("tasksRemote");
   addContactNamesToAssignedTo();
   addCategories();
@@ -11,38 +11,24 @@ async function initAddTask(){
 }
 
 function setPrio(prio) {
-  let urgentBtn = document.getElementById("urgentTask");
   let urgentIcon = document.getElementById("urgentIcon");
-  let mediumBtn = document.getElementById("mediumTask");
   let mediumIcon = document.getElementById("mediumIcon");
-  let lowBtn = document.getElementById("lowTask");
   let lowIcon = document.getElementById("lowIcon");
-  if (prio == "urgent") {
-    urgentBtn.classList.add("urgent");
-    urgentIcon.src = "assets/icons/urgent_white.png";
-    mediumBtn.classList.remove("medium");
-    mediumIcon.src = "assets/icons/medium.png";
-    lowBtn.classList.remove("low");
-    lowIcon.src = "assets/icons/low.png";
-    priority = "urgent";
-  } else if (prio == "medium") {
-    mediumBtn.classList.add("medium");
-    mediumIcon.src = "assets/icons/medium_white.png";
-    urgentBtn.classList.remove("urgent");
-    urgentIcon.src = "assets/icons/urgent.png";
-    lowBtn.classList.remove("low");
-    lowIcon.src = "assets/icons/low.png";
-    priority = "medium";
-  } else if (prio == "low") {
-    lowBtn.classList.add("low");
-    lowIcon.src = "assets/icons/low_white.png";
-    urgentBtn.classList.remove("urgent");
-    urgentIcon.src = "assets/icons/urgent.png";
-    mediumBtn.classList.remove("medium");
-    mediumIcon.src = "assets/icons/medium.png";
-    priority = "low";
+  let prioIcon = document.getElementById(`${prio}Icon`);
+  let selectedPrio = document.getElementById(`${prio}`);
+  let elem = document.querySelectorAll(".prio-btn");
+  for (let k = 0; k < elem.length; k++) {
+    elem[k].classList.remove("urgent", "medium", "low");
+
+    lowIcon.src = `assets/icons/low.png`;
+    mediumIcon.src = `assets/icons/medium.png`;
+    urgentIcon.src = `assets/icons/urgent.png`;
   }
+  selectedPrio.classList.add(`${prio}`);
+  prioIcon.src = `assets/icons/${prio}_white.png`;
+  priority = prio;
 }
+
 function addContactNamesToAssignedTo() {
   //adding and rendering contacts to dropdown menu
   document.getElementById("selectContactDropdown").innerHTML = "";
@@ -58,7 +44,8 @@ function addCategories() {
   //adding and rendering categories to dropdown menu
   for (let i = 0; i < categories.length; i++) {
     let category = categories[i];
-    category["name"] = category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
+    category["name"] =
+      category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
     document.getElementById("categoryDropdown").innerHTML += `
     <div onclick="selectOptionCategory(${i})" class="option">
         ${category["name"]}
@@ -77,7 +64,6 @@ function pushAssignedContact(i) {
 }
 
 async function createTask(status) {
-
   let title = document.getElementById("addTaskTitle");
   let description = document.getElementById("addTaskDescription");
   let dueDate = document.getElementById("date");
@@ -107,8 +93,8 @@ async function createTask(status) {
     closeSlideInBtn();
   } else {
     setTimeout(() => {
-      window.location.href = 'board.html';
-    }, 1000)
+      window.location.href = "board.html";
+    }, 1000);
   }
 }
 
@@ -118,19 +104,20 @@ function resetValues() {
   let category = document.getElementById("addTaskCategory");
   let assignedTo = document.getElementById("chosenContacts");
   let dueDate = document.getElementById("date");
+  let subtaskContainer = document.getElementById('subtaskContainer');
   priority = "";
-  document.getElementById("mediumTask").classList.remove("medium");
+  document.getElementById("medium").classList.remove("medium");
   document.getElementById("mediumIcon").src = "assets/icons/medium.png";
-  document.getElementById("urgentTask").classList.remove("urgent");
+  document.getElementById("urgent").classList.remove("urgent");
   document.getElementById("urgentIcon").src = "assets/icons/urgent.png";
-  document.getElementById("lowTask").classList.remove("low");
+  document.getElementById("low").classList.remove("low");
   document.getElementById("lowIcon").src = "assets/icons/low.png";
   title.value = "";
   description.value = "";
   category.innerHTML = "Select task category";
   dueDate.value = "";
   assignedTo.innerHTML = "";
-
+  subtaskContainer.innerHTML = "";
   assignedContacts = [];
   selectedCategory = [];
 }
@@ -191,7 +178,9 @@ function selectOptionContacts(i) {
 //
 function isContactSelected(chosenContacts, contact) {
   // checking if contact is in chosenContacts
-  let contactElements = chosenContacts.getElementsByClassName("chosenContactInitials");
+  let contactElements = chosenContacts.getElementsByClassName(
+    "chosenContactInitials"
+  );
 
   for (let i = 0; i < contactElements.length; i++) {
     let initials = contactElements[i].textContent.trim();
@@ -230,7 +219,9 @@ function deleteFromAssignedContacts(i) {
 function taskPopup(change) {
   let success = document.getElementById("taskAdded");
   if (change == alert) {
-    document.getElementById("taskAdded").innerHTML = `Please fill missing informations`;
+    document.getElementById(
+      "taskAdded"
+    ).innerHTML = `Please fill missing informations`;
   } else {
     document.getElementById(
       "taskAdded"
@@ -275,41 +266,42 @@ function addSubtaskEventListener() {
   inputField.addEventListener("blur", () => {
     setTimeout(() => {
       container.style.display = "none";
-    }, 100)
+    }, 100);
   });
 }
 
+function createNewSubtask() {
+  let inputField = document.getElementById("addTaskSubtask");
+  let subtaskContainer = document.getElementById("subtaskContainer");
 
-function createNewSubtask(){
-  let inputField = document.getElementById('addTaskSubtask');
-  let subtaskContainer = document.getElementById('subtaskContainer')
-  
   if (inputField.value) {
     subtaskContainer.innerHTML += subtaskHTML(inputField.value, subtaskID);
-    subtaskID++
-    inputField.value = '';
+    subtaskID++;
+    inputField.value = "";
   }
 }
 
-function renderSubtask(taskID){
-  let subtaskContainer = document.getElementById('editSubtaskContainer')
+function renderSubtask(taskID) {
+  let subtaskContainer = document.getElementById("editSubtaskContainer");
 
   for (let i = 0; i < remoteTasksAsJSON[taskID]["subtasks"].length; i++) {
     const subtaskName = remoteTasksAsJSON[taskID]["subtasks"][i]["name"];
     const subtaskStatus = remoteTasksAsJSON[taskID]["subtasks"][i]["status"];
-    subtaskContainer.innerHTML += subtaskHTML(subtaskName, taskID, subtaskStatus);
+    subtaskContainer.innerHTML += subtaskHTML(
+      subtaskName,
+      taskID,
+      subtaskStatus
+    );
   }
-
 }
 
-
 function pushSubtasks() {
-  let subtasks = document.querySelectorAll('.subtask');
+  let subtasks = document.querySelectorAll(".subtask");
   let subtaskArray = [];
-  subtasks.forEach(subtask => {
+  subtasks.forEach((subtask) => {
     let checkbox = subtask.querySelector("input[type='checkbox']");
     subtaskArray.push({
-      name: subtask.textContent, 
+      name: subtask.textContent,
       status: isChecked(checkbox),
     });
   });
@@ -331,9 +323,7 @@ function isSubtaskChecked(subtaskStatus) {
   return false;
 }
 
-
-
-function emptySubtaskValue(){
-  let inputField = document.getElementById('addTaskSubtask');
-  inputField.value = '';
+function emptySubtaskValue() {
+  let inputField = document.getElementById("addTaskSubtask");
+  inputField.value = "";
 }
