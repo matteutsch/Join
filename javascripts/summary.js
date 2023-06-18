@@ -104,6 +104,10 @@ function jumpToBoard() {
 
 // Waits until document in loaded
 document.addEventListener("DOMContentLoaded", function() {
+    if (!isActive) {
+        return; // Der Code wird nicht ausgeführt
+    }
+
     let overlay = document.querySelector(".overlay");
 
     // Adds class "show" to make the overlay container visible
