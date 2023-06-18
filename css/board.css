@@ -74,7 +74,6 @@
   justify-content: space-evenly;
   align-items: start;
   flex-wrap: wrap;
-  min-height: 130vh;
 }
 
 .task-container {
@@ -733,6 +732,7 @@
   .task-description-big {
     font-weight: 400;
     font-size: 16px;
+    padding: 10px 0;
   }
 
   .open-task-buttons {

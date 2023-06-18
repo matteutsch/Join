@@ -401,7 +401,6 @@
     align-items: center;
     pointer-events: none;
     border: none;
-    opacity: 0;
   }
 
   .logo-container {
