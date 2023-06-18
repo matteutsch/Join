@@ -11,7 +11,7 @@ async function startSummary() {
     getDataForSummary();
     taskWithEarliestDuedate();
     tasksAsJSON = await getRemoteData("tasksRemote");
-    if (!isActive) {
+    if (!isActive && window.innerWidth < 670) {
         return; // Die Funktion wird beendet, ohne den Code auszuführen
     }
     greet(); // Funktionierender Code hier
@@ -46,11 +46,14 @@ async function greet() {
         )
     ).name;
 
-    const greetingTextId = property !== "none" ? "greetingText" : "greetingText2";
-    const greetingNameId = property !== "none" ? "greetingName" : "greetingName2";
+    /*     const greetingTextId = property !== "none" ? "greetingText" : "greetingText2";
+        const greetingNameId = property !== "none" ? "greetingName" : "greetingName2"; */
 
-    document.getElementById(greetingTextId).innerHTML = timeOfDay;
-    document.getElementById(greetingNameId).innerHTML = currentUserName;
+    document.getElementById("greetingText").innerHTML = timeOfDay;
+    document.getElementById("greetingName").innerHTML = currentUserName;
+
+    document.getElementById("greetingText2").innerHTML = timeOfDay;
+    document.getElementById("greetingName2").innerHTML = currentUserName;
 }
 
 /**
