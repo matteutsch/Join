@@ -348,7 +348,11 @@ function renderProgress(i) {
   let doneCount = countDoneSubtasks(i);
   let subtaskLength = remoteTasksAsJSON[i]["subtasks"].length;
   let percentage = (doneCount / subtaskLength) * 100;
-  return percentage;
+  if (subtaskLength == 0) {
+    return 0
+  } else {
+    return percentage;
+  }
 }
 
 // -----------------------drag-&-drop ----------------------------//
