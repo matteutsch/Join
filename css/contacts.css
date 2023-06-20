@@ -342,6 +342,9 @@ input::-webkit-inner-spin-button {
   background-color: #f6f7f8;
   color: var(--blue);
 }
+.show-delete {
+  display: block !important;
+}
 .cancel-btn:hover {
   transform: scale(1.02);
   border: 2px solid var(--light-blue);
@@ -440,11 +443,6 @@ input::-webkit-inner-spin-button {
   .contacts-top-head {
     padding-right: 18px;
   }
-  .cancel-btn,
-  .create-contact-btn {
-    font-size: 18px;
-    padding: 8px;
-  }
 }
 @media (max-width: 850px) {
   .contacts-content {
@@ -473,9 +471,7 @@ input::-webkit-inner-spin-button {
   .new-contact-btn img {
     height: 16px;
   }
-  .cancel-btn {
-    display: none;
-  }
+
   .create-contact-btn {
     font-size: 25px;
     padding: 12px;

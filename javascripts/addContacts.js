@@ -217,7 +217,7 @@ function createEditHTML(i, j) {
       </div>
     </div>
     <div class="addContactBtn">
-      <button type="button" onclick="deleteContact(${i}, ${j})" class="cancel-btn">Delete</button>
+      <button type="button" onclick="deleteContact(${i}, ${j}), exitContact()" class="cancel-btn">Delete</button>
       <button type="submit" class="create-contact-btn">
         Save
       </button>
