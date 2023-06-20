@@ -241,15 +241,18 @@ function selectOptionContacts(i) {
     if (chosenContacts.children.length < 5) {
       assignedContact.classList.add("d-none");
 
-      let newContact = document.createElement("div");
-      newContact.style.backgroundColor = color;
-      newContact.classList.add("chosenContactInitials");
-      newContact.textContent = initials;
-      newContact.addEventListener("click", function () {
-        removeContact(i, assignedContact);
-      });
+      let newContactHTML = `
+        <div style="background-color: ${color}" class="chosenContactInitials" onclick="removeContact(${i})">
+          ${initials}
+        </div>
+      `;
+      chosenContacts.innerHTML += newContactHTML;
 
-      chosenContacts.appendChild(newContact);
+      // Remove selected option from dropdown
+      let selectedOption = dropdown.querySelector(`option[value="${i}"]`);
+      if (selectedOption) {
+        selectedOption.remove();
+      }
     } else {
       console.log("Maximum number of contacts reached!");
     }
@@ -282,9 +285,8 @@ function isContactSelected(chosenContacts, contact) {
 //-----------remove added contacts --------------------//
 /* let assignedContacts = []; */
 
-function removeContact(i, assignedContact) {
+function removeContact(i) {
   deleteFromAssignedContacts(i);
-  assignedContact.classList.remove("d-none");
   event.target.remove();
 }
 
