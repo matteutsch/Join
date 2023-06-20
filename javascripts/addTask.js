@@ -55,8 +55,11 @@ async function addCategories() {
       category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
     document.getElementById("categoryDropdown").innerHTML += `
     <div onclick="selectOptionCategory(${i})" class="option">
+      <div class="d-option">
         ${category["name"]}
         <div style="background-color: ${category["color"]}" class="category-circle"></div>
+      </div>
+      <img onclick="removeCategory(${i})" src="assets/icons/clear-subtask.png">  
     </div>`;
   }
 }
@@ -202,6 +205,13 @@ async function addNewCategory() {
 
   addCategories();
   closeNewCategory();
+}
+
+async function removeCategory(i) {
+  remoteCategoryAsJSON.splice(i, 1);
+  await setItem("categoryRemote", remoteCategoryAsJSON);
+  document.getElementById("addTaskCategory").innerHTML = "Select task category";
+  addCategories();
 }
 
 //-----------dropdown-category --------------------//

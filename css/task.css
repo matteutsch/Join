@@ -368,6 +368,9 @@ input[type="checkbox"] {
   background-position-x: 95%;
   gap: 8px;
 }
+.selectContainer img {
+  display: none;
+}
 
 .content {
   font-size: 18px;
@@ -417,7 +420,7 @@ input[type="checkbox"] {
 .option {
   padding: 8px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
@@ -426,7 +429,20 @@ input[type="checkbox"] {
 .option:hover {
   background-color: var(--grey);
 }
+.option img {
+  width: 16px;
+  height: 16px;
+}
+.option img:hover {
+  cursor: pointer;
+}
 
+.d-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
 .sb {
   display: flex;
   justify-content: space-between;
