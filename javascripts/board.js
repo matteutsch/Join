@@ -21,7 +21,7 @@ function renderCategoryLabelColor(i) {
 
 function findColorByName(categoryName) {
   for (let i = 0; i < categories.length; i++) {
-    if (categoryColor[i].name === categoryName) {
+    if (categories[i].name === categoryName) {
       return categories[i].color;
     }
   }
