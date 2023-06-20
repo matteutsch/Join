@@ -14,16 +14,16 @@ async function initBoard() {
 }
 
 function renderCategoryLabelColor(i) {
-  let categoryName = remoteTasksAsJSON[i]["category"].toLowerCase();
+  let categoryName = remoteTasksAsJSON[i]["category"].charAt(0).toUpperCase() + remoteTasksAsJSON[i]["category"].slice(1);
   let labelColor = findColorByName(categoryName);
 
   return labelColor;
 }
 
 function findColorByName(categoryName) {
-  for (let i = 0; i < categories.length; i++) {
-    if (categories[i].name === categoryName) {
-      return categories[i].color;
+  for (let i = 0; i < remoteCategoryAsJSON.length; i++) {
+    if (remoteCategoryAsJSON[i].name === categoryName) {
+      return remoteCategoryAsJSON[i].color;
     }
   }
   return null;
