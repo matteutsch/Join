@@ -52,7 +52,7 @@ function openTaskCard(i, cardID) {
   displayLayer();
   renderAssignedTo(i, "assignedTo-container");
   renderClosingArrow();
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 }
 
 function editTaskCard(taskIndex) {
@@ -82,7 +82,8 @@ function fillEditFields(taskIndex) {
 
 async function saveChanges() {
   const titleInputFieldValue = document.getElementById("addTaskTitle").value;
-  const descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
+  const descriptionInputFieldValue =
+    document.getElementById("addTaskDescription").value;
   const dueDateFieldValue = document.getElementById("date").value;
 
   const updatedTask = {
@@ -223,9 +224,17 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     } else {
-      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
+      container.innerHTML += assignedToCardHTML(
+        contactColor,
+        initials,
+        assignedToName
+      );
     }
   }
 }
@@ -239,7 +248,7 @@ function displayLayer() {
       closeLayer();
       closeTaskCardBig();
       assignedContacts = [];
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
   });
 }
@@ -248,7 +257,7 @@ function closeSlideInBtn() {
   closeSlideInContainer();
   closeLayer();
   closeTaskCardBig();
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow = "auto";
 }
 
 function closeSlideInContainer() {
@@ -289,7 +298,7 @@ function slideInContainer(status) {
   addContactNamesToAssignedTo();
   addCategories();
   addSubtaskEventListener();
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 }
 
 document.addEventListener("input", function (event) {
@@ -304,7 +313,9 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
+    const description = card
+      .querySelector(".task-description")
+      .innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
@@ -381,20 +392,23 @@ function removeHighlightAll() {
 function toggleDropdown(event, i) {
   event.stopPropagation();
   let dropdownContent = document.getElementById(`dropdown-content${i}`);
-  dropdownContent.style.transition = "opacity 0.3s ease"; 
-  if (dropdownContent.style.display === "" || dropdownContent.style.display === "none") {
-    dropdownContent.style.opacity = "0"; 
+  dropdownContent.style.transition = "opacity 0.3s ease";
+  if (
+    dropdownContent.style.display === "" ||
+    dropdownContent.style.display === "none"
+  ) {
+    dropdownContent.style.opacity = "0";
     dropdownContent.style.display = "block";
     setTimeout(() => {
-      dropdownContent.style.opacity = "1"; 
+      dropdownContent.style.opacity = "1";
     }, 10);
   } else {
-    dropdownContent.style.opacity = "0"; 
+    dropdownContent.style.opacity = "0";
     dropdownContent.style.display = "none";
   }
   function hideDropdown(event) {
     if (!event.target.closest(".container")) {
-      dropdownContent.style.opacity = "0"; 
+      dropdownContent.style.opacity = "0";
       dropdownContent.style.display = "none";
       document.removeEventListener("click", hideDropdown);
     }
@@ -403,8 +417,6 @@ function toggleDropdown(event, i) {
     document.addEventListener("click", hideDropdown);
   }
 }
-
-
 
 async function selectOption(event, option, i, status) {
   event.stopPropagation();
@@ -429,8 +441,7 @@ function toggleButtonVisibility() {
     } else {
       button.style.display = "none";
     }
-  })
-  
+  });
 }
 
 window.addEventListener("resize", toggleButtonVisibility);

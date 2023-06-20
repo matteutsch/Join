@@ -194,6 +194,10 @@ async function addNewCategory() {
       name: newCat,
       color: newColor,
     };
+    let newCategoryColor = {
+      [newCat]: newColor,
+    };
+    categoryColor[0] = { ...categoryColor[0], ...newCategoryColor };
     categories.push(newCategory);
   }
 
