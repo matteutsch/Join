@@ -44,7 +44,7 @@ input::-webkit-inner-spin-button {
 }
 .contacts-top-head h1 {
   margin: 0;
-  font-size: 30px;
+  font-size: 50px;
 }
 
 .contacts-top-text {
@@ -532,8 +532,8 @@ input::-webkit-inner-spin-button {
     color: white;
   }
   .contacts-content-right {
-    padding-top: 10%;
-    padding-left: 10%;
+    padding-top: 5%;
+    padding-left: 0px;
   }
 
   .contactCreated {
@@ -549,10 +549,13 @@ input::-webkit-inner-spin-button {
   .contactForm {
     margin-top: 5%;
   }
+  .contacts-top-head h1 {
+    font-size: 32px;
+  }
 }
 @media (max-width: 500px) {
   .editInitials {
-    font-size: 32px;
+    font-size: 40px;
   }
   .createContactContainer {
     margin-top: 32px;

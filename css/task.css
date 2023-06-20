@@ -374,6 +374,45 @@ input[type="checkbox"] {
   border-radius: 8px;
   white-space: nowrap;
 }
+.content input {
+  font-size: 18px;
+  border-radius: 8px;
+  width: 85%;
+  box-sizing: border-box;
+  padding: 8px;
+  border: 1px solid #cdcdcd;
+}
+
+#newCatColors {
+  padding: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.newCatColor {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  border: 2px solid white;
+  margin-right: 4px;
+}
+.newCatColor:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.selectedColor {
+  border: 2px solid black;
+  transform: scale(1.1);
+}
+.newCatOrg {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.newCatOrg img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
 
 .option {
   padding: 8px;

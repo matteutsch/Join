@@ -42,6 +42,11 @@ function addContactNamesToAssignedTo() {
 
 function addCategories() {
   //adding and rendering categories to dropdown menu
+  document.getElementById(
+    "categoryDropdown"
+  ).innerHTML = `<div class="option" onclick="showNewCategory()">
+    New Category 
+  </div>`;
   for (let i = 0; i < categories.length; i++) {
     let category = categories[i];
     category["name"] =
@@ -87,14 +92,13 @@ async function createTask(status) {
     subtaskID = 0;
     resetValues();
     taskPopup();
+    setTimeout(() => {
+      window.location.href = "board.html";
+    }, 1000);
   }
   if (window.location.pathname.includes("board.html")) {
     initBoard();
     closeSlideInBtn();
-  } else {
-    setTimeout(() => {
-      window.location.href = "board.html";
-    }, 1000);
   }
 }
 
@@ -104,7 +108,7 @@ function resetValues() {
   let category = document.getElementById("addTaskCategory");
   let assignedTo = document.getElementById("chosenContacts");
   let dueDate = document.getElementById("date");
-  let subtaskContainer = document.getElementById('subtaskContainer');
+  let subtaskContainer = document.getElementById("subtaskContainer");
   priority = "";
   document.getElementById("medium").classList.remove("medium");
   document.getElementById("mediumIcon").src = "assets/icons/medium.png";
@@ -142,6 +146,61 @@ function selectOptionCategory(i) {
   dropdown.classList.remove("expanded");
   category.classList.remove("category-expanded");
 }
+
+function showNewCategory() {
+  let selectCat = document.getElementById("addTaskCategory");
+  let newCat = document.getElementById("newCat");
+  let dropdown = document.getElementById("categoryDropdown");
+  selectCat.classList.add("d-none");
+  newCat.classList.remove("d-none");
+  dropdown.classList.add("d-none");
+  renderColors();
+}
+function closeNewCategory() {
+  let selectCat = document.getElementById("addTaskCategory");
+  let newCat = document.getElementById("newCat");
+  let dropdown = document.getElementById("categoryDropdown");
+  selectCat.classList.remove("d-none");
+  newCat.classList.add("d-none");
+  dropdown.classList.remove("d-none");
+  document.getElementById("newCatInput").value = "";
+}
+function renderColors() {
+  let colorContainer = document.getElementById("newCatColors");
+  colorContainer.innerHTML = "";
+  for (let i = 0; i < nameColor.length; i++) {
+    let color = nameColor[i];
+    colorContainer.innerHTML += `
+    <div id="newCatColorID${i}" onclick="selectCatColor(${i})" style="background-color: ${color}" class="newCatColor"></div>`;
+  }
+}
+function selectCatColor(i) {
+  let newColor = document.getElementById(`newCatColorID${i}`);
+  let allColors = document.querySelectorAll(".newCatColor");
+  for (let j = 0; j < allColors.length; j++) {
+    allColors[j].classList.remove("selectedColor");
+  }
+  newColor.classList.add("selectedColor");
+}
+
+function addNewCategory() {
+  let newCatInp = document.getElementById("newCatInput");
+  let newColorElement = document.querySelector(".selectedColor");
+  let newColor = newColorElement.style.backgroundColor;
+  let newCat = newCatInp.value;
+
+  if (newCat && newColor) {
+    let newCategory = {
+      name: newCat,
+      color: newColor,
+    };
+    categories.push(newCategory);
+  }
+
+  addCategories();
+  closeNewCategory();
+}
+
 //-----------dropdown-category --------------------//
 //-----------dropdown-contacts --------------------//
 
@@ -219,13 +278,9 @@ function deleteFromAssignedContacts(i) {
 function taskPopup(change) {
   let success = document.getElementById("taskAdded");
   if (change == alert) {
-    document.getElementById(
-      "taskAdded"
-    ).innerHTML = `Please fill missing informations`;
+    success.innerHTML = `Please fill missing informations`;
   } else {
-    document.getElementById(
-      "taskAdded"
-    ).innerHTML = `Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />`;
+    success.innerHTML = `Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />`;
   }
   success.style.display = "block";
   setTimeout(function () {

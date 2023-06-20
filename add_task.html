@@ -14,6 +14,7 @@
 
     <script src="javascripts/includeHTML.js"></script>
     <script src="javascripts/storage.js"></script>
+    <script src="javascripts/categoryColor.js"></script>
     <script src="javascripts/board.js"></script>
     <script src="javascripts/boardHTML.js"></script>
     <script src="javascripts/addTask.js"></script>
@@ -46,6 +47,14 @@
             <div>
               <p>Category</p>
               <div class="content">
+                <div class="d-none" id="newCat">
+                  <div class="newCatOrg">
+                    <input id="newCatInput" placeholder="Enter new category....">
+                    <img onclick="closeNewCategory()" src="assets/icons/clear-subtask.png">
+                    <img onclick="addNewCategory()" src="assets/icons/checkmark-black.png">
+                  </div>
+                  <div id="newCatColors"></div>
+                </div>
                 <div
                   onclick="openDropdownCategory()"
                   id="addTaskCategory"
@@ -55,7 +64,9 @@
                 </div>
                 <div class="expand-container">
                   <div id="categoryDropdown">
-
+                    <div class="option" onclick="showNewCategory()">
+                       New Category 
+                    </div>
                   </div>
                 </div>
               </div>
