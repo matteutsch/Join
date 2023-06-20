@@ -97,9 +97,12 @@ async function createTask(status) {
     subtaskID = 0;
     resetValues();
     taskPopup();
-    setTimeout(() => {
-      window.location.href = "board.html";
-    }, 1000);
+
+    if (window.location.pathname.includes("add_task.html")) {
+      setTimeout(() => {
+        window.location.href = "board.html";
+      }, 1000);
+    }
   }
   if (window.location.pathname.includes("board.html")) {
     initBoard();
