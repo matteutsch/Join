@@ -188,6 +188,7 @@ async function deleteCard(cardIndex, cardID) {
   remoteTasksAsJSON = await getRemoteData("tasksRemote");
   initBoard();
   closeLayer();
+  document.body.style.overflow = "auto";
 }
 
 async function getRemoteData(key) {
