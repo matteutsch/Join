@@ -36,7 +36,7 @@ function addContactNamesToAssignedTo() {
     let contact = contacts[i];
     let name = contact.name;
     document.getElementById("selectContactDropdown").innerHTML += `
-    <div onclick="selectOptionContacts(${i}), pushAssignedContact(${i})" class="option sb">${name} </div>`;
+    <div id="assignedContactID${i}" onclick="selectOptionContacts(${i}), pushAssignedContact(${i})" class="option sb">${name} </div>`;
   }
 }
 
@@ -183,7 +183,7 @@ function selectCatColor(i) {
   newColor.classList.add("selectedColor");
 }
 
-function addNewCategory() {
+async function addNewCategory() {
   let newCatInp = document.getElementById("newCatInput");
   let newColorElement = document.querySelector(".selectedColor");
   let newColor = newColorElement.style.backgroundColor;
@@ -212,28 +212,41 @@ function openDropdownContacts() {
 }
 
 function selectOptionContacts(i) {
-  //adding and rendering selected Contacts into container below dropdown menu
+  // Adding and rendering selected Contacts into container below dropdown menu
   let dropdown = document.getElementById("selectContactDropdown");
   let selectContact = document.getElementById("selectContact");
   let chosenContacts = document.getElementById("chosenContacts");
 
+  let assignedContact = document.getElementById(`assignedContactID${i}`);
+
   let initials = getInitials(contacts[i]["name"]);
   let color = contacts[i]["color"];
-  // checking if contact got selected already
+
+  // Checking if contact is already selected
   if (!isContactSelected(chosenContacts, contacts[i])) {
     if (chosenContacts.children.length < 5) {
-      chosenContacts.innerHTML += `<div onclick="removeContact(${i})" style="background-color:${color}" class="chosenContactInitials">
-    ${initials}</div>`;
+      assignedContact.classList.add("d-none");
+
+      let newContact = document.createElement("div");
+      newContact.style.backgroundColor = color;
+      newContact.classList.add("chosenContactInitials");
+      newContact.textContent = initials;
+      newContact.addEventListener("click", function () {
+        removeContact(i, assignedContact);
+      });
+
+      chosenContacts.appendChild(newContact);
     } else {
-      console.log("maximum number of contacts!");
+      console.log("Maximum number of contacts reached!");
     }
   } else {
-    console.log("contact already selected!");
+    console.log("Contact already selected!");
   }
 
   dropdown.classList.remove("expanded");
   selectContact.classList.remove("category-expanded");
 }
+
 //
 function isContactSelected(chosenContacts, contact) {
   // checking if contact is in chosenContacts
@@ -255,13 +268,10 @@ function isContactSelected(chosenContacts, contact) {
 //-----------remove added contacts --------------------//
 /* let assignedContacts = []; */
 
-function removeContact(i) {
+function removeContact(i, assignedContact) {
   deleteFromAssignedContacts(i);
-  chosenContacts.addEventListener("click", function (event) {
-    if (event.target.classList.contains("chosenContactInitials")) {
-      event.target.remove();
-    }
-  });
+  assignedContact.classList.remove("d-none");
+  event.target.remove();
 }
 
 function deleteFromAssignedContacts(i) {
