@@ -262,12 +262,13 @@
   flex-grow: 0;
   cursor: pointer;
   border: none;
+  transition: transform 0.2s;
 }
 
 .login-button:hover {
   background: #29abe2;
   border: none;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transform: scale(1.01);
 }
 
 .login-button:active {
@@ -294,12 +295,14 @@
   flex: none;
   order: 1;
   flex-grow: 0;
+  transition: transform 0.2s;
 }
 
 .guest-login-button:hover {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border: 2px solid #29abe2;
   color: #29abe2;
+  transform: scale(1.01);
 }
 
 .guest-login-button:active {
@@ -365,7 +368,6 @@
   cursor: pointer;
 }
 
-
 @media (max-width: 800px) {
   .login-form {
     width: 372px;
@@ -417,7 +419,6 @@
     margin-top: 30px;
     margin-bottom: 40px;
   }
-
 
   .email {
     width: 327px;
