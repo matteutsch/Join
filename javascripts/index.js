@@ -1,5 +1,3 @@
-/* let currentUserName = 'Dear dear Guest';
- */
 /**
     Initializes the login page by executing fadeInAnimation and changeLogoColor functions.
     @function
