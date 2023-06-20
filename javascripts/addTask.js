@@ -2,9 +2,11 @@ let priority;
 let assignedContacts = [];
 let selectedCategory;
 let subtaskID = 0;
+let remoteCategoryAsJSON;
 
 async function initAddTask() {
   remoteTasksAsJSON = await getRemoteData("tasksRemote");
+  remoteCategoryAsJSON = await getRemoteData("categoryRemote");
   addContactNamesToAssignedTo();
   addCategories();
   addSubtaskEventListener();
@@ -40,15 +42,15 @@ function addContactNamesToAssignedTo() {
   }
 }
 
-function addCategories() {
+async function addCategories() {
   //adding and rendering categories to dropdown menu
   document.getElementById(
     "categoryDropdown"
   ).innerHTML = `<div class="option" onclick="showNewCategory()">
     New Category 
   </div>`;
-  for (let i = 0; i < categories.length; i++) {
-    let category = categories[i];
+  for (let i = 0; i < remoteCategoryAsJSON.length; i++) {
+    let category = remoteCategoryAsJSON[i];
     category["name"] =
       category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
     document.getElementById("categoryDropdown").innerHTML += `
@@ -141,7 +143,7 @@ function selectOptionCategory(i) {
   let selectedOption = event.target.innerHTML;
 
   category.innerHTML = selectedOption;
-  selectedCategory = categories[i]["name"];
+  selectedCategory = remoteCategoryAsJSON[i]["name"];
 
   dropdown.classList.remove("expanded");
   category.classList.remove("category-expanded");
@@ -194,11 +196,8 @@ async function addNewCategory() {
       name: newCat,
       color: newColor,
     };
-    let newCategoryColor = {
-      [newCat]: newColor,
-    };
-    categoryColor[0] = { ...categoryColor[0], ...newCategoryColor };
-    categories.push(newCategory);
+    remoteCategoryAsJSON.push(newCategory);
+    await setItem("categoryRemote", remoteCategoryAsJSON);
   }
 
   addCategories();

@@ -5,6 +5,7 @@ let remoteTasksAsJSON;
 
 async function initBoard() {
   remoteTasksAsJSON = await getRemoteData("tasksRemote");
+  remoteCategoryAsJSON = await getRemoteData("categoryRemote");
   renderTaskCards("todo", "todo");
   renderTaskCards("inProgress", "inProgress");
   renderTaskCards("awaitingFeedback", "awaitingFeedback");
@@ -14,8 +15,8 @@ async function initBoard() {
 
 function renderCategoryLabelColor(i) {
   let categoryName = remoteTasksAsJSON[i]["category"].toLowerCase();
-  let labelColor = findColorByName(categoryName)
-  
+  let labelColor = findColorByName(categoryName);
+
   return labelColor;
 }
 
@@ -25,7 +26,7 @@ function findColorByName(categoryName) {
       return categories[i].color;
     }
   }
-  return null; 
+  return null;
 }
 
 function renderTaskCards(container, status) {

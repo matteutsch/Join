@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="css/task.css" />
   </head>
 
-  <body onload="includeHTML('boardMenu'), initBoard()" ondragend="removeHighlightAll()" >
+  <body
+    onload="includeHTML('boardMenu'), initBoard()"
+    ondragend="removeHighlightAll()"
+  >
     <div w3-include-html="assets/templates/menu+header.html"></div>
     <div class="board-body">
       <div class="header-row">
@@ -90,7 +93,6 @@
             ondragleave="removeHighlight('inProgress')"
             ondragover="allowDrop(event); highlight('inProgress')"
             ondrag="highlightAll()"
-            
             id="inProgress"
             class="statusContainer"
           ></div>
@@ -133,8 +135,7 @@
     </div>
     todo
     <div id="taskLayer" style="display: none">
-      <div id="slideInContainer">
-      </div>
+      <div id="slideInContainer"></div>
     </div>
   </body>
 </html>
