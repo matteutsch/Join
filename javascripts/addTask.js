@@ -193,6 +193,7 @@ async function addNewCategory() {
   let newColorElement = document.querySelector(".selectedColor");
   let newColor = newColorElement.style.backgroundColor;
   let newCat = newCatInp.value;
+  newCat = newCat.charAt(0).toUpperCase() + newCat.slice(1);
 
   if (newCat && newColor) {
     let newCategory = {
