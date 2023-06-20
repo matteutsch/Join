@@ -1,10 +1,23 @@
 let categoryColor = [
   {
-    sales: "#FC71FF",
-    backoffice: "#1FD7C1",
-    marketing: "#0038FF",
-    design: "#FF7A00",
-    media: "#FF0000",
+    name: "sales",
+    color: "#FC71FF",
+  },
+  {
+    name: "backoffice",
+    color: "#1FD7C1",
+  },
+  {
+    name: "marketing",
+    color: "#0038FF",
+  },
+  {
+    name: "design",
+    color: "#FF7A00",
+  },
+  {
+    name: "media",
+    color: "#FF0000",
   },
 ];
 

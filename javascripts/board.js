@@ -14,8 +14,18 @@ async function initBoard() {
 
 function renderCategoryLabelColor(i) {
   let categoryName = remoteTasksAsJSON[i]["category"].toLowerCase();
-  let labelColor = categoryColor[0][categoryName];
+  let labelColor = findColorByName(categoryName)
+  
   return labelColor;
+}
+
+function findColorByName(categoryName) {
+  for (let i = 0; i < categories.length; i++) {
+    if (categoryColor[i].name === categoryName) {
+      return categories[i].color;
+    }
+  }
+  return null; 
 }
 
 function renderTaskCards(container, status) {
