@@ -297,7 +297,7 @@
 .subtask-container {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   box-sizing: border-box;
   gap: 10px;
@@ -306,7 +306,7 @@
 
 .subtask-bar {
   background-color: #f4f4f4;
-  width: 100%;
+  width: 70%;
   height: 8px;
   border-radius: 3px;
   border: none;

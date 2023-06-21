@@ -198,14 +198,14 @@ async function addNewCategory() {
   let newCat = newCatInp.value;
   newCat = newCat.charAt(0).toUpperCase() + newCat.slice(1);
 
-  if (newCat && newColor) {
+  /* if (newCat && newColor) { */
     let newCategory = {
       name: newCat,
       color: newColor,
     };
     remoteCategoryAsJSON.push(newCategory);
     await setItem("categoryRemote", remoteCategoryAsJSON);
-  }
+  /* } */
 
   addCategories();
   closeNewCategory();

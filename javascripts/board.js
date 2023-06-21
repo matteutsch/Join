@@ -2,6 +2,7 @@ let openTaskIndex;
 let openTaskID;
 let assignedToArray;
 let remoteTasksAsJSON;
+let assignedContactNames = [];
 
 async function initBoard() {
   remoteTasksAsJSON = await getRemoteData("tasksRemote");
@@ -14,7 +15,9 @@ async function initBoard() {
 }
 
 function renderCategoryLabelColor(i) {
-  let categoryName = remoteTasksAsJSON[i]["category"].charAt(0).toUpperCase() + remoteTasksAsJSON[i]["category"].slice(1);
+  let categoryName =
+    remoteTasksAsJSON[i]["category"].charAt(0).toUpperCase() +
+    remoteTasksAsJSON[i]["category"].slice(1);
   let labelColor = findColorByName(categoryName);
 
   return labelColor;
@@ -64,6 +67,15 @@ function openTaskCard(i, cardID) {
   renderAssignedTo(i, "assignedTo-container");
   renderClosingArrow();
   document.body.style.overflow = "hidden";
+  fillAssignedContactNames();
+}
+
+function fillAssignedContactNames() {
+  let assignedToContainer = document.querySelectorAll(".assignedTo-row p");
+  assignedToContainer.forEach((container) => {
+    let name = container;
+    assignedContactNames.push(name.innerHTML);
+  });
 }
 
 function editTaskCard(taskIndex) {
@@ -73,7 +85,24 @@ function editTaskCard(taskIndex) {
   addContactNamesToAssignedTo();
   renderSubtask(taskIndex);
   openTaskIndex = taskIndex;
+  excludeNamesInDropdown();
 }
+
+function excludeNamesInDropdown() {
+  for (let i = 0; i < assignedContactNames.length; i++) {
+    const name = assignedContactNames[i];
+    let dropdownNames = document.querySelectorAll(".option");
+
+    dropdownNames.forEach((dropdownName) => {
+      let contactName = dropdownName.innerHTML;
+      if (contactName.includes(name)) {
+        dropdownName.classList.add('d-none');
+      }
+      // Your code logic for each dropdownName goes here
+    });
+  }
+}
+
 
 function fillEditFields(taskIndex) {
   let titleInputField = document.getElementById("addTaskTitle");
@@ -93,8 +122,7 @@ function fillEditFields(taskIndex) {
 
 async function saveChanges() {
   const titleInputFieldValue = document.getElementById("addTaskTitle").value;
-  const descriptionInputFieldValue =
-    document.getElementById("addTaskDescription").value;
+  const descriptionInputFieldValue = document.getElementById("addTaskDescription").value;
   const dueDateFieldValue = document.getElementById("date").value;
 
   const updatedTask = {
@@ -236,17 +264,9 @@ function renderAssignedTo(taskID, containerClass) {
     const contactColor = assignedTo["color"];
     const initials = getInitials(assignedToName);
     if (container.id === "assignedTo-container") {
-      container.innerHTML += assignedToHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToHTML(contactColor, initials, assignedToName);
     } else {
-      container.innerHTML += assignedToCardHTML(
-        contactColor,
-        initials,
-        assignedToName
-      );
+      container.innerHTML += assignedToCardHTML(contactColor, initials, assignedToName);
     }
   }
 }
@@ -295,6 +315,7 @@ function closeLayer() {
   }, 200),
     layer.removeEventListener("click", displayLayer);
   subtaskCount = 0;
+  assignedContactNames = [];
 }
 
 function slideInContainer(status) {
@@ -325,9 +346,7 @@ function filterCards() {
 
   cards.forEach((card) => {
     const header = card.querySelector(".task-title").innerHTML.toLowerCase();
-    const description = card
-      .querySelector(".task-description")
-      .innerHTML.toLowerCase();
+    const description = card.querySelector(".task-description").innerHTML.toLowerCase();
     if (header.includes(query) || description.includes(query)) {
       card.style.display = "flex";
     } else {
@@ -349,7 +368,7 @@ function renderProgress(i) {
   let subtaskLength = remoteTasksAsJSON[i]["subtasks"].length;
   let percentage = (doneCount / subtaskLength) * 100;
   if (subtaskLength == 0) {
-    return 0
+    return 0;
   } else {
     return percentage;
   }
@@ -409,10 +428,7 @@ function toggleDropdown(event, i) {
   event.stopPropagation();
   let dropdownContent = document.getElementById(`dropdown-content${i}`);
   dropdownContent.style.transition = "opacity 0.3s ease";
-  if (
-    dropdownContent.style.display === "" ||
-    dropdownContent.style.display === "none"
-  ) {
+  if (dropdownContent.style.display === "" || dropdownContent.style.display === "none") {
     dropdownContent.style.opacity = "0";
     dropdownContent.style.display = "block";
     setTimeout(() => {
