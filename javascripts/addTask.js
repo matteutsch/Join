@@ -289,8 +289,36 @@ function isContactSelected(chosenContacts, contact) {
 /* let assignedContacts = []; */
 
 function removeContact(i) {
-  deleteFromAssignedContacts(i);
-  event.target.remove();
+  let dropdown = document.getElementById("selectContactDropdown");
+  let chosenContacts = document.getElementById("chosenContacts");
+
+  // Add the selected contact back to the dropdown if it doesn't exist
+  let selectedContact = contacts[i];
+  let contactName = selectedContact.name;
+  let assignedContactID = `assignedContactID${i}`;
+
+  let existingOption = dropdown.querySelector(`#${assignedContactID}`);
+  if (!existingOption) {
+    let newOptionHTML = `
+      <div id="${assignedContactID}" onclick="selectOptionContacts(${i})" class="option sb">${contactName}</div>
+    `;
+    dropdown.innerHTML += newOptionHTML;
+  }
+
+  // Remove the contact from the chosenContacts container
+  let contactInitials = getInitials(contactName);
+  let chosenContact = chosenContacts.querySelector(
+    `.chosenContactInitials[onclick*="removeContact(${i})"]`
+  );
+  if (chosenContact) {
+    chosenContact.remove();
+  }
+
+  // Show the assigned contact again in the selectContactDropdown
+  let assignedContact = document.getElementById(assignedContactID);
+  if (assignedContact) {
+    assignedContact.classList.remove("d-none");
+  }
 }
 
 function deleteFromAssignedContacts(i) {
