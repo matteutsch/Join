@@ -292,6 +292,12 @@ function removeContact(i) {
   let dropdown = document.getElementById("selectContactDropdown");
   let chosenContacts = document.getElementById("chosenContacts");
 
+  // Remove the contact from the assignedContacts array
+  let contact = contacts[i];
+  let contactID = assignedContacts.indexOf(contact);
+  assignedContacts.splice(contactID, 1);
+
+
   // Add the selected contact back to the dropdown if it doesn't exist
   let selectedContact = contacts[i];
   let contactName = selectedContact.name;
@@ -320,6 +326,7 @@ function removeContact(i) {
     assignedContact.classList.remove("d-none");
   }
 }
+
 
 function deleteFromAssignedContacts(i) {
   let contactName = contacts[i]["name"];
