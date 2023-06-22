@@ -25,7 +25,7 @@ function fadeInAnimation() {
     const logo = document.querySelector(".logo-big");
     setTimeout(function() {
         logo.src = "assets/icons/logo-black.png";
-        window.location.href = "login.html";
+         window.location.href = "login.html"; 
     }, 1500);
 }
 
@@ -39,7 +39,7 @@ function changeLogoColor() {
     if (window.innerWidth < 800) {
         const logo = document.querySelector(".logo-big");
         logo.src = "assets/icons/logo-white-blue.png";
-        document.querySelector(".animation-layer").style.backgroundColor =
+        document.querySelector(".logo-layer").style.backgroundColor =
             "#2A3647";
     } else {
         document.querySelector(".animation-layer").style.backgroundColor = "white";
