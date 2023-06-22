@@ -59,7 +59,7 @@ async function addCategories() {
         ${category["name"]}
         <div style="background-color: ${category["color"]}" class="category-circle"></div>
       </div>
-      <img onclick="removeCategory(${i})" src="assets/icons/clear-subtask.png">  
+      <img onclick="removeCategory(event, ${i})" src="assets/icons/clear-subtask.png">  
     </div>`;
   }
 }
@@ -199,19 +199,21 @@ async function addNewCategory() {
   newCat = newCat.charAt(0).toUpperCase() + newCat.slice(1);
 
   /* if (newCat && newColor) { */
-    let newCategory = {
-      name: newCat,
-      color: newColor,
-    };
-    remoteCategoryAsJSON.push(newCategory);
-    await setItem("categoryRemote", remoteCategoryAsJSON);
+  let newCategory = {
+    name: newCat,
+    color: newColor,
+  };
+  remoteCategoryAsJSON.push(newCategory);
+  await setItem("categoryRemote", remoteCategoryAsJSON);
   /* } */
 
   addCategories();
   closeNewCategory();
 }
 
-async function removeCategory(i) {
+async function removeCategory(event, i) {
+  event.stopPropagation();
+
   remoteCategoryAsJSON.splice(i, 1);
   await setItem("categoryRemote", remoteCategoryAsJSON);
   document.getElementById("addTaskCategory").innerHTML = "Select task category";
@@ -297,7 +299,6 @@ function removeContact(i) {
   let contactID = assignedContacts.indexOf(contact);
   assignedContacts.splice(contactID, 1);
 
-
   // Add the selected contact back to the dropdown if it doesn't exist
   let selectedContact = contacts[i];
   let contactName = selectedContact.name;
@@ -326,7 +327,6 @@ function removeContact(i) {
     assignedContact.classList.remove("d-none");
   }
 }
-
 
 function deleteFromAssignedContacts(i) {
   let contactName = contacts[i]["name"];
