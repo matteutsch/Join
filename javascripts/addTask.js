@@ -103,10 +103,10 @@ async function createTask(status) {
         window.location.href = "board.html";
       }, 1000);
     }
-  }
-  if (window.location.pathname.includes("board.html")) {
-    initBoard();
-    closeSlideInBtn();
+    if (window.location.pathname.includes("board.html")) {
+      initBoard();
+      closeSlideInBtn();
+    }
   }
 }
 

@@ -318,8 +318,8 @@ function slideInHTML(status) {
             </div>
           </form>
           <div id="taskAdded" class="taskAdded">
-          Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
-          </div>
+              Task added to board &nbsp; <img src="assets/icons/board-icon.svg" />
+          </div>  
         </div>
       </div>
   `;
