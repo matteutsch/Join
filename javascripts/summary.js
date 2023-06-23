@@ -1,6 +1,6 @@
-// Überprüfen, ob die Flag-Variable bereits im sessionStorage vorhanden ist
+// Check, wether the Flag-Variable already exists in sessionStorage
 let isActive = sessionStorage.getItem("isActive");
-// Wenn sie nicht vorhanden ist, standardmäßig auf true setzen
+// If not, set it to true
 isActive = isActive === null ? true : JSON.parse(isActive);
 
 /**
@@ -12,11 +12,11 @@ async function startSummary() {
     taskWithEarliestDuedate();
     tasksAsJSON = await getRemoteData("tasksRemote");
     if (!isActive && window.innerWidth < 670) {
-        return; // Die Funktion wird beendet, ohne den Code auszuführen
+        return; // Funktion stopps without executing the code
     }
-    greet(); // Funktionierender Code hier
+    greet(); // Code is executed
 
-    // Flag-Variable aktualisieren, um zu markieren, dass die Funktion bereits aufgerufen wurde
+    // Flag-Variable is updated to show that the function has already been called
     isActive = false;
     sessionStorage.setItem("isActive", JSON.stringify(isActive));
 }
@@ -45,9 +45,6 @@ async function greet() {
             (await getItem("currentUserName")).data.value.replace(/'/g, '"')
         )
     ).name;
-
-    /*     const greetingTextId = property !== "none" ? "greetingText" : "greetingText2";
-        const greetingNameId = property !== "none" ? "greetingName" : "greetingName2"; */
 
     document.getElementById("greetingText").innerHTML = timeOfDay;
     document.getElementById("greetingName").innerHTML = currentUserName;
