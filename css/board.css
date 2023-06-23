@@ -794,7 +794,7 @@
 
   .slideInContainer-content {
     position: absolute;
-    height: 90vh;
+    height: fit-content;
     top: 20px;
     left: 20px;
     right: 20px;
