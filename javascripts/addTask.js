@@ -68,7 +68,7 @@ function pushAssignedContact(i) {
   // pushing selected contacts into assignedContacts Array
   let contact = contacts[i];
   let index = assignedContacts.indexOf(contact);
-  if (index <= -1) {
+  if (index <= -1 && assignedContacts.length < 5) {
     assignedContacts.push(contacts[i]);
   }
 }
