@@ -51,17 +51,26 @@ async function addCategories() {
   </div>`;
   for (let i = 0; i < remoteCategoryAsJSON.length; i++) {
     let category = remoteCategoryAsJSON[i];
-    category["name"] =
-      category["name"].charAt(0).toUpperCase() + category["name"].slice(1);
-    document.getElementById("categoryDropdown").innerHTML += `
-    <div onclick="selectOptionCategory(${i})" class="option">
-      <div class="d-option">
-        ${category["name"]}
-        <div style="background-color: ${category["color"]}" class="category-circle"></div>
-      </div>
-      <img onclick="removeCategory(event, ${i})" src="assets/icons/clear-subtask.png">  
-    </div>`;
+    let name = category["name"];
+    let color = category["color"];
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    document.getElementById("categoryDropdown").innerHTML += genCategoryHTML(
+      i,
+      name,
+      color
+    );
   }
+}
+
+function genCategoryHTML(i, name, color) {
+  return `
+<div onclick="selectOptionCategory(${i})" class="option">
+  <div class="d-option">
+    ${name}
+    <div style="background-color: ${color}" class="category-circle"></div>
+  </div>
+  <img onclick="removeCategory(event, ${i})" src="assets/icons/clear-subtask.png">  
+</div>`;
 }
 
 function pushAssignedContact(i) {
@@ -91,43 +100,44 @@ async function createTask(status) {
       dueDate: dueDate.value,
       assignedTo: assignedContacts,
     };
-
     remoteTasksAsJSON.push(newTask);
     await setItem("tasksRemote", remoteTasksAsJSON);
     subtaskID = 0;
-    resetValues();
+    resetValues(dueDate, description, title);
     taskPopup();
-
-    if (window.location.pathname.includes("add_task.html")) {
-      setTimeout(() => {
-        window.location.href = "board.html";
-      }, 1000);
-    }
-    if (window.location.pathname.includes("board.html")) {
-      initBoard();
-      closeSlideInBtn();
-    }
+    boardCondition();
   }
 }
 
-function resetValues() {
-  let title = document.getElementById("addTaskTitle");
-  let description = document.getElementById("addTaskDescription");
+function boardCondition() {
+  //in case task is added in add_task.html, window.location will jump to board.html
+  if (window.location.pathname.includes("add_task.html")) {
+    setTimeout(() => {
+      window.location.href = "board.html";
+    }, 1000);
+  }
+  if (window.location.pathname.includes("board.html")) {
+    initBoard();
+    closeSlideInBtn();
+  }
+}
+
+function resetValues(dueDate, description, title) {
   let category = document.getElementById("addTaskCategory");
   let assignedTo = document.getElementById("chosenContacts");
-  let dueDate = document.getElementById("date");
   let subtaskContainer = document.getElementById("subtaskContainer");
   priority = "";
-  document.getElementById("medium").classList.remove("medium");
-  document.getElementById("mediumIcon").src = "assets/icons/medium.png";
-  document.getElementById("urgent").classList.remove("urgent");
-  document.getElementById("urgentIcon").src = "assets/icons/urgent.png";
-  document.getElementById("low").classList.remove("low");
-  document.getElementById("lowIcon").src = "assets/icons/low.png";
+  let elem = document.querySelectorAll(".prio-btn");
+  for (let k = 0; k < elem.length; k++) {
+    elem[k].classList.remove("urgent", "medium", "low");
+    document.getElementById("mediumIcon").src = "assets/icons/medium.png";
+    document.getElementById("urgentIcon").src = "assets/icons/urgent.png";
+    document.getElementById("lowIcon").src = "assets/icons/low.png";
+  }
   title.value = "";
   description.value = "";
-  category.innerHTML = "Select task category";
   dueDate.value = "";
+  category.innerHTML = "Select task category";
   assignedTo.innerHTML = "";
   subtaskContainer.innerHTML = "";
   assignedContacts = [];
@@ -194,18 +204,18 @@ function selectCatColor(i) {
 async function addNewCategory() {
   let newCatInp = document.getElementById("newCatInput");
   let newColorElement = document.querySelector(".selectedColor");
-  let newColor = newColorElement.style.backgroundColor;
+  let newColor = newColorElement ? newColorElement.style.backgroundColor : null;
   let newCat = newCatInp.value;
   newCat = newCat.charAt(0).toUpperCase() + newCat.slice(1);
 
-  /* if (newCat && newColor) { */
-  let newCategory = {
-    name: newCat,
-    color: newColor,
-  };
-  remoteCategoryAsJSON.push(newCategory);
-  await setItem("categoryRemote", remoteCategoryAsJSON);
-  /* } */
+  if (newCat && newColor) {
+    let newCategory = {
+      name: newCat,
+      color: newColor,
+    };
+    remoteCategoryAsJSON.push(newCategory);
+    await setItem("categoryRemote", remoteCategoryAsJSON);
+  }
 
   addCategories();
   closeNewCategory();
@@ -235,13 +245,10 @@ function selectOptionContacts(i) {
   let dropdown = document.getElementById("selectContactDropdown");
   let selectContact = document.getElementById("selectContact");
   let chosenContacts = document.getElementById("chosenContacts");
-
   let assignedContact = document.getElementById(`assignedContactID${i}`);
-
   let initials = getInitials(contacts[i]["name"]);
   let color = contacts[i]["color"];
 
-  // Checking if contact is already selected
   if (!isContactSelected(chosenContacts, contacts[i])) {
     if (chosenContacts.children.length < 5) {
       assignedContact.classList.add("d-none");
@@ -252,19 +259,12 @@ function selectOptionContacts(i) {
         </div>
       `;
       chosenContacts.innerHTML += newContactHTML;
-
-      // Remove selected option from dropdown
       let selectedOption = dropdown.querySelector(`option[value="${i}"]`);
       if (selectedOption) {
         selectedOption.remove();
       }
-    } else {
-      console.log("Maximum number of contacts reached!");
     }
-  } else {
-    console.log("Contact already selected!");
   }
-
   dropdown.classList.remove("expanded");
   selectContact.classList.remove("category-expanded");
 }
@@ -291,10 +291,8 @@ function isContactSelected(chosenContacts, contact) {
 /* let assignedContacts = []; */
 
 function removeContact(i) {
-  let dropdown = document.getElementById("selectContactDropdown");
-  let chosenContacts = document.getElementById("chosenContacts");
-
   // Remove the contact from the assignedContacts array
+  let dropdown = document.getElementById("selectContactDropdown");
   let contact = contacts[i];
   let contactID = assignedContacts.indexOf(contact);
   assignedContacts.splice(contactID, 1);
@@ -312,7 +310,13 @@ function removeContact(i) {
     dropdown.innerHTML += newOptionHTML;
   }
 
+  removeFromChosenContacts(i, contactName);
+  recoverAssignedContact(assignedContactID);
+}
+
+function removeFromChosenContacts(i, contactName) {
   // Remove the contact from the chosenContacts container
+  let chosenContacts = document.getElementById("chosenContacts");
   let contactInitials = getInitials(contactName);
   let chosenContact = chosenContacts.querySelector(
     `.chosenContactInitials[onclick*="removeContact(${i})"]`
@@ -320,7 +324,9 @@ function removeContact(i) {
   if (chosenContact) {
     chosenContact.remove();
   }
+}
 
+function recoverAssignedContact(assignedContactID) {
   // Show the assigned contact again in the selectContactDropdown
   let assignedContact = document.getElementById(assignedContactID);
   if (assignedContact) {

@@ -5,7 +5,6 @@ let remoteContactsAsJSON;
 async function initContactList() {
   //get all the firstletters of contacts and push them into seperate array;
   //creating seperate array of contacts sorted by first letters
-
   let res = await getItem("contactsRemote");
   remoteContactsAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
 
@@ -78,7 +77,6 @@ function selectContact(i, j) {
   document
     .getElementById(`singleContact${i}-${j}`)
     .classList.add("selectedContact");
-
   changeMobileView();
   document.getElementById("contactsMid").innerHTML = renderSelectContactHTML(
     i,
@@ -169,9 +167,9 @@ function openEditContact(i, j) {
   editMail.value = contact.email;
   editPhone.value = contact.phone;
   document.getElementById("editImage").innerHTML = `
-  <div style="background-color:${contact.color}" class="contactImage editInitials">
-  ${initials}
-</div>`;
+    <div style="background-color:${contact.color}" class="contactImage editInitials">
+      ${initials}
+    </div>`;
 }
 
 function createEditHTML(i, j) {
@@ -188,43 +186,43 @@ function createEditHTML(i, j) {
       x
     </div>
     <form class="editForm" onsubmit="event.preventDefault(), saveContact(${i}, ${j}), contactPopup('edit') ">
-    <div class="createContactContainer">
-      <div id="editImage">
-        <img class="contactImage" src="assets/icons/add_contact.png" />
+      <div class="createContactContainer">
+        <div id="editImage">
+          <img class="contactImage" src="assets/icons/add_contact.png" />
+        </div>
+        <div class="contactInputContainer">
+          <input
+          required
+            id="editName"
+            class="addContactInput contactName"
+            placeholder="Name"
+            type="name" 
+          />
+          <input
+          required
+            id="editMail"
+            class="addContactInput contactEmail"
+            placeholder="Email"
+            type="email" 
+          />
+          <input
+          required
+            id="editPhone"
+            class="addContactInput contactPhone"
+            placeholder="Phone"
+            type="number" 
+          />
+        </div>
       </div>
-      <div class="contactInputContainer">
-        <input
-        required
-          id="editName"
-          class="addContactInput contactName"
-          placeholder="Name"
-          type="name" 
-        />
-        <input
-        required
-          id="editMail"
-          class="addContactInput contactEmail"
-          placeholder="Email"
-          type="email" 
-        />
-        <input
-        required
-          id="editPhone"
-          class="addContactInput contactPhone"
-          placeholder="Phone"
-          type="number" 
-        />
+        <div class="addContactBtn">
+          <button type="button" onclick="deleteContact(${i}, ${j}), exitContact()" class="cancel-btn">Delete</button>
+          <button type="submit" class="create-contact-btn">
+            Save
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="addContactBtn">
-      <button type="button" onclick="deleteContact(${i}, ${j}), exitContact()" class="cancel-btn">Delete</button>
-      <button type="submit" class="create-contact-btn">
-        Save
-      </button>
-    </div>
-  </div>
-</form>
-</div>`;
+    </form>
+  </div>`;
 }
 
 function closeEditContact() {
