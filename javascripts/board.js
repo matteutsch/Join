@@ -12,6 +12,7 @@ async function initBoard() {
   renderTaskCards("awaitingFeedback", "awaitingFeedback");
   renderTaskCards("done", "done");
   toggleButtonVisibility();
+  isEmptyStatusContainer();
 }
 
 function renderCategoryLabelColor(i) {
@@ -51,6 +52,15 @@ function renderTaskCards(container, status) {
 function renderTaskDescription(i) {
   let description = remoteTasksAsJSON[i]["description"];
   return description;
+}
+
+function isEmptyStatusContainer(){
+  let statusContainers = document.querySelectorAll('.statusContainer');
+  statusContainers.forEach( c => {
+    if (c.innerHTML == '') {
+      c.style.minHeight = '100px';
+    }
+  })
 }
 
 function openTaskCard(i, cardID) {
