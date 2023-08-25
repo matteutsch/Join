@@ -47,6 +47,8 @@ function openTaskCardHTML(i, cardID) {
   return /* html */ `
     <div class="task-card-big" id="${cardID}">
       <div class="task-card-big-content">
+      <img src="assets/icons/arrow-left-black.png" class="task-card-arrow" onclick="closeSlideInBtn()">
+
         <div class="category-label-big" style="background-color: ${renderCategoryLabelColor(
           i
         )};">
@@ -54,7 +56,6 @@ function openTaskCardHTML(i, cardID) {
             remoteTasksAsJSON[i]["category"][0].toUpperCase() +
             remoteTasksAsJSON[i]["category"].slice(1)
           }
-          <img src="assets/icons/arrow-left-black.png" class="task-card-arrow" onclick="closeSlideInBtn()">
         </div>
         <div class="task-title-big">${remoteTasksAsJSON[i]["title"]}</div>
         <div class="task-description-big">${renderTaskDescription(i)}</div>

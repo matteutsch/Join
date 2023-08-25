@@ -173,22 +173,6 @@ header {
 /*-------sideMenu && header end----------*/
 
 @media (max-width: 850px) {
-  .menuText {
-    padding-left: 24px;
-  }
-  .sideMenuContainer {
-    width: 200px;
-  }
-  header {
-    padding-left: 240px;
-  }
-  header p {
-    margin: 0;
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 670px) {
   .hideMobile {
     display: none !important;
   }

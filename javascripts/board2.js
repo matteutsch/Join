@@ -18,6 +18,7 @@ function closeSlideInContainer() {
   if (slideInContainer) {
     slideInContainer.style.transform = "translateX(200%)";
   }
+  isSlideIn = false;
 }
 
 /**
@@ -61,6 +62,7 @@ function slideInContainer(status) {
   addCategories();
   addSubtaskEventListener();
   document.body.style.overflow = "hidden";
+  isSlideIn = true;
 }
 document.addEventListener("input", function (event) {
   if (event.target.id === "searchInput") {

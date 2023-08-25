@@ -34,7 +34,7 @@
   margin-left: 232px;
   margin-top: 80px;
   height: 88vh;
-  padding: 32px 120px 56px 120px;
+  padding: 32px 70px 56px 70px;
 }
 
 .content-container p {
@@ -46,7 +46,7 @@
 .content-container h1 {
   margin: 0;
   font-size: 56px;
-  padding-top: 24px;
+  padding-top: 16px;
 }
 
 .task-section {
@@ -570,15 +570,14 @@ input[type="checkbox"] {
 }
 
 @media (max-width: 850px) {
+  .content-container {
+    margin-left: 0px;
+    padding: 32px 32px 80px 32px;
+  }
+
   .button-container-form {
     bottom: 56px;
   }
-
-  .content-container {
-    margin-left: 200px;
-    padding: 32px 11px 48px 11px;
-  }
-
   .content-left {
     padding-right: 11px;
     padding-bottom: 24px;
@@ -588,6 +587,10 @@ input[type="checkbox"] {
     padding-left: 11px;
   }
 
+  .prio-section img {
+    width: 12px;
+  }
+
   .prio-btn {
     padding: 8px 4px 8px 4px;
   }
@@ -595,25 +598,9 @@ input[type="checkbox"] {
   .prio-section {
     gap: 4px;
   }
-
-  .prio-section img {
-    width: 12px;
-  }
-
   .task-section {
     margin-top: 0px;
     margin-bottom: 32px;
-  }
-
-  .selectContainer {
-    overflow: hidden;
-  }
-}
-
-@media (max-width: 670px) {
-  .content-container {
-    margin-left: 0px;
-    padding-bottom: 80px;
   }
 
   .button-container {
@@ -633,6 +620,9 @@ input[type="checkbox"] {
     justify-content: center;
     margin-top: 10px;
   }
+  .selectContainer {
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 500px) {
@@ -645,7 +635,7 @@ input[type="checkbox"] {
 
   .content-container {
     justify-content: flex-start;
-    padding: 32px 24px 104px 24px;
+    padding: 32px 24px 136px 24px;
     height: fit-content;
   }
 

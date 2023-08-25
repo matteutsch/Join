@@ -444,13 +444,8 @@ input::-webkit-inner-spin-button {
     padding-right: 18px;
   }
 }
-@media (max-width: 850px) {
-  .contacts-content {
-    margin-left: 200px;
-  }
-}
 
-@media (max-width: 670px) {
+@media (max-width: 850px) {
   .hideArrow {
     display: block;
   }

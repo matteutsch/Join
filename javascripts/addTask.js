@@ -3,7 +3,7 @@ let assignedContacts = [];
 let selectedCategory;
 let subtaskID = 0;
 let remoteCategoryAsJSON;
-
+let isSlideIn = false;
 /**
  * Initializes the add task functionality by fetching remote tasks and categories, and setting up event listeners.
  * @returns {Promise}
@@ -359,15 +359,20 @@ function selectOptionContacts(i) {
 document.addEventListener("click", (e) => {
   let dropdown = document.getElementById("selectContactDropdown");
   let selectContact = document.getElementById("selectContact");
-  if (!dropdown.contains(e.target) && !selectContact.contains(e.target)) {
-    dropdown.classList.remove("expanded");
-    selectContact.classList.remove("category-expanded");
-  }
-  let category = document.getElementById("addTaskCategory");
-  let selectCategory = document.getElementById("categoryDropdown");
-  if (!category.contains(e.target) && !selectCategory.contains(e.target)) {
-    category.classList.remove("category-expanded");
-    selectCategory.classList.remove("expanded");
+  if (
+    window.location.pathname.includes("add_task.html") ||
+    (window.location.pathname.includes("board.html") && isSlideIn)
+  ) {
+    if (!dropdown.contains(e.target) && !selectContact.contains(e.target)) {
+      dropdown.classList.remove("expanded");
+      selectContact.classList.remove("category-expanded");
+    }
+    let category = document.getElementById("addTaskCategory");
+    let selectCategory = document.getElementById("categoryDropdown");
+    if (!category.contains(e.target) && !selectCategory.contains(e.target)) {
+      category.classList.remove("category-expanded");
+      selectCategory.classList.remove("expanded");
+    }
   }
 });
 
