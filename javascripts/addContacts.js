@@ -2,12 +2,13 @@ let letters = [];
 let contactsByLetter = [];
 let remoteContactsAsJSON;
 
+/**
+ * Initializes the contact list by fetching remote contacts, sorting them by first letter, and rendering the list on the page.
+ * @returns {Promise}
+ */
 async function initContactList() {
-  //get all the firstletters of contacts and push them into seperate array;
-  //creating seperate array of contacts sorted by first letters
   let res = await getItem("contactsRemote");
   remoteContactsAsJSON = await JSON.parse(res.data.value.replace(/'/g, '"'));
-
   letters = [];
   contactsByLetter = [];
   document.getElementById("contactList").innerHTML = "";
@@ -23,39 +24,54 @@ async function initContactList() {
     }
     contactsByLetter[firstLetter].push(contact);
   }
-
   renderContactList();
 }
 
+/**
+ * Renders the contact list on the page.
+ */
 function renderContactList() {
-  //iterating through letters array to create letters as headline
-  //iterating through contactsByLetter[Letter] to render those below the matching firstLetter
-
   for (let i = 0; i < letters.length; i++) {
     let letter = letters[i];
     let contactsWithLetter = contactsByLetter[letter];
     document.getElementById(
       "contactList"
     ).innerHTML += `<div id="${letter}" ><h3 class="letterHeader" >${letter}</h3></div>`;
-
-    for (let j = 0; j < contactsWithLetter.length; j++) {
-      let contact = contactsWithLetter[j];
-      let name = contact.name;
-      let initials = getInitials(name);
-      let email = contact.email;
-      let color = contact.color;
-      document.getElementById(`${letter}`).innerHTML += addContactsHTML(
-        i,
-        j,
-        color,
-        initials,
-        name,
-        email
-      );
-    }
+    renderContactsByLetter(i, letter, contactsWithLetter);
   }
 }
 
+/**
+ * Renders the contacts underneath the letters inside the contactlist.
+ */
+function renderContactsByLetter(i, letter, contactsWithLetter) {
+  for (let j = 0; j < contactsWithLetter.length; j++) {
+    let contact = contactsWithLetter[j];
+    let name = contact.name;
+    let initials = getInitials(name);
+    let email = contact.email;
+    let color = contact.color;
+    document.getElementById(`${letter}`).innerHTML += addContactsHTML(
+      i,
+      j,
+      color,
+      initials,
+      name,
+      email
+    );
+  }
+}
+
+/**
+ * Adds HTML for a contact.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ * @param {string} color - The color of the contact.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @returns {string} The generated HTML for the contact.
+ */
 function addContactsHTML(i, j, color, initials, name, email) {
   return `
     <div id='singleContact${i}-${j}' class="singleContact" onclick="selectContact(${i},${j})">
@@ -68,8 +84,12 @@ function addContactsHTML(i, j, color, initials, name, email) {
     `;
 }
 
+/**
+ * Selects a contact and displays further information in a container next to it.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ */
 function selectContact(i, j) {
-  //select a contact to display further information in container next to it
   let elem = document.querySelectorAll(".singleContact");
   for (let k = 0; k < elem.length; k++) {
     elem[k].classList.remove("selectedContact");
@@ -84,6 +104,12 @@ function selectContact(i, j) {
   );
 }
 
+/**
+ * Renders the selected contact information.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ * @returns {string} The generated HTML for the selected contact.
+ */
 function renderSelectContactHTML(i, j) {
   let contact = contactsByLetter[letters[i]][j];
   let name = contact.name;
@@ -91,7 +117,7 @@ function renderSelectContactHTML(i, j) {
   let phone = contact.phone;
   let initials = getInitials(name);
   return `
-  <img id="arrowBack" onclick="exitContact()" class="arrowBack hideArrow" src="../assets/icons/arrow-left-black.png">
+  <img id="arrowBack" onclick="exitContact()" class="arrowBack hideArrow" src="assets/icons/arrow-left-black.png">
   <div class="contact-name">
     <div id="emptyInitial">
       <div  style="background-color:${contact.color}" class="contact-initials">
@@ -120,8 +146,11 @@ function renderSelectContactHTML(i, j) {
   </div>`;
 }
 
+/**
+ * Adds a new contact to the contacts array.
+ * @returns {Promise}
+ */
 async function addContact() {
-  //adding new contact to contacts Array
   let name = document.getElementById("newContactName");
   let email = document.getElementById("newContactEmail");
   let phone = document.getElementById("newContactPhone");
@@ -144,14 +173,25 @@ async function addContact() {
   initContactList();
 }
 
+/**
+ * Opens the new contact overlay.
+ */
 function openNewContact() {
   document.getElementById(`addContactsOverlay`).classList.remove("d-none");
 }
 
+/**
+ * Closes the new contact overlay.
+ */
 function closeNewContact() {
   document.getElementById(`addContactsOverlay`).classList.add("d-none");
 }
 
+/**
+ * Opens the edit contact overlay.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ */
 function openEditContact(i, j) {
   document.getElementById(`editContactsOverlay`).classList.remove("d-none");
   document.getElementById("editContactsOverlay").innerHTML = createEditHTML(
@@ -172,6 +212,12 @@ function openEditContact(i, j) {
     </div>`;
 }
 
+/**
+ * Creates the HTML for the edit contact overlay.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ * @returns {string} The generated HTML for the edit contact overlay.
+ */
 function createEditHTML(i, j) {
   return /*html*/ ` <div class="addContact">
   <div class="addContactLeft">
@@ -225,10 +271,19 @@ function createEditHTML(i, j) {
   </div>`;
 }
 
+/**
+ * Closes the edit contact overlay.
+ */
 function closeEditContact() {
   document.getElementById(`editContactsOverlay`).classList.add("d-none");
 }
 
+/**
+ * Saves the changes made to a contact.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ * @returns {Promise}
+ */
 async function saveContact(i, j) {
   let editName = document.getElementById("editName").value;
   let editMail = document.getElementById("editMail").value;
@@ -249,34 +304,52 @@ async function saveContact(i, j) {
   closeEditContact();
 }
 
+/**
+ * Deletes a contact.
+ * @param {number} i - The index of the letter.
+ * @param {number} j - The index of the contact with the matching first letter.
+ * @returns {Promise}
+ */
 async function deleteContact(i, j) {
   let editName = document.getElementById("editName");
   let editMail = document.getElementById("editMail");
   let editPhone = document.getElementById("editPhone");
-
   let contact = contactsByLetter[letters[i]][j];
   let contactIndex = remoteContactsAsJSON.indexOf(contact);
-
   contactsByLetter[letters[i]].splice(j, 1);
-
   remoteContactsAsJSON.splice(contactIndex, 1);
   await setItem("contactsRemote", remoteContactsAsJSON);
 
-  editName.value = "";
-  editMail.value = "";
-  editPhone.value = "";
-  document.getElementById("contactsMid").innerHTML = "";
-
+  emptyEdit(editName, editMail, editPhone);
   initContactList();
   closeEditContact();
 }
 
+/**
+ * Resets the edit values.
+ * @param {HTMLInputElement} editName - The input field for editing the name.
+ * @param {HTMLInputElement} editMail - The input field for editing the email.
+ * @param {HTMLInputElement} editPhone - The input field for editing the phone number.
+ */
+function emptyEdit(editName, editMail, editPhone) {
+  editName.value = "";
+  editMail.value = "";
+  editPhone.value = "";
+  document.getElementById("contactsMid").innerHTML = "";
+}
+
+/**
+ * Changes the view on mobile when a contact is selected.
+ */
 function changeMobileView() {
   document.getElementById("newContactBtn").classList.add("hideMobile");
   document.getElementById("contactsRight").classList.add("contactInfoMobile");
   document.getElementById("contactList").classList.add("hideMobile");
 }
 
+/**
+ * Exits the selected contact view.
+ */
 function exitContact() {
   document
     .getElementById("contactsRight")
@@ -286,7 +359,10 @@ function exitContact() {
   document.getElementById("arrowBack").classList.add("hideMobile");
 }
 
-//----------------contact successfully created/edited ---------------//
+/**
+ * Displays a popup message for a successful contact creation/edit.
+ * @param {string} change - The type of change (either "new" or "edit").
+ */
 function contactPopup(change) {
   let success = document.getElementById("changedContact");
 
@@ -300,4 +376,3 @@ function contactPopup(change) {
     success.style.display = "none";
   }, 2000);
 }
-//----------------contact successfully created/edited ---------------//

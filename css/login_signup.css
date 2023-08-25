@@ -158,7 +158,7 @@
 }
 
 .nameInput {
-  background: url("/assets/icons/Input_Name.png") no-repeat 380px 15px;
+  background: url("../assets/icons/Input_Name.png") no-repeat 380px 15px;
   width: 422px;
   height: 51px;
   padding: 13px 21px;
@@ -173,7 +173,7 @@
 }
 
 .email {
-  background: url("/assets/icons/Input_Email.png") no-repeat 380px 15px;
+  background: url("../assets/icons/Input_Email.png") no-repeat 380px 15px;
   width: 422px;
   height: 51px;
   padding: 13px 21px;
@@ -188,7 +188,7 @@
 }
 
 .password {
-  background: url("/assets/icons/Input_Password.png") no-repeat 380px 15px;
+  background: url("../assets/icons/Input_Password.png") no-repeat 380px 15px;
   width: 422px;
   height: 51px;
   padding: 13px 21px;
@@ -411,8 +411,6 @@
     pointer-events: none;
   }
 
-  
-
   .signup-form {
     width: 372px;
     height: 501px;
@@ -427,19 +425,19 @@
   .email {
     width: 327px;
     height: 41px;
-    background: url("/assets/icons/Input_Email.png") no-repeat 285px 10px;
+    background: url("../assets/icons/Input_Email.png") no-repeat 285px 10px;
   }
 
   .password {
     width: 327px;
     height: 41px;
-    background: url("/assets/icons/Input_Password.png") no-repeat 286px 10px;
+    background: url("../assets/icons/Input_Password.png") no-repeat 286px 10px;
   }
 
   .nameInput {
     width: 327px;
     height: 41px;
-    background: url("/assets/icons/Input_Name.png") no-repeat 286px 10px;
+    background: url("../assets/icons/Input_Name.png") no-repeat 286px 10px;
   }
 
   .button-container-login {

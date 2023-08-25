@@ -49,7 +49,7 @@
 }
 
 .search-button {
-  background: url("/assets/icons/lens.png") no-repeat 9px 4px;
+  background: url("../assets/icons/lens.png") no-repeat 9px 4px;
   width: 30px;
   height: 30px;
   opacity: 0.5;
@@ -103,7 +103,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 250px;
+  min-width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
   padding-left: 8px !important;
@@ -165,7 +165,7 @@
 }
 
 .task-card {
-  width: 250px;
+  width: 15vw;
   gap: 20px;
   display: flex;
   flex-direction: column;
@@ -472,7 +472,7 @@
 }
 
 .delete-button:hover img {
-  content: url("/assets/icons/delete_blue.png");
+  content: url("../assets/icons/delete_blue.png");
 }
 
 .edit-button {
@@ -628,6 +628,12 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+@media (max-width: 1500px) {
+  .task-card {
+    gap: 10px;
+  }
 }
 
 @media (max-width: 1000px) {
