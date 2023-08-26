@@ -542,6 +542,7 @@ body {
   }
 
   .posContainer {
+    box-sizing: border-box;
     width: 500px;
   }
   .leftTemplate {
@@ -554,8 +555,8 @@ body {
 
   .rightContainer {
     width: 100vw;
-    margin-left: 32px;
-    margin-right: 32px;
+    margin-left: 24px;
+    margin-right: 24px;
     padding-bottom: 35px;
   }
 
@@ -585,7 +586,7 @@ body {
   }
 
   .tasksOverallContainer {
-    gap: 15px;
+    gap: 10px;
   }
 
   .tasksCount {
@@ -681,6 +682,9 @@ body {
     width: 50px;
     height: 50px;
   }
+  .toDoDoneContainer {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 830px) {
@@ -769,33 +773,33 @@ body {
   }
   .tasksOverallContainer,
   .toDoDoneContainer {
-    gap: 10px;
+    gap: 4px;
   }
 }
 
 @media (max-width: 570px) {
-  .posContainer {
-    width: 100%;
-  }
-}
-@media (max-width: 470px) {
   .summaryContainer {
     width: 180px;
+  }
+  .posContainer {
+    width: 100%;
   }
 
   .tasksOverallContainer,
   .dueDateContainer {
     margin-bottom: 0;
+    margin-bottom: 10px;
   }
 
   .tasksOverallContainer,
   .toDoDoneContainer {
-    gap: 16px;
+    gap: 8px;
   }
 
   .tasksContainer {
     width: 120px;
     height: 120px;
+    padding: 8px;
   }
 
   .toDoContainer,
@@ -813,7 +817,7 @@ body {
   }
 
   .deadline {
-    width: 228px;
+    width: 100%;
   }
 
   .toDoContainer {
@@ -851,8 +855,13 @@ body {
 
 @media (max-width: 400px) {
   .summaryContainer {
-    width: 125px;
+    width: 90px;
     margin-bottom: 20px;
+  }
+
+  .rightContainer {
+    margin-left: 16px;
+    margin-right: 16px;
   }
 
   .headline {
@@ -863,21 +872,10 @@ body {
     top: 148px;
   }
 
-  .tasksOverallContainer,
-  .toDoDoneContainer {
-    gap: 3px;
-    margin-bottom: 0;
-  }
-
   .tasksContainer {
     width: 108px;
     height: 110px;
     padding-top: 12px;
-  }
-
-  .dueDateContainer,
-  .toDoDonecontainer {
-    margin-bottom: 0;
   }
 
   .toDoContainer {
